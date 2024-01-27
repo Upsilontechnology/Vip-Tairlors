@@ -1,7 +1,6 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
-import Category from '../../../components/Category/Category';
-
+import Category from '../Category/Category';
 const Home = () => {
     return (
         <div>
