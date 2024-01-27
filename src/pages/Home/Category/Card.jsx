@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryImg from "../../../assets/CategoryImg.png";
+import CategoryImg from "../../../assets/CategoryImg.png"
 
 const Card = () => {
   return (
