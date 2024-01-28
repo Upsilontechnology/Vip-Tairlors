@@ -14,7 +14,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn"><IoPersonOutline className='text-xl'/> Login</button>
+                    <button className="btn"><IoPersonOutline className='text-xl'/> Logout</button>
                 </div>
             </div>
         </div>
