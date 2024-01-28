@@ -3,7 +3,7 @@ import React from 'react';
 const Banner = () => {
     return (
         <div>
-            <h2>Hello World</h2>
+            {/* <h2>Hello World</h2> */}
         </div>
     );
 };
