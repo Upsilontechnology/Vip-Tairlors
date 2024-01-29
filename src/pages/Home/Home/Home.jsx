@@ -5,7 +5,6 @@ import Faq from '../Faq/Faq';
 const Home = () => {
     return (
         <div>
-            <Banner />
             <Category />
             <Faq />
         </div>
