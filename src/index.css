@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .primary-color {
     color: #0fcda1;
 }
