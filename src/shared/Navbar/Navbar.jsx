@@ -3,7 +3,7 @@ import { IoPersonOutline } from "react-icons/io5";
 
 const Navbar = () => {
     return (
-        <div>
+        <div className='supershop-container'>
             <div className="navbar">
                 <div className="navbar-start">
                     <a className="btn btn-ghost text-xl">HakkuTraders</a>
