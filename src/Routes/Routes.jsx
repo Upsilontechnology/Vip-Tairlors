@@ -4,6 +4,7 @@ import {
 import MainLayout from "../layout/MainLayout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,13 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element: <AdminDashboard></AdminDashboard>,
+        children: [
+            
+        ]
+    }
 ]);
 
 export default router;
