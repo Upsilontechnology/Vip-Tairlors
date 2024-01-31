@@ -5,6 +5,7 @@ import MainLayout from "../layout/MainLayout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
+import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <AdminDashboard></AdminDashboard>,
         children: [
-            
+            {
+                path: '/dashboard',
+                element: <AllProduct></AllProduct>
+            }
         ]
     }
 ]);

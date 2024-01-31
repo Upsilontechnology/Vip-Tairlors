@@ -4,9 +4,9 @@ import Navbar2 from '../../../shared/Navbar2/Navbar2';
 
 const AdminDashboard = () => {
     return (
-        <div className='flex justify-center gap-5 px-10 py-3'>
+        <div className='flex justify-center gap-5 px-3 py-3'>
             {/* Dashboard */}
-            <div className='space-y-5 mt-3'>
+            <div className='space-y-5 mt-3 w-2/12 flex flex-col justify-center pl-5'>
                 <div>
                     <h1 className='text-2xl font-bold'>VIP Tailors and Punjabi</h1>
                 </div>
@@ -15,7 +15,7 @@ const AdminDashboard = () => {
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
-                                isActive ? "mr-6 text-[#3d48df] text-lg font-bold underline" : "mr-6 text-lg font-bold"
+                                isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-lg font-bold"
                             }
                         >
                             Home
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
-                                isActive ? "mr-6 text-[#3d48df] text-lg font-bold underline" : "mr-6 text-lg font-bold"
+                                isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
                             }
                         >
                             Home
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
-                                isActive ? "mr-6 text-[#3d48df] text-lg font-bold underline" : "mr-6 text-lg font-bold"
+                                isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
                             }
                         >
                             Home
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
-                                isActive ? "mr-6 text-[#3d48df] text-lg font-bold underline" : "mr-6 text-lg font-bold"
+                                isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
                             }
                         >
                             Home
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
             {/* divider */}
             <div className="divider lg:divider-horizontal"></div>
             {/* components */}
-            <div>
+            <div className='w-10/12'>
                 <Navbar2></Navbar2>
                 <Outlet></Outlet>
             </div>
