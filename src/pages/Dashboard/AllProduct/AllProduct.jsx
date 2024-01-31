@@ -24,7 +24,7 @@ const AllProduct = () => {
                     <TabPanel>
                         <div className='flex justify-center items-center gap-4'>
                             <ProductDetails name={"Premium Quality Shirt"} price={400} stock={10000}></ProductDetails>
-                            <ProductDetails name={"Quality Best Jacket"} price={1000} stock={9000}></ProductDetails>
+                            <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000}></ProductDetails>
                         </div>
                     </TabPanel>
                     <TabPanel>
