@@ -22,16 +22,22 @@ const AllProduct = () => {
                     </TabList>
                     {/* tab panel */}
                     <TabPanel>
-                        <div className='flex justify-center items-center gap-4'>
-                            <ProductDetails name={"Premium Quality Shirt"} price={400} stock={10000}></ProductDetails>
+                        <div className='grid grid-cols-2 justify-center items-center gap-4'>
+                            <ProductDetails name={"Premium Quality Suit"} price={400} stock={10000}></ProductDetails>
                             <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000}></ProductDetails>
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <ProductDetails></ProductDetails>
+                        <div className='grid grid-cols-2 justify-center items-center gap-4'>
+                            <ProductDetails name={"Normal Jersey"} price={400} stock={10000}></ProductDetails>
+                            <ProductDetails name={"Sari"} price={1000} stock={9000}></ProductDetails>
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <ProductDetails></ProductDetails>
+                        <div className='grid grid-cols-2 justify-center items-center gap-4'>
+                            <ProductDetails name={"Thai Gents Pent"} price={400} stock={10000}></ProductDetails>
+                            <ProductDetails name={"Sari"} price={1000} stock={9000}></ProductDetails>
+                        </div>
                     </TabPanel>
                 </Tabs>
             </div>
