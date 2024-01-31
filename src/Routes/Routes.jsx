@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
+import Login from "../pages/Home/Login/SignIn.jsx"
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
             {
                 path: '/addProduct',
                 element: <AddProduct></AddProduct>
-            }
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
         ]
     },
     {
