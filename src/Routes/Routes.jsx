@@ -8,6 +8,7 @@ import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import Login from "../pages/Home/Login/SignIn.jsx"
 import Statement from "../pages/Dashboard/Statement/Statement.jsx";
+import Registation from "../pages/Home/Registation/Registation.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login />
+            },
+            {
+                path: "/register",
+                element: <Registation />
             },
         ]
     },
