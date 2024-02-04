@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonOutline } from "react-icons/io5";
 
 const Navbar = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(()=>{
+        const handleScroll = () =>{
+            setIsScrolled(window.scrollY > 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () =>{
+            window.removeEventListener('scroll', handleScroll)
+        }
+    },[])
+
     return (
-        <div className='max-w-[1280px] w-full mx-auto py-2'>
+        <div className={`max-w-[1280px] z-10 fixed pr-3 top-0 left-0 right-0 py-2 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
             <div className="navbar">
                 <div className="navbar-start">
                     <a className="btn btn-ghost text-xl">HakkuTraders</a>
