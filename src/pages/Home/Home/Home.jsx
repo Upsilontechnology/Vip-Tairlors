@@ -7,6 +7,7 @@ import AllProduct from '../../Dashboard/AllProduct/AllProduct';
 const Home = () => {
     return (
         <div>
+            <Banner></Banner>
             <Faq /> 
         </div>
     );

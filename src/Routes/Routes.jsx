@@ -12,6 +12,7 @@ import Registation from "../pages/Home/Registation/Registation.jsx";
 import EmployeeDashboard from "../pages/Dashboard-Employee/EmployeeDashbaord/EmployeeDashbaord.jsx";
 import Category from "../pages/Home/Category/Category.jsx";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
+import ContactUs from "../pages/ContactUs/ContactUs.jsx";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Registation />
             },
+            {
+                path: '/contact',
+                element: <ContactUs></ContactUs>
+            }
         ]
     },
     {
