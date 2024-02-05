@@ -21,7 +21,7 @@ const AllProduct = () => {
                         <Tab>Completed</Tab>
                     </TabList>
                     {/* tab panel */}
-                    <div className='my-5 overflow-y-scroll -mr-16 pr-16 h-96 py-5 bg-gray-200'>
+                    <div className='my-5 overflow-y-scroll h-[430px] py-5 bg-gray-200'>
                         <TabPanel>
                             <div className='grid grid-cols-2 justify-center items-center gap-4'>
                                 <ProductDetails name={"Premium Quality Suit"} price={400} stock={10000} status={"Pending"}></ProductDetails>

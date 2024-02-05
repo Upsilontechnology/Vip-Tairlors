@@ -18,7 +18,7 @@ const Navbar = () => {
     }, [])
 
     return (
-        <div className={`max-w-[1280px] z-10 fixed pr-3 top-0 left-0 right-0 py-2 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
+        <div className={`max-w-[1280px] z-10 fixed pr-3 top-0 mx-auto left-0 right-0 py-2 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
             <div className='bg-[#EFF4F7]'>
                 <div className='max-w-[1280px] w-full mx-auto py-2 '>
                     <div className="navbar">
@@ -27,7 +27,7 @@ const Navbar = () => {
                         </div>
                         <div className="w-44 md:w-[600px] lg:w-[700px] relative">
                             <div className="form-control w-full">
-                                <input type="text" placeholder="Search your product" className="input input-bordered" />
+                                <input type="text" placeholder="Search your product" className="input input-bordered focus:outline-none" />
                                 <IoIosSearch className='text-2xl absolute right-0 mr-2 top-[25%] text-gray-500' />
                             </div>
                         </div>

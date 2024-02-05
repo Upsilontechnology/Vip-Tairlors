@@ -8,7 +8,7 @@ const Navbar2 = () => {
             <div className="navbar">
                 <div className="w-44 md:w-[600px] lg:w-[700px]">
                     <div className="form-control w-full">
-                        <input type="text" placeholder="Search your product" className="input input-bordered" />
+                        <input type="text" placeholder="Search your product" className="input input-bordered focus:outline-none" />
                     </div>
                 </div>
                 <div className="navbar-end">
