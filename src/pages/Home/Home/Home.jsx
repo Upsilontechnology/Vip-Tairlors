@@ -8,11 +8,11 @@ import Partners from '../Partners/Partners';
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
-            <Partners></Partners>
-            
+            <Banner/>
+            <Partners />
+
             <QuoteBanner />
-            <Faq /> 
+            <Faq />
         </div>
     );
 };
