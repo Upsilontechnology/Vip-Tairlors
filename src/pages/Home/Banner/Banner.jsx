@@ -1,6 +1,9 @@
 import React from 'react';
 
+
+
 const Banner = () => {
+
     return (
         <div className='flex gap-5 my-10 h-[100vh] text-white supershop-container'>
             <div className='w-1/2 bg-blue-600 h-5/6 rounded-r-full rounded-tl-full'>
