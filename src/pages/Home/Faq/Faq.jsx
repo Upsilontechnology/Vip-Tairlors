@@ -1,10 +1,15 @@
 import React from 'react';
 import faqImg from '../../../assets/faq1.png';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 
 const Faq = () => {
   return (
     <section className='w-full'>
+      <SectionTitle
+        title="Frequntly Ask Questions"
+        descrition="A brief list of common questions and answers, simplifying information access and reducing repetitive queries for users or customers."
+      />
       <div className="supershop-container rounded-t-md relative bg-[#0a1d56] ring-1 ring-gray-900/5  text-white">
         <div className="">
           <div className='md:flex justify-between gap-20 mt-5'>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 const AddProduct = () => {
 
@@ -19,6 +20,10 @@ const AddProduct = () => {
     }
     return (
         <div className='supershop-container'>
+            <SectionTitle
+                title="Featured Products"
+                descrition="Welcome to our showcase selections, where uniqueness meets quality."
+            />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-2xl shadow-gray-400 p-10'>
                 <form className='' onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex gap-6'>

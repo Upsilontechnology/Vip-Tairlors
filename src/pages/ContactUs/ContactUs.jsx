@@ -3,12 +3,13 @@ import React, { useRef } from "react";
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser';
 import Swal from "sweetalert2";
-import { CiLocationOn,CiClock2 } from "react-icons/ci";
+import { CiLocationOn, CiClock2 } from "react-icons/ci";
 import { IoCallOutline } from "react-icons/io5";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const Contact = () => {
   const { register, formState: { errors } } = useForm()
-  
+
   // email js
   const form = useRef();
 
@@ -38,9 +39,13 @@ const Contact = () => {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ">
           <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
-              <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900  text-3xl sm:text-5xl">
+              {/* <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900  text-3xl sm:text-5xl">
                 Get in Touch
-              </h2>
+              </h2> */}
+              <SectionTitle
+                title="Get in Touch"
+                descrition="We're here to help and look forward to connecting with you!"
+              />
             </div>
           </div>
 
@@ -53,7 +58,7 @@ const Contact = () => {
                 <ul className="mb-6 md:mb-0">
                   <li className="flex">
                     <div className="flex h-10 w-10 items-center justify-center rounded bg-[#0a1d56] text-gray-50">
-                      <CiLocationOn className="text-2xl"/>
+                      <CiLocationOn className="text-2xl" />
                     </div>
                     <div className="ml-4 mb-4">
                       <h3 className="mb-2 text-lg font-medium leading-6 text-gray-900 ">
@@ -67,7 +72,7 @@ const Contact = () => {
                   </li>
                   <li className="flex">
                     <div className="flex h-10 w-10 items-center justify-center rounded bg-[#0a1d56] text-gray-50">
-                      <IoCallOutline className="text-2xl"/>
+                      <IoCallOutline className="text-2xl" />
                     </div>
                     <div className="ml-4 mb-4">
                       <h3 className="mb-2 text-lg font-medium leading-6 text-gray-900 ">
@@ -79,14 +84,14 @@ const Contact = () => {
                   </li>
                   <li className="flex">
                     <div className="flex h-10 w-10 items-center justify-center rounded bg-[#0a1d56] text-gray-50">
-                      <CiClock2 className="text-2xl"/>
+                      <CiClock2 className="text-2xl" />
                     </div>
                     <div className="ml-4 mb-4">
                       <h3 className="mb-2 text-lg font-medium leading-6 text-gray-900 ">
                         Open From -
                       </h3>
                       <p className="text-gray-600">
-                      Saturday - Thursday : 08:00AM - 09:00PM
+                        Saturday - Thursday : 08:00AM - 09:00PM
                       </p>
                       <p className="text-gray-600">
                         Friday : 09:00 - 12:00PM &amp; 04:00PM - 09:00PM
