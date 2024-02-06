@@ -1,13 +1,17 @@
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import StatementCard from '../../../components/StatementCard/StatementCard';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Statement = () => {
     return (
         <div>
             {/* section */}
             <div className='w-6/12 mx-auto text-center my-10'>
-                <p className='text-[#3d48df] text-3xl font-bold font-mono'>~~ Statements ~~</p>
+                <SectionTitle
+                    title="Statement Pieces"
+                    descrition="Explore our collection and make a statement that reflects your individuality."
+                />
                 <div className="divider"></div>
             </div>
             <div>
