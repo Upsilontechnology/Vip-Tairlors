@@ -1,26 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonOutline } from "react-icons/io5";
-import { IoIosSearch } from "react-icons/io";
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
+    const navlinks = <>
+        <li>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold underline" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
+                }
+            >
+                Home
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold underline" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
+                }
+            >
+                Contact Us
+            </NavLink>
+        </li>
+    </>
+
     return (
-        <div className='bg-[#EFF4F7]'>
-            <div className='max-w-[1280px] w-full mx-auto py-2 '>
-            <div className="navbar">
-                <div className="navbar-start">
-                    <a className="btn btn-ghost text-xl">HakkuTraders</a>
-                </div>
-                <div className="w-44 md:w-[600px] lg:w-[700px] relative">
-                    <div className="form-control w-full">
-                        <input type="text" placeholder="Search your product" className="input input-bordered" />
-                    <IoIosSearch className='text-2xl absolute right-0 mr-2 top-[25%] text-gray-500' />
+        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
+            <div className=''>
+                <div className='max-w-[1280px] w-full mx-auto py-2 '>
+                    <div className="navbar">
+                        <div className="navbar-start">
+                            <a className="btn btn-ghost text-xl">HakkuTraders</a>
+                        </div>
+                        <div className="navbar-end">
+                            <ul className='flex '>
+                                {navlinks}
+                            </ul>
+                            <button className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
+                        </div>
                     </div>
                 </div>
-                <div className="navbar-end">
-                    <button className="btn"><IoPersonOutline className='text-xl'/> Logout</button>
-                </div>
             </div>
-        </div>
         </div>
     );
 };

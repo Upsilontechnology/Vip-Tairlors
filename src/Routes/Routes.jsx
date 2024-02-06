@@ -7,7 +7,12 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import Login from "../pages/Home/Login/SignIn.jsx"
+import Statement from "../pages/Dashboard/Statement/Statement.jsx";
 import Registation from "../pages/Home/Registation/Registation.jsx";
+import EmployeeDashboard from "../pages/Dashboard-Employee/EmployeeDashbaord/EmployeeDashbaord.jsx";
+import Category from "../pages/Home/Category/Category.jsx";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
+import ContactUs from "../pages/ContactUs/ContactUs.jsx";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +35,10 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Registation />
             },
+            {
+                path: '/contact',
+                element: <ContactUs></ContactUs>
+            }
         ]
     },
     {
@@ -37,7 +46,29 @@ const router = createBrowserRouter([
         element: <AdminDashboard></AdminDashboard>,
         children: [
             {
-                path: '/dashboard',
+                path: "/dashboard",
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: 'productList',
+                element: <AllProduct></AllProduct>
+            },
+            {
+                path: 'statement',
+                element: <Statement></Statement>
+            }
+        ]
+    },
+    {
+        path: "/dashboard2",
+        element: <EmployeeDashboard></EmployeeDashboard>,
+        children: [
+            {
+                path: '/dashboard2',
+                element: <Category></Category>
+            },
+            {
+                path: 'allProduct',
                 element: <AllProduct></AllProduct>
             }
         ]

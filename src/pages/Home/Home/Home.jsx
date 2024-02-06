@@ -1,8 +1,8 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
-import Category from '../Category/Category';
 import Faq from '../Faq/Faq';
 import QuoteBanner from '../QuoteBanner/QuoteBanner';
+import AllProduct from '../../Dashboard/AllProduct/AllProduct';
 
 
 const Home = () => {
@@ -10,6 +10,7 @@ const Home = () => {
         <div>
             <Category />
             <QuoteBanner />
+            <Banner></Banner>
             <Faq /> 
         </div>
     );
