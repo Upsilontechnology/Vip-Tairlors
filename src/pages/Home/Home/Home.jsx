@@ -2,15 +2,16 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import Faq from '../Faq/Faq';
 import QuoteBanner from '../QuoteBanner/QuoteBanner';
-import AllProduct from '../../Dashboard/AllProduct/AllProduct';
+import Partners from '../Partners/Partners';
 
 
 const Home = () => {
     return (
         <div>
-            <Category />
-            <QuoteBanner />
             <Banner></Banner>
+            <Partners></Partners>
+            
+            <QuoteBanner />
             <Faq /> 
         </div>
     );
