@@ -2,14 +2,20 @@ import React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ProductDetails from '../../../components/ProductDetails/ProductDetails';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const AllProduct = () => {
     return (
         <div className='supershop-container'>
             {/* section */}
-            <div className='w-6/12 mx-auto text-center my-10'>
-                <p className='text-[#3d48df] text-3xl font-bold font-mono'>~~ All Product List ~~</p>
-                <div className="divider"></div>
+            <div className='text-center'>
+                <SectionTitle
+                    title="Explore Our Product Catalog"
+                    descrition="Welcome to our product catalog, your gateway to a world of possibilities!"
+                />
+                <div className='w-6/12 mx-auto'>
+                    <div className="divider"></div>
+                </div>
             </div>
             {/* tabs */}
             <div className='overflow-hidden w-full h-full'>
