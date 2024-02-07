@@ -4,15 +4,16 @@ import {
 import MainLayout from "../layout/MainLayout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
-import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import Login from "../pages/Home/Login/SignIn.jsx"
 import Statement from "../pages/Dashboard/Statement/Statement.jsx";
 import Registation from "../pages/Home/Registation/Registation.jsx";
-import EmployeeDashboard from "../pages/Dashboard-Employee/EmployeeDashbaord/EmployeeDashbaord.jsx";
-import Category from "../pages/Home/Category/Category.jsx";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
 import ContactUs from "../pages/ContactUs/ContactUs.jsx";
+import Dashboard from "../pages/Dashboard/Dashboard.jsx";
+import OrderedProduct from "../pages/Dashboard-Employee/OrderedProduct/OrderedProduct.jsx";
+import EmployeeHome from "../pages/Dashboard-Employee/EmployeeHome/EmployeeHome.jsx";
+import OrderedList from "../pages/Dashboard-Employee/OrderedList/OrderedList.jsx";
 
 const router = createBrowserRouter([
     {
@@ -43,10 +44,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <AdminDashboard></AdminDashboard>,
+        element: <Dashboard></Dashboard>,
         children: [
+            // admin routes
             {
-                path: "/dashboard",
+                path: 'dash-home',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -56,23 +58,37 @@ const router = createBrowserRouter([
             {
                 path: 'statement',
                 element: <Statement></Statement>
+            },
+            {
+                path: 'dash-home',
+                element: <AdminHome></AdminHome>
+            },
+            // employee
+            {
+                path: 'employee-home',
+                element: <EmployeeHome></EmployeeHome>
+            },
+            {
+                path: 'productList',
+                element: <AllProduct></AllProduct>
+            },
+            {
+                path: 'addProduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path: 'ordered',
+                element: <OrderedProduct></OrderedProduct>
+            },
+            {
+                path: 'productList'
+            },
+            {
+                path: "orderedList",
+                element: <OrderedList></OrderedList>
             }
         ]
     },
-    {
-        path: "/dashboard2",
-        element: <EmployeeDashboard></EmployeeDashboard>,
-        children: [
-            {
-                path: '/dashboard2',
-                element: <Category></Category>
-            },
-            {
-                path: 'allProduct',
-                element: <AllProduct></AllProduct>
-            }
-        ]
-    }
 ]);
 
 export default router;
