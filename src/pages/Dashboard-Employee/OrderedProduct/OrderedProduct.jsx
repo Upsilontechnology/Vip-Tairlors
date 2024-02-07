@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
-const AddProduct = () => {
+const OrderedProduct = () => {
 
     const { register, handleSubmit } = useForm();
 
@@ -21,7 +21,7 @@ const AddProduct = () => {
     return (
         <div className='supershop-container'>
             <SectionTitle
-                title="Featured Products"
+                title="Order Products"
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10'>
@@ -120,4 +120,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default OrderedProduct;

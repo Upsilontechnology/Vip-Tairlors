@@ -4,13 +4,13 @@ import 'react-tabs/style/react-tabs.css';
 import ProductDetails from '../../../components/ProductDetails/ProductDetails';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
-const AllProduct = () => {
+const OrderedList = () => {
     return (
         <div className='supershop-container'>
             {/* section */}
             <div className='text-center'>
                 <SectionTitle
-                    title="Explore Our Product Catalog"
+                    title="Explore Our Product Catalogue"
                     descrition="Welcome to our product catalog, your gateway to a world of possibilities!"
                 />
             </div>
@@ -56,4 +56,4 @@ const AllProduct = () => {
     );
 };
 
-export default AllProduct;
+export default OrderedList;

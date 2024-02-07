@@ -1,70 +1,167 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Navbar2 from '../../../shared/Navbar2/Navbar2';
+import { AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
+import { FaUserClock } from 'react-icons/fa';
+import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
+    // console.log(toggleSideMenu, isSideMenuOpen)
     return (
-        <div className='flex gap-2 h-screen'>
+        <div className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""}`}>
             {/* Dashboard */}
-            <div className='space-y-5 bg-gray-100 primary-color py-3 w-2/12 pl-5 flex flex-col justify-between items-center h-[100vh]'>
-                <div >
-                    <h1 className='text-2xl font-bold'>VIP Tailors and Punjabi</h1>
+            <aside className='z-20 flex-shrink-0 fixed hidden w-60 overflow-y-auto bg-white md:block'>
+                <div className='h-screen py-3 pl-3 flex flex-col justify-between shadow-xl'>
+                    {/* logo */}
+                    <div>
+                        <h1 className="text-3xl">VIP Tailor's</h1>
+                    </div>
+                    {/* items and routes */}
+                    <div className=" flex flex-col justify-between">
+                        <ul className="leading-10">
+                            <li className="relative px-2 py-1">
+                                <NavLink
+                                    defaultChecked
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="dash-home"
+                                >
+                                    <AiOutlineHome />
+                                    <span className="ml-4">Home</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="productList"
+                                >
+                                    <FaUserClock />
+                                    <span className="ml-4">Product List</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="statement"
+                                >
+                                    <AiOutlineSchedule />
+                                    <span className="ml-4">Statement</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="dash-home"
+                                >
+                                    <AiOutlineHome />
+                                    <span className="ml-4">Home</span>
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* social icons */}
+                    <div className='flex gap-2 justify-center items-center'>
+                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
+                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
+                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
+                        <AiOutlineTwitter className='text-2xl rounded-full' />
+                    </div>
                 </div>
-                <div>
-                    <ul className='space-y-4'>
-                        <li>
-                            <NavLink
-                                to="/dashboard"
-                                className={({ isActive }) =>
-                                    isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
-                                }
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="productList"
-                                className={({ isActive }) =>
-                                    isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-lg font-bold"
-                                }
-                            >
-                                Product List
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="statement"
-                                className={({ isActive }) =>
-                                    isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
-                                }
-                            >
-                                Statement
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
-                                to="/dashboard"
-                                className={({ isActive }) =>
-                                    isActive ? "mr-6 text-[#3d48df] text-xl font-bold underline" : "mr-6 text-xl font-bold"
-                                }
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                    </ul>
+            </aside>
+            <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
+            {/* responsive dashboard */}
+            <aside className={`z-20 fixed w-60 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "-translate-x-full" : "translate-x-0"} md:hidden`}>
+                <div className='h-screen py-3 pl-3 flex flex-col justify-between shadow-xl'>
+                    {/* logo */}
+                    <div>
+                        <h1 className="text-3xl">VIP Tailor's</h1>
+                    </div>
+                    {/* items and routes */}
+                    <div className=" flex flex-col justify-between">
+                        <ul className="leading-10">
+                            <li className="relative px-2 py-1">
+                                <NavLink
+                                    defaultChecked
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="/dashboard/dash-home"
+                                >
+                                    <AiOutlineHome />
+                                    <span className="ml-4">Home</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="productList"
+                                >
+                                    <FaUserClock />
+                                    <span className="ml-4">Product List</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="statement"
+                                >
+                                    <AiOutlineSchedule />
+                                    <span className="ml-4">Statement</span>
+                                </NavLink>
+                            </li>
+                            <li className="relative px-2 py-1 ">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                    }
+                                    to="dash-home"
+                                >
+                                    <AiOutlineHome />
+                                    <span className="ml-4">Home</span>
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* social icons */}
+                    <div>
+                        <AiOutlineSchedule />
+                        <AiOutlineSchedule />
+                    </div>
                 </div>
-                <div >
-                    <h1>icons</h1>
-                </div>
-            </div>
-            {/* divider */}
-            {/* <div className="divider pl-56 lg:divider-horizontal"></div> */}
+            </aside>
             {/* components */}
-            <div className='flex flex-col w-full '>
-                <Navbar2></Navbar2>
-                <Outlet></Outlet>
+            <div className="flex flex-col flex-1 w-full overflow-y-auto bg-gray-200">
+                <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 md:hidden">
+                    <div className="flex items-center justify-between h-8 px-6 mx-auto">
+                        <button
+                            className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+                            onClick={toggleSideMenu}
+                            aria-label="Menu"
+                        >
+                            {!isSideMenuOpen ? (
+                                <FaXmark className="w-6 h-6" />
+                            ) : (
+                                <FaBarsStaggered className="w-6 h-6" />
+                            )}
+                        </button>
+                        <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
+                    </div>
+                </header>
+                <main className="lg:ml-72 scroll-smooth">
+                    <Navbar2></Navbar2>
+                    <Outlet></Outlet>
+                </main>
             </div>
         </div>
     );
