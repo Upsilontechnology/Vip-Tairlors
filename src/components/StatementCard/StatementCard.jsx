@@ -2,22 +2,36 @@ import React from 'react';
 
 const StatementCard = ({ code, orderedDate, deliveredDate, amount, product }) => {
     return (
-        <div className='h-44 shadow-md shadow-gray-300 bg-blue-300 rounded-xl p-3 flex justify-center items-center border border-red-600'>
-            <div className='text-xl space-y-5 border border-green-600'>
-                <h1 className=''>Transaction code: <span className='font-bold'>{code}</span></h1>
-                <h1>Ordered Date: <span className='font-bold'>{orderedDate}</span></h1>
-            </div>
-            {/* divider */}
-            <div className="divider lg:divider-horizontal"></div>
-            {/*  */}
-            <div className='text-xl space-y-3 flex justify-between'>
-                <div>
-                    <p>Total amount : <span className='font-bold'>{amount} BDT</span></p>
-                    <p>Ordered Product : <span className='font-bold'>{product}pcs</span></p>
-
-                    <h1>Delivering Date: <span className='font-bold'>{deliveredDate}</span></h1>
+        <div className='shadow-md rounded flex items-center justify-between  border mr-4 text-[1.3rem] bg-slate-100  px-[1%] hover:bg-slate-300   py-2 mb-5 '>
+            <div className='flex flex-col gap-4'>
+                <div className='flex gap-3'>
+                    <h1 className='font-semibold'>Transaction Code :</h1>
+                    <h1 className=''> <span className=''>{code}</span></h1>
                 </div>
-                <button className="btn btn-outline btn-success">Paid</button>
+                <div className='flex gap-3'>
+                    <h1 className='font-semibold'>Price:</h1>
+                    <p> <span className=''>{amount} BDT</span></p>
+                </div>
+            </div>
+            <div className='flex flex-col gap-4'>
+                <div className='flex gap-3'>
+                    <h1 className='font-semibold'>Ordered Date:</h1>
+                    <h1> <span className=''>{orderedDate}</span></h1>
+                </div>
+                <div className='flex gap-3'>
+                    <h1 className='font-semibold'>Delivering Date:</h1>
+                    <h1> <span className=''>{deliveredDate}</span></h1>
+                </div>
+            </div>
+            <div className='text-center flex flex-col gap-4'>
+                <div className='flex gap-2 items-center'>
+                    <h1 className='font-semibold'>Status:</h1>
+                    <button className="px-3 py-1 bg-green-100 rounded-md text-xl font-semibold text-green-500">Panding</button>
+                </div>
+                <div className='flex gap-3'>
+                    <h1 className='font-semibold'>Stock:</h1>
+                    <p> <span className=''>{product}pcs</span></p>
+                </div>
             </div>
         </div>
     );
