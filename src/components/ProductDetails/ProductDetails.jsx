@@ -3,8 +3,8 @@ import React from 'react';
 const ProductDetails = ({ name = "Product", price = 0, stock = 0, status = "Pending" }) => {
     return (
         <div className="card gap-2 card-side bg-base-100 shadow-xl my-2 h-44">
-            <figure><img className='w-44 h-full ' src="https://i.ibb.co/NsvjBvg/profile.jpg" alt="Product" /></figure>
-            <div className="p-2 space-y-2">
+            <figure><img className='w-44 h-full' src="https://i.ibb.co/NsvjBvg/profile.jpg" alt="Product" /></figure>
+            <div className="px-2 space-y-2">
                 <h2 className="text-2xl font-bold">{name}</h2>
                 <p> Price: <span className='font-bold'>{price} BDT</span></p>
                 <div className='flex justify-between items-center'>
