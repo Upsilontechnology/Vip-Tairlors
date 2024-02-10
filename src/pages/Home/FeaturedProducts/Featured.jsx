@@ -6,12 +6,12 @@ import Card from './Card';
 
 const Featured = () => {
     return (
-        <div className='max-w-6xl mx-auto my-10'>
+        <div className='supershop-container mx-auto my-10'>
             <SectionTitle
                 title="Featured Products"
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
-            <div className='grid lg:grid-cols-3 px-4 sm:grid-cols-2 grid-cols-1 gap-5 md:gap-8'>
+            <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 md:gap-8'>
                 <Card />
                 <Card />
                 <Card />
