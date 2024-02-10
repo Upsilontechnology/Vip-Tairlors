@@ -22,7 +22,7 @@ const Navbar = () => {
             <NavLink
                 to="/"
                 className={({ isActive }) =>
-                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold underline" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
+                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
                 }
             >
                 Home
@@ -32,7 +32,7 @@ const Navbar = () => {
             <NavLink
                 to="/contact"
                 className={({ isActive }) =>
-                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold underline" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
+                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
                 }
             >
                 Contact Us
@@ -41,7 +41,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
+        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 shadow-sm shadow-black ${isScrolled ? 'bg-white' : 'bg-none'}`}>
             <div className=''>
                 <div className='max-w-[1280px] w-full mx-auto py-2 '>
                     <div className="navbar">
@@ -49,7 +49,7 @@ const Navbar = () => {
                             <a className="btn btn-ghost text-xl">HakkuTraders</a>
                         </div>
                         <div className="navbar-end">
-                            <ul className='flex '>
+                            <ul className='flex'>
                                 {navlinks}
                             </ul>
                             <button className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
