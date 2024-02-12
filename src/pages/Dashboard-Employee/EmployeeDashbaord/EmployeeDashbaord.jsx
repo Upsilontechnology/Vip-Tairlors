@@ -22,7 +22,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                                 <NavLink
                                     defaultChecked
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="/dashboard/employee-home"
                                 >
@@ -33,7 +33,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="addProduct"
                                 >
@@ -44,7 +44,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="productList"
                                 >
@@ -56,7 +56,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="ordered"
                                 >
@@ -67,7 +67,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="orderedList"
                                 >
@@ -101,7 +101,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                                 <NavLink
                                     defaultChecked
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="/dashboard/employee-home"
                                 >
@@ -112,7 +112,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="addProduct"
                                 >
@@ -123,7 +123,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="productList"
                                 >
@@ -135,7 +135,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="ordered"
                                 >
@@ -146,7 +146,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             <li className="relative px-2 py-1 ">
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-xl" : "inline-flex items-center font-semibold hover:text-blue-600 text-xl"
+                                        isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                                     }
                                     to="orderedList"
                                 >
@@ -157,9 +157,12 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                         </ul>
                     </div>
                     {/* social icons */}
-                    <div>
-                        <AiOutlineSchedule />
-                        <AiOutlineSchedule />
+                    {/* social icons */}
+                    <div className='flex gap-2 justify-center items-center'>
+                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
+                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
+                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
+                        <AiOutlineTwitter className='text-2xl rounded-full' />
                     </div>
                 </div>
             </aside>
