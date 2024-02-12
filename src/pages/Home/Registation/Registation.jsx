@@ -1,4 +1,4 @@
-import React from 'react'
+
 import RegistationImg from "../../../assets/loginImg.jpg"
 import { FcGoogle } from "react-icons/fc";
 import { FaSquareFacebook } from "react-icons/fa6";
@@ -6,8 +6,31 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
 
 const Registation = () => {
+    const { createUser } = useAuth();
+    const [error, setError] = useState();
+
+    const hanldeRegister = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // console.log(userInfo)
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+    }
+
+
     return (
         <div className='supershop-container'>
             <div className='grid grid-cols-1 md:grid-cols-2 place-items-center p-2 rounded-lg bg-[#EFF4F7]'>
@@ -19,33 +42,40 @@ const Registation = () => {
                 </div>
                 <div className='bg-[#EFF4F7] flex justify-center flex-col mx-auto w-full py-3'>
                     <h3 className='font-mono w-full text-center text-4xl  text-[#515050] font-semibold'>Welcome</h3>
-                    <div className='flex flex-col gap-4 justify-center mt-14'>
+                    <form onSubmit={hanldeRegister} className='flex flex-col gap-4 justify-center mt-14'>
                         <div className='flex justify-center flex-col items-center   relative'>
                             <input type="text" placeholder='Full Name'
+                                name='name'
                                 className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
                             <FaUserAlt className='absolute left-0 ml-[16%] text-gray-500' />
                         </div>
                         <div className='flex justify-center flex-col items-center relative'>
-                            <input type="text" placeholder='Email'
+                            <input type="text" placeholder='Email' name='email'
                                 className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
                             <MdEmail className='absolute left-0 ml-[16%] text-lg text-gray-500' />
                         </div>
                         <div className='flex flex-col items-center justify-center relative'>
-                            <input type="password" placeholder='Password'
+                            <input type="password" placeholder='Password' name='password'
                                 className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
                             <FaLock className='absolute left-0 ml-[16%] text-gray-500' />
                         </div>
-                    </div>
-                    <div className='px-[16%] mt-8 flex gap-2'>
-                        <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
-                        <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-indigo-500'>Remember me</label> 
-                    </div>
-                    <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
-                        <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign Up</button>
-                    </div>
+
+                        <div className='px-[16%] mt-8 flex gap-2'>
+                            <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
+                            <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-indigo-500'>Remember me</label>
+                        </div>
+                        <div className="px-[16%] flex gap-2">
+                            {
+                                error ? <p className='text-red-600'>{error}</p> : ''
+                            }
+                        </div>
+                        <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
+                            <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign Up</button>
+                        </div>
+                    </form>
                     <div className='ml-[16%] mt-7'>
                         <h4 className='flex gap-2'>Already have an account? <Link to={"/login"} className='text-indigo-500 font-semibold cursor-pointer'>Sign In</Link></h4>
                     </div>
