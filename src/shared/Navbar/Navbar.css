@@ -1,0 +1,27 @@
+.navs{
+    position: relative;
+    
+  }
+  .navs:hover::before{
+    width: 100%;
+  }
+  
+  .navs::before{
+    content: "";
+    position: absolute;
+    height: .1rem;
+    width: 0%;
+    background: #000;
+    bottom: -.1rem;
+    transition: .4s linear;
+  }
+  .active::before{
+    content: "";
+    position: absolute;
+    height: .1rem;
+    width: 100%;
+    background: #000;
+    bottom: -.1rem;
+    transition: .4s linear;
+    /* width: 100%; */
+  }
