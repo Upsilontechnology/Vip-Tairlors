@@ -38,7 +38,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 ${isScrolled ? 'bg-base-300' : 'bg-none'}`}>
+        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 shadow-sm shadow-black ${isScrolled ? 'bg-white' : 'bg-none'}`}>
             <div className=''>
                 <div className='max-w-[1280px] w-full mx-auto py-2 '>
                     <div className="navbar">
