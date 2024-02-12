@@ -10,7 +10,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 
 const Registation = () => {
-    const { createUser } = useAuth();
+    const { createUser, googleSignIn } = useAuth();
     const [error, setError] = useState();
 
     const hanldeRegister = e => {
@@ -19,6 +19,8 @@ const Registation = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        
+        setError('');
 
         // console.log(userInfo)
         createUser(email, password)
@@ -28,6 +30,17 @@ const Registation = () => {
             .catch(error => {
                 setError(error.message)
             })
+    }
+
+    // google sign in
+    const handleGoogle = () =>{
+        googleSignIn()
+        .then(result =>{
+            console.log(result.user);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
     }
 
 
@@ -83,7 +96,7 @@ const Registation = () => {
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>
                     </div>
                     <div className='flex justify-center gap-6 mt-6'>
-                        <button className='border flex items-center gap-2 text-xl px-7 hover:border-[#000] transition-all duration-300 border-[#c3c3c3] rounded-lg py-3 font-mono'><FcGoogle className='text-2xl' /> Google</button>
+                        <button onClick={handleGoogle} className='border flex items-center gap-2 text-xl px-7 hover:border-[#000] transition-all duration-300 border-[#c3c3c3] rounded-lg py-3 font-mono'><FcGoogle className='text-2xl' /> Google</button>
                         <button className='border flex items-center gap-2 text-xl border-[#c3c3c3] hover:border-[#000] transition-all duration-300 rounded-lg px-4 py-3 font-mono'><FaSquareFacebook className='text-2xl text-blue-700' /> Facebook</button>
                     </div>
                 </div>

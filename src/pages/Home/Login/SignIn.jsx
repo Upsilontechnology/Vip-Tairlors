@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const SignIn = () => {
-    const {signInUser} = useAuth();
+    const {signInUser, googleSignIn} = useAuth();
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
@@ -45,13 +45,13 @@ const SignIn = () => {
     }
 
     const handleGoogle = () => {
-        // signInPopUp()
-        //     .then(result => {
-        //         console.log(result.user);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
+        googleSignIn()
+        .then(result =>{
+            console.log(result.user);
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     }
 
 
@@ -119,7 +119,7 @@ const SignIn = () => {
                         <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center bg-slate-200 hover:bg-slate-300 rounded-full transition duration-300'>
                             <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaGoogle className='text-red-400'></FaGoogle ></span>
                         </button>
-                        <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
+                        <button className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
                             <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500'/></span>
                         </button>
                     </div>
