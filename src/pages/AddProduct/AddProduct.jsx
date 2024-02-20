@@ -36,7 +36,7 @@ const AddProduct = () => {
                                 {...register("name", { required: true })}
                                 type="text"
                                 placeholder="Product Name"
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full focus:outline-none" />
                         </div>
                         {/* Quantity */}
                         <div className="form-control w-full my-1">
@@ -47,7 +47,7 @@ const AddProduct = () => {
                                 {...register("quantity", { required: true })}
                                 type="number"
                                 placeholder="Quantity"
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full focus:outline-none" />
                         </div>
                     </div>
                     <div className='flex gap-6'>
@@ -60,7 +60,7 @@ const AddProduct = () => {
                                 {...register("price", { required: true })}
                                 type="number"
                                 placeholder="Price"
-                                className="input input-bordered w-full" />
+                                className="input input-bordered focus:outline-none w-full" />
                         </div>
                         {/* Date */}
                         <div className="form-control w-full my-1">
@@ -71,7 +71,7 @@ const AddProduct = () => {
                                 {...register("date", { required: true })}
                                 type="date"
                                 placeholder="Date"
-                                className="input input-bordered w-full" />
+                                className="input input-bordered focus:outline-none w-full" />
                         </div>
                     </div>
                     <div className='flex gap-6'>
@@ -83,7 +83,7 @@ const AddProduct = () => {
                             <select
                                 defaultValue="default"
                                 {...register('category', { required: true })}
-                                className="select select-bordered w-full">
+                                className="select select-bordered focus:outline-none w-full">
                                 <option disabled value="default">Select a category</option>
                                 <option value="Breakfast">Breakfast</option>
                                 <option value="Lunch">Lunch</option>
@@ -99,7 +99,7 @@ const AddProduct = () => {
                                 {...register("code", { required: true })}
                                 type="number"
                                 placeholder="Product Code"
-                                className="input input-bordered w-full" />
+                                className="input input-bordered focus:outline-none w-full" />
                         </div>
                     </div>
                     {/* Image */}
@@ -111,7 +111,7 @@ const AddProduct = () => {
                             {...register("image", { required: true })}
                             type="file"
                             placeholder="Select Image"
-                            className="input input-bordered w-full" />
+                            className="input input-bordered focus:outline-none w-full" />
                     </div>
                     <button className="btn btn-warning w-full mt-4">Add Product</button>
                 </form>

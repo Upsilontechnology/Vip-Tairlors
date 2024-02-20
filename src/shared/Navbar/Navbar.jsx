@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoPersonOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
+import "./Navbar.css"
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -18,12 +19,10 @@ const Navbar = () => {
     }, [])
 
     const navlinks = <>
-        <li>
+        <li className=''>
             <NavLink
                 to="/"
-                className={({ isActive }) =>
-                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
-                }
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-10 transition navs`}
             >
                 Home
             </NavLink>
@@ -31,9 +30,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 to="/contact"
-                className={({ isActive }) =>
-                    isActive ? "mr-6 text-[#3d48df] text-xl font-semibold" : "mr-6 text-xl font-semibold hover:underline hover:text-[#3d48df]"
-                }
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-10 transition navs`}
             >
                 Contact Us
             </NavLink>
@@ -49,7 +46,7 @@ const Navbar = () => {
                             <a className="btn btn-ghost text-xl">HakkuTraders</a>
                         </div>
                         <div className="navbar-end">
-                            <ul className='flex'>
+                            <ul className='flex items-center '>
                                 {navlinks}
                             </ul>
                             <button className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
