@@ -115,7 +115,7 @@ const SignIn = () => {
                         </div>
                     </form>
                 </div>
-                {/* PopUp componenets */}
+                
                 <div className=' mt-8'>
                     <p className='text-center font-semibold mb-5 text-2xl'>Or login wth</p>
                     <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
