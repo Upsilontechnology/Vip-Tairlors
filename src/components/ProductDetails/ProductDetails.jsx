@@ -1,19 +1,28 @@
 import React from 'react';
 
-const ProductDetails = ({ name = "Product", price = 0, stock = 0, status = "Pending" }) => {
+const ProductDetails = ({ name = "Product", price = 0, stock = 0, code }) => {
     return (
-        <div className="card gap-2 card-side bg-base-100 shadow-xl my-2 h-44">
-            <figure><img className='w-44 h-full' src="https://i.ibb.co/NsvjBvg/profile.jpg" alt="Product" /></figure>
-            <div className="px-2 space-y-2">
-                <h2 className="text-2xl font-bold">{name}</h2>
-                <p> Price: <span className='font-bold'>{price} BDT</span></p>
-                <div className='flex justify-between items-center'>
-                    <p>Stock: <span className='font-bold'> {stock}</span> </p>
-                    <p>Status: <span className='font-bold'> {status}</span> </p>
+        <div className='flex flex-col gap-4'>
+            {/* first card */}
+            <div className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7]">
+                <img alt="Product Image" className=" object-cover  rounded-l-lg h-36" src="https://source.unsplash.com/200x200/?bed" />
+                <div className="flex flex-col items-center gap-2 px-6 py-3">
+                    <h1 className="">Product Name</h1>
+                    <h1 className="text-xl font-bold">{name}</h1>
                 </div>
-                <div className="card-actions">
-                    <button className="hover:bg-sky-600 hover:text-white bg-none text-sky-600 border-2 border-sky-600 text-sm font-semibold rounded-lg btn-sm btn-info">Edit Price</button>
-                    <button className="hover:bg-emerald-500 hover:text-white bg-none text-emerald-500 border-2 border-emerald-500 text-sm font-semibold rounded-lg btn-sm btn-accent">Edit Stock</button>
+                <div className="flex flex-col items-center gap-2 px-6 py-3">
+                    <h1 className="">Product Code</h1>
+                    <h1 className="text-xl font-bold">{code}</h1>
+                </div>
+                <div className='flex flex-col items-center gap-3 px-6 py-3'>
+                    <h3 className="">Price</h3>
+                    <div className="text-xl font-bold">{price}</div>
+                    <button className="btn-sm bg-white hover:bg-gray-800 hover:text-white border-black border duration-300 rounded-md">Edit Price</button>
+                </div>
+                <div className='flex flex-col items-center gap-3 px-6 py-3'>
+                    <p className=''>Stock</p>
+                    <p className='text-xl font-bold'>{stock} pcs</p>
+                    <button className=" bg-white hover:bg-gray-800 hover:text-white btn-sm border-black border duration-300 rounded-md">Edit Stock</button>
                 </div>
             </div>
         </div>
