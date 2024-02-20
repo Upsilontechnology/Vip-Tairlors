@@ -14,6 +14,8 @@ import Dashboard from "../pages/Dashboard/Dashboard.jsx";
 import OrderedProduct from "../pages/Dashboard-Employee/OrderedProduct/OrderedProduct.jsx";
 import EmployeeHome from "../pages/Dashboard-Employee/EmployeeHome/EmployeeHome.jsx";
 import OrderedList from "../pages/Dashboard-Employee/OrderedList/OrderedList.jsx";
+import MembersRequest from "../pages/Dashboard/MembersRequest/MembersRequest.jsx";
+import AllMembers from "../pages/Dashboard/AllMembers/AllMembers.jsx";
 
 const router = createBrowserRouter([
     {
@@ -60,8 +62,12 @@ const router = createBrowserRouter([
                 element: <Statement></Statement>
             },
             {
-                path: 'dash-home',
-                element: <AdminHome></AdminHome>
+                path: 'membersRequest',
+                element: <MembersRequest></MembersRequest>
+            },
+            {
+                path: 'allMembers',
+                element: <AllMembers></AllMembers>
             },
             // employee
             {
@@ -79,9 +85,6 @@ const router = createBrowserRouter([
             {
                 path: 'ordered',
                 element: <OrderedProduct></OrderedProduct>
-            },
-            {
-                path: 'productList'
             },
             {
                 path: "orderedList",
