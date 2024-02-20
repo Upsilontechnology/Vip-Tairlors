@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const SignIn = () => {
-    const {signInUser, googleSignIn} = useAuth();
+    const { signInUser, googleSignIn } = useAuth();
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
@@ -46,12 +46,12 @@ const SignIn = () => {
 
     const handleGoogle = () => {
         googleSignIn()
-        .then(result =>{
-            console.log(result.user);
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -70,7 +70,7 @@ const SignIn = () => {
                     </div>
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control mb-6 border-b-2 flex justify-center">
-                        <div className='absolute pl-2'><FaUser className='text-gray-500'/></div>
+                            <div className='absolute pl-2'><FaUser className='text-gray-500' /></div>
                             <input
                                 type="email"
                                 name="email"
@@ -78,7 +78,7 @@ const SignIn = () => {
                                 required />
                         </div>
                         <div className="form-control border-b-2 relative flex justify-center">
-                            <div className='absolute pl-2'><FaLock className='text-gray-500'/></div>
+                            <div className='absolute pl-2'><FaLock className='text-gray-500' /></div>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
@@ -101,6 +101,9 @@ const SignIn = () => {
                                 <label htmlFor="checkbox" className='font-bold ml-1 cursor-pointer'>Remember Me</label>
                             </div>
                         </div>
+                        <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
+                            <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign In</button>
+                        </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary hover:btn-ghost">Sign In</button>
                         </div>
@@ -112,15 +115,18 @@ const SignIn = () => {
                         </div>
                     </form>
                 </div>
-                {/* PopUp componenets */}
+                
                 <div className=' mt-8'>
                     <p className='text-center font-semibold mb-5 text-2xl'>Or login wth</p>
                     <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
                         <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center bg-slate-200 hover:bg-slate-300 rounded-full transition duration-300'>
                             <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaGoogle className='text-red-400'></FaGoogle ></span>
                         </button>
+                        <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
+                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
+                        </button>
                         <button className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
-                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500'/></span>
+                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
                         </button>
                     </div>
 
