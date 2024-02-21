@@ -10,9 +10,9 @@ const Faq = () => {
         title="Frequntly Ask Questions"
         descrition="A brief list of common questions and answers, simplifying information access and reducing repetitive queries for users or customers."
       />
-      <div className="supershop-container rounded-t-md relative bg-[#0a1d56] ring-1 ring-gray-900/5  text-white">
+      <div className="supershop-container rounded-t-md relative bg-[#1D2A3B] ring-1 ring-gray-900/5  text-white">
         <div className="">
-          <div className='md:flex justify-between gap-20 mt-5'>
+          <div className='md:flex justify-between gap-20'>
             <div className='mx-auto md:w-[60%]'>
               <div className="collapse collapse-plus flexcode-banner-bg rounded-lg shadow-2xl border-teal-600 border-[2px] mb-4">
                 <input type="radio" name="my-accordion-3" />
