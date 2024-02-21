@@ -22,7 +22,7 @@ const Navbar = () => {
         <li className=''>
             <NavLink
                 to="/"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-10 transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-5 transition navs`}
             >
                 Home
             </NavLink>
@@ -30,7 +30,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 to="/contact"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-10 transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xl font-semibold mr-5 transition navs`}
             >
                 Contact Us
             </NavLink>
@@ -38,12 +38,12 @@ const Navbar = () => {
     </>
 
     return (
-        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0 shadow-sm shadow-black ${isScrolled ? 'bg-white' : 'bg-none'}`}>
+        <div className={` z-10 fixed top-0 left-0 right-0 shadow-sm shadow-black ${isScrolled ? 'bg-[#EFF4F7]' : 'bg-none'}`}>
             <div className=''>
-                <div className='max-w-[1280px] w-full mx-auto py-2 '>
+                <div className='max-w-[1290px] w-full mx-auto py-2 '>
                     <div className="navbar">
                         <div className="navbar-start">
-                            <a className="btn btn-ghost text-xl">HakkuTraders</a>
+                            <a className=" bg-slate-200 px-3 py-2 rounded-md text-xl">HakkuTraders</a>
                         </div>
                         <div className="navbar-end">
                             <ul className='flex items-center '>

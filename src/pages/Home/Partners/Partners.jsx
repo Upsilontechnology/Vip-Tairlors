@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 import "@splidejs/react-splide/css";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 // import "./clients.css";
 const Partners = () => {
@@ -19,6 +20,10 @@ const Partners = () => {
     const partnersData = data.partners;
     return (
         <div className="max-w-7xl mx-auto">
+            <div>
+                <SectionTitle title="Our Partners"
+                descrition="Meet the exceptional partners who help bring our vision to life." />
+            </div>
             <div>
                 <Splide
                     options={{
