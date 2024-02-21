@@ -1,27 +1,20 @@
 import React from 'react';
+import BannerImg2 from "../../../assets/BannerImg2.png"
 
 
 
 const Banner = () => {
 
     return (
-        <div className='flex gap-5 mt-20 h-[100vh]  supershop-container bg-black'>
-            <div className='w-1/2  h-5/6'>
-                <div className='flex flex-col ml-5 space-y-3 items-start justify-center h-full text-white'>
-                    <h1 className="text-5xl font-bold">Welcome To Our World!</h1>
-                    <p className="text-xl text-gray-300">We prefer your priority first!</p>
-                </div>
+        <div className='mt-[5rem] supershop-container flex flex-wrap justify-between bg-[#1D2A3B] mb-[3rem]'>
+            <div className='w-full md:w-1/2 flex items-center flex-col justify-center md:py-0 py-[8rem] '>
+                <h3 className='md:text-4xl text-3xl font-semibold text-white   '>Hello World</h3>
+                <h4 className=' text-base mt-2 sm:text-xl lg:text-2xl text-[#dadada]'>This is a stock management website</h4>
             </div>
-            <div className='w-1/2'>
-                <img className='' src="https://i.ibb.co/fDD15hd/stock-banner3.png" alt="" />
+            <div className='w-full md:w-1/2 hidden md:flex justify-center'>
+                <img src={BannerImg2} alt="" className='w-[40rem] object-cover' />
             </div>
         </div>
-        // <div className='bg-[url("https://i.ibb.co/7XsgSdX/stock-banner.png")] bg-blend-overlay h-[100vh] bg-cover'>
-        //     <div className='h-[100vh] backdrop-brightness-90 flex items-center justify-center'>
-        //         <h1 className="text-4xl font-bold">Hello WOrld</h1>
-
-        //     </div>
-        // </div>
     );
 };
 
