@@ -24,29 +24,29 @@ const OrderedList = () => {
                         <Tab>Completed</Tab>
                     </TabList>
                     {/* tab panel */}
-                    <div className='my-5 overflow-y-scroll h-[440px] py-5 border-2 border-blue-800 rounded-lg'>
+                    <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
-                            <div className='grid grid-cols-2 justify-center items-center gap-4'>
-                                <ProductDetails name={"Premium Quality Suit"} price={400} stock={10000} status={"Pending"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Paid"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Pending"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Paid"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Paid"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Pending"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Paid"}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} status={"Pending"}></ProductDetails>
+                            <div className='flex flex-col p-3 gap-4'>
+                                <ProductDetails name={"Premium Quality Suit"} price={400} stock={10000} code={401}></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={402} ></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={403}></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={404} ></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={405} ></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={406}></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={407} ></ProductDetails>
+                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={408}></ProductDetails>
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className='grid grid-cols-2 justify-center items-center gap-4'>
-                                <ProductDetails name={"Normal Jersey"} price={400} stock={10000}></ProductDetails>
-                                <ProductDetails name={"Sari"} price={1000} stock={9000}></ProductDetails>
+                            <div className='flex flex-col p-3 gap-4'>
+                                <ProductDetails name={"Normal Jersey"} price={400} stock={10000}  code={401}></ProductDetails>
+                                <ProductDetails name={"Sari"} price={1000} stock={9000} code={402}></ProductDetails>
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className='grid grid-cols-2 justify-center items-center gap-4'>
-                                <ProductDetails name={"Thai Gents Pent"} price={400} stock={10000}></ProductDetails>
-                                <ProductDetails name={"Sari"} price={1000} stock={9000}></ProductDetails>
+                            <div className='flex flex-col p-3 gap-4'>
+                                <ProductDetails name={"Thai Gents Pent"} price={400} stock={10000}  code={401}></ProductDetails>
+                                <ProductDetails name={"Sari"} price={1000} stock={9000} code={402}></ProductDetails>
                             </div>
                         </TabPanel>
                     </div>

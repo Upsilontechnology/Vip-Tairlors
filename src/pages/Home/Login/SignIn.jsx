@@ -1,8 +1,6 @@
-// Md Shahed, [1/31/2024 1:44 PM]
-// eslint-disable-next-line no-unused-vars
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from 'react-icons/fa';
 // import { AuthContext } from '../AuthProvider/AuthProvider';
 // import { Helmet } from 'react-helmet-async';
@@ -10,10 +8,11 @@ import LoginImg from "..//../../assets/loginImg.jpg"
 import LoginIcon from "..//../../assets/loginIcon2.png"
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import useAuth from '../../../hooks/useAuth';
 
 
 const SignIn = () => {
-    // const { signUser, signInPopUp } = useContext(AuthContext);
+    const { signInUser, googleSignIn } = useAuth();
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
@@ -28,31 +27,31 @@ const SignIn = () => {
         setError('');
 
         // signing in user
-        // signUser(email, password)
-        //     .then(result => {
-        //         console.log(result.user)
-        //         Swal.fire({
-        //             icon: 'success',
-        //             title: 'Wow....!',
-        //             text: 'Successfully logged in'
-        //         })
-        //         navigate(location?.state ? location?.state : '/')
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Wow....!',
+                    text: 'Successfully logged in'
+                })
+                // navigate(location?.state ? location?.state : '/')
 
 
-        //     })
-        //     .catch(error => {
-        //         setError(error.message);
-        //     })
+            })
+            .catch(error => {
+                setError(error.message);
+            })
     }
 
     const handleGoogle = () => {
-        // signInPopUp()
-        //     .then(result => {
-        //         console.log(result.user);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
+        googleSignIn()
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -71,20 +70,20 @@ const SignIn = () => {
                     </div>
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control mb-6 border-b-2 flex justify-center">
-                        <div className='absolute pl-2'><FaUser className='text-gray-500'/></div>
+                            <div className='absolute pl-2'><FaUser className='text-gray-500' /></div>
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="Email" className="input pl-8"
+                                placeholder="Email" className="input pl-8 focus:outline-none focus:border-none"
                                 required />
                         </div>
                         <div className="form-control border-b-2 relative flex justify-center">
-                            <div className='absolute pl-2'><FaLock className='text-gray-500'/></div>
+                            <div className='absolute pl-2'><FaLock className='text-gray-500' /></div>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
                                 placeholder="Password"
-                                className="input pl-8" required />
+                                className="input pl-8 focus:outline-none focus:border-none" required />
                             <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
                                 {
                                     showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
@@ -102,8 +101,11 @@ const SignIn = () => {
                                 <label htmlFor="checkbox" className='font-bold ml-1 cursor-pointer'>Remember Me</label>
                             </div>
                         </div>
+                        <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
+                            <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign In</button>
+                        </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-warning hover:btn-ghost">Sign In</button>
+                            <button className="btn btn-primary hover:btn-ghost">Sign In</button>
                         </div>
                         <div>
                             <h4 className='text-right my-2 text-orange-500 cursor-pointer'>Forgot Password</h4>
@@ -113,7 +115,7 @@ const SignIn = () => {
                         </div>
                     </form>
                 </div>
-                {/* PopUp componenets */}
+                
                 <div className=' mt-8'>
                     <p className='text-center font-semibold mb-5 text-2xl'>Or login wth</p>
                     <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
@@ -121,7 +123,10 @@ const SignIn = () => {
                             <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaGoogle className='text-red-400'></FaGoogle ></span>
                         </button>
                         <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
-                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500'/></span>
+                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
+                        </button>
+                        <button className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
+                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
                         </button>
                     </div>
 
