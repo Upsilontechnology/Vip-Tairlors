@@ -142,7 +142,7 @@ const AddProduct = () => {
                             className="input input-bordered focus:outline-none w-full" />
                         {errors.image && <span className="text-red-500">Image is required</span>}
                     </div>
-                    <button type="submit" className="btn btn-warning w-full mt-4">Add Product</button>
+                    <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">Add Product</button>
                 </form>
             </div>
         </div>
