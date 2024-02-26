@@ -7,12 +7,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-
-
-
-
-
-
 const Featured = () => {
 
     var settings = {
@@ -57,7 +51,7 @@ const Featured = () => {
         <div id='featured' className='supershop-container mx-auto my-10'>
             <SectionTitle
                 title="Featured Products"
-                descrition="Welcome to our showcase selections, where uniqueness meets quality."
+                descrition="Welcome to Our Showcase Selections, where Uniqueness Meets Quality."
             />
             <Slider {...settings} className=''>
                 {/* <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 md:gap-8'> */}
