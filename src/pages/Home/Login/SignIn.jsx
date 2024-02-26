@@ -56,82 +56,75 @@ const SignIn = () => {
 
 
     return (
-        <div className='supershop-container grid md:grid-cols-2 grid-cols-1'>
+        <div className='flex flex-col space-y-10 justify-center items-center'>
             {/* <Helmet>
                 <title>JobsWorld | Login </title>
             </Helmet> */}
-            <div className='h-[675px] hidden md:block'>
-                <img src={LoginImg} alt="" className='h-full object-cover rounded-l-lg ' />
+            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
+                <h1 className="text-4xl font-bold">Login</h1>
             </div>
-            <div className='border-2 rounded-r-lg border-gray-500 py-5 px-2'>
-                <div className=''>
-                    <div className='w-full flex justify-center items-center '>
-                        <img src={LoginIcon} alt="" className='w-[5rem] object-cover' />
-                    </div>
-                    <form onSubmit={handleLogin} className="card-body">
-                        <div className="form-control mb-6 border-b-2 flex justify-center">
-                            <div className='absolute pl-2'><FaUser className='text-gray-500' /></div>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email" className="input pl-8 focus:outline-none focus:border-none"
-                                required />
-                        </div>
-                        <div className="form-control border-b-2 relative flex justify-center">
-                            <div className='absolute pl-2'><FaLock className='text-gray-500' /></div>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                placeholder="Password"
-                                className="input pl-8 focus:outline-none focus:border-none" required />
-                            <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
-                                {
-                                    showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
-                                }
-                            </span>
-                        </div>
-                        <div>
-                            {
-                                error ? <p className='text-red-600'>{error}</p> : ''
-                            }
-                        </div>
-                        <div className='flex justify-between mt-4'>
-                            <div className=''>
-                                <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
-                                <label htmlFor="checkbox" className='font-bold ml-1 cursor-pointer'>Remember Me</label>
+            <div className='w-1/2 px-10'>
+                <div className=' border-2 rounded-lg border-gray-500 px-2'>
+                    <div className=''>
+                        <form onSubmit={handleLogin} className="card-body">
+                            <div className="form-control mb-4 border-b-2 flex justify-center">
+                                <div className='absolute pl-2'><FaUser className='text-gray-500' /></div>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email" className="input pl-8 focus:outline-none focus:border-none"
+                                    required />
                             </div>
+                            <div className="form-control border-b-2 relative flex justify-center">
+                                <div className='absolute pl-2'><FaLock className='text-gray-500' /></div>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Password"
+                                    className="input pl-8 focus:outline-none focus:border-none" required />
+                                <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
+                                    {
+                                        showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
+                                    }
+                                </span>
+                            </div>
+                            <div>
+                                {
+                                    error ? <p className='text-red-600'>{error}</p> : ''
+                                }
+                            </div>
+                            <div className='flex justify-between mt-2'>
+                                <div className=''>
+                                    <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
+                                    <label htmlFor="checkbox" className='font-bold ml-1 cursor-pointer'>Remember Me</label>
+                                </div>
+                                <div>
+                                    <h4 className='text-right my-2 text-blue-600 cursor-pointer'>Forgot Password</h4>
+                                </div>
+                            </div>
+                            <div className="form-control mt-2">
+                                <button className="btn bg-zinc-600 text-white hover:btn-ghost">Log In</button>
+                            </div>
+
+                            <div className='mt-2'>
+                                <p>Do not have an account? <Link className='font-semibold text-blue-600 underline' to='/register'>Register Now</Link></p>
+                            </div>
+                        </form>
+                    </div>
+                    {/* PopUp componenets */}
+                    <div className='mb-3'>
+                        <p className='text-center font-semibold mb-5 text-2xl'>Or Login with</p>
+                        <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
+                            <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center bg-slate-200 hover:bg-slate-300 rounded-full transition duration-300'>
+                                <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaGoogle className='text-red-400'></FaGoogle ></span>
+                            </button>
+                            <button className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
+                                <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
+                            </button>
                         </div>
-                        <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
-                            <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign In</button>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary hover:btn-ghost">Sign In</button>
-                        </div>
-                        <div>
-                            <h4 className='text-right my-2 text-orange-500 cursor-pointer'>Forgot Password</h4>
-                        </div>
-                        <div className='mt-2'>
-                            <p>Do not have an account? <Link className='font-semibold text-orange-500 underline' to='/register'>Sign Up</Link></p>
-                        </div>
-                    </form>
-                </div>
-                
-                <div className=' mt-8'>
-                    <p className='text-center font-semibold mb-5 text-2xl'>Or login wth</p>
-                    <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
-                        <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center bg-slate-200 hover:bg-slate-300 rounded-full transition duration-300'>
-                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaGoogle className='text-red-400'></FaGoogle ></span>
-                        </button>
-                        <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
-                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
-                        </button>
-                        <button className='font-semibold p-2 flex items-center justify-center hover:bg-slate-300 transition duration-300 rounded-full bg-slate-200'>
-                            <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
-                        </button>
                     </div>
 
                 </div>
-
             </div>
         </div>
     );

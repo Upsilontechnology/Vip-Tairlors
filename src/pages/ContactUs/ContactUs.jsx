@@ -35,21 +35,16 @@ const Contact = () => {
   return (
 
     <div className="">
-      <section className="bg-white my-6 max-w-6xl mx-auto px-6 py-16 lg:py-20" id="contact ">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ">
-          <div className="mb-4">
-            <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
-              {/* <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900  text-3xl sm:text-5xl">
-                Get in Touch
-              </h2> */}
-              <SectionTitle
-                title="Get in Touch"
-                descrition="We're here to help and look forward to connecting with you!"
-              />
+      <section className=" my-6 max-w-[1280px] mx-auto py-16 lg:py-20" id="contact ">
+        <div className="mx-auto max-w-[1280px]">
+          <div className="mb-4 ">
+            <div className="mb-6 w-full text-center sm:text-center md:mx-auto md:mb-12 bg-gradient-to-r from-[#252424] to-[#463636] py-5 text-white">
+              <h1 className="text-3xl md:text-5xl text-center  font-bold">Get In Touch</h1>
+              <p className="w-full text-center mx-auto mt-2 ">We're here to help and look forward to connecting with you!</p>
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center max-w-6xl mx-auto px-8">
             <div className="grid md:grid-cols-2">
               <div className="h-full pr-6">
                 <p className="mt-3 mb-12 text-lg text-gray-600">

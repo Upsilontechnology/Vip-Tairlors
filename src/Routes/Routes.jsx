@@ -16,11 +16,15 @@ import EmployeeHome from "../pages/Dashboard-Employee/EmployeeHome/EmployeeHome.
 import OrderedList from "../pages/Dashboard-Employee/OrderedList/OrderedList.jsx";
 import MembersRequest from "../pages/Dashboard/MembersRequest/MembersRequest.jsx";
 import AllMembers from "../pages/Dashboard/AllMembers/AllMembers.jsx";
+import Errorpage from "../pages/ErrorPage/Errorpage.jsx";
+import EmployeeRoute from "./EmployeeRoute.jsx";
+import AdminRoute from "./AdminRoute.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <Errorpage></Errorpage>,
         children: [
             {
                 path: "/",
@@ -51,44 +55,44 @@ const router = createBrowserRouter([
             // admin routes
             {
                 path: 'dash-home',
-                element: <AdminHome></AdminHome>
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
             },
             {
                 path: 'productList',
-                element: <AllProduct></AllProduct>
+                element: <AdminRoute><AllProduct></AllProduct></AdminRoute>
             },
             {
                 path: 'statement',
-                element: <Statement></Statement>
+                element: <AdminRoute><Statement></Statement></AdminRoute>
             },
             {
                 path: 'membersRequest',
-                element: <MembersRequest></MembersRequest>
+                element: <AdminRoute><MembersRequest></MembersRequest></AdminRoute>
             },
             {
                 path: 'allMembers',
-                element: <AllMembers></AllMembers>
+                element: <AdminRoute><AllMembers></AllMembers></AdminRoute>
             },
             // employee
             {
                 path: 'employee-home',
-                element: <EmployeeHome></EmployeeHome>
+                element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
             },
             {
                 path: 'productList',
-                element: <AllProduct></AllProduct>
+                element: <EmployeeRoute><AllProduct></AllProduct></EmployeeRoute>
             },
             {
                 path: 'addProduct',
-                element: <AddProduct></AddProduct>
+                element: <EmployeeRoute><AddProduct></AddProduct></EmployeeRoute>
             },
             {
                 path: 'ordered',
-                element: <OrderedProduct></OrderedProduct>
+                element: <EmployeeRoute><OrderedProduct></OrderedProduct></EmployeeRoute>
             },
             {
                 path: "orderedList",
-                element: <OrderedList></OrderedList>
+                element: <EmployeeRoute><OrderedList></OrderedList></EmployeeRoute>
             }
         ]
     },

@@ -2,53 +2,93 @@ import React from 'react';
 import { IoBagOutline } from "react-icons/io5";
 import { FaCalculator } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 
 const EmployeeHome = () => {
     return (
         <div>
-            <h1 className='text-center block mt-[2rem] text-5xl  font-semibold  '>Welcome</h1>
-            <div className='flex justify-center mt-10'>
-
-                <div className='flex gap-10'>
-
-                    <div className='max-w-[25rem] border pr-[3rem] border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                        <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                            <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
-                                <IoBagOutline className='font-semibold' />
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className='text-[1.15rem] font-medium '>Total Sales</h3>
-                            <h2 className='text-[1.3rem] font-semibold '>15000 BDT</h2>
-                        </div>
-                    </div>
-
-                    <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                        <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                            <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
-                                <FaCalculator className='font-semibold' />
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className='text-[1.15rem] font-medium '>Total Expenses</h3>
-                            <h2 className='text-[1.3rem] font-semibold '>15000 BDT</h2>
+            {/* image container */}
+            <div className='flex justify-center items-center'>
+                <img src="https://i.ibb.co/N12KcsH/image-5.png" alt="" />
+            </div>
+            {/* card container */}
+            <div className='flex justify-center'>
+                <div className='flex flex-col gap-5 justify-center p-12 mt-5 bg-white'>
+                    <div className='flex justify-between items-center'>
+                        <h3 className="text-2xl font-bold">Total Summary</h3>
+                        <div className="dropdown dropdown-hover">
+                            <div tabIndex={0} role="button" className="btn m-1">Sort By <IoIosArrowDown /></div>
+                            <ul tabIndex={0} className="dropdown-content z-[1] menu py-2 px-1 shadow bg-base-100 rounded-box w-28">
+                                <li><a>Today</a></li>
+                                <li><a>1 Month</a></li>
+                                <li><a>1 Year</a></li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                        <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                            <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
-                                <BsCart3 className='font-semibold' />
+                    {/* cards */}
+                    <div className='grid grid-cols-3 gap-10'>
+                        <div className='max-w-[25rem] border pr-[3rem] border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
+                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <IoBagOutline className='font-semibold' />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='text-sm font-medium '>Total Sales</h3>
+                                <h2 className='text-xl font-semibold '>15000 BDT</h2>
                             </div>
                         </div>
-                        <div>
-                            <h3 className='text-[1.15rem] font-medium '>Total Orders</h3>
-                            <h2 className='text-[1.3rem] font-semibold '>10</h2>
-                        </div>
-                    </div>
 
+                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
+                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <FaCalculator className='font-semibold' />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='text-sm font-medium '>Total Expenses</h3>
+                                <h2 className='text-[1.3rem] font-semibold '>15000 BDT</h2>
+                            </div>
+                        </div>
+
+                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
+                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <BsCart3 className='font-semibold' />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='text-sm font-medium '>Total Orders</h3>
+                                <h2 className='text-[1.3rem] font-semibold '>100</h2>
+                            </div>
+                        </div>
+
+                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
+                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <BsCart3 className='font-semibold' />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='text-sm font-medium '>Total Delivered</h3>
+                                <h2 className='text-[1.3rem] font-semibold '>70</h2>
+                            </div>
+                        </div>
+
+                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
+                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <BsCart3 className='font-semibold' />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='text-sm font-medium '>Total Pending</h3>
+                                <h2 className='text-[1.3rem] font-semibold '>30</h2>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
         </div>
     );
