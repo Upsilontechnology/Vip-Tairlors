@@ -16,11 +16,13 @@ const Registation = () => {
     const hanldeRegister = e => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
+        const firstName = form.first.value;
+        const lastName = form.last.value;
         const email = form.email.value;
         const password = form.password.value;
-        
+
         setError('');
+        console.log(firstName, lastName,email)
 
         // console.log(userInfo)
         createUser(email, password)
@@ -33,64 +35,71 @@ const Registation = () => {
     }
 
     // google sign in
-    const handleGoogle = () =>{
+    const handleGoogle = () => {
         googleSignIn()
-        .then(result =>{
-            console.log(result.user);
-        })
-        .catch(error =>{
-            console.log(error);
-        })
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
     return (
-        <div className='supershop-container'>
-            <div className='grid grid-cols-1 md:grid-cols-2 place-items-center p-2 rounded-lg bg-[#EFF4F7]'>
-                <div className='h-full hidden  md:block'>
-                    <img src={RegistationImg}
-                        alt=""
-                        className='w-full h-full object-cover rounded-lg'
-                    />
-                </div>
-                <div className='bg-[#EFF4F7] flex justify-center flex-col mx-auto w-full py-3'>
-                    <h3 className='font-mono w-full text-center text-4xl  text-[#515050] font-semibold'>Welcome</h3>
-                    <form onSubmit={hanldeRegister} className='flex flex-col gap-4 justify-center mt-14'>
-                        <div className='flex justify-center flex-col items-center   relative'>
-                            <input type="text" placeholder='Full Name'
-                                name='name'
-                                className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
+        <div className=''>
+            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
+                <h1 className="text-4xl font-bold">Register Now</h1>
+            </div>
+            <div className='flex flex-col p-2 rounded-lg w-1/2 mx-auto my-5'>
+                <div className='bg-gray-200 py-3 px-4'>
+                    <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
+                        <div className='flex justify-center flex-row gap-4 items-center relative'>
+                            <input type="text" placeholder='First Name'
+                                name='first'
+                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
-                            <FaUserAlt className='absolute left-0 ml-[16%] text-gray-500' />
+                            <input type="text" placeholder='Last Name'
+                                name='last'
+                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
+                            />
                         </div>
                         <div className='flex justify-center flex-col items-center relative'>
                             <input type="text" placeholder='Email' name='email'
-                                className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
+                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
-                            <MdEmail className='absolute left-0 ml-[16%] text-lg text-gray-500' />
                         </div>
                         <div className='flex flex-col items-center justify-center relative'>
                             <input type="password" placeholder='Password' name='password'
-                                className='w-[70%] py-3 rounded-lg border outline-none pl-8 pr-2'
+                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
-                            <FaLock className='absolute left-0 ml-[16%] text-gray-500' />
+                        </div>
+                        <div className='flex flex-col items-center justify-center relative'>
+                            <input type="file" placeholder='' name='image'
+                                className='input input-bordered focus:outline-none w-full py-2'
+                            />
                         </div>
 
-                        <div className='px-[16%] mt-8 flex gap-2'>
-                            <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
-                            <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-indigo-500'>Remember me</label>
+                        <div className='px-1 mt-3 flex flex-row justify-between items-center'>
+                            <div className="flex gap-2">
+                                <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
+                                <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-indigo-500'>Remember me</label>
+                            </div>
+                            <div>
+                                <h4 className='text-right my-2 text-blue-600 cursor-pointer'>Forgot Password</h4>
+                            </div>
                         </div>
                         <div className="px-[16%] flex gap-2">
                             {
                                 error ? <p className='text-red-600'>{error}</p> : ''
                             }
                         </div>
-                        <div className='flex justify-center mt-12 text-xl font-semibold text-white font-mono'>
-                            <button className='px-[25%] py-3 hover:from-indigo-500 hover:to-sky-500 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg'>Sign Up</button>
+                        <div className='flex justify-center text-xl font-semibold text-white font-mono'>
+                            <button className='px-[25%] py-3 bg-zinc-600 text-white hover:btn-ghost rounded-lg'>Register</button>
                         </div>
                     </form>
-                    <div className='ml-[16%] mt-7'>
-                        <h4 className='flex gap-2'>Already have an account? <Link to={"/login"} className='text-indigo-500 font-semibold cursor-pointer'>Sign In</Link></h4>
+                    <div className=' mt-7'>
+                        <h4 className='flex gap-2'>Already have an account? <Link to={"/login"} className='text-indigo-500 font-semibold cursor-pointer'>Log In</Link></h4>
                     </div>
                     <div className=''>
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>
