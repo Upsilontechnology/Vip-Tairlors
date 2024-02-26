@@ -122,7 +122,6 @@ const SignIn = () => {
                                 <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
                             </button>
                         </div>
-
                     </div>
 
                 </div>

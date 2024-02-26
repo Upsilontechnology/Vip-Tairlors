@@ -1,30 +1,31 @@
 import React from 'react'
-import QuoteImg from "../../../assets/quoteBanner.png"
-import AdminImg from "../../../assets/admin.png"
 import SectionTitle from '../../../components/SectionTitle/SectionTitle'
+import QuoteImg from "../../../assets/QuoteImg.jpg"
+import QuoteIcon from "../../../assets/quoteIcon.png"
+import { FaQuoteLeft } from "react-icons/fa";
 
 const QuoteBanner = () => {
   return (
-    <div className='supershop-container '>
-      <div>
-      <SectionTitle
-                title="Owner Insights"
-                descrition="Gain valuable insights into your business with our Owner Insights section."
-            />
-      </div>
-      <div className='flex xl:flex-row flex-col gap-20 xl:gap-0 justify-center xl:justify-between p-[2rem]  shadow-lg rounded px-[0rem] lg:px-[4rem]  bg-[#EFF4F7] '>
-        <div className=' flex flex-col justify-center items-center '>
-          <div className='  w-[20rem] pt-5 pl-3  rounded-lg bg-slate-400'>
-            <img src={AdminImg} alt="" className='w-full object-cover rounded-full' />
+    <div className='my-10'>
+      <SectionTitle title="Admin Insight" descrition="Explore the quote and insight from our administration." />
+      <div className='bg-[#F2F1F1] py-10 '>
+
+        <div className='max-w-[1280px] mx-auto lg:flex-row flex-col gap-[5rem] lg:gap-16 px-5 flex items-center justify-center lg:justify-between '>
+          <div className=' flex flex-col justify-center items-center '>
+            <div className='w-[20rem]'>
+              <img src={QuoteImg} alt="" className='w-full object-cover rounded-lg ' />
+            </div>
+            <div className='flex flex-col items-center mt-4 text-xl'>
+              <h3 className='font-bold'>MD Tozammel Hoque Patwary </h3>
+              <h4 className='text-base'>Founder of VIP Tailors</h4>
+            </div>
           </div>
-          <div className='flex flex-col items-center mt-5 text-xl font-semibold font-mono '>
-            <h3>Mojammel Hok Patoari</h3>
-            <h4>Founder of VIP Tailor</h4>
+          <div className='flex flex-col text-3xl gap-4 relative font-semibold '>
+            <FaQuoteLeft className='text-5xl text-[#4F4F4F]  absolute top-[-4rem] left-0 lg:left-[-48px] ' />
+            <h3 className='text-[#4F4F4F] '>Success is not the result of spontaneous <br /> combustion. You must  set yourself on fire.</h3>
           </div>
         </div>
-        <div className='flex items-center justify-center text-3xl font-semibold font-serif'>
-          <h3>“ Success is not the result of spontaneous <br /> combustion. You must  set yourself on fire ”</h3>
-        </div>
+
       </div>
     </div>
   )
