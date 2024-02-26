@@ -6,7 +6,7 @@ import Card from './Card';
 
 const Featured = () => {
     return (
-        <div className='supershop-container mx-auto my-10'>
+        <div id='featured' className='supershop-container mx-auto my-10'>
             <SectionTitle
                 title="Featured Products"
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."

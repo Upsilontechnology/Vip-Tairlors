@@ -111,7 +111,7 @@ const OrderedProduct = () => {
                             {...register("image", { required: true })}
                             type="file"
                             placeholder="Select Image"
-                            className="input input-bordered w-full focus:outline-none" />
+                            className="input input-bordered w-full focus:outline-noned" />
                     </div>
                     <button className="btn btn-warning w-full mt-4">Add Product</button>
                 </form>
