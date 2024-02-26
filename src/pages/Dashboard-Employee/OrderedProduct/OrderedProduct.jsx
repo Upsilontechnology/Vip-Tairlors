@@ -1,23 +1,61 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import toast from "react-hot-toast";
 
 const OrderedProduct = () => {
 
-    const { register, handleSubmit } = useForm();
+    // const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data) => {
-        const productDetails = {
-            name: data.name,
-            quantity: data.quantity,
-            category: data?.category,
-            code: data?.code,
-            image: data?.image,
-            postTime: data.date,
-            price: data.price
+    // const onSubmit = (data) => {
+    //     const productDetails = {
+    //         name: data.name,
+    //         quantity: data.quantity,
+    //         category: data?.category,
+    //         code: data?.code,
+    //         image: data?.image,
+    //         postTime: data.date,
+    //         price: data.price
+    //     }
+    //     console.log(productDetails)
+    // }
+
+    const { register, formState: { errors } } = useForm();
+
+
+    const handleCheckService = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const date = form.date.value;
+        const photo = form.image.value;
+        const price = form.price.value;
+        const category = form.category.value;
+        const quantity = form.quantity.value;
+        const dataInfo = {
+            name,
+            photo,
+            date,
+            category,
+            quantity,
+            price
         }
-        console.log(productDetails)
+        console.log(dataInfo);
+        fetch('http://localhost:5000/orderProduct', {
+            method: 'POST',
+            headers: {
+                "content-type": 'application/json',
+            },
+            body: JSON.stringify(dataInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.message === "success") {
+                    toast.success("Wow! You Leave a feedback!")
+                  }
+            })
     }
+
     return (
         <div className='supershop-container'>
             <SectionTitle
@@ -25,7 +63,7 @@ const OrderedProduct = () => {
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10'>
-                <form className='' onSubmit={handleSubmit(onSubmit)}>
+                <form className='' onSubmit={handleCheckService}>
                     <div className='flex gap-6'>
                         {/* Product Name */}
                         <div className="form-control w-full my-1">
