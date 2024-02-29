@@ -5,29 +5,57 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { updateProfile } from "@firebase/auth";
 
 const Registation = () => {
     const { createUser, googleSignIn } = useAuth();
     const [error, setError] = useState();
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const hanldeRegister = e => {
         e.preventDefault();
         const form = e.target;
-        const firstName = form.first.value;
-        const lastName = form.last.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        setError('');
-        console.log(firstName, lastName,email)
+        const userInfo = {
+            name: form.name.value,
+            email: form.email.value,
+            role: "user"
+        }
 
-        // console.log(userInfo)
+        setError('');
+
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
+
+                // updated user profile
+                updateProfile(result?.user, {
+                    displayName: form.name.value,
+                    photoURL: "https://i.ibb.co/wzY7xRG/bronze.png"
+                });
+
+                // insert user data to the database
+                axiosPublic.post('/user', userInfo)
+                    .then(res => {
+                        if (res.data.message === "Success") {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Successfully registered",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/')
+                        }
+                    })
             })
             .catch(error => {
                 setError(error.message)
@@ -55,12 +83,8 @@ const Registation = () => {
                 <div className='bg-gray-200 py-3 px-4'>
                     <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
                         <div className='flex justify-center flex-row gap-4 items-center relative'>
-                            <input type="text" placeholder='First Name'
-                                name='first'
-                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
-                            />
-                            <input type="text" placeholder='Last Name'
-                                name='last'
+                            <input type="text" placeholder='Name'
+                                name='name'
                                 className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
                             />
                         </div>

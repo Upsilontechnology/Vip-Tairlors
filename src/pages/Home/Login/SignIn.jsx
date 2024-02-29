@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from 'react-icons/fa';
 // import { AuthContext } from '../AuthProvider/AuthProvider';
@@ -16,7 +16,6 @@ const SignIn = () => {
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
 
     const handleLogin = e => {
         e.preventDefault();
@@ -31,11 +30,13 @@ const SignIn = () => {
             .then(result => {
                 console.log(result.user)
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Wow....!',
-                    text: 'Successfully logged in'
-                })
-                // navigate(location?.state ? location?.state : '/')
+                    position: "top-end",
+                    icon: "success",
+                    title: "Successfully logged in",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
 
 
             })
