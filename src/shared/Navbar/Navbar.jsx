@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "./Navbar.css"
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+    const { logOut } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -52,6 +56,32 @@ const Navbar = () => {
         </li>
     </>
 
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logged Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(() => {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Successfully logged out",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/login')
+                    })
+            }
+        });
+    }
+
     return (
         <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0  ${isScrolled ? 'bg-white shadow-sm shadow-black' : 'bg-none'}`}>
             <div className='max-w-[1280px] w-full mx-auto'>
@@ -71,7 +101,7 @@ const Navbar = () => {
                         <ul className='hidden md:flex items-center gap-8'>
                             {navlinks}
                         </ul>
-                        <button className="py-1.5 px-5 bg-gray-200 font-semibold rounded-lg ">Logout</button>
+                        <button onClick={handleLogout} className="py-1.5 px-5 bg-gray-200 font-semibold rounded-lg btn ">Logout</button>
                     </div>
                 </div>
             </div>

@@ -115,7 +115,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 </div>
             </aside>
             {/* components */}
-            <div className="flex flex-col flex-1 w-full bg-gray-200 overflow-y-auto ">
+            <div className="flex flex-col flex-1 w-full bg-[#f9f6f6] overflow-y-auto ">
                 <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 md:hidden">
                     <div className="flex items-center justify-between h-8 px-6 mx-auto">
                         <button

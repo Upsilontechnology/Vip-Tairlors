@@ -1,30 +1,36 @@
 import React from 'react';
+import useSellProduct from '../../hooks/useSellProduct';
 
-const ProductDetails = ({ name = "Product", price = 0, stock = 0, code }) => {
+const ProductDetails = () => {
+    const [sellProducts] = useSellProduct();
+
     return (
         <div className='flex flex-col gap-4'>
-            {/* first card */}
-            <div className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7]">
-                <img alt="Product Image" className=" object-cover  rounded-l-lg h-36" src="https://source.unsplash.com/200x200/?bed" />
-                <div className="flex flex-col items-center gap-2 px-6 py-3">
-                    <h1 className="">Product Name</h1>
-                    <h1 className="text-xl font-bold">{name}</h1>
-                </div>
-                <div className="flex flex-col items-center gap-2 px-6 py-3">
-                    <h1 className="">Product Code</h1>
-                    <h1 className="text-xl font-bold">{code}</h1>
-                </div>
-                <div className='flex flex-col items-center gap-3 px-6 py-3'>
-                    <h3 className="">Price</h3>
-                    <div className="text-xl font-bold">{price}</div>
-                    <button className="btn-sm bg-white hover:bg-gray-800 hover:text-white border-black border duration-300 rounded-md">Edit Price</button>
-                </div>
-                <div className='flex flex-col items-center gap-3 px-6 py-3'>
-                    <p className=''>Stock</p>
-                    <p className='text-xl font-bold'>{stock} pcs</p>
-                    <button className=" bg-white hover:bg-gray-800 hover:text-white btn-sm border-black border duration-300 rounded-md">Edit Stock</button>
-                </div>
-            </div>
+            {
+                sellProducts?.map(sellProduct => <div key={sellProduct?._id} className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7]">
+                    <img alt="Product Image" className=" object-cover  rounded-l-lg h-36" src="https://source.unsplash.com/200x200/?bed" />
+                    <div className="flex flex-col items-center gap-2 px-2 py-1">
+                        <h1 className="">Product Name</h1>
+                        <h1 className="text-xl font-bold">{sellProduct?.name}</h1>
+                    </div>
+                    <div className="flex flex-col items-center gap-2 px-2 py-1">
+                        <h1 className="">Product Code</h1>
+                        <h1 className="text-xl font-bold">401</h1>
+                    </div>
+                    <div className='flex flex-col items-center gap-3 px-2 py-1'>
+                        <h3 className="">Total Amount</h3>
+                        <div className="text-xl font-bold">BDT {sellProduct?.price}</div>
+                    </div>
+                    <div className='flex flex-col items-center gap-3 px-2 py-1'>
+                        <p className=''>Quantity</p>
+                        <p className='text-xl font-bold'>{sellProduct?.quantity}</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-2 px-2 py-1">
+                        <h1 className="">Date</h1>
+                        <h1 className="text-xl font-bold">{sellProduct?.date}</h1>
+                    </div>
+                </div>)
+            }
         </div>
     );
 };

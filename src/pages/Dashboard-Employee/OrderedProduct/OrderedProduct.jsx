@@ -32,13 +32,15 @@ const OrderedProduct = () => {
         const price = form.price.value;
         const category = form.category.value;
         const quantity = form.quantity.value;
+        const status = "Pending";
         const dataInfo = {
             name,
             photo,
             date,
             category,
             quantity,
-            price
+            price,
+            status
         }
         console.log(dataInfo);
         fetch('http://localhost:5000/orderProduct', {
@@ -103,7 +105,7 @@ const OrderedProduct = () => {
                         {/* Date */}
                         <div className="form-control w-full my-1">
                             <label className="label">
-                                <span className="label-text">Date*(mm/dd/yyyy)</span>
+                                <span className="label-text">Delivary Date*(mm/dd/yyyy)</span>
                             </label>
                             <input
                                 {...register("date", { required: true })}

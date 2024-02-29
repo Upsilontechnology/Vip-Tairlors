@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import ProductDetails from '../../../components/ProductDetails/ProductDetails';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
 
 const OrderedList = () => {
     return (
@@ -19,7 +19,6 @@ const OrderedList = () => {
                 <Tabs>
                     {/* tab lists */}
                     <TabList className="font-bold">
-                        <Tab>All Product</Tab>
                         <Tab>Pending</Tab>
                         <Tab>Completed</Tab>
                     </TabList>
@@ -27,26 +26,12 @@ const OrderedList = () => {
                     <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <ProductDetails name={"Premium Quality Suit"} price={400} stock={10000} code={401}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={402} ></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={403}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={404} ></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={405} ></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={406}></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={407} ></ProductDetails>
-                                <ProductDetails name={"Quality Ladies Jacket"} price={1000} stock={9000} code={408}></ProductDetails>
+                                <OrderedProductDetails />
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <ProductDetails name={"Normal Jersey"} price={400} stock={10000}  code={401}></ProductDetails>
-                                <ProductDetails name={"Sari"} price={1000} stock={9000} code={402}></ProductDetails>
-                            </div>
-                        </TabPanel>
-                        <TabPanel>
-                            <div className='flex flex-col p-3 gap-4'>
-                                <ProductDetails name={"Thai Gents Pent"} price={400} stock={10000}  code={401}></ProductDetails>
-                                <ProductDetails name={"Sari"} price={1000} stock={9000} code={402}></ProductDetails>
+                                <OrderedProductDetails />
                             </div>
                         </TabPanel>
                     </div>
