@@ -76,7 +76,7 @@ const Navbar = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate('/login')
+                        navigate('/')
                     })
             }
         });
