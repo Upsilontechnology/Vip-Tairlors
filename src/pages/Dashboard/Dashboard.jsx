@@ -7,7 +7,7 @@ const Dashboard = () => {
     const [users, refetch] = useUser();
     // console.log(users)
 
-    // const employee = true;
+    const employee = true;
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
     const toggleSideMenu = () => {
         setIsSideMenuOpen(!isSideMenuOpen);
