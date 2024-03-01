@@ -1,10 +1,38 @@
-import React from 'react';
+
 import { IoPersonOutline } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router';
 
 const Navbar2 = () => {
+    const { logOut } = useAuth();
+    const navigate = useNavigate();
 
-    const { user } = useAuth();
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logged Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(() => {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Successfully logged out",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/login')
+                    })
+            }
+        });
+    }
 
     return (
         <div>
@@ -16,7 +44,7 @@ const Navbar2 = () => {
                         </div>
                     </div>
                     <div className="navbar-end">
-                        <button className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
+                        <button onClick={handleLogout} className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
                     </div>
                 </div>
             </div>
