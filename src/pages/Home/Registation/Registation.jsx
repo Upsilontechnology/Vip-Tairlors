@@ -123,7 +123,7 @@ const Registation = () => {
                         </div>
                     </form>
                     <div className=' mt-7'>
-                        <h4 className='flex gap-2'>Already have an account? <Link to={"/login"} className='text-indigo-500 font-semibold cursor-pointer'>Log In</Link></h4>
+                        <h4 className='flex gap-2'>Already have an account? <Link to={"/"} className='text-indigo-500 font-semibold cursor-pointer'>Log In</Link></h4>
                     </div>
                     <div className=''>
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>
