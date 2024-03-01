@@ -1,6 +1,5 @@
 import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import StatementCard from '../../../components/StatementCard/StatementCard';
 import ProductStatementCard from '../../../components/ProductStatementCard/ProductStatementCard';
 
 const ProductStatement = () => {
