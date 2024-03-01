@@ -1,36 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useUser from '../../../hooks/useUser';
+import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const AllMembers = () => {
+    const [users, refetch] = useUser();
+    const [confirmedUser, setConfirmedUser] = useState();
+    const axiosPublic = useAxiosPublic();
+
+    useEffect(() => {
+        const filteredUser = users?.filter(us => us.role === 'employee');
+        setConfirmedUser(filteredUser);
+    }, [])
+
+    const handleMakeUser = (user) => {
+        axiosPublic.patch(`/user/${user?._id}`)
+            .then(res => {
+                refetch();
+                if (res?.data?.message === 'success') {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user?.name} is now an user`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
                 {/* head */}
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Employee Code</th>
+                        <th>Employee Number</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Make Admin</th>
+                        <th>Make User</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* row 1 */}
-                    <tr>
-                        <th>1</th>
-                        <th>0001</th>
-                        <td>
-                            <div className="flex items-center gap-3">
-                                <div>
-                                    <div className="font-bold">Hart Hagerty</div>
+                    {
+                        confirmedUser?.map((user, ind) => <tr key={user?._id}>
+                            <th>{ind + 1}</th>
+                            <td>
+                                <div className="flex items-center gap-3">
+                                    <div>
+                                        <div className="font-bold">{user?.lastName}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            hart@gmail.com
-                        </td>
-                        <td> <button className="btn btn-success btn-xs text-white">Make Admin</button> </td>
-                    </tr>
+                            </td>
+                            <td>
+                                {user?.email}
+                            </td>
+                            <td> <button className="btn btn-success btn-xs text-white">Make Admin</button> </td>
+                            
+                            <td><button onClick={() => handleMakeUser(user)} className="btn btn-success btn-xs text-white">Make User</button>
+                            </td>
+                        </tr>)
+                    }
                 </tbody>
             </table>
         </div>
