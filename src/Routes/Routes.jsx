@@ -6,7 +6,6 @@ import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import Login from "../pages/Home/Login/SignIn.jsx"
-import Statement from "../pages/Dashboard/Statement/Statement.jsx";
 import Registation from "../pages/Home/Registation/Registation.jsx";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
 import ContactUs from "../pages/ContactUs/ContactUs.jsx";
