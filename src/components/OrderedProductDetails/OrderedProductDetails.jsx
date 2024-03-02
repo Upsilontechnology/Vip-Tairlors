@@ -15,7 +15,7 @@ const OrderedProductDetails = () => {
                     </div>
                     <div className="flex flex-col items-center gap-2 px-2 py-1">
                         <h1 className="">Product Code</h1>
-                        <h1 className="text-lg font-bold">401</h1>
+                        <h1 className="text-lg font-bold">{orderProduct?.productCode}</h1>
                     </div>
                     <div className='flex flex-col items-center gap-3 px-2 py-1'>
                         <h3 className="">Total Amount</h3>
@@ -27,7 +27,7 @@ const OrderedProductDetails = () => {
                     </div>
                     <div className="flex flex-col items-center gap-2 px-2 py-1">
                         <h1 className="">Delivery Date</h1>
-                        <h1 className="text-lg font-bold">{orderProduct?.date}</h1>
+                        <h1 className="text-lg font-bold">{new Date(orderProduct?.deliveryDate).toLocaleDateString()}</h1>
                     </div>
                     <div className="flex flex-col items-center px-2 py-1">
                         <h1 className="">Status</h1>

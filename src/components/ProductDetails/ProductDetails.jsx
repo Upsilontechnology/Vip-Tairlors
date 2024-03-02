@@ -3,7 +3,7 @@ import useSellProduct from '../../hooks/useSellProduct';
 
 const ProductDetails = () => {
     const [sellProducts] = useSellProduct();
-
+    
     return (
         <div className='flex flex-col gap-4'>
             {
@@ -15,7 +15,7 @@ const ProductDetails = () => {
                     </div>
                     <div className="flex flex-col items-center gap-2 px-2 py-1">
                         <h1 className="">Product Code</h1>
-                        <h1 className="text-xl font-bold">401</h1>
+                        <h1 className="text-xl font-bold">{sellProduct?.productCode}</h1>
                     </div>
                     <div className='flex flex-col items-center gap-3 px-2 py-1'>
                         <h3 className="">Total Amount</h3>
@@ -27,7 +27,7 @@ const ProductDetails = () => {
                     </div>
                     <div className="flex flex-col items-center gap-2 px-2 py-1">
                         <h1 className="">Date</h1>
-                        <h1 className="text-xl font-bold">{sellProduct?.date}</h1>
+                        <h1 className="text-xl font-bold">{new Date(sellProduct?.sellingDate).toLocaleDateString()}</h1>
                     </div>
                 </div>)
             }

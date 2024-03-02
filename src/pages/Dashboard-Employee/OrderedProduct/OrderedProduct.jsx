@@ -2,61 +2,80 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import toast from "react-hot-toast";
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
+import useAuth from '../../../hooks/useAuth';
 
 const OrderedProduct = () => {
+    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth();
+    const { register, handleSubmit } = useForm();
 
-    // const { register, handleSubmit } = useForm();
-
-    // const onSubmit = (data) => {
-    //     const productDetails = {
-    //         name: data.name,
-    //         quantity: data.quantity,
-    //         category: data?.category,
-    //         code: data?.code,
-    //         image: data?.image,
-    //         postTime: data.date,
-    //         price: data.price
-    //     }
-    //     console.log(productDetails)
-    // }
-
-    const { register, formState: { errors } } = useForm();
-
-
-    const handleCheckService = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const date = form.date.value;
-        const photo = form.image.value;
-        const price = form.price.value;
-        const category = form.category.value;
-        const quantity = form.quantity.value;
-        const status = "Pending";
-        const dataInfo = {
-            name,
-            photo,
-            date,
-            category,
-            quantity,
-            price,
-            status
+    const onSubmit = (data) => {
+        const productDetails = {
+            name: data?.name,
+            quantity: data?.quantity,
+            category: data?.category,
+            productCode: data?.code,
+            image: data?.image,
+            deliveryDate: data?.date,
+            price: data?.price,
+            status: "pending",
+            email: user?.email
         }
-        console.log(dataInfo);
-        fetch('http://localhost:5000/orderProduct', {
-            method: 'POST',
-            headers: {
-                "content-type": 'application/json',
-            },
-            body: JSON.stringify(dataInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.message === "success") {
-                    toast.success("Wow! You Leave a feedback!")
-                  }
+
+        // product added to the server
+        axiosPublic.post('/orderProduct', productDetails)
+            .then(res => {
+                // console.log(res)
+                if (res.data.message === 'success') {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Order added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             })
     }
+    // const { register, formState: { errors } } = useForm();
+
+
+    // const handleCheckService = event => {
+    //     event.preventDefault();
+    //     const form = event.target;
+    //     const name = form.name.value;
+    //     const date = form.date.value;
+    //     const photo = form.image.value;
+    //     const price = form.price.value;
+    //     const category = form.category.value;
+    //     const quantity = form.quantity.value;
+    //     const status = "Pending";
+    //     const dataInfo = {
+    //         name,
+    //         photo,
+    //         date,
+    //         category,
+    //         quantity,
+    //         price,
+    //         status
+    //     }
+    //     console.log(dataInfo);
+    //     fetch('http://localhost:5000/orderProduct', {
+    //         method: 'POST',
+    //         headers: {
+    //             "content-type": 'application/json',
+    //         },
+    //         body: JSON.stringify(dataInfo)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.message === "success") {
+    //                 toast.success("Wow! You Leave a feedback!")
+    //             }
+    //         })
+    // }
 
     return (
         <div className='supershop-container'>
@@ -65,7 +84,7 @@ const OrderedProduct = () => {
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10'>
-                <form className='' onSubmit={handleCheckService}>
+                <form className='' onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex gap-6'>
                         {/* Product Name */}
                         <div className="form-control w-full my-1">
@@ -148,7 +167,7 @@ const OrderedProduct = () => {
                             <span className="label-text">Image URL*</span>
                         </label>
                         <input
-                            {...register("image", { required: true })}
+                            {...register("image")}
                             type="file"
                             placeholder="Select Image"
                             className="input input-bordered w-full focus:outline-noned" />

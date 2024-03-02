@@ -2,9 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import toast from "react-hot-toast";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const AddProduct = () => {
     const { register, formState: { errors } } = useForm();
+    const axiosPublic = useAxiosPublic();
+    const {user} = useAuth();
 
 
     const handleCheckService = event => {
@@ -16,27 +21,29 @@ const AddProduct = () => {
         const price = form.price.value;
         const category = form.category.value;
         const quantity = form.quantity.value;
+        const code = form.code.value;
         const dataInfo = {
             name,
             photo,
-            date,
+            sellingDate: date,
             category,
             quantity,
-            price
+            price,
+            productCode: code,
+            email: user?.email
         }
         console.log(dataInfo);
-        fetch('http://localhost:5000/sellProduct', {
-            method: 'POST',
-            headers: {
-                "content-type": 'application/json',
-            },
-            body: JSON.stringify(dataInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.message === "success") {
-                    toast.success("Wow! You Leave a feedback!")
-                  }
+        axiosPublic.post('/sellProduct', dataInfo)
+            .then(res => {
+                if (res.data.message === 'success') {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Product added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             })
     }
 
