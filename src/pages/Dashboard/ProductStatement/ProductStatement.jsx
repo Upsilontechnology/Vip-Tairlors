@@ -1,8 +1,10 @@
-import React from 'react';
+import { MdOutlineDeleteOutline } from 'react-icons/md';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import ProductStatementCard from '../../../components/ProductStatementCard/ProductStatementCard';
+import useSellProduct from '../../../hooks/useSellProduct';
 
 const ProductStatement = () => {
+    const [sellProducts, refetch] = useSellProduct();
+    console.log(sellProducts)
     return (
         <div>
             <div className='w-6/12 mx-auto text-center my-7'>
@@ -10,22 +12,43 @@ const ProductStatement = () => {
                     title="Statement Pieces"
                     descrition="Explore our collection and make a statement that reflects your individuality."
                 />
-                <div className="divider"></div>
             </div>
-            <div>
-                <div className=' py-5 shadow-md shadow-gray-300 bg-[#0a1d56] text-white rounded-xl p-3 flex justify-between items-center w-1/2 mx-auto'>
-                    <h1 className='text-xl font-bold'>Balance: </h1>
-                    <p className='text-xl font-bold'> 000 BDT</p>
-                </div>
-                <div className='mt-[3rem] overflow-hidden w-full h-full'>
-                    <div className='w-full overflow-y-scroll h-[28rem] '>
-                        <div className=' flex flex-col'>
-                            <div className=''>
-                                <ProductStatementCard></ProductStatementCard>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Code</th>
+                            <th>Selling Date</th>
+                            <th>Total Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            sellProducts?.map((product, ind) => <tr key={product?._id}>
+                                <th>{ind + 1}</th>
+                                <th>{product?.productCode}</th>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div>
+                                            <div className="font-bold">{new Date(product?.sellingDate).toLocaleDateString()}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {product?.price}
+                                </td>
+                                <td>
+                                    <button className="btn btn-sm">
+                                        <MdOutlineDeleteOutline />
+                                    </button>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     );
