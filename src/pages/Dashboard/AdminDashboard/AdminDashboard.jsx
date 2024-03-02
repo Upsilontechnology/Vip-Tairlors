@@ -16,7 +16,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 className={({ isActive }) =>
                     isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                 }
-                to="dash-home"
+                to="/"
             >
                 <AiOutlineHome />
                 <span className="ml-4">Home</span>
