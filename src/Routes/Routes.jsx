@@ -9,7 +9,6 @@ import Login from "../pages/Home/Login/SignIn.jsx"
 import Registation from "../pages/Home/Registation/Registation.jsx";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
 import ContactUs from "../pages/ContactUs/ContactUs.jsx";
-import Dashboard from "../pages/Dashboard/Dashboard.jsx";
 import OrderedProduct from "../pages/Dashboard-Employee/OrderedProduct/OrderedProduct.jsx";
 import EmployeeHome from "../pages/Dashboard-Employee/EmployeeHome/EmployeeHome.jsx";
 import OrderedList from "../pages/Dashboard-Employee/OrderedList/OrderedList.jsx";
@@ -32,13 +31,53 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/addProduct',
-                element: <AddProduct></AddProduct>
-            },
-            {
                 path: '/contact',
                 element: <ContactUs></ContactUs>
-            }
+            },
+            // {
+            //     path: 'dash-home',
+            //     element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            // },
+            // {
+            //     path: 'productList',
+            //     element: <AdminRoute><AllProduct></AllProduct></AdminRoute>
+            // },
+            // {
+            //     path: 'productStatement',
+            //     element: <AdminRoute><ProductStatement></ProductStatement></AdminRoute>
+            // },
+            // {
+            //     path: 'orderStatement',
+            //     element: <AdminRoute><OrderStatement></OrderStatement></AdminRoute>
+            // },
+            // {
+            //     path: 'membersRequest',
+            //     element: <AdminRoute><MembersRequest></MembersRequest></AdminRoute>
+            // },
+            // {
+            //     path: 'allMembers',
+            //     element: <AdminRoute><AllMembers></AllMembers></AdminRoute>
+            // },
+            // {
+            //     path: 'employee-home',
+            //     element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
+            // },
+            // {
+            //     path: 'productList',
+            //     element: <EmployeeRoute><AllProduct></AllProduct></EmployeeRoute>
+            // },
+            // {
+            //     path: 'addProduct',
+            //     element: <EmployeeRoute><AddProduct></AddProduct></EmployeeRoute>
+            // },
+            // {
+            //     path: 'ordered',
+            //     element: <EmployeeRoute><OrderedProduct></OrderedProduct></EmployeeRoute>
+            // },
+            // {
+            //     path: "orderedList",
+            //     element: <EmployeeRoute><OrderedList></OrderedList></EmployeeRoute>
+            // }
         ]
     },
     {
@@ -50,17 +89,21 @@ const router = createBrowserRouter([
         element: <Registation></Registation>
     },
     {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        path: '/',
+        element: <Home />,
         children: [
             // admin routes
             {
-                path: 'dash-home',
-                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+                path: '/',
+                element: <AdminHome></AdminHome>
             },
             {
                 path: 'productList',
                 element: <AdminRoute><AllProduct></AllProduct></AdminRoute>
+            },
+            {
+                path: '/addProduct',
+                element: <AddProduct></AddProduct>
             },
             {
                 path: 'productStatement',
@@ -80,7 +123,7 @@ const router = createBrowserRouter([
             },
             // employee
             {
-                path: 'employee-home',
+                path: '/',
                 element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
             },
             {
