@@ -3,8 +3,15 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
+import useOrderedProduct from '../../../hooks/useOrderedProduct';
 
 const OrderedList = () => {
+    const [orderProducts, refetch] = useOrderedProduct();
+
+    const allProducts = orderProducts?.filter(product => product?.status === 'pending');
+    const completeProducts = orderProducts?.filter(product => product.status === 'completed');
+
+
     return (
         <div className='supershop-container'>
             {/* section */}
@@ -26,12 +33,12 @@ const OrderedList = () => {
                     <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails />
+                                <OrderedProductDetails products={allProducts}/>
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails />
+                                <OrderedProductDetails products={completeProducts}/>
                             </div>
                         </TabPanel>
                     </div>

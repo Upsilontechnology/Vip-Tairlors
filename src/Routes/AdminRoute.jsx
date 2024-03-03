@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import { DNA } from 'react-loader-spinner';
+import useUser from '../hooks/useUser';
 
 const AdminRoute = ({ children }) => {
     const { user, loading } = useAuth();
+    // const [users] = useUser();
+    // const [admin, setAdmin] = useState();
+
+    // useEffect(() => {
+    //     const filteredUser = users?.filter(us => us?.email === user.email);
+    //     setAdmin(filteredUser)
+    // }, [])
+    // console.log(admin[0]?.role)
     const admin = true;
 
     if (loading) {
-        return <div className="w-20 h-20  border-l-2 border-green-500 rounded-full flex justify-center items-center animate-[spin_1.8s_linear_infinite]"><div className="w-16 h-16  border-b-2 border-indigo-500 rounded-full flex justify-center items-center animate-[spin_1.8s_linear_infinite]"><div className="w-10 h-10  border-r-2  border-sky-500 rounded-full animate-[spin_1.8s_linear_infinite]"></div></div></div>
+        return <DNA
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
+        />
     }
 
     if (user && admin) {
