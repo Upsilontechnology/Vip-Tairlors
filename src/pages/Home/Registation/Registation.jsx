@@ -29,6 +29,7 @@ const Registation = () => {
             email: form.email.value,
             role: "user"
         }
+        console.log(userInfo)
 
         setError('');
 
@@ -67,6 +68,25 @@ const Registation = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user);
+                const userInfo = {
+                    email: result?.user?.email,
+                    name: result?.user?.displayName,
+                    role: "user"
+                }
+                axiosPublic.post('/user', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.message === "Success") {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Successfully registered",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/')
+                        }
+                    })
             })
             .catch(error => {
                 console.log(error);
@@ -83,7 +103,7 @@ const Registation = () => {
                 <div className='bg-gray-200 py-3 px-4'>
                     <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
                         <div className='flex justify-center flex-row gap-4 items-center relative'>
-                            <input type="text" placeholder='Name'
+                            <input type="text" placeholder='Full Name'
                                 name='name'
                                 className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
                             />

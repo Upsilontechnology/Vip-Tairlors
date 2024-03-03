@@ -98,11 +98,7 @@ const router = createBrowserRouter([
                 element: <AdminHome></AdminHome>
             },
             {
-                path: 'productList',
-                element: <AdminRoute><AllProduct></AllProduct></AdminRoute>
-            },
-            {
-                path: '/addProduct',
+                path: 'addProduct',
                 element: <AddProduct></AddProduct>
             },
             {
@@ -123,7 +119,7 @@ const router = createBrowserRouter([
             },
             // employee
             {
-                path: '/',
+                path: '/employeeHome',
                 element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
             },
             {
