@@ -43,7 +43,7 @@ const MembersRequest = () => {
                             <td>
                                 <div className="flex items-center gap-3">
                                     <div>
-                                        <div className="font-bold">{user?.lastName}</div>
+                                        <div className="font-bold">{user?.name}</div>
                                     </div>
                                 </div>
                             </td>
@@ -51,7 +51,9 @@ const MembersRequest = () => {
                                 {user?.email}
                             </td>
                             <td>
-                                {user?.role === "employee" ? <h1 className='font-bold'>Employee</h1> : <button onClick={() => handleMakeEmployee(user)} className="btn btn-success btn-xs text-white">Approve</button>}
+                                {user?.role === "user" ?
+                                    <button onClick={() => handleMakeEmployee(user)} className="btn btn-success btn-xs text-white">Approve</button> :
+                                    " "}
                             </td>
                         </tr>)
                     }
