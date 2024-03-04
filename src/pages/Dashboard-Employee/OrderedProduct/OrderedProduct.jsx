@@ -6,76 +6,68 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
+const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const OrderedProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        const productDetails = {
-            name: data?.name,
-            quantity: data?.quantity,
-            category: data?.category,
-            productCode: data?.code,
-            image: data?.image,
-            deliveryDate: data?.date,
-            price: data?.price,
-            status: "pending",
-            email: user?.email
-        }
-
-        // product added to the server
-        axiosPublic.post('/orderProduct', productDetails)
+        // sending image to the imageBB
+        const imageFile = { image: data.image[0] }
+        axiosPublic.post(image_hosing_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
             .then(res => {
-                // console.log(res)
-                if (res.data.message === 'success') {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Order added successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                console.log(res.data);
+
+                // product data send to database
+                const productDetails = {
+                    name: data?.name,
+                    quantity: data?.quantity,
+                    category: data?.category,
+                    productCode: data?.code,
+                    image: res?.data?.data?.display_url,
+                    deliveryDate: data?.date,
+                    price: data?.price,
+                    status: "pending",
+                    email: user?.email
                 }
+
+                // product added to the server
+                axiosPublic.post('/orderProduct', productDetails)
+                    .then(res => {
+                        // console.log(res)
+                        if (res.data.message === 'success') {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Order added successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
             })
+
+        // // product added to the server
+        // axiosPublic.post('/orderProduct', productDetails)
+        //     .then(res => {
+        //         // console.log(res)
+        //         if (res.data.message === 'success') {
+        //             Swal.fire({
+        //                 position: "top-end",
+        //                 icon: "success",
+        //                 title: "Order added successfully",
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             });
+        //         }
+        //     })
     }
-    // const { register, formState: { errors } } = useForm();
-
-
-    // const handleCheckService = event => {
-    //     event.preventDefault();
-    //     const form = event.target;
-    //     const name = form.name.value;
-    //     const date = form.date.value;
-    //     const photo = form.image.value;
-    //     const price = form.price.value;
-    //     const category = form.category.value;
-    //     const quantity = form.quantity.value;
-    //     const status = "Pending";
-    //     const dataInfo = {
-    //         name,
-    //         photo,
-    //         date,
-    //         category,
-    //         quantity,
-    //         price,
-    //         status
-    //     }
-    //     console.log(dataInfo);
-    //     fetch('http://localhost:5000/orderProduct', {
-    //         method: 'POST',
-    //         headers: {
-    //             "content-type": 'application/json',
-    //         },
-    //         body: JSON.stringify(dataInfo)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.message === "success") {
-    //                 toast.success("Wow! You Leave a feedback!")
-    //             }
-    //         })
-    // }
 
     return (
         <div className='supershop-container'>

@@ -38,24 +38,24 @@ const MembersRequest = () => {
                 </thead>
                 <tbody>
                     {
-                        users?.map(user => <tr key={user?._id}>
-                            <th>1</th>
-                            <td>
-                                <div className="flex items-center gap-3">
-                                    <div>
-                                        <div className="font-bold">{user?.name}</div>
-                                    </div>
+                        users?.map((user, ind) => user?.role === 'user' ? <tr key={user?._id}>
+                        <th>{ind + 1}</th>
+                        <td>
+                            <div className="flex items-center gap-3">
+                                <div>
+                                    <div className="font-bold">{user?.name}</div>
                                 </div>
-                            </td>
-                            <td>
-                                {user?.email}
-                            </td>
-                            <td>
-                                {user?.role === "user" ?
-                                    <button onClick={() => handleMakeEmployee(user)} className="btn btn-success btn-xs text-white">Approve</button> :
-                                    " "}
-                            </td>
-                        </tr>)
+                            </div>
+                        </td>
+                        <td>
+                            {user?.email}
+                        </td>
+                        <td>
+                            {user?.role === "user" ?
+                                <button onClick={() => handleMakeEmployee(user)} className="btn btn-success btn-xs text-white">Approve</button> :
+                                " "}
+                        </td>
+                    </tr> : '')
                     }
                 </tbody>
             </table>

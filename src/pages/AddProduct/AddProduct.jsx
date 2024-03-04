@@ -6,25 +6,69 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 
-const AddProduct = () => {
-    const { register, formState: { errors } } = useForm();
-    const axiosPublic = useAxiosPublic();
-    const {user} = useAuth();
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
+const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
+const AddProduct = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth();
+
+    const onSubmit = (data) => {
+        // sending image to the imageBB
+        const imageFile = { image: data.image[0] }
+        axiosPublic.post(image_hosing_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+
+                // product data send to database
+                const productDetails = {
+                    name: data?.name,
+                    quantity: data?.quantity,
+                    category: data?.category,
+                    productCode: data?.code,
+                    image: res?.data?.data?.display_url,
+                    sellingDate: data?.date,
+                    price: data?.price,
+                    status: "pending",
+                    email: user?.email
+                }
+
+                // product added to the server
+                axiosPublic.post('/sellProduct', productDetails)
+                    .then(res => {
+                        // console.log(res)
+                        if (res.data.message === 'success') {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Order added successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+            })
+    }
 
     const handleCheckService = event => {
         event.preventDefault();
         const form = event.target;
+
         const name = form.name.value;
         const date = form.date.value;
-        const photo = form.image.value;
+        // const image = res?.data?.data?.display_url;
         const price = form.price.value;
         const category = form.category.value;
         const quantity = form.quantity.value;
         const code = form.code.value;
+
         const dataInfo = {
             name,
-            photo,
             sellingDate: date,
             category,
             quantity,
@@ -32,7 +76,21 @@ const AddProduct = () => {
             productCode: code,
             email: user?.email
         }
-        console.log(dataInfo);
+
+        console.log(form.image.value, dataInfo)
+
+        // const imageFile = { image: form.image.value }
+        // axiosPublic.post(image_hosing_api, imageFile, {
+        //     headers: {
+        //         'content-type': 'multipart/form-data'
+        //     }
+        // })
+        //     .then(res => {
+        //         console.log(res)
+
+        //     })
+
+        // send sold product info to database
         axiosPublic.post('/sellProduct', dataInfo)
             .then(res => {
                 if (res.data.message === 'success') {
@@ -45,6 +103,7 @@ const AddProduct = () => {
                     });
                 }
             })
+
     }
 
     return (
@@ -54,7 +113,7 @@ const AddProduct = () => {
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10'>
-                <form className='' onSubmit={handleCheckService}>
+                <form className='' onSubmit={handleSubmit(onSubmit)}>
                     <div className='flex gap-6'>
                         {/* Product Name */}
                         <div className="form-control w-full my-1">
