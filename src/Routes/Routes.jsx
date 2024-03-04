@@ -19,6 +19,7 @@ import EmployeeRoute from "./EmployeeRoute.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import ProductStatement from "../pages/Dashboard/ProductStatement/ProductStatement.jsx";
 import OrderStatement from "../pages/Dashboard/OrderStatement/OrderStatement.jsx";
+import NoticePage from "../pages/NoticePage/NoticePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "/notice",
+                element: <NoticePage />
             },
             {
                 path: '/contact',

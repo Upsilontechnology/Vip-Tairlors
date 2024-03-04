@@ -7,6 +7,7 @@ import SignIn from '../Login/SignIn';
 import useUser from '../../../hooks/useUser';
 import AdminDashboard from '../../Dashboard/AdminDashboard/AdminDashboard';
 import EmployeeDashboard from '../../Dashboard-Employee/EmployeeDashbaord/EmployeeDashbaord';
+import NoticeBoard from '../NoticeBoard/NoticeBoard';
 
 const Home = () => {
     const [loggedUser, setLoggedUser] = useState();
@@ -50,6 +51,7 @@ const Home = () => {
                             <>
                                 <Banner />
                                 <Featured />
+                                <NoticeBoard />
                                 <QuoteBanner />
                             </>
                         )}
