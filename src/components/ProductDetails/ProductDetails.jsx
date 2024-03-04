@@ -1,5 +1,6 @@
 import React from 'react';
 import useSellProduct from '../../hooks/useSellProduct';
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
     const [sellProducts] = useSellProduct();

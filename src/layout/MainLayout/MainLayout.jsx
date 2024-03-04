@@ -6,32 +6,30 @@ import useAuth from '../../hooks/useAuth';
 import useUser from '../../hooks/useUser';
 
 const MainLayout = () => {
-    const [loggedUser, setLoggedUser] = useState();
+    const [loggedUser, setLoggedUser] = useState([]);
     const [users] = useUser();
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
 
     useEffect(() => {
-        // Ensure user is defined before filtering users
-        if (user) {
-            const filteredUser = users?.filter(us => us.email === user.email);
-            setLoggedUser(filteredUser);
+        if (user && users) {
+            const filteredUser = users.find(us => us.email === user.email);
+            setLoggedUser(filteredUser ? [filteredUser] : []);
+        } else {
+            setLoggedUser([]);
         }
     }, [users, user]);
 
     return (
         <div>
-            {/* Ensure loggedUser is an array before mapping */}
-            {loggedUser && loggedUser.map(user => (
+            {loggedUser.map(user => (
                 <div key={user?._id}>
-                    {user?.role === "user" ? <Navbar /> : <></>}
+                    {user?.role === "user" && <Navbar />}
                 </div>
             ))}
-            {/* <Navbar></Navbar> */}
             <Outlet />
-            {/* Ensure loggedUser is an array before mapping */}
-            {loggedUser && loggedUser.map(user => (
+            {loggedUser.map(user => (
                 <div key={user?._id}>
-                    {user?.role === "user" ? <Footer /> : <></>}
+                    {user?.role === "user" && <Footer />}
                 </div>
             ))}
         </div>
@@ -39,3 +37,5 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
+
+

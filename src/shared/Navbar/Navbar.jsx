@@ -25,31 +25,31 @@ const Navbar = () => {
         <li className=''>
             <NavLink
                 to="/"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xs lg:text-xl font-semibold  transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold  transition navs`}
             >
                 Home
             </NavLink>
         </li>
-        <li>
+        {/* <li>
             <NavLink
                 to='/featured'
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xs lg:text-xl font-semibold transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold transition navs`}
             >
                 Featured Products
             </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
             <NavLink
                 to="/contact"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xs lg:text-xl font-semibold  transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold  transition navs`}
             >
                 Notice Board
             </NavLink>
-        </li>
+        </li> */}
         <li>
             <NavLink
                 to="/contact"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-xs lg:text-xl font-semibold mr-10 transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold mr-10 transition navs`}
             >
                 Contact Us
             </NavLink>
@@ -95,7 +95,7 @@ const Navbar = () => {
                                 {navlinks}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost lg:text-xl ml-16 md:ml-0">HakkuTraders</a>
+                        <a className="btn btn-ghost lg:text-2xl ml-16 md:ml-0">VIP Tailor</a>
                     </div>
                     <div className="">
                         <ul className='hidden md:flex items-center gap-8'>

@@ -44,7 +44,7 @@ const SectionTitle = ({ title, descrition }) => {
     <div className="mb-12">
       <h2
         ref={animatedTextRef}
-        className="text-3xl md:text-5xl text-center text-black font-bold"
+        className="text-3xl md:text-4xl text-center text-black font-bold"
       >
         {title}
       </h2>
