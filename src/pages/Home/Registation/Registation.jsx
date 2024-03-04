@@ -1,16 +1,15 @@
 
-import RegistationImg from "../../../assets/loginImg.jpg"
 import { FcGoogle } from "react-icons/fc";
 import { FaSquareFacebook } from "react-icons/fa6";
-import { FaUserAlt } from "react-icons/fa";
-import { FaLock } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { updateProfile } from "@firebase/auth";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
+const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Registation = () => {
     const { createUser, googleSignIn } = useAuth();
@@ -23,13 +22,14 @@ const Registation = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        const image = form.image.value;
 
         const userInfo = {
             name: form.name.value,
             email: form.email.value,
             role: "user"
         }
-        console.log(userInfo)
+        console.log(userInfo, image)
 
         setError('');
 
