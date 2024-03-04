@@ -97,7 +97,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 <div className='h-screen py-3 pl-3 flex flex-col justify-between shadow-xl'>
                     {/* logo */}
                     <div>
-                        <h1 className="text-3xl">VIP Tailor's</h1>
+                        <h1 className="text-2xl">VIP Tailor</h1>
                     </div>
                     {/* items and routes */}
                     <div className=" flex flex-col justify-between">
@@ -120,7 +120,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 <div className='h-screen py-3 pl-3 flex flex-col justify-between shadow-xl'>
                     {/* logo */}
                     <div>
-                        <h1 className="text-3xl">VIP Tailor's</h1>
+                        <h1 className="text-2xl">VIP Tailor</h1>
                     </div>
                     {/* items and routes */}
                     <div className=" flex flex-col justify-between">
