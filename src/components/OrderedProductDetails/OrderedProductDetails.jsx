@@ -5,14 +5,15 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 const OrderedProductDetails = ({ products }) => {
     const [orderProducts, refetch] = useOrderedProduct();
     const axiosPublic = useAxiosPublic();
-
+    
     const  handleComplete = product =>{
         axiosPublic.patch(`/orderProduct/${product?._id}`)
         .then(res =>{
             refetch();
             console.log(res.data)
         })
-    }
+    };
+
     return (
         <div className='flex flex-col gap-4'>
             {
