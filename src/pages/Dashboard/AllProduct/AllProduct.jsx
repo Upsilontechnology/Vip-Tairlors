@@ -7,7 +7,8 @@ import useSellProduct from '../../../hooks/useSellProduct';
 
 const AllProduct = () => {
     const [sellProducts, refetch] = useSellProduct();
-    // console.log(sellProducts)
+    
+
     return (
         <div className='supershop-container'>
             {/* section */}
