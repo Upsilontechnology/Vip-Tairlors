@@ -2,6 +2,7 @@ import React from 'react';
 import useSellProduct from '../../hooks/useSellProduct';
 import "./ProductDetails.css";
 import useAuth from '../../hooks/useAuth';
+// import Pagination from '../pagination/pagination';
 
 const ProductDetails = () => {
     const [sellProducts] = useSellProduct();
@@ -38,6 +39,11 @@ const ProductDetails = () => {
                     </div>)
                 }
             </div>
+            {/* <Pagination
+                currentPage={currentPage}
+                totalPage={totalPages}
+                setCurrentPage={setCurrentPage}
+            /> */}
         </div>
     );
 };
