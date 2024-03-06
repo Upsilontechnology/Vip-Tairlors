@@ -54,7 +54,7 @@ const AllMembers = () => {
                 {/* head */}
                 <thead>
                     <tr>
-                        <th>Employee Number</th>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Make Admin</th>

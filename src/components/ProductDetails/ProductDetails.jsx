@@ -1,21 +1,17 @@
 import React from 'react';
-import useSellProduct from '../../hooks/useSellProduct';
 import "./ProductDetails.css";
 import useAuth from '../../hooks/useAuth';
 // import Pagination from '../pagination/pagination';
 
-const ProductDetails = () => {
-    const [sellProducts] = useSellProduct();
-    const { user } = useAuth();
+const ProductDetails = ({ filteredSells }) => {
 
-    const filteredSells = sellProducts?.filter(product => product?.email === user?.email);
 
     return (
         <div>
             <div className='flex flex-col gap-4'>
                 {
-                    filteredSells?.map(sellProduct => <div key={sellProduct?._id} className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7]">
-                        <img alt="Product Image" className=" object-cover  rounded-l-lg h-24" src="https://source.unsplash.com/200x200/?bed" />
+                    filteredSells?.map(sellProduct => <div key={sellProduct?._id} className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7] w-[180%] md:w-full">
+                        <img alt="Product Image" className=" object-cover  rounded-l-lg h-24 hidden lg:flex" src="https://source.unsplash.com/200x200/?bed" />
                         <div className="flex flex-col items-center gap-2 px-2 py-1">
                             <h1 className="">Product Name</h1>
                             <h1 className="text-xl font-bold">{sellProduct?.name}</h1>
