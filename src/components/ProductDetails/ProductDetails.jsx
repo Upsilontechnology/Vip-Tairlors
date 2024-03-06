@@ -1,5 +1,7 @@
 import React from 'react';
 import "./ProductDetails.css";
+import useAuth from '../../hooks/useAuth';
+// import Pagination from '../pagination/pagination';
 
 const ProductDetails = ({ filteredSells }) => {
 
@@ -33,6 +35,11 @@ const ProductDetails = ({ filteredSells }) => {
                     </div>)
                 }
             </div>
+            {/* <Pagination
+                currentPage={currentPage}
+                totalPage={totalPages}
+                setCurrentPage={setCurrentPage}
+            /> */}
         </div>
     );
 };
