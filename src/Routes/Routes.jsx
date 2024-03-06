@@ -78,9 +78,9 @@ const router = createBrowserRouter([
                 path: 'allMembers',
                 element: <AdminRoute><AllMembers></AllMembers></AdminRoute>
             },
-            // employee
+            // employee routes
             {
-                path: '/employeeHome',
+                path: 'employeeHome',
                 element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
             },
             {

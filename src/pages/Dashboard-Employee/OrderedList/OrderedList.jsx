@@ -5,10 +5,19 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
 import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
+import useUser from '../../../hooks/useUser';
 
 const OrderedList = () => {
     const [orderProducts, refetch] = useOrderedProduct();
+    const [filteredUser, setFilterdUser] = useState();
     const { user } = useAuth();
+    const [users] = useUser();
+
+    useEffect(() => {
+        const findUser = users?.filter(person => person?.email == user?.email);
+        setFilterdUser(findUser);
+    }, [])
+    console.log(filteredUser)
 
     // filtered for login user
     const allProducts = orderProducts?.filter(product => product?.status === 'pending');
@@ -40,12 +49,18 @@ const OrderedList = () => {
                     <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={filteredOrders} />
+                                {
+                                    filteredUser?.map(person => person?.role === 'employee' ?
+                                        <OrderedProductDetails products={filteredOrders} filteredUser={filteredUser}/> : <OrderedProductDetails products={allProducts} filteredUser={filteredUser}/>)
+                                }
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={filteredCompleteOrders} />
+                                {
+                                    filteredUser?.map(person => person?.role === 'employee' ?
+                                        <OrderedProductDetails products={filteredCompleteOrders} /> : <OrderedProductDetails products={completeProducts} filteredUser={filteredUser}/>)
+                                }
                             </div>
                         </TabPanel>
                     </div>
