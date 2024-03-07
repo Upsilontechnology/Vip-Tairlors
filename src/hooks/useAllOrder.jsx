@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useAllProduct = () => {
+const useAllOrder = () => {
   const axiosPublic = useAxiosPublic();
-  const [sellProduct, setSellProduct] = useState([]);
+  const [orderProduct, setorderProduct] = useState([]);
   const [productLength, setProductLength] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,18 +16,17 @@ const useAllProduct = () => {
   useEffect(() => {
     axiosPublic
       .get(
-        `/sellProduct/?page=${currentPage}&itemsPerPage=${itemsPerPage}`
+        `/orderProduct/?page=${currentPage}&itemsPerPage=${itemsPerPage}`
       )
       .then((data) => {
-        setSellProduct(data.data);
+        setorderProduct(data.data);
         setProductLength(data.data.totalCount);
-        console.log("Prduct length",data.data);
         setIsLoading(false);
       });
   }, [currentPage, itemsPerPage]);
 
   return {
-    sellProduct,
+    orderProduct,
     currentPage,
     totalPages,
     setCurrentPage,
@@ -36,4 +35,4 @@ const useAllProduct = () => {
   };
 };
 
-export default useAllProduct;
+export default useAllOrder;
