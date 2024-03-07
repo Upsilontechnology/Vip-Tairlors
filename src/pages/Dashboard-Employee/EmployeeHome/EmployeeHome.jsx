@@ -30,7 +30,7 @@ const EmployeeHome = () => {
             </div>
             {/* card container */}
             <div className='flex justify-center mb-5'>
-                <div className='flex flex-col gap-5 justify-center p-12 mt-5 bg-white w-5/6'>
+                <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
                     <div className='flex justify-between items-center'>
                         <h3 className="text-2xl font-bold">Total Summary</h3>
                         <div className="dropdown dropdown-hover">
@@ -43,8 +43,8 @@ const EmployeeHome = () => {
                         </div>
                     </div>
                     {/* cards */}
-                    <div className='grid grid-cols-2 gap-10'>
-                        <div className='max-w-[25rem] border pr-[3rem] border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
+                    <div className='grid grid-cols-2 gap-4 lg:gap-10'>
+                        <div className='max-w-[25rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-2 lg:p-4 '>
                             <div className='p-3 bg-[#9da6c0] rounded-lg '>
                                 <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
                                     <IoBagOutline className='font-semibold' />

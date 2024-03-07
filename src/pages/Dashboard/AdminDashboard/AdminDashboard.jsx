@@ -1,13 +1,43 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Navbar2 from '../../../shared/Navbar2/Navbar2';
 import { AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
 import { FaUserClock } from 'react-icons/fa';
 import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
-import { IoPeople } from 'react-icons/io5';
+import { IoPeople, IoPersonOutline } from 'react-icons/io5';
 import { MdProductionQuantityLimits } from 'react-icons/md';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
+    const { logOut } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logged Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(() => {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Successfully logged out",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/')
+                    })
+            }
+        });
+    }
 
     const navlinks = <>
         <li className="relative px-2 py-1">
@@ -152,7 +182,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                                 <FaBarsStaggered className="w-6 h-6" />
                             )}
                         </button>
-                        <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
+                        <div className="flex lg:hidden justify-end mr-4 w-full">
+                            <button onClick={handleLogout} className="btn btn-sm"><IoPersonOutline className='text-xl' /> Logout</button>
+                        </div>
                     </div>
                 </header>
                 <main className="lg:ml-72 scroll-smooth">
