@@ -46,7 +46,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 className={({ isActive }) =>
                     isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                 }
-                to="/"
+                to="adminHome"
             >
                 <AiOutlineHome />
                 <span className="ml-4">Home</span>
@@ -94,6 +94,17 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             >
                 <AiOutlineSchedule />
                 <span className="ml-4">Order Statement</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="addNotice"
+            >
+                <AiOutlineSchedule />
+                <span className="ml-4">Add Notice</span>
             </NavLink>
         </li>
         <li className="relative px-2 py-1 ">

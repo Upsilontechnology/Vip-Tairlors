@@ -61,7 +61,7 @@ const ProductStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            sellProducts?.map((product, ind) => <tr key={product?._id}>
+                            sellProducts?.data?.map((product, ind) => <tr key={product?._id}>
                                 <th>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>

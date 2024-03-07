@@ -3,12 +3,16 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
-import useOrderedProduct from '../../../hooks/useOrderedProduct';
+// import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
 import useUser from '../../../hooks/useUser';
+import useAllOrder from '../../../hooks/useAllOrder';
+import Pagination from '../../../components/pagination/pagination';
 
 const OrderedList = () => {
-    const [orderProducts, refetch] = useOrderedProduct();
+    // const [orderProducts, refetch] = useOrderedProduct();
+    const { orderProduct, currentPage, totalPages, setCurrentPage } = useAllOrder();
+    console.log(orderProduct.data);
     const [filteredUser, setFilterdUser] = useState();
     const { user } = useAuth();
     const [users] = useUser();
@@ -20,11 +24,11 @@ const OrderedList = () => {
     console.log(filteredUser)
 
     // filtered for login user
-    const allProducts = orderProducts?.filter(product => product?.status === 'pending');
+    const allProducts = orderProduct?.data?.filter(product => product?.status === 'pending');
     const filteredOrders = allProducts?.filter(product => product?.email === user?.email);
 
     // filtered for login user
-    const completeProducts = orderProducts?.filter(product => product.status === 'completed');
+    const completeProducts = orderProduct?.data?.filter(product => product.status === 'completed');
     const filteredCompleteOrders = completeProducts?.filter(product => product?.email === user?.email)
 
 
@@ -51,7 +55,7 @@ const OrderedList = () => {
                             <div className='flex flex-col p-3 gap-4'>
                                 {
                                     filteredUser?.map(person => person?.role === 'employee' ?
-                                        <OrderedProductDetails products={filteredOrders} filteredUser={filteredUser}/> : <OrderedProductDetails products={allProducts} filteredUser={filteredUser}/>)
+                                        <OrderedProductDetails products={filteredOrders} filteredUser={filteredUser} /> : <OrderedProductDetails products={allProducts} filteredUser={filteredUser} />)
                                 }
                             </div>
                         </TabPanel>
@@ -59,7 +63,7 @@ const OrderedList = () => {
                             <div className='flex flex-col p-3 gap-4'>
                                 {
                                     filteredUser?.map(person => person?.role === 'employee' ?
-                                        <OrderedProductDetails products={filteredCompleteOrders} /> : <OrderedProductDetails products={completeProducts} filteredUser={filteredUser}/>)
+                                        <OrderedProductDetails products={filteredCompleteOrders} /> : <OrderedProductDetails products={completeProducts} filteredUser={filteredUser} />)
                                 }
                             </div>
                         </TabPanel>

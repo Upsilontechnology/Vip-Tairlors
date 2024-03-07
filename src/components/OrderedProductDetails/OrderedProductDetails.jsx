@@ -1,9 +1,12 @@
 import React from 'react';
 import useOrderedProduct from '../../hooks/useOrderedProduct';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Pagination from '../pagination/pagination';
+import useAllOrder from '../../hooks/useAllOrder';
 
 const OrderedProductDetails = ({ products, filteredUser }) => {
-    const [orderProducts, refetch] = useOrderedProduct();
+    // const [orderProducts, refetch] = useOrderedProduct();
+    const { orderProduct, currentPage, totalPages, setCurrentPage } = useAllOrder();
     const axiosPublic = useAxiosPublic();
 
     const handleComplete = product => {
@@ -58,6 +61,11 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
                     </div>
                 </div>)
             }
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 };
