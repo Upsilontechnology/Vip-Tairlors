@@ -8,7 +8,16 @@ import useUser from '../../hooks/useUser';
 const MainLayout = () => {
     const [loggedUser, setLoggedUser] = useState([]);
     const [users] = useUser();
-    const { user, logout } = useAuth();
+    const { user} = useAuth();
+
+    // useEffect(() => {
+    //     if (user && users) {
+    //         const filteredUser = users.find(us => us.email === user.email);
+    //         setLoggedUser(filteredUser ? [filteredUser] : []);
+    //     } else {
+    //         setLoggedUser([]);
+    //     }
+    // }, [users, user]);
 
     useEffect(() => {
         if (user && users) {
@@ -17,7 +26,9 @@ const MainLayout = () => {
         } else {
             setLoggedUser([]);
         }
-    }, [users, user]);
+    }, [users, user]); // Dependencies for useEffect
+    
+        
 
     return (
         <div>
