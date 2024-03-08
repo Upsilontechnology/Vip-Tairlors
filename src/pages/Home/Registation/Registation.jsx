@@ -99,8 +99,8 @@ const Registation = () => {
             <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
                 <h1 className="text-4xl font-bold">Register Now</h1>
             </div>
-            <div className='flex flex-col p-2 rounded-lg w-1/2 mx-auto my-5'>
-                <div className='bg-gray-200 py-3 px-4'>
+            <div className='flex flex-col p-2 rounded-lg md:w-1/2 mx-auto my-5'>
+                <div className='bg-gray-200 py-3 px-2 md:px-4'>
                     <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
                         <div className='flex justify-center flex-row gap-4 items-center relative'>
                             <input type="text" placeholder='Full Name'
