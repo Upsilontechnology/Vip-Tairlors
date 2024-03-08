@@ -64,7 +64,7 @@ const SignIn = () => {
             <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
                 <h1 className="text-4xl font-bold">Login</h1>
             </div>
-            <div className='w-1/2 px-10'>
+            <div className='lg:w-1/2 px-2 md:px-10'>
                 <div className=' border-2 rounded-lg border-gray-500 px-2'>
                     <div className=''>
                         <form onSubmit={handleLogin} className="card-body">
