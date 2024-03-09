@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Pagination from '../pagination/pagination';
+import useAllOrder from '../../hooks/useAllOrder';
 
 const OrderedProductDetails = ({ products, filteredUser }) => {
+    // const [orderProducts, refetch] = useOrderedProduct();
+    const { orderProduct, currentPage, totalPages, setCurrentPage } = useAllOrder();
     const axiosPublic = useAxiosPublic();
-  
+
 
     const handleComplete = product => {
         axiosPublic.patch(`/orderProduct/${product?._id}`)
@@ -70,8 +74,13 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
                     </tbody>
                 </table>
             </div>
-        </div>
-    );
-};
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
+        </div >)
+}
+
 
 export default OrderedProductDetails;

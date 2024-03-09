@@ -3,12 +3,15 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ProductDetails from '../../../components/ProductDetails/ProductDetails';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import useSellProduct from '../../../hooks/useSellProduct';
+// import useSellProduct from '../../../hooks/useSellProduct';
 import useUser from '../../../hooks/useUser';
 import useAuth from '../../../hooks/useAuth';
+import useAllProduct from '../../../hooks/useAllProduct';
+import Pagination from '../../../components/pagination/pagination';
+
 
 const AllProduct = () => {
-    const [sellProducts, refetch] = useSellProduct();
+    const { sellProduct, currentPage, totalPages, setCurrentPage } = useAllProduct();
     const [filteredUser, setFilterdUser] = useState();
     const [users] = useUser();
     const { user } = useAuth();
@@ -16,9 +19,13 @@ const AllProduct = () => {
     useEffect(() => {
         const findUser = users?.filter(person => person?.email === user?.email);
         setFilterdUser(findUser)
-    }, [])
+    }, [users, user])
 
-    const filteredSells = sellProducts?.filter(product => product?.email === user?.email);
+    const filteredSells = Array.isArray(sellProduct?.data)
+        ? sellProduct.data.filter(product => product?.email === user?.email)
+        : [];
+
+    console.log(filteredSells);
 
 
     return (
@@ -32,16 +39,21 @@ const AllProduct = () => {
             </div>
             {/* all product */}
             <div className=''>
-                <div>
-                    {
-                        filteredUser?.map(user => user?.role === 'employee' ?
-                            <ProductDetails key={user?._id} filteredSells={filteredSells} /> :
-                            <ProductDetails key={user?._id} filteredSells={sellProducts} />)
-                    }
-                </div>
+                {
+                    filteredUser && filteredUser.map(user => user?.role === 'employee' ?
+                        <ProductDetails filteredSells={filteredSells} /> :
+                        <ProductDetails filteredSells={sellProduct?.data} />)
+                }
             </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 };
 
 export default AllProduct;
+
+

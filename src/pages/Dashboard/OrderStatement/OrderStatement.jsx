@@ -60,7 +60,7 @@ const OrderStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            orderProducts?.map((product, ind) => <tr key={product?._id}>
+                            orderProducts?.data?.map((product, ind) => <tr key={product?._id}>
                                 <th>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>

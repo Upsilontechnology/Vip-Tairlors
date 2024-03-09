@@ -11,13 +11,14 @@ const EmployeeHome = () => {
     const { user } = useAuth();
     const [sellProducts] = useSellProduct();
     const [orderProducts] = useOrderedProduct();
+    console.log(sellProducts);
 
     // filtering sell stats
-    const filteredSells = sellProducts?.filter(product => product?.email === user?.email);
+    const filteredSells = sellProducts?.data?.filter(product => product?.email === user?.email);
     const totalSells = filteredSells?.reduce((total, product) => total + parseFloat(product?.price), 0)
 
     // filtering order stats
-    const filteredOrders = orderProducts?.filter(product => product?.email === user?.email)
+    const filteredOrders = orderProducts?.data?.filter(product => product?.email === user?.email)
     const pendingOrders = filteredOrders?.filter(product => product.status === 'pending');
     const completedOrders = filteredOrders?.filter(product => product.status === 'completed');
 
