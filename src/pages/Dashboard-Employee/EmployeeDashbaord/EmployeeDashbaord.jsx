@@ -8,7 +8,7 @@ import { IoBagAddOutline } from 'react-icons/io5';
 import { MdProductionQuantityLimits } from 'react-icons/md';
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
-
+    
     const navlinks = <>
         <li className="relative px-2 py-1">
             <NavLink
