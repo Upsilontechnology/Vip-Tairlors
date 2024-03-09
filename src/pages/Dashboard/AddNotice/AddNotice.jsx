@@ -5,6 +5,7 @@ import handWithPen from '../../../assets/hand-with-pen4.png';
 import { motion } from "framer-motion";
 import "./AddNotice.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const AddNotice = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -42,8 +43,12 @@ const AddNotice = () => {
             key="flex_046445"
             className="py-5 px-10"
         >
-            <div className=" !pt-16 md:!pt-10">
-                <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 justify-between py-10 md:py-20">
+            <SectionTitle
+                title="Notice Page"
+                descrition="The Notice Page tells you important things."
+            />
+            <div>
+                <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 justify-between py-6 md:py-10">
                     <div className="w-full md:w-[60%]">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="w-full mb-5">
@@ -59,17 +64,17 @@ const AddNotice = () => {
                                     placeholder="Title"
                                 />
                             </div>
-                            <div className="w-full mb-12">
+                            <div className="w-full mb-6">
                                 <label htmlFor="" className="font-medium p-1">
                                     Save Nodebook info
                                 </label>
                                 <textarea name="message"
-                                    className="w-full h-64 rounded-xl overflow-hidden border border-gray-500 outline-none focus:border-[#0fcda1] px-8 py-2"
+                                    className="w-full h-64 rounded-xl overflow-hidden border border-gray-500 outline-none focus:border-[#0fcda1] px-8 "
                                     type="text"
                                     {...register("message", { required: true })}
                                     id=""
                                     placeholder="message"
-                                    style={{ width: "500px", height: "200px" }}
+                                    style={{ width: "550px", height: "200px" }}
                                 />
                             </div>
                             <div className="text-center">

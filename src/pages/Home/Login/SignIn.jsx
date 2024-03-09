@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from 'react-icons/fa';
-// import { AuthContext } from '../AuthProvider/AuthProvider';
-// import { Helmet } from 'react-helmet-async';
-import LoginImg from "..//../../assets/loginImg.jpg"
-import LoginIcon from "..//../../assets/loginIcon2.png"
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import useAuth from '../../../hooks/useAuth';
+import useUserRoll from '../../../hooks/useUserRoll';
 
 
 const SignIn = () => {
@@ -17,7 +14,7 @@ const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const handleLogin = e => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -25,25 +22,32 @@ const SignIn = () => {
 
         setError('');
 
-        // signing in user
-        signInUser(email, password)
-            .then(result => {
-                console.log(result.user)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Successfully logged in",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/')
+        try {
+            const user1 = await signInUser(email, password);
+            console.log(user1.user.email);
 
+            const loggedUser = await useUserRoll(user1.user.email);
+            console.log(loggedUser);
 
-            })
-            .catch(error => {
-                setError(error.message);
-            })
-    }
+            if (loggedUser === 'employee') {
+                navigate('/employeeHome');
+            } else if (loggedUser === 'admin') {
+                navigate('/adminHome');
+            } else {
+                navigate('/');
+            }
+
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully logged in",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (error) {
+            setError(error.message);
+        }
+    };
 
     const handleGoogle = () => {
         googleSignIn()
@@ -54,6 +58,7 @@ const SignIn = () => {
                 console.log(error)
             })
     }
+
 
 
     return (

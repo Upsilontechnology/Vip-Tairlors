@@ -9,7 +9,7 @@ import { BiSolidCartAdd } from "react-icons/bi";
 import { RiListIndefinite } from "react-icons/ri";
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
-
+    
     const navlinks = <>
         <li className="relative px-2 py-1">
             <NavLink

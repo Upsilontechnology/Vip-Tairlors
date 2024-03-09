@@ -53,7 +53,6 @@ const MainLayout = () => {
     const [loggedUser, setLoggedUser] = useState(null); // Initialize with null or an empty object
     const [users] = useUser();
     const { user } = useAuth();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (user && users) {
