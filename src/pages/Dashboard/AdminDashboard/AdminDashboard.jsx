@@ -8,6 +8,8 @@ import { IoPeople, IoPersonOutline } from 'react-icons/io5';
 import { MdProductionQuantityLimits } from 'react-icons/md';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { CiViewList } from 'react-icons/ci';
+import { ImStatsDots } from "react-icons/im";
 
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
     const { logOut } = useAuth();
@@ -59,7 +61,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 }
                 to="productList"
             >
-                <MdProductionQuantityLimits />
+                <CiViewList />
                 <span className="ml-4">Product List</span>
             </NavLink>
         </li>
@@ -92,7 +94,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 }
                 to="orderStatement"
             >
-                <AiOutlineSchedule />
+                <ImStatsDots />
                 <span className="ml-4">Order Statement</span>
             </NavLink>
         </li>
@@ -146,12 +148,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             {navlinks}
                         </ul>
                     </div>
-                    {/* social icons */}
+                    {/* footer */}
                     <div className='flex gap-2 justify-center items-center'>
-                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
-                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
-                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
-                        <AiOutlineTwitter className='text-2xl rounded-full' />
+                        <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
                     </div>
                 </div>
             </aside>
@@ -165,16 +164,13 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                     </div>
                     {/* items and routes */}
                     <div className=" flex flex-col justify-between">
-                        <ul className="leading-10">
+                        <ul className="leading-8">
                             {navlinks}
                         </ul>
                     </div>
-                    {/* social icons */}
-                    <div className='flex gap-2 justify-center items-center'>
-                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
-                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
-                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
-                        <AiOutlineTwitter className='text-2xl rounded-full' />
+                    {/* footer */}
+                    <div className='flex justify-center items-center'>
+                        <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
                     </div>
                 </div>
             </aside>

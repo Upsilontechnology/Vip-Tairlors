@@ -1,36 +1,140 @@
-import React from 'react';
 import "./ProductDetails.css";
+import useSellProduct from "../../hooks/useSellProduct";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { MdOutlineDeleteOutline } from 'react-icons/md';
+import { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import useUser from "../../hooks/useUser";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const ProductDetails = ({ filteredSells }) => {
+const ProductDetails = () => {
+    const [filterBySearch, setFilterBySearch] = useState();
+    const [searchValue, setSearchValue] = useState("");
+    const [axiosSecure] = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth();
+    const email = user?.email;
+    console.log(email)
 
+    const { data: userInfo } = useQuery({
+        queryKey: ['userInfo'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/user/${email}`)
+            return res.data;
+        }
+    })
+    const role = userInfo?.role;
+
+
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const res = await axiosPublic.get("/sellProduct/search", {
+                    params: {
+                        email,
+                        role,
+                        searchValue: searchValue,
+                    },
+                });
+                console.log(res.data)
+                setFilterBySearch(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchProducts();
+    }, [axiosPublic, searchValue, email])
+
+    // delete handler
+    const handleDelete = (product) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/sellProduct/${product?._id}`)
+                    .then(res => {
+                        console.log(res)
+                        if (res.status === 200) {
+                            // remaining product
+                            const remaining = filterBySearch?.filter(products => products?._id !== product?._id)
+                            setFilterBySearch(remaining)
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Product has been deleted..!",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+
+
+    }
+    
     return (
         <div>
             <div className='flex flex-col gap-4'>
-                {
-                    Array.isArray(filteredSells) && filteredSells.map(sellProduct => <div key={sellProduct?._id} className="flex flex-row justify-between items-center space-y-4 rounded-lg shadow-lg bg-[#EFF4F7] w-[180%] md:w-full">
-                        <img alt="Product Image" className=" object-cover  rounded-l-lg h-24 hidden lg:flex" src="https://source.unsplash.com/200x200/?bed" />
-                        <div className="flex flex-col items-center gap-2 px-2 py-1">
-                            <h1 className="">Product Name</h1>
-                            <h1 className="text-xl font-bold">{sellProduct?.name}</h1>
-                        </div>
-                        <div className="flex flex-col items-center gap-2 px-2 py-1">
-                            <h1 className="">Product Code</h1>
-                            <h1 className="text-xl font-bold">{sellProduct?.productCode}</h1>
-                        </div>
-                        <div className='flex flex-col items-center gap-3 px-2 py-1'>
-                            <h3 className="">Total Amount</h3>
-                            <div className="text-xl font-bold">BDT {sellProduct?.price}</div>
-                        </div>
-                        <div className='flex flex-col items-center gap-3 px-2 py-1'>
-                            <p className=''>Quantity</p>
-                            <p className='text-xl font-bold'>{sellProduct?.quantity}</p>
-                        </div>
-                        <div className="flex flex-col items-center gap-2 px-2 py-1">
-                            <h1 className="">Date</h1>
-                            <h1 className="text-xl font-bold">{new Date(sellProduct?.sellingDate).toLocaleDateString()}</h1>
-                        </div>
-                    </div>)
-                }
+                <div className="form-control w-1/2 mx-auto mb-5">
+                    <input onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search by Product Code" className="input input-bordered focus:outline-none" />
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr className=' text-black'>
+                                <th>#</th>
+                                <th>Product Code</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                filterBySearch?.map((product, ind) => <tr key={product?._id} className="">
+                                    <td>
+                                        {ind + 1}
+                                    </td>
+                                    <td>
+                                        {product?.productCode}
+                                    </td>
+                                    <td>
+                                        {product?.name}
+                                    </td>
+                                    <td>
+                                        BDT {product?.price}
+                                    </td>
+                                    <td>
+                                        {product?.quantity}
+                                    </td>
+                                    <td>
+                                        {new Date(product?.sellingDate).toLocaleDateString()}
+                                    </td>
+                                    <td>
+                                        <img className="w-10 h-10" src={product?.image} alt="" />
+                                    </td>
+                                    <th>
+                                        <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm">
+                                            <MdOutlineDeleteOutline className="text-xl" />
+                                        </button>
+                                    </th>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Navbar2 from '../../../shared/Navbar2/Navbar2';
 import { AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
-import { FaUserClock } from 'react-icons/fa';
 import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
 import { IoBagAddOutline } from 'react-icons/io5';
-import { MdProductionQuantityLimits } from 'react-icons/md';
+import { CiViewList } from "react-icons/ci";
+import { BiSolidCartAdd } from "react-icons/bi";
+import { RiListIndefinite } from "react-icons/ri";
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
     
@@ -29,7 +30,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 }
                 to="addProduct"
             >
-                <IoBagAddOutline />
+                <BiSolidCartAdd />
                 <span className="ml-4">Add Product</span>
             </NavLink>
         </li>
@@ -40,7 +41,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 }
                 to="productList"
             >
-                <MdProductionQuantityLimits />
+                <CiViewList />
                 <span className="ml-4">Product List</span>
             </NavLink>
         </li>
@@ -62,7 +63,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 }
                 to="orderedList"
             >
-                <MdProductionQuantityLimits />
+                <RiListIndefinite />
                 <span className="ml-4">Ordered List</span>
             </NavLink>
         </li>
@@ -82,12 +83,9 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             {navlinks}
                         </ul>
                     </div>
-                    {/* social icons */}
+                    {/* footer */}
                     <div className='flex gap-2 justify-center items-center'>
-                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
-                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
-                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
-                        <AiOutlineTwitter className='text-2xl rounded-full' />
+                        <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
                     </div>
                 </div>
             </aside>
@@ -105,12 +103,9 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                             {navlinks}
                         </ul>
                     </div>
-                    {/* social icons */}
+                    {/* footer */}
                     <div className='flex gap-2 justify-center items-center'>
-                        <AiFillFacebook className='text-2xl rounded-full text-blue-500' />
-                        <AiFillInstagram className='text-2xl rounded-full text-pink-600' />
-                        <AiOutlineWhatsApp className='text-2xl rounded-full text-green-500' />
-                        <AiOutlineTwitter className='text-2xl rounded-full' />
+                        <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
                     </div>
                 </div>
             </aside>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ProductDetails from '../../../components/ProductDetails/ProductDetails';
@@ -27,8 +27,9 @@ const AllProduct = () => {
 
     console.log(filteredSells);
 
+
     return (
-        <div className='supershop-container'>
+        <div className='my-5'>
             {/* section */}
             <div className='text-center'>
                 <SectionTitle

@@ -1,22 +1,20 @@
-
 import { IoPersonOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Navbar2 = () => {
-    const { logOut } = useAuth();
+    const { logOut, setValue,value  } = useAuth();
+    const [filteredProducts, setFilteredProducts] = useState();
     const navigate = useNavigate();
     const inputRef = useRef();
-    const [code, setCode] = useState();
-    
-    const handleProductCode = e =>{
-        e.preventDefault();
-        setCode(inputRef);
-    }
 
-
+    // const handleProductCode = () => {
+    //     const inputValue = parseInt(inputRef.current.value)
+    //     setValue(inputValue);
+    //     navigate('/productList')
+    // }
     const handleLogout = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -48,9 +46,14 @@ const Navbar2 = () => {
             <div className='max-w-[1280px] w-full mx-auto border-b-2 border-gray-400'>
                 <div className="navbar">
                     <div className="w-44 md:w-[600px] lg:w-[700px]">
-                        <div className="form-control w-full">
-                            <input ref={inputRef} onChange={handleProductCode} type="text" placeholder="Search your product" className="input input-bordered focus:outline-none" />
-                        </div>
+                        {/* <div className="form-control w-full">
+                            <input ref={inputRef} onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleProductCode();
+                                }
+                            }} type="text" placeholder="Search by Product Code" className="input input-bordered focus:outline-none" />
+
+                        </div> */}
                     </div>
                     <div className="navbar-end">
                         <button onClick={handleLogout} className="btn"><IoPersonOutline className='text-xl' /> Logout</button>

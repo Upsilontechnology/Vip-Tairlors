@@ -52,6 +52,15 @@ const OrderedProduct = () => {
                                 timer: 1500
                             });
                         }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Product Code has already been taken",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
                     })
             })
     }

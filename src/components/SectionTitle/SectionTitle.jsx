@@ -41,7 +41,7 @@ const SectionTitle = ({ title, descrition }) => {
   }, []);
 
   return (
-    <div className="mb-12">
+    <div className="mb-7">
       <h2
         ref={animatedTextRef}
         className="text-3xl md:text-4xl text-center text-black font-bold"
