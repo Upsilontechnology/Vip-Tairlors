@@ -50,23 +50,18 @@ const OrderedProduct = () => {
                                 timer: 1500
                             });
                         }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Product Code has already been taken",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
                     })
             })
 
-        // // product added to the server
-        // axiosPublic.post('/orderProduct', productDetails)
-        //     .then(res => {
-        //         // console.log(res)
-        //         if (res.data.message === 'success') {
-        //             Swal.fire({
-        //                 position: "top-end",
-        //                 icon: "success",
-        //                 title: "Order added successfully",
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //         }
-        //     })
     }
 
     return (

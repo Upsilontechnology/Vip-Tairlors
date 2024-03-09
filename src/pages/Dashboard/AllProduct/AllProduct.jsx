@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ProductDetails from '../../../components/ProductDetails/ProductDetails';
@@ -20,8 +20,9 @@ const AllProduct = () => {
 
     const filteredSells = sellProducts?.filter(product => product?.email === user?.email);
 
+
     return (
-        <div className='supershop-container'>
+        <div className='my-5'>
             {/* section */}
             <div className='text-center'>
                 <SectionTitle
@@ -31,12 +32,13 @@ const AllProduct = () => {
             </div>
             {/* all product */}
             <div className=''>
-                {
-                    filteredUser?.map(user => user?.role === 'employee' ?
-                        <ProductDetails filteredSells={filteredSells} /> :
-                        <ProductDetails filteredSells={sellProducts} />)
-                }
-                {/* <ProductDetails /> */}
+                <div>
+                    {
+                        filteredUser?.map(user => user?.role === 'employee' ?
+                            <ProductDetails key={user?._id} filteredSells={filteredSells} /> :
+                            <ProductDetails key={user?._id} filteredSells={sellProducts} />)
+                    }
+                </div>
             </div>
         </div>
     );

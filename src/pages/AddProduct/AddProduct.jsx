@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import toast from "react-hot-toast";
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
@@ -41,7 +40,7 @@ const AddProduct = () => {
                 // product added to the server
                 axiosPublic.post('/sellProduct', productDetails)
                     .then(res => {
-                        // console.log(res)
+                        console.log(res)
                         if (res.data.message === 'success') {
                             Swal.fire({
                                 position: "top-end",
@@ -51,61 +50,19 @@ const AddProduct = () => {
                                 timer: 1500
                             });
                         }
+                        else {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Product Code has alredy been taken",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
                     })
             })
     }
-
-    // const handleCheckService = event => {
-    //     event.preventDefault();
-    //     const form = event.target;
-
-    //     const name = form.name.value;
-    //     const date = form.date.value;
-    //     // const image = res?.data?.data?.display_url;
-    //     const price = form.price.value;
-    //     const category = form.category.value;
-    //     const quantity = form.quantity.value;
-    //     const code = form.code.value;
-
-    //     const dataInfo = {
-    //         name,
-    //         sellingDate: date,
-    //         category,
-    //         quantity,
-    //         price,
-    //         productCode: code,
-    //         email: user?.email
-    //     }
-
-    //     console.log(form.image.value, dataInfo)
-
-    //     // const imageFile = { image: form.image.value }
-    //     // axiosPublic.post(image_hosing_api, imageFile, {
-    //     //     headers: {
-    //     //         'content-type': 'multipart/form-data'
-    //     //     }
-    //     // })
-    //     //     .then(res => {
-    //     //         console.log(res)
-
-    //     //     })
-
-    //     // send sold product info to database
-    //     axiosPublic.post('/sellProduct', dataInfo)
-    //         .then(res => {
-    //             if (res.data.message === 'success') {
-    //                 Swal.fire({
-    //                     position: "top-end",
-    //                     icon: "success",
-    //                     title: "Product added successfully",
-    //                     showConfirmButton: false,
-    //                     timer: 1500
-    //                 });
-    //             }
-    //         })
-
-    // }
-
+    
     return (
         <div className='supershop-container'>
             <SectionTitle
