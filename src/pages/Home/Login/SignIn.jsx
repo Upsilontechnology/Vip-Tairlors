@@ -57,63 +57,63 @@ const SignIn = () => {
 
 
     return (
-        <div className='flex flex-col space-y-10 justify-center items-center'>
+        <div className='font-Montserrat w-full h-[80vh]'>
             {/* <Helmet>
                 <title>JobsWorld | Login </title>
             </Helmet> */}
-            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
+            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center py-14 text-white'>
                 <h1 className="text-4xl font-bold">Login</h1>
             </div>
-            <div className='w-1/2 px-10'>
-                <div className=' border-2 rounded-lg border-gray-500 px-2'>
-                    <div className=''>
-                        <form onSubmit={handleLogin} className="card-body">
-                            <div className="form-control mb-4 border-b-2 flex justify-center">
-                                <div className='absolute pl-2'><FaUser className='text-gray-500' /></div>
+            <div className='flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full'>
+                <div className=' flex flex-col w-full md:w-[768px] '>
+                    <div className='bg-[#F3F3F3]  py-[10%] px-[5%]  md:px-[15%]'>
+                        <form onSubmit={handleLogin} className="">
+                            <div className="form-control mb-4 flex justify-center">
+                                <div className='absolute pl-2'></div>
                                 <input
                                     type="email"
                                     name="email"
-                                    placeholder="Email" className="input pl-8 focus:outline-none focus:border-none"
+                                    placeholder="Email" className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2"
                                     required />
                             </div>
-                            <div className="form-control border-b-2 relative flex justify-center">
-                                <div className='absolute pl-2'><FaLock className='text-gray-500' /></div>
+                            <div className="form-control  relative flex justify-center">
+                                <div className='absolute pl-2'></div>
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
-                                    className="input pl-8 focus:outline-none focus:border-none" required />
-                                <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
+                                    className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2 " required />
+                                {/* <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
                                     }
-                                </span>
+                                </span> */}
                             </div>
                             <div>
                                 {
                                     error ? <p className='text-red-600'>{error}</p> : ''
                                 }
                             </div>
-                            <div className='flex justify-between mt-2'>
-                                <div className=''>
+                            <div className='flex items-center justify-between mt-5'>
+                                <div className=' flex items-center'>
                                     <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
-                                    <label htmlFor="checkbox" className='font-bold ml-1 cursor-pointer'>Remember Me</label>
+                                    <label htmlFor="checkbox" className='font-semibold text-[#444444] ml-1 cursor-pointer'>Remember Me</label>
                                 </div>
                                 <div>
                                     <h4 className='text-right my-2 text-blue-600 cursor-pointer'>Forgot Password</h4>
                                 </div>
                             </div>
-                            <div className="form-control mt-2">
-                                <button className="btn bg-zinc-600 text-white hover:btn-ghost">Log In</button>
+                            <div className="form-control  mt-8">
+                                <button className="text-xl rounded-md font-semibold  py-4 bg-[#444444] text-white hover:bg-[#292929] ">Sign In</button>
                             </div>
 
-                            <div className='mt-2'>
-                                <p>Do not have an account? <Link className='font-semibold text-blue-600 underline' to='/register'>Register Now</Link></p>
+                            <div className='mt-7 text-center '>
+                                <p>Do not have an account? <Link className='font-semibold text-[#6486FD]' to='/register'>Register Now</Link></p>
                             </div>
                         </form>
                     </div>
                     {/* PopUp componenets */}
-                    <div className='mb-3'>
+                    {/* <div className='mb-3'>
                         <p className='text-center font-semibold mb-5 text-2xl'>Or Login with</p>
                         <div className='mt-2 rounded-full py-1 px-2 text-white flex justify-center items-center gap-4'>
                             <button onClick={handleGoogle} className='font-semibold p-2 flex items-center justify-center bg-slate-200 hover:bg-slate-300 rounded-full transition duration-300'>
@@ -123,7 +123,7 @@ const SignIn = () => {
                                 <span className='lg:text-2xl text-base flex gap-3 justify-center items-center text-black w-full'><FaFacebook className='text-blue-500' /></span>
                             </button>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
