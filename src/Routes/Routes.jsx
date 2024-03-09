@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute.jsx";
 import ProductStatement from "../pages/Dashboard/ProductStatement/ProductStatement.jsx";
 import OrderStatement from "../pages/Dashboard/OrderStatement/OrderStatement.jsx";
 import NoticePage from "../pages/NoticePage/NoticePage.jsx";
+import AddNotice from "../pages/Dashboard/AddNotice/AddNotice.jsx";
 
 const router = createBrowserRouter([
     {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
         children: [
             // admin routes
             {
-                path: '/',
+                path: 'adminHome',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
                 element: <AdminRoute><OrderStatement></OrderStatement></AdminRoute>
             },
             {
+                path: 'addNotice',
+                element: <AdminRoute><AddNotice></AddNotice></AdminRoute>
+            },
+            {
                 path: 'membersRequest',
                 element: <AdminRoute><MembersRequest></MembersRequest></AdminRoute>
             },
@@ -78,9 +83,9 @@ const router = createBrowserRouter([
                 path: 'allMembers',
                 element: <AdminRoute><AllMembers></AllMembers></AdminRoute>
             },
-            // employee
+            // employee routes
             {
-                path: '/employeeHome',
+                path: 'employeeHome',
                 element: <EmployeeRoute><EmployeeHome></EmployeeHome></EmployeeRoute>
             },
             {

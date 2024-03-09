@@ -3,10 +3,19 @@ import { IoPersonOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
+import { useRef, useState } from 'react';
 
 const Navbar2 = () => {
     const { logOut } = useAuth();
     const navigate = useNavigate();
+    const inputRef = useRef();
+    const [code, setCode] = useState();
+    
+    const handleProductCode = e =>{
+        e.preventDefault();
+        setCode(inputRef);
+    }
+
 
     const handleLogout = () => {
         Swal.fire({
@@ -40,7 +49,7 @@ const Navbar2 = () => {
                 <div className="navbar">
                     <div className="w-44 md:w-[600px] lg:w-[700px]">
                         <div className="form-control w-full">
-                            <input type="text" placeholder="Search your product" className="input input-bordered focus:outline-none" />
+                            <input ref={inputRef} onChange={handleProductCode} type="text" placeholder="Search your product" className="input input-bordered focus:outline-none" />
                         </div>
                     </div>
                     <div className="navbar-end">

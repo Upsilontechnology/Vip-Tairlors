@@ -55,56 +55,56 @@ const AddProduct = () => {
             })
     }
 
-    const handleCheckService = event => {
-        event.preventDefault();
-        const form = event.target;
+    // const handleCheckService = event => {
+    //     event.preventDefault();
+    //     const form = event.target;
 
-        const name = form.name.value;
-        const date = form.date.value;
-        // const image = res?.data?.data?.display_url;
-        const price = form.price.value;
-        const category = form.category.value;
-        const quantity = form.quantity.value;
-        const code = form.code.value;
+    //     const name = form.name.value;
+    //     const date = form.date.value;
+    //     // const image = res?.data?.data?.display_url;
+    //     const price = form.price.value;
+    //     const category = form.category.value;
+    //     const quantity = form.quantity.value;
+    //     const code = form.code.value;
 
-        const dataInfo = {
-            name,
-            sellingDate: date,
-            category,
-            quantity,
-            price,
-            productCode: code,
-            email: user?.email
-        }
+    //     const dataInfo = {
+    //         name,
+    //         sellingDate: date,
+    //         category,
+    //         quantity,
+    //         price,
+    //         productCode: code,
+    //         email: user?.email
+    //     }
 
-        console.log(form.image.value, dataInfo)
+    //     console.log(form.image.value, dataInfo)
 
-        // const imageFile = { image: form.image.value }
-        // axiosPublic.post(image_hosing_api, imageFile, {
-        //     headers: {
-        //         'content-type': 'multipart/form-data'
-        //     }
-        // })
-        //     .then(res => {
-        //         console.log(res)
+    //     // const imageFile = { image: form.image.value }
+    //     // axiosPublic.post(image_hosing_api, imageFile, {
+    //     //     headers: {
+    //     //         'content-type': 'multipart/form-data'
+    //     //     }
+    //     // })
+    //     //     .then(res => {
+    //     //         console.log(res)
 
-        //     })
+    //     //     })
 
-        // send sold product info to database
-        axiosPublic.post('/sellProduct', dataInfo)
-            .then(res => {
-                if (res.data.message === 'success') {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Product added successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            })
+    //     // send sold product info to database
+    //     axiosPublic.post('/sellProduct', dataInfo)
+    //         .then(res => {
+    //             if (res.data.message === 'success') {
+    //                 Swal.fire({
+    //                     position: "top-end",
+    //                     icon: "success",
+    //                     title: "Product added successfully",
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 });
+    //             }
+    //         })
 
-    }
+    // }
 
     return (
         <div className='supershop-container'>

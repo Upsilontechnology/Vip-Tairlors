@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
+import useAllOrder from '../../../hooks/useAllOrder';
+import Pagination from '../../../components/pagination/pagination';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
 const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -52,21 +54,6 @@ const OrderedProduct = () => {
                         }
                     })
             })
-
-        // // product added to the server
-        // axiosPublic.post('/orderProduct', productDetails)
-        //     .then(res => {
-        //         // console.log(res)
-        //         if (res.data.message === 'success') {
-        //             Swal.fire({
-        //                 position: "top-end",
-        //                 icon: "success",
-        //                 title: "Order added successfully",
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //         }
-        //     })
     }
 
     return (
@@ -136,9 +123,9 @@ const OrderedProduct = () => {
                                 {...register('category', { required: true })}
                                 className="select select-bordered w-full focus:outline-none">
                                 <option disabled value="default">Select a category</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
+                                <option value="Breakfast">Panjabi</option>
+                                <option value="Lunch">T-Shirt</option>
+                                <option value="Dinner">Pant</option>
                             </select>
                         </div>
                         {/* product Code */}
