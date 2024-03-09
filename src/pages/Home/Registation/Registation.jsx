@@ -95,62 +95,64 @@ const Registation = () => {
 
 
     return (
-        <div className=''>
-            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center p-5 text-white'>
-                <h1 className="text-4xl font-bold">Register Now</h1>
+        <div className=' font-Montserrat w-full h-[80vh] '>
+            <div className='bg-gradient-to-r from-[#232323] to-[#463636] w-full text-center py-14 text-white'>
+                <h1 className="text-4xl font-bold">Registation</h1>
             </div>
-            <div className='flex flex-col p-2 rounded-lg md:w-1/2 mx-auto my-5'>
-                <div className='bg-gray-200 py-3 px-2 md:px-4'>
-                    <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
-                        <div className='flex justify-center flex-row gap-4 items-center relative'>
-                            <input type="text" placeholder='Full Name'
-                                name='name'
-                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
-                            />
-                        </div>
-                        <div className='flex justify-center flex-col items-center relative'>
-                            <input type="text" placeholder='Email' name='email'
-                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
-                            />
-                        </div>
-                        <div className='flex flex-col items-center justify-center relative'>
-                            <input type="password" placeholder='Password' name='password'
-                                className='w-full py-3 rounded-lg border outline-none pl-8 pr-2'
-                            />
-                        </div>
-                        <div className='flex flex-col items-center justify-center relative'>
+            <div className="flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full">
+                <div className='flex flex-col w-full md:w-[768px] '>
+                    <div className='bg-[#F3F3F3]  py-[10%] px-[5%] md:px-[15%]'>
+                        <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
+                            <div className='flex justify-center  flex-row gap-4 items-center relative'>
+                                <input type="text" placeholder='Full Name'
+                                    name='name'
+                                    className='w-full py-4 bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none pl-8 pr-2'
+                                />
+                            </div>
+                            <div className='flex justify-center flex-col items-center relative'>
+                                <input type="text" placeholder='Email' name='email'
+                                    className='w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2'
+                                />
+                            </div>
+                            <div className='flex flex-col items-center justify-center relative'>
+                                <input type="password" placeholder='Password' name='password'
+                                    className='w-full py-4 bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none pl-8 pr-2'
+                                />
+                            </div>
+                            {/* <div className='flex flex-col items-center justify-center relative'>
                             <input type="file" placeholder='' name='image'
                                 className='input input-bordered focus:outline-none w-full py-2'
                             />
-                        </div>
+                        </div> */}
 
-                        <div className='px-1 mt-3 flex flex-row justify-between items-center'>
-                            <div className="flex gap-2">
-                                <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
-                                <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-indigo-500'>Remember me</label>
+                            <div className='px-1 mt-3 flex flex-row justify-between items-center'>
+                                <div className="flex text-sm md:text-base gap-2">
+                                    <input type="checkbox" name="checkbox" id="checkbox" className='cursor-pointer' />
+                                    <label htmlFor="checkbox" className='flex gap-2 cursor-pointer text-black'>Remember me</label>
+                                </div>
+                                <div>
+                                    <h4 className='text-right text-sm md:text-base my-2 text-[#6486FD] cursor-pointer'>Forgot Password</h4>
+                                </div>
                             </div>
-                            <div>
-                                <h4 className='text-right my-2 text-blue-600 cursor-pointer'>Forgot Password</h4>
+                            <div className="px-[16%] flex gap-2">
+                                {
+                                    error ? <p className='text-red-600'>{error}</p> : ''
+                                }
                             </div>
+                            <div className='flex justify-center text-xl font-semibold text-white font-Montserrat'>
+                                <button className='w-full py-4 bg-[#444444] text-white hover:bg-[#303030] rounded-lg'>Sign Up</button>
+                            </div>
+                        </form>
+                        <div className=' mt-10 flex items-center justify-center '>
+                            <h4 className='flex gap-2  '>Already have an account? <Link to={"/"} className='text-[#6486FD] font-semibold cursor-pointer'>Log In</Link></h4>
                         </div>
-                        <div className="px-[16%] flex gap-2">
-                            {
-                                error ? <p className='text-red-600'>{error}</p> : ''
-                            }
-                        </div>
-                        <div className='flex justify-center text-xl font-semibold text-white font-mono'>
-                            <button className='px-[25%] py-3 bg-zinc-600 text-white hover:btn-ghost rounded-lg'>Register</button>
-                        </div>
-                    </form>
-                    <div className=' mt-7'>
-                        <h4 className='flex gap-2'>Already have an account? <Link to={"/"} className='text-indigo-500 font-semibold cursor-pointer'>Log In</Link></h4>
-                    </div>
-                    <div className=''>
+                        {/* <div className=''>
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>
-                    </div>
-                    <div className='flex justify-center gap-6 mt-6'>
+                    </div> */}
+                        {/* <div className='flex justify-center gap-6 mt-6'>
                         <button onClick={handleGoogle} className='border flex items-center gap-2 text-xl px-7 hover:border-[#000] transition-all duration-300 border-[#c3c3c3] rounded-lg py-3 font-mono'><FcGoogle className='text-2xl' /> Google</button>
                         <button className='border flex items-center gap-2 text-xl border-[#c3c3c3] hover:border-[#000] transition-all duration-300 rounded-lg px-4 py-3 font-mono'><FaSquareFacebook className='text-2xl text-blue-700' /> Facebook</button>
+                    </div> */}
                     </div>
                 </div>
             </div>
