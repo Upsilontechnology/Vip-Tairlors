@@ -6,6 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import useSellProduct from '../../../hooks/useSellProduct';
 import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const EmployeeHome = () => {
     const { user } = useAuth();
@@ -24,24 +25,20 @@ const EmployeeHome = () => {
 
 
     return (
-        <div>
+        <div className='mt-4'>
             {/* image container */}
-            <div className='flex justify-center items-center'>
+            {/* <div className='flex justify-center items-center'>
                 <img src="https://i.ibb.co/N12KcsH/image-5.png" alt="" />
-            </div>
+            </div> */}
+            <SectionTitle
+            title="Welcome to professional dashboard"
+            descrition="Insights, management tools and ad creation - all in one place"
+            />
             {/* card container */}
             <div className='flex justify-center mb-5'>
                 <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
                     <div className='flex justify-between items-center'>
                         <h3 className="text-2xl font-bold">Total Summary</h3>
-                        <div className="dropdown dropdown-hover">
-                            <div tabIndex={0} role="button" className="btn m-1">Sort By <IoIosArrowDown /></div>
-                            <ul tabIndex={0} className="dropdown-content z-[1] menu py-2 px-1 shadow bg-base-100 rounded-box w-28">
-                                <li><a>Today</a></li>
-                                <li><a>1 Month</a></li>
-                                <li><a>1 Year</a></li>
-                            </ul>
-                        </div>
                     </div>
                     {/* cards */}
                     <div className='grid grid-cols-2 gap-4 lg:gap-10'>
