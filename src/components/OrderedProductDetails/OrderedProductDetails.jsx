@@ -9,7 +9,6 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
     const handleComplete = product => {
         axiosPublic.patch(`/orderProduct/${product?._id}`)
             .then(res => {
-                refetch();
                 console.log(res.data)
             })
     };
@@ -71,11 +70,11 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
                     </tbody>
                 </table>
             </div>
-            <Pagination
+            {/* <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 setCurrentPage={setCurrentPage}
-            />
+            /> */}
         </div >)
 }
 

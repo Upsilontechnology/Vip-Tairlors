@@ -12,27 +12,22 @@ const EmployeeHome = () => {
     const { user } = useAuth();
     const [sellProducts] = useSellProduct();
     const [orderProducts] = useOrderedProduct();
-    console.log(sellProducts);
 
     // filtering sell stats
     const filteredSells = sellProducts?.data?.filter(product => product?.email === user?.email);
     const totalSells = filteredSells?.reduce((total, product) => total + parseFloat(product?.price), 0)
 
     // filtering order stats
-    const filteredOrders = orderProducts?.data?.filter(product => product?.email === user?.email)
+    const filteredOrders = orderProducts?.filter(product => product?.email === user?.email)
     const pendingOrders = filteredOrders?.filter(product => product.status === 'pending');
     const completedOrders = filteredOrders?.filter(product => product.status === 'completed');
 
 
     return (
         <div className='mt-4'>
-            {/* image container */}
-            {/* <div className='flex justify-center items-center'>
-                <img src="https://i.ibb.co/N12KcsH/image-5.png" alt="" />
-            </div> */}
             <SectionTitle
-            title="Welcome to professional dashboard"
-            descrition="Insights, management tools and ad creation - all in one place"
+                title="Welcome to professional dashboard"
+                descrition="Insights, management tools and ad creation - all in one place"
             />
             {/* card container */}
             <div className='flex justify-center mb-5'>

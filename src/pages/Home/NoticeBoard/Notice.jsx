@@ -44,7 +44,7 @@ const Notice = () => {
                 }}
                 className="mySwiper"
             >
-                {notes.map(note => (
+                {notes?.map(note => (
                     <SwiperSlide key={note?._id}>
                         <div className='flex items-center gap-6 bg-[#F2F1F1] justify-center py-[8rem] my-3 shadow-md px-2 '>
                             <div className='text-5xl'>
