@@ -70,11 +70,11 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
                     </tbody>
                 </table>
             </div>
-            {/* <Pagination
+            <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 setCurrentPage={setCurrentPage}
-            /> */}
+            />
         </div >)
 }
 
