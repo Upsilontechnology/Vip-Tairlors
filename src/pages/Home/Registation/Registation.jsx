@@ -22,14 +22,14 @@ const Registation = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const image = form.image.value;
+        // const image = form.image.value;
 
         const userInfo = {
             name: form.name.value,
             email: form.email.value,
             role: "user"
         }
-        console.log(userInfo, image)
+        console.log(userInfo)
 
         setError('');
 
