@@ -5,7 +5,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
 
     const pageNumber = [...Array(totalPages).keys()];
-    console.log(pageNumber);
+    console.log(currentPage, totalPages);
 
     return (
         <div className="flex items-center justify-center gap-5 mt-8">

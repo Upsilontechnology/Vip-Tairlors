@@ -3,24 +3,35 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
-import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
-import useUser from '../../../hooks/useUser';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const OrderedList = () => {
-    const [filterBySearch, setFilterBySearch] = useState();
     const [searchValue, setSearchValue] = useState("");
-    const axiosPublic = useAxiosPublic();
+    const [status, setStatus] = useState("pending");
     const [axiosSecure] = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+
+    const handleStatus = (set) => {
+        setStatus(set);
+        console.log(set);
+    }
+
+    const [productLength, setProductLength] = useState(0);
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const [ , refetch] = useOrderedProduct();
     const email = user?.email;
+    console.log(currentPage, totalPages, productLength);
 
     const { data: userInfo } = useQuery({
-        queryKey: ['userInfo'],
+        queryKey: ['userInfo', email],
+        staleTime: Infinity,
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${email}`)
             return res.data;
@@ -28,32 +39,27 @@ const OrderedList = () => {
     })
     const role = userInfo?.role;
 
+    const { data: orderBySearch = [], refetch, isLoading } = useQuery({
+        queryKey: ["orderBySearch", email, role, searchValue, itemsPerPage, currentPage, status],
+        cacheTime: 0,
+        staleTime: Infinity,
+        queryFn: async () => {
+            const res = await axiosPublic.get(
+                `/orderProduct/1/search?email=${email}&role=${role}&searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}&status=${status}`
+            );
+            return res.data;
+        },
+    });
+
+    console.log(orderBySearch);
     useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const res = await axiosPublic.get("/orderProduct/1/search", {
-                    params: {
-                        email,
-                        role,
-                        searchValue: searchValue,
-                    },
-                });
-                console.log(res.data)
-                setFilterBySearch(res.data)
-            } catch (error) {
-                console.log(error)
-            }
+        if (orderBySearch && orderBySearch.totalCount) {
+            setProductLength(orderBySearch.totalCount);
+        } else {
+            setProductLength(0);
         }
-        fetchProducts();
-    }, [axiosPublic, searchValue, email])
-
-
-    // filtered for login user
-    const allProducts = filterBySearch?.filter(product => product?.status === 'pending');
-
-    // filtered for login user
-    const completeProducts = filterBySearch?.filter(product => product.status === 'completed');
-    // console.log(allProducts)
+    }, [orderBySearch]);
+    console.log(orderBySearch);
 
     return (
         <div className='supershop-container'>
@@ -73,19 +79,19 @@ const OrderedList = () => {
                 <Tabs>
                     {/* tab lists */}
                     <TabList className="font-bold">
-                        <Tab>Pending</Tab>
-                        <Tab>Completed</Tab>
+                        <Tab onClick ={()=> handleStatus("pending")}>Pending</Tab>
+                        <Tab onClick ={()=> handleStatus("completed")}>Completed</Tab>
                     </TabList>
                     {/* tab panel */}
                     <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
-                            <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={allProducts} filteredUser={userInfo}/>
-                            </div>
+                        <div className='flex flex-col p-3 gap-4'>
+                            <OrderedProductDetails products={orderBySearch} filteredUser={userInfo} currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} refetch={refetch}/>
+                        </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={completeProducts} filteredUser={userInfo}/>
+                                <OrderedProductDetails products={orderBySearch} filteredUser={userInfo} currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} refetch={refetch}/>
                             </div>
                         </TabPanel>
                     </div>
