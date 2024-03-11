@@ -4,7 +4,6 @@ import Pagination from '../pagination/pagination';
 import useAllOrder from '../../hooks/useAllOrder';
 
 const OrderedProductDetails = ({ products, filteredUser }) => {
-    // const [orderProducts, refetch] = useOrderedProduct();
     const { orderProduct, currentPage, totalPages, setCurrentPage } = useAllOrder();
     const axiosPublic = useAxiosPublic();
 
@@ -12,7 +11,6 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
     const handleComplete = product => {
         axiosPublic.patch(`/orderProduct/${product?._id}`)
             .then(res => {
-                refetch();
                 console.log(res.data)
             })
     };
@@ -35,7 +33,7 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
                     </thead>
                     <tbody>
                         {
-                            products?.map((product, ind) => <tr key={product?._id} className="">
+                            allProducts?.map((product, ind) => <tr key={product?._id} className="">
                                 <td>
                                     {product?.productCode}
                                 </td>
@@ -74,11 +72,11 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
                     </tbody>
                 </table>
             </div>
-            <Pagination
+            {/* <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 setCurrentPage={setCurrentPage}
-            />
+            /> */}
         </div >)
 }
 

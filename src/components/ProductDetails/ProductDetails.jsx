@@ -10,13 +10,11 @@ import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ProductDetails = () => {
-    const [filterBySearch, setFilterBySearch] = useState();
     const [searchValue, setSearchValue] = useState("");
     const [axiosSecure] = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
     const email = user?.email;
-    console.log(email)
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo'],
@@ -27,25 +25,6 @@ const ProductDetails = () => {
     })
     const role = userInfo?.role;
 
-
-    useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const res = await axiosPublic.get("/sellProduct/search", {
-                    params: {
-                        email,
-                        role,
-                        searchValue: searchValue,
-                    },
-                });
-                console.log(res.data)
-                setFilterBySearch(res.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchProducts();
-    }, [axiosPublic, searchValue, email])
 
     // delete handler
     const handleDelete = (product) => {
@@ -79,7 +58,7 @@ const ProductDetails = () => {
 
 
     }
-    
+
     return (
         <div>
             <div className='flex flex-col gap-4'>

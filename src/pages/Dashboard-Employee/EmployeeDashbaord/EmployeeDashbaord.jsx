@@ -8,7 +8,7 @@ import { IoBagAddOutline } from 'react-icons/io5';
 import { MdProductionQuantityLimits } from 'react-icons/md';
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
-    
+
     const navlinks = <>
         <li className="relative px-2 py-1">
             <NavLink
@@ -133,9 +133,11 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                         <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
                     </div>
                 </header>
-                <main className="lg:ml-72 scroll-smooth">
+                <main className="lg:ml-64 scroll-smooth">
                     <Navbar2></Navbar2>
-                    <Outlet></Outlet>
+                    <div className='lg:ml-8'>
+                        <Outlet></Outlet>
+                    </div>
                 </main>
             </div>
         </div>

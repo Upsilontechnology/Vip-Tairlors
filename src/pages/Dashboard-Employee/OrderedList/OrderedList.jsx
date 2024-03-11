@@ -3,7 +3,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import OrderedProductDetails from '../../../components/OrderedProductDetails/OrderedProductDetails';
-// import useOrderedProduct from '../../../hooks/useOrderedProduct';
+import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
 import useUser from '../../../hooks/useUser';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
@@ -16,8 +16,8 @@ const OrderedList = () => {
     const axiosPublic = useAxiosPublic();
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
+    const [ , refetch] = useOrderedProduct();
     const email = user?.email;
-    console.log(email)
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo'],
@@ -47,12 +47,13 @@ const OrderedList = () => {
         fetchProducts();
     }, [axiosPublic, searchValue, email])
 
+
     // filtered for login user
     const allProducts = filterBySearch?.filter(product => product?.status === 'pending');
 
     // filtered for login user
     const completeProducts = filterBySearch?.filter(product => product.status === 'completed');
-    console.log(allProducts)
+    // console.log(allProducts)
 
     return (
         <div className='supershop-container'>
@@ -79,12 +80,12 @@ const OrderedList = () => {
                     <div className='my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg'>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={allProducts}/>
+                                <OrderedProductDetails products={allProducts} filteredUser={userInfo}/>
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='flex flex-col p-3 gap-4'>
-                                <OrderedProductDetails products={completeProducts}/>
+                                <OrderedProductDetails products={completeProducts} filteredUser={userInfo}/>
                             </div>
                         </TabPanel>
                     </div>
