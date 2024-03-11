@@ -10,9 +10,10 @@ const AdminHome = () => {
     const [sellProducts] = useSellProduct();
     const [orderProducts] = useOrderedProduct();
 
-    const totalSells = sellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
+    const totalSells = sellProducts?.items?.reduce((total, product) => total + parseFloat(product?.price), 0)
     const pendingOrders = orderProducts?.items?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.items?.filter(product => product.status === 'completed');
+    console.log(orderProducts);
 
 
     return (

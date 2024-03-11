@@ -19,8 +19,8 @@ const EmployeeHome = () => {
     console.log(filteredSells, totalSells)
     // filtering order stats
     const filteredOrders = orderProducts?.items?.filter(product => product?.email === user?.email)
-    const pendingOrders = filteredOrders?.items?.filter(product => product.status === 'pending');
-    const completedOrders = filteredOrders?.items?.filter(product => product.status === 'completed');
+    const pendingOrders = filteredOrders?.filter(product => product.status === 'pending');
+    const completedOrders = filteredOrders?.filter(product => product.status === 'completed');
 
 
     return (
