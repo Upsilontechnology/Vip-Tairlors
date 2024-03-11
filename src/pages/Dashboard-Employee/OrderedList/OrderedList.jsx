@@ -25,7 +25,6 @@ const OrderedList = () => {
     const itemsPerPage = 5;
     const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
-    const [ , refetch] = useOrderedProduct();
     const email = user?.email;
     console.log(currentPage, totalPages, productLength);
 
