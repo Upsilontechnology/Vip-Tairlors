@@ -7,7 +7,7 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(true);
     const provider = new GoogleAuthProvider();
 
     // creating user
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
             if (currentUser) {
                 axios
                     .post("http://localhost:5000/jwt", {
-                        email: currentUser.email,
+                        email: currentUser?.email,
                     })
                     .then((data) => {
                         localStorage.setItem("access-token", data?.data?.token);
@@ -56,10 +56,11 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, provider);
     }
-
+    console.log(loading);
     const authInfo = {
         user,
         loading,
+        setLoading,
         createUser,
         signInUser,
         logOut,

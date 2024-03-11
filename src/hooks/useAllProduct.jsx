@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
+import useAuth from "./useAuth";
 
 const useAllProduct = () => {
   const axiosPublic = useAxiosPublic();
   const [sellProduct, setSellProduct] = useState([]);
   const [productLength, setProductLength] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const {setLoading, laoding} = useAuth();
+  console.log(laoding);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -22,7 +25,7 @@ const useAllProduct = () => {
         setSellProduct(data.data);
         setProductLength(data.data.totalCount);
         console.log("Prduct length",data.data);
-        setIsLoading(false);
+        // setLoading(false);
       });
   }, [currentPage, itemsPerPage]);
 
