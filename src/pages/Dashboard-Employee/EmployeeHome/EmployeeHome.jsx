@@ -7,20 +7,37 @@ import useSellProduct from '../../../hooks/useSellProduct';
 import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import useAuth from '../../../hooks/useAuth';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const EmployeeHome = () => {
     const { user } = useAuth();
-    const [sellProducts] = useSellProduct();
-    const [orderProducts] = useOrderedProduct();
+    const axiosPublic = useAxiosPublic();
+
+    const { data: allSellProducts, refetch } = useQuery({
+        queryKey: ['allSellProduct'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/sellProduct')
+            return res.data;
+        }
+    });
+    const { data: allOrderProducts } = useQuery({
+        queryKey: ['allOrderProduct'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/orderProduct')
+            return res.data;
+        }
+    });
+
 
     // filtering sell stats
-    const filteredSells = sellProducts?.items?.filter(product => product?.email === user?.email);
+    const filteredSells = allSellProducts?.filter(product => product?.email === user?.email);
     const totalSells = filteredSells?.reduce((total, product) => total + parseFloat(product?.price), 0)
     console.log(filteredSells, totalSells)
     // filtering order stats
-    const filteredOrders = orderProducts?.items?.filter(product => product?.email === user?.email)
-    const pendingOrders = filteredOrders?.items?.filter(product => product.status === 'pending');
-    const completedOrders = filteredOrders?.items?.filter(product => product.status === 'completed');
+    const filteredOrders = allOrderProducts?.filter(product => product?.email === user?.email)
+    const pendingOrders = allOrderProducts?.filter(product => product.status === 'pending');
+    const completedOrders = allOrderProducts?.filter(product => product.status === 'completed');
 
 
     return (

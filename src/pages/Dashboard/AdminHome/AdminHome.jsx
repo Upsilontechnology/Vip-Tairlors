@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import AdminImg from "../../../assets/admin.png";
 import useSellProduct from '../../../hooks/useSellProduct';
 import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import { IoBagOutline } from 'react-icons/io5';
 import { BsCart3 } from 'react-icons/bs';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const AdminHome = () => {
-    const [sellProducts] = useSellProduct();
-    const [orderProducts] = useOrderedProduct();
+    const axiosPublic = useAxiosPublic();
 
-    const totalSells = sellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
-    const pendingOrders = orderProducts?.items?.filter(product => product.status === 'pending');
-    const completedOrders = orderProducts?.items?.filter(product => product.status === 'completed');
+    const { data: allSellProducts, refetch } = useQuery({
+        queryKey: ['allSellProduct'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/sellProduct')
+            return res.data;
+        }
+    });
+    const { data: allOrderProducts } = useQuery({
+        queryKey: ['allOrderProduct'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/orderProduct')
+            return res.data;
+        }
+    });
+
+    const totalSells = allSellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
+    const pendingOrders = allOrderProducts?.filter(product => product.status === 'pending');
+    const completedOrders = allOrderProducts?.filter(product => product.status === 'completed');
+
+    // console.log(totalSells, pendingOrders, completedOrders)
 
 
     return (
@@ -62,7 +80,7 @@ const AdminHome = () => {
                             </div>
                             <div>
                                 <h3 className='text-sm font-medium '>Total Orders</h3>
-                                <h2 className='text-[1.3rem] font-semibold '>{orderProducts?.items?.length}</h2>
+                                <h2 className='text-[1.3rem] font-semibold '>{allOrderProducts?.length}</h2>
                             </div>
                         </div>
 

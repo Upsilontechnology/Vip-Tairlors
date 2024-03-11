@@ -30,7 +30,7 @@ const useSellProduct = () => {
         queryFn: async () => {
             // const res = await axiosPublic.get('/sellProduct')
             const res = await axiosPublic.get(
-                `/sellProduct?email=${email}&role=${role}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
+                `/sellProduct/state?email=${email}&role=${role}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
             )
             return res.data;
         }
