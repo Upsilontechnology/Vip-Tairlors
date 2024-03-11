@@ -12,7 +12,7 @@ import Notice from '../NoticeBoard/Notice';
 const Home = () => {
     const [loggedUser, setLoggedUser] = useState();
     const [users] = useUser();
-    const { user } = useAuth();
+    const { user, setLoading, loading } = useAuth();
 
     useEffect(() => {
         if (user && users) {
@@ -20,8 +20,6 @@ const Home = () => {
             setLoggedUser(filteredUser);
         }
     }, [users, user]);
-
-
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
     const toggleSideMenu = () => {
         setIsSideMenuOpen(!isSideMenuOpen);
@@ -29,6 +27,12 @@ const Home = () => {
     const closeSideMenu = () => {
         setIsSideMenuOpen(false);
     };
+
+    if (loading) {
+        return <div className='flex justify-center items-center h-screen'>
+            <div className="w-10 h-10 animate-[spin_2s_linear_infinite] rounded-full border-8 border-dotted border-sky-600"></div>
+        </div>
+    }
 
     return (
         <div>

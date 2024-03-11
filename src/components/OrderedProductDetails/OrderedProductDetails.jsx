@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Pagination from '../pagination/pagination';
-import useAllOrder from '../../hooks/useAllOrder';
 
-const OrderedProductDetails = ({ products, filteredUser }) => {
-    // const [orderProducts, refetch] = useOrderedProduct();
-    const { orderProduct, currentPage, totalPages, setCurrentPage } = useAllOrder();
+const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrentPage, totalPages, refetch}) => {
+    console.log(products);
     const axiosPublic = useAxiosPublic();
 
 
@@ -35,7 +32,7 @@ const OrderedProductDetails = ({ products, filteredUser }) => {
                     </thead>
                     <tbody>
                         {
-                            products?.map((product, ind) => <tr key={product?._id} className="">
+                            products?.items?.map((product, ind) => <tr key={product?._id} className="">
                                 <td>
                                     {product?.productCode}
                                 </td>

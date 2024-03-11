@@ -4,7 +4,6 @@ import {
 import MainLayout from "../layout/MainLayout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import AddProduct from "../pages/AddProduct/AddProduct";
-import AllProduct from "../pages/Dashboard/AllProduct/AllProduct";
 import Login from "../pages/Home/Login/SignIn.jsx"
 import Registation from "../pages/Home/Registation/Registation.jsx";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome.jsx";
@@ -21,6 +20,7 @@ import ProductStatement from "../pages/Dashboard/ProductStatement/ProductStateme
 import OrderStatement from "../pages/Dashboard/OrderStatement/OrderStatement.jsx";
 import NoticePage from "../pages/NoticePage/NoticePage.jsx";
 import AddNotice from "../pages/Dashboard/AddNotice/AddNotice.jsx";
+import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 
 const router = createBrowserRouter([
     {
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'productList',
-                element: <EmployeeRoute><AllProduct></AllProduct></EmployeeRoute>
+                element: <ProductDetails />
             },
             {
                 path: 'addProduct',

@@ -1,25 +1,30 @@
 import "./ProductDetails.css";
-import useSellProduct from "../../hooks/useSellProduct";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Pagination from "../pagination/pagination";
 
 const ProductDetails = () => {
-    const [filterBySearch, setFilterBySearch] = useState();
     const [searchValue, setSearchValue] = useState("");
     const [axiosSecure] = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
+
+    const [productLength, setProductLength] = useState(0);
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const email = user?.email;
-    console.log(email)
+    console.log(currentPage, totalPages, productLength);
 
     const { data: userInfo } = useQuery({
-        queryKey: ['userInfo'],
+        queryKey: ['userInfo', email],
+        staleTime: Infinity,
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${email}`)
             return res.data;
@@ -27,27 +32,32 @@ const ProductDetails = () => {
     })
     const role = userInfo?.role;
 
+    const { data: filterBySearch = [], refetch, isLoading } = useQuery({
+        queryKey: ["filterBySearch", email, role, searchValue, itemsPerPage, currentPage],
+        cacheTime: 0,
+        staleTime: Infinity,
+        queryFn: async () => {
+            const res = await axiosPublic.get(
+                `/sellProduct/search?email=${email}&role=${role}&searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
+            );
+            return res.data;
+        },
+    });
 
     useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const res = await axiosPublic.get("/sellProduct/search", {
-                    params: {
-                        email,
-                        role,
-                        searchValue: searchValue,
-                    },
-                });
-                console.log(res.data)
-                setFilterBySearch(res.data)
-            } catch (error) {
-                console.log(error)
-            }
+        if (filterBySearch && filterBySearch.totalCount) {
+            setProductLength(filterBySearch.totalCount);
+        } else {
+            setProductLength(0);
         }
-        fetchProducts();
-    }, [axiosPublic, searchValue, email])
+    }, [filterBySearch]);
+    console.log(filterBySearch.totalCount);
+
+    console.log(filterBySearch);
 
     // delete handler
+
+
     const handleDelete = (product) => {
         Swal.fire({
             title: "Are you sure?",
@@ -79,7 +89,7 @@ const ProductDetails = () => {
 
 
     }
-    
+
     return (
         <div>
             <div className='flex flex-col gap-4'>
@@ -103,7 +113,7 @@ const ProductDetails = () => {
                         </thead>
                         <tbody>
                             {
-                                filterBySearch?.map((product, ind) => <tr key={product?._id} className="">
+                                filterBySearch?.items?.map((product, ind) => <tr key={product?._id} className="">
                                     <td>
                                         {ind + 1}
                                     </td>
@@ -136,6 +146,11 @@ const ProductDetails = () => {
                     </table>
                 </div>
             </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 };
