@@ -10,9 +10,9 @@ const AdminHome = () => {
     const [sellProducts] = useSellProduct();
     const [orderProducts] = useOrderedProduct();
 
-    const totalSells = sellProducts?.data?.reduce((total, product) => total + parseFloat(product?.price), 0)
-    const pendingOrders = orderProducts?.data?.filter(product => product.status === 'pending');
-    const completedOrders = orderProducts?.data?.filter(product => product.status === 'completed');
+    const totalSells = sellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
+    const pendingOrders = orderProducts?.items?.filter(product => product.status === 'pending');
+    const completedOrders = orderProducts?.items?.filter(product => product.status === 'completed');
 
 
     return (
@@ -62,7 +62,7 @@ const AdminHome = () => {
                             </div>
                             <div>
                                 <h3 className='text-sm font-medium '>Total Orders</h3>
-                                <h2 className='text-[1.3rem] font-semibold '>{orderProducts?.data?.length}</h2>
+                                <h2 className='text-[1.3rem] font-semibold '>{orderProducts?.items?.length}</h2>
                             </div>
                         </div>
 

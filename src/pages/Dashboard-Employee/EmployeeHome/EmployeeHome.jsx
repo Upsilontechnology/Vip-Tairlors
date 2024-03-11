@@ -14,13 +14,13 @@ const EmployeeHome = () => {
     const [orderProducts] = useOrderedProduct();
 
     // filtering sell stats
-    const filteredSells = sellProducts?.data?.filter(product => product?.email === user?.email);
+    const filteredSells = sellProducts?.items?.filter(product => product?.email === user?.email);
     const totalSells = filteredSells?.reduce((total, product) => total + parseFloat(product?.price), 0)
-
+    console.log(filteredSells, totalSells)
     // filtering order stats
-    const filteredOrders = orderProducts?.filter(product => product?.email === user?.email)
-    const pendingOrders = filteredOrders?.filter(product => product.status === 'pending');
-    const completedOrders = filteredOrders?.filter(product => product.status === 'completed');
+    const filteredOrders = orderProducts?.items?.filter(product => product?.email === user?.email)
+    const pendingOrders = filteredOrders?.items?.filter(product => product.status === 'pending');
+    const completedOrders = filteredOrders?.items?.filter(product => product.status === 'completed');
 
 
     return (
