@@ -3,9 +3,10 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useSellProduct from '../../../hooks/useSellProduct';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import Pagination from '../../../components/pagination/pagination';
 
 const ProductStatement = () => {
-    const [sellProducts, refetch] = useSellProduct();
+    const [sellProducts, refetch, currentPage, totalPages, setCurrentPage] = useSellProduct();
     const axiosPublic = useAxiosPublic();
     console.log(sellProducts)
 
@@ -20,7 +21,7 @@ const ProductStatement = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                 axiosPublic.delete(`/sellProduct/${product?._id}`)
+                axiosPublic.delete(`/sellProduct/${product?._id}`)
                     .then(res => {
                         console.log(res)
                         refetch();
@@ -61,7 +62,7 @@ const ProductStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            sellProducts?.data?.map((product, ind) => <tr key={product?._id}>
+                            sellProducts?.items?.map((product, ind) => <tr key={product?._id}>
                                 <th>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>
@@ -87,6 +88,12 @@ const ProductStatement = () => {
                     </tbody>
                 </table>
             </div>
+            {/* pagination */}
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 };

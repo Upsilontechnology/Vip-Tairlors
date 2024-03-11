@@ -3,10 +3,13 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useOrderedProduct from '../../../hooks/useOrderedProduct';
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import Pagination from '../../../components/pagination/pagination';
+import { useEffect, useState } from 'react';
 
 const OrderStatement = () => {
-    const [orderProducts, refetch] = useOrderedProduct();
+    const [orderProducts, refetch, currentPage, totalPages, setCurrentPage] = useOrderedProduct();
     const axiosPublic = useAxiosPublic();
+ 
 
     const handleDelete = (product) => {
         Swal.fire({
@@ -60,7 +63,7 @@ const OrderStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            orderProducts?.data?.map((product, ind) => <tr key={product?._id}>
+                            orderProducts?.items?.map((product, ind) => <tr key={product?._id}>
                                 <th>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>
@@ -86,6 +89,12 @@ const OrderStatement = () => {
                     </tbody>
                 </table>
             </div>
+            {/* pagination */}
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 };
