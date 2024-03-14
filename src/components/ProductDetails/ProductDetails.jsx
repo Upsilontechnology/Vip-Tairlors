@@ -1,12 +1,13 @@
 import "./ProductDetails.css";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { MdOutlineDeleteOutline } from 'react-icons/md';
+import { MdOutlineDeleteOutline, MdOutlineEdit } from 'react-icons/md';
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Pagination from "../pagination/pagination";
+import UpdateProductDetails from "../UpdateProductDetails/UpdateProductDetails";
 
 const ProductDetails = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -20,7 +21,7 @@ const ProductDetails = () => {
     const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const email = user?.email;
-    console.log(currentPage, totalPages, productLength);
+    // console.log(currentPage, totalPages, productLength);
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo', email],
@@ -51,13 +52,8 @@ const ProductDetails = () => {
             setProductLength(0);
         }
     }, [filterBySearch]);
-    console.log(filterBySearch.totalCount);
-
-    console.log(filterBySearch);
 
     // delete handler
-
-
     const handleDelete = (product) => {
         Swal.fire({
             title: "Are you sure?",
@@ -135,8 +131,11 @@ const ProductDetails = () => {
                                     <td>
                                         <img className="w-10 h-10" src={product?.image} alt="" />
                                     </td>
-                                    <th>
-                                        <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm">
+                                    <th className="flex gap-2">
+                                        <button className="btn btn-ghost btn-sm bg-gray-300">
+                                            <MdOutlineEdit className="text-xl" />
+                                        </button>
+                                        <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm bg-gray-300">
                                             <MdOutlineDeleteOutline className="text-xl" />
                                         </button>
                                     </th>
