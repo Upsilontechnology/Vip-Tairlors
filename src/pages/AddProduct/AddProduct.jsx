@@ -113,7 +113,7 @@ const AddProduct = () => {
                         {/* Date */}
                         <div className="form-control w-full my-1">
                             <label className="label">
-                                <span className="label-text">Date*(mm/dd/yyyy)</span>
+                                <span className="label-text">Date(mm/dd/yyyy)*</span>
                             </label>
                             <input
                                 {...register("date", { required: true })}
@@ -134,9 +134,11 @@ const AddProduct = () => {
                                 {...register('category', { required: true })}
                                 className="select select-bordered focus:outline-none w-full">
                                 <option disabled value="default">Select a category</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
+                                <option value="punjabi">Punjabi</option>
+                                <option value="suit">Suit</option>
+                                <option value="cosmetics">Cosmetics</option>
+                                <option value="shelai">Shelai</option>
+                                <option value="ready-Made">Ready-Made</option>
                             </select>
                             {errors.category && <span className="text-red-500">Category is required</span>}
                         </div>
