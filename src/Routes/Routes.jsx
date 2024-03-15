@@ -21,6 +21,7 @@ import OrderStatement from "../pages/Dashboard/OrderStatement/OrderStatement.jsx
 import NoticePage from "../pages/NoticePage/NoticePage.jsx";
 import AddNotice from "../pages/Dashboard/AddNotice/AddNotice.jsx";
 import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
+import AddCategory from "../pages/Dashboard/AddCategory/AddCategory.jsx";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
             {
                 path: 'addProduct',
                 element: <AddProduct></AddProduct>
+            },
+            {
+                path: 'addCategory',
+                element: <AddCategory></AddCategory>
             },
             {
                 path: 'productStatement',
