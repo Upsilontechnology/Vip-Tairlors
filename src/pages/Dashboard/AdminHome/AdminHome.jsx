@@ -7,6 +7,7 @@ import { IoBagOutline } from 'react-icons/io5';
 import { BsCart3 } from 'react-icons/bs';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import AdminTabs from '../AdminTabs/AdminTabs';
 
 const AdminHome = () => {
     const axiosPublic = useAxiosPublic();
@@ -29,8 +30,8 @@ const AdminHome = () => {
     const totalSells = allSellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
     const pendingOrders = allOrderProducts?.filter(product => product.status === 'pending');
     const completedOrders = allOrderProducts?.filter(product => product.status === 'completed');
-
-    // console.log(totalSells, pendingOrders, completedOrders)
+    const completeOrderPrice = completedOrders?.reduce((total, product) => total + parseFloat(product?.price), 0)
+    const totalAmount = totalSells + completeOrderPrice;
 
 
     return (
@@ -47,11 +48,13 @@ const AdminHome = () => {
                 <div className='flex flex-col justify-center items-center mr-5 space-y-3'>
                     <h1 className="md:text-3xl text-xl font-bold">Mojammel Hok Patoari</h1>
                     <p className="text-gray-400">Founder of VIP Tailors and BlahBlah</p>
+                    <h2 className="text-2xl font-bold">Total Sales : {totalAmount}</h2>
                 </div>
             </div>
             <div className='mt-5'>
                 <h1 className="text-3xl font-bold text-center">All Stats</h1>
             </div>
+            <AdminTabs />
             {/* card container */}
             <div className='flex justify-center mb-5'>
                 <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
