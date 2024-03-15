@@ -22,7 +22,7 @@ const OrderedList = () => {
     const [productLength, setProductLength] = useState(0);
     // Pagination
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 5;
+    const itemsPerPage = 20;
     const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const email = user?.email;

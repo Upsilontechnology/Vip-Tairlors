@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosPublic = axios.create({
-    // baseURL: 'http://localhost:5000'
+    // baseURL: 'https://super-shop-server-mu.vercel.app'
     baseURL: 'http://localhost:5000'
 });
 
@@ -14,7 +14,7 @@ export default useAxiosPublic;
 // import axios from "axios";
 
 // const axiosPublic = axios.create({
-//   baseURL: "http://localhost:5000/",
+//   baseURL: "https://super-shop-server-mu.vercel.app/",
 // });
 
 // axiosPublic.interceptors.response.use(

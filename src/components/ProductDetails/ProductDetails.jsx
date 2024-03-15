@@ -1,12 +1,13 @@
 import "./ProductDetails.css";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { MdOutlineDeleteOutline } from 'react-icons/md';
+import { MdOutlineDeleteOutline, MdOutlineEdit } from 'react-icons/md';
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Pagination from "../pagination/pagination";
+import UpdateProductDetails from "../UpdateProductDetails/UpdateProductDetails";
 
 const ProductDetails = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -16,11 +17,11 @@ const ProductDetails = () => {
     const [productLength, setProductLength] = useState(0);
     // Pagination
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 5;
+    const itemsPerPage = 20;
     const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const email = user?.email;
-    console.log(currentPage, totalPages, productLength);
+    // console.log(currentPage, totalPages, productLength);
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo', email],
@@ -51,13 +52,8 @@ const ProductDetails = () => {
             setProductLength(0);
         }
     }, [filterBySearch]);
-    console.log(filterBySearch.totalCount);
-
-    console.log(filterBySearch);
 
     // delete handler
-
-
     const handleDelete = (product) => {
         Swal.fire({
             title: "Are you sure?",
@@ -74,9 +70,9 @@ const ProductDetails = () => {
                         console.log(res)
                         if (res.status === 200) {
                             // remaining product
-                            const remaining = filterBySearch?.filter(products => products?._id !== product?._id)
-                            setFilterBySearch(remaining)
-
+                            // const remaining = filterBySearch?.filter(products => products?._id !== product?._id)
+                            // setFilterBySearch(remaining)
+                            refetch();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Product has been deleted..!",
@@ -135,8 +131,11 @@ const ProductDetails = () => {
                                     <td>
                                         <img className="w-10 h-10" src={product?.image} alt="" />
                                     </td>
-                                    <th>
-                                        <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm">
+                                    <th className="flex gap-2">
+                                        <button className="btn btn-ghost btn-sm bg-gray-300">
+                                            <MdOutlineEdit className="text-xl" />
+                                        </button>
+                                        <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm bg-gray-300">
                                             <MdOutlineDeleteOutline className="text-xl" />
                                         </button>
                                     </th>

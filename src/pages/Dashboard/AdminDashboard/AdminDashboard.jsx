@@ -1,21 +1,14 @@
-import React from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import Navbar2 from "../../../shared/Navbar2/Navbar2";
-import {
-  AiFillFacebook,
-  AiFillInstagram,
-  AiOutlineHome,
-  AiOutlineSchedule,
-  AiOutlineTwitter,
-  AiOutlineWhatsApp,
-} from "react-icons/ai";
-import { FaUserClock } from "react-icons/fa";
-import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-import { IoBagAddOutline, IoPeople, IoPersonOutline } from "react-icons/io5";
-import { MdProductionQuantityLimits } from "react-icons/md";
-import useAuth from "../../../hooks/useAuth";
-import Swal from "sweetalert2";
-import { CiViewList } from "react-icons/ci";
+import React from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import Navbar2 from '../../../shared/Navbar2/Navbar2';
+import { AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
+import { FaUserClock } from 'react-icons/fa';
+import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
+import { IoBagAddOutline, IoPeople, IoPersonOutline } from 'react-icons/io5';
+import { MdProductionQuantityLimits } from 'react-icons/md';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import { CiViewList } from 'react-icons/ci';
 import { ImStatsDots } from "react-icons/im";
 
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
@@ -47,126 +40,96 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
     });
   };
 
-  const navlinks = (
-    <>
-      <li className="relative px-2 py-1">
-        <NavLink
-          defaultChecked
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="adminHome"
-        >
-          <AiOutlineHome />
-          <span className="ml-4">Home</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="addProduct"
-        >
-          <IoBagAddOutline />
-          <span className="ml-4">Add Product</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="productList"
-        >
-          <CiViewList />
-          <span className="ml-4">Product List</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="orderedList"
-        >
-          <MdProductionQuantityLimits />
-          <span className="ml-4">Ordered List</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="productStatement"
-        >
-          <AiOutlineSchedule />
-          <span className="ml-4">Product Statement</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="orderStatement"
-        >
-          <ImStatsDots />
-          <span className="ml-4">Order Statement</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="addNotice"
-        >
-          <AiOutlineSchedule />
-          <span className="ml-4">Add Notice</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="membersRequest"
-        >
-          <FaUserClock />
-          <span className="ml-4">Members Request</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="allMembers"
-        >
-          <IoPeople />
-          <span className="ml-4">All Members</span>
-        </NavLink>
-      </li>
+    const navlinks = <>
+        <li className="relative px-2 py-1">
+            <NavLink
+                defaultChecked
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="adminHome"
+            >
+                <AiOutlineHome />
+                <span className="ml-4">Home</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="productList"
+            >
+                <CiViewList />
+                <span className="ml-4">Product List</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="orderedList"
+            >
+                <MdProductionQuantityLimits />
+                <span className="ml-4">Ordered List</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="productStatement"
+            >
+                <AiOutlineSchedule />
+                <span className="ml-4">Product Statement</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="orderStatement"
+            >
+                <ImStatsDots />
+                <span className="ml-4">Order Statement</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="addNotice"
+            >
+                <AiOutlineSchedule />
+                <span className="ml-4">Add Notice</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="membersRequest"
+            >
+                <FaUserClock />
+                <span className="ml-4">Members Request</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="allMembers"
+            >
+                <IoPeople />
+                <span className="ml-4">All Members</span>
+            </NavLink>
+        </li>
     </>
   );
 
