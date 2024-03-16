@@ -25,7 +25,7 @@ const OrderedProduct = () => {
         },
       })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
 
         // product data send to database
         const productDetails = {
