@@ -26,7 +26,7 @@ const OrderedList = () => {
     const totalPages = Math.ceil(productLength / itemsPerPage);
     const { user } = useAuth();
     const email = user?.email;
-    console.log(currentPage, totalPages, productLength);
+    // console.log(currentPage, totalPages, productLength);
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo', email],
@@ -50,7 +50,7 @@ const OrderedList = () => {
         },
     });
 
-    console.log(orderBySearch);
+    // console.log(orderBySearch);
     useEffect(() => {
         if (orderBySearch && orderBySearch.totalCount) {
             setProductLength(orderBySearch.totalCount);
@@ -58,7 +58,7 @@ const OrderedList = () => {
             setProductLength(0);
         }
     }, [orderBySearch]);
-    console.log(orderBySearch);
+    // console.log(orderBySearch);
 
     return (
         <div className='supershop-container'>
