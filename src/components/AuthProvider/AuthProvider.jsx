@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 axios
-                    .post("https://super-shop-server-mu.vercel.app/jwt", {
+                    .post("http://localhost:5000/jwt", {
                         email: currentUser?.email,
                     })
                     .then((data) => {
