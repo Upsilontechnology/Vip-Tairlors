@@ -40,7 +40,7 @@ const ProductDetails = () => {
     const handleEdit = async (id) => {
         setId(id);
         try {
-            const response = await axiosPublic.get(`/sellProduct/${id}`);
+            const response = await axiosPublic.get(`/sellProduct/1/${id}`);
             setSell(response?.data);
             setOpenModal(true);
         } catch (error) {
@@ -51,7 +51,7 @@ const ProductDetails = () => {
     const editSaller = async (id) => {
         setId(id);
         try {
-            const response = await axiosPublic.get(`/sellProduct/${id}`);
+            const response = await axiosPublic.get(`/sellProduct/1/${id}`);
             setSell(response?.data);
             setSellModal(true);
         } catch (error) {
@@ -63,6 +63,7 @@ const ProductDetails = () => {
         event.preventDefault();
 
         const form = event.target;
+        console.log(form);
         const quantity1 = parseInt(form.quantity.value, 10);
         let currentStock = sell?.quantity || 0;
 
@@ -83,7 +84,7 @@ const ProductDetails = () => {
                     .then(data => {
                         console.log(data);
                         queryClient.invalidateQueries("filterBySearch");
-                        setSellModal(false);
+                        setOpenModal(false);
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -138,7 +139,7 @@ const ProductDetails = () => {
             .then(data => {
                 console.log(data);
                 queryClient.invalidateQueries("filterBySearch");
-                setOpenModal(false);
+                setSellModal(false);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -273,7 +274,7 @@ const ProductDetails = () => {
                                             <td>{new Date(product?.sellingDate).toLocaleDateString()}</td>
                                             <td><img className="w-10 h-10" src={product?.image} alt="" /></td>
                                             <td className="flex gap-2">
-                                                <button onClick={() => editSaller(product?._id)}>
+                                                <button onClick={() => handleEdit(product?._id)}>
                                                     <spam className="md:px-2 md:py-2 md:mr-4 rounded-lg bg-gray-300 hover:bg-gray-400">Sell Product</spam>
                                                 </button>
                                                 <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm bg-gray-300">
@@ -311,7 +312,7 @@ const ProductDetails = () => {
                                             <td>{new Date(product?.sellingDate).toLocaleDateString()}</td>
                                             <td><img className="w-10 h-10" src={product?.image} alt="" /></td>
                                             <td className="flex gap-2">
-                                                <button onClick={() => handleEdit(product?._id)} className="btn btn-ghost btn-sm bg-gray-300">
+                                                <button onClick={() => editSaller(product?._id)} className="btn btn-ghost btn-sm bg-gray-300">
                                                     <MdOutlineEdit className="text-xl" />
                                                 </button>
                                                 <button onClick={() => handleDelete(product)} className="btn btn-ghost btn-sm bg-gray-300">
@@ -336,7 +337,7 @@ const ProductDetails = () => {
             />
 
             {
-                openModal && (
+                openSell && (
                     <div className="fixed inset-0 z-10 flex items-center ml-32 justify-center bg-black bg-opacity-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         {/* Modal content goes here */}
                         <div ref={modalRef} className="bg-white rounded-lg shadow-xl dark:bg-gray-900 ">
@@ -438,7 +439,7 @@ const ProductDetails = () => {
 
 
             {
-                openSell && (
+                openModal && (
                     <div className="fixed inset-0 z-10 flex items-center ml-32 justify-center bg-black bg-opacity-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         {/* Modal content goes here */}
                         <div ref={modalRef} className="bg-white rounded-lg shadow-xl dark:bg-gray-900 ">
