@@ -46,7 +46,7 @@ const AddCategory = () => {
                         <input className='w-full p-4 rounded-lg outline-none' type="text" name="category" placeholder='Put Category Name' id="" />
                     </div>
                     <div className='mx-auto w-1/4'>
-                        <button className="btn btn-outline">Add Category</button>
+                        <button className="focus:outline-none focus:ring-2 w-full focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-3.5 rounded-lg">Add Category</button>
                     </div>
                 </form>
             </div>
