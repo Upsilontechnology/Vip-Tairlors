@@ -70,6 +70,17 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 className={({ isActive }) =>
                     isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
                 }
+                to="addCategory"
+            >
+                <IoBagAddOutline />
+                <span className="ml-4">Add Category</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
                 to="productList"
             >
                 <CiViewList />

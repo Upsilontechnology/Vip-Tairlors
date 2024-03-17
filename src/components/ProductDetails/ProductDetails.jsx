@@ -194,9 +194,10 @@ const ProductDetails = () => {
                     .then(res => {
                         console.log(res)
                         if (res.status === 200) {
-                            const remaining = filterBySearch?.filter(products => products?._id !== product?._id)
-                            setFilterBySearch(remaining)
-
+                            // remaining product
+                            // const remaining = filterBySearch?.filter(products => products?._id !== product?._id)
+                            // setFilterBySearch(remaining)
+                            refetch();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Product has been deleted..!",
