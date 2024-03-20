@@ -136,10 +136,29 @@ const AdminTabs = ({ allOrderProducts }) => {
                             />
                         </div>
                         {/* card container */}
-                        <div ref={componentRef} className='flex justify-center mb-5'>
+                        <div ref={componentRef}>
+                            <div className='flex justify-end my-5'>
+                                <div className="dropdown dropdown-hover mr-5">
+                                    <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28 font-bold">
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('all')} className="">All</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('weekly')} className="">Weekly</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('monthly')} className="">Monthly</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('yearly')} className="">Yearly</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center p-4 lg:px-16 lg:py-12 mt-5 bg-white '>
+                                <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
                                     <div className='flex justify-between items-center'>
                                         <h3 className="text-2xl font-semibold">Total Summary</h3>
                                     </div>
@@ -197,7 +216,6 @@ const AdminTabs = ({ allOrderProducts }) => {
                                 </div>
                             </div>
                         </div>
-
                     </TabPanel>
                 </div>
             </Tabs>
