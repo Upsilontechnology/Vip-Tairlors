@@ -137,14 +137,9 @@ const AdminTabs = ({ allOrderProducts }) => {
                         </div>
                         {/* card container */}
                         <div ref={componentRef} className='flex justify-center mb-5'>
-                            <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
-                                <div className='flex justify-between items-center'>
-                                    <h3 className="text-2xl font-semibold">Total Summary</h3>
-                                </div>
-                            </div>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
+                                <div className='flex flex-col gap-5 justify-center p-4 lg:px-16 lg:py-12 mt-5 bg-white '>
                                     <div className='flex justify-between items-center'>
                                         <h3 className="text-2xl font-semibold">Total Summary</h3>
                                     </div>
