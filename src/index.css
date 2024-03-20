@@ -19,7 +19,7 @@
 
 
 .supershop-container {
-    @apply max-w-[1280px] w-full mx-auto py-10 md:py-12 lg:py-20 px-3;
+    @apply max-w-[1280px] w-full mx-auto py-10 md:py-12 lg:py-14 px-3;
 }
 
 
