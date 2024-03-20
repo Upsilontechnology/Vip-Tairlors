@@ -28,7 +28,7 @@ const AdminHome = () => {
     });
 
     const totalSells = allSellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
-    const pendingOrders = allOrderProducts?.filter(product => product.status === 'pending');
+  
     const completedOrders = allOrderProducts?.filter(product => product.status === 'completed');
     const completeOrderAmount = completedOrders?.reduce((total, product) => total + parseFloat(product?.price), 0)
     const totalAmount = totalSells + completeOrderAmount;
@@ -58,7 +58,7 @@ const AdminHome = () => {
             </div>
             {/* category-wise tabs */}
             <div>
-                <AdminTabs allOrderProducts={allOrderProducts} pendingOrders={pendingOrders} completedOrders={completedOrders} completeOrderAmount={completeOrderAmount} />
+                <AdminTabs allOrderProducts={allOrderProducts} />
             </div>
         </div>
     );
