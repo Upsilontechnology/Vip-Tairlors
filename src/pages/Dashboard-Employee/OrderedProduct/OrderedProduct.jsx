@@ -115,6 +115,7 @@ const OrderedProduct = () => {
                 {...register("quantity", { required: true })}
                 type="number"
                 placeholder="Quantity"
+                min={1}
                 className="input input-bordered w-full focus:outline-none"
               />
             </div>
@@ -141,6 +142,7 @@ const OrderedProduct = () => {
                 {...register("price", { required: true })}
                 type="number"
                 placeholder="Price"
+                min={1}
                 className="input input-bordered w-full focus:outline-none"
               />
             </div>
@@ -152,6 +154,7 @@ const OrderedProduct = () => {
                 {...register("advancedAmount", { required: true })}
                 type="number"
                 placeholder="Advanced Amount"
+                min={1}
                 className="input input-bordered w-full focus:outline-none"
               />
             </div>
