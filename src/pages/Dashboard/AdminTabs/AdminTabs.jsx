@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import ProductStats from '../../../components/ProductStats/ProductStats';
 import { IoBagOutline } from 'react-icons/io5';
 import { BsCart3 } from 'react-icons/bs';
+import { ReactToPrint } from 'react-to-print';
 
 const AdminTabs = ({ allOrderProducts, pendingOrders, completedOrders, completeOrderAmount }) => {
     const axiosPublic = useAxiosPublic();
     const [selectedData, setSelectedData] = useState();
     const [defaultTab, setDefaultTab] = useState(0);
+    const componentRef = useRef(null);
 
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
@@ -68,7 +70,7 @@ const AdminTabs = ({ allOrderProducts, pendingOrders, completedOrders, completeO
                                                 <div className=''>
                                                     {selectedData && (
                                                         <div>
-                                                            <ProductStats totalSells={totalSells} totalProduct={selectedData?.length} category={category?.category}/>
+                                                            <ProductStats totalSells={totalSells} totalProduct={selectedData?.length} category={category?.category} />
                                                         </div>
                                                     )}
                                                 </div>
@@ -81,8 +83,21 @@ const AdminTabs = ({ allOrderProducts, pendingOrders, completedOrders, completeO
                     </TabPanel>
                     {/* order product */}
                     <TabPanel>
+                        {/* Print button */}
+                        <div className="flex justify-end mb-3 mt-2 mr-4">
+                            <ReactToPrint
+                                trigger={() => (
+                                    <button className="bg-[#1D2A3B] hover:bg-[#131c29] text-white font-bold py-1.5 px-4 rounded">
+                                        Print
+                                    </button>
+                                )}
+                                content={() => componentRef.current}
+                                documentTitle='Product Summary'
+                                pageStyle="print"
+                            />
+                        </div>
                         {/* card container */}
-                        <div className='flex justify-center mb-5'>
+                        <div ref={componentRef} className='flex justify-center mb-5'>
                             <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
                                 <div className='flex justify-between items-center'>
                                     <h3 className="text-2xl font-semibold">Total Summary</h3>
