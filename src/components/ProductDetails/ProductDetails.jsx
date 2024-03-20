@@ -109,11 +109,6 @@ const ProductDetails = () => {
         }
     }
 
-
-
-
-
-
     const handleUpdate = async event => {
         event.preventDefault();
 
@@ -160,12 +155,12 @@ const ProductDetails = () => {
     const role = userInfo?.role;
 
     const { data: filterBySearch = [], isLoading } = useQuery({
-        queryKey: ["filterBySearch", email, role, searchValue, itemsPerPage, currentPage],
+        queryKey: ["filterBySearch", searchValue, itemsPerPage, currentPage],
         cacheTime: 0,
         staleTime: Infinity,
         queryFn: async () => {
             const res = await axiosPublic.get(
-                `/sellProduct/search?email=${email}&role=${role}&searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
+                `/sellProduct/search?searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
             );
             return res.data;
         },

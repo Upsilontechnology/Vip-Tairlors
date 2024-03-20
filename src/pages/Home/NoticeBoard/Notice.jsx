@@ -53,7 +53,9 @@ const Notice = () => {
                             <div className='flex flex-col gap-2 items-start'>
                                 <h2 className="text-2xl font-bold">{note?.title}</h2>
                                 <h3 className='text-xs font-bold'>{note?.date}</h3>
-                                <Link to={"/notice"}><h1 className='text-md font-normal hover:text-[#6979b1] cursor-pointer hover:underline transition duration-300'>{note?.message}</h1></Link>
+                                <Link to={`/notice/${note?._id}`}><h1 className='text-md font-normal hover:text-[#6979b1] cursor-pointer hover:underline transition duration-300'>{
+                                    note?.message.slice(0, 20)
+                                }..........</h1></Link>
                             </div>
                         </div>
                     </SwiperSlide>
