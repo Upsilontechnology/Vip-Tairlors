@@ -39,7 +39,7 @@ const MembersRequest = () => {
                 <tbody>
                     {
                         users?.map((user, ind) => user?.role === 'user' ? <tr key={user?._id}>
-                        <th>{ind + 1}</th>
+                        <th>~</th>
                         <td>
                             <div className="flex items-center gap-3">
                                 <div>

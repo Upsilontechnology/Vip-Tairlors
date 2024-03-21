@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Pagination from "../pagination/pagination";
 
@@ -9,12 +10,29 @@ const OrderedProductDetails = ({
   totalPages,
   refetch,
 }) => {
-  console.log(products);
+  console.log(refetch);
   const axiosPublic = useAxiosPublic();
 
-  const handleComplete = (product) => {
-    axiosPublic.patch(`/orderProduct/${product?._id}`).then((res) => {
-      console.log(res.data);
+  const handleComplete = async (product) => {
+    await axiosPublic.patch(`/orderProduct/${product?._id}`).then((res) => {
+      if (res.data.message === "success") {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Order added successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Product Code has already been taken",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      refetch();
     });
   };
   const {

@@ -27,7 +27,7 @@ const AdminTabs = ({ allOrderProducts }) => {
         if (categories.length > 0) {
             handleCategory(categories[defaultTab].category, defaultTab);
         }
-    }, []);
+    }, [categories]);
 
     const handleCategory = async (category, index) => {
         setDefaultTab(index)
