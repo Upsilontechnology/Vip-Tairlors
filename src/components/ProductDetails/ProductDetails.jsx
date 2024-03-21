@@ -155,7 +155,7 @@ const ProductDetails = () => {
     })
     const role = userInfo?.role;
 
-    const { data: filterBySearch = [], isLoading } = useQuery({
+    const { data: filterBySearch = [], isLoading, refetch } = useQuery({
         queryKey: ["filterBySearch", searchValue, itemsPerPage, currentPage],
         cacheTime: 0,
         staleTime: Infinity,
@@ -167,11 +167,15 @@ const ProductDetails = () => {
         },
     });
 
+    console.log(filterBySearch);
+
     useEffect(() => {
         if (filterBySearch && filterBySearch.totalCount) {
             setProductLength(filterBySearch.totalCount);
+            refetch();
         } else {
             setProductLength(0);
+            refetch();
         }
     }, [filterBySearch]);
 

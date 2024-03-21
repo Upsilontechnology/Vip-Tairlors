@@ -16,56 +16,67 @@ const OrderedProduct = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    // sending image to the imageBB
-    const imageFile = { image: data.image[0] };
-    axiosPublic
-      .post(image_hosing_api, imageFile, {
+    // Check if image is provided
+    if (data.image && data.image.length > 0) {
+      // If image is provided, upload it first
+      const imageFile = { image: data.image[0] }
+      axiosPublic.post(image_hosing_api, imageFile, {
         headers: {
-          "content-type": "multipart/form-data",
-        },
+          'content-type': 'multipart/form-data'
+        }
       })
-      .then((res) => {
-        console.log(res.data);
-
-        // product data send to database
-        const productDetails = {
-          name: data?.name,
-          quantity: data?.quantity,
-          category: data?.category,
-          productCode: data?.code,
-          image: res?.data?.data?.display_url,
-          deliveryDate: data?.deliveryDate,
-          orderedDate: data?.orderedDate,
-          price: data?.price,
-          advancedAmount: data?.advancedAmount,
-          status: "pending",
-          email: user?.email,
-        };
-        // console.log(productDetails);
-        // product added to the server
-        axiosPublic.post("/orderProduct", productDetails).then((res) => {
-          // console.log(res)
-          if (res.data.message === "success") {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Order added successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          } else {
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Product Code has already been taken",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
+        .then(res => {
+          const imageUrl = res?.data?.data?.display_url || "";
+          sendDataToServer(data, imageUrl);
+        })
+        .catch(error => {
+          console.error("Error uploading image:", error);
+          sendDataToServer(data, "");
         });
+    } else {
+      // If no image provided, send data to server directly
+      sendDataToServer(data, "");
+    }
+  }
+
+  const sendDataToServer = (data, imageUrl) => {
+    const productDetails = {
+      name: data?.name,
+      quantity: data?.quantity,
+      category: data?.category,
+      productCode: data?.code,
+      image: imageUrl,
+      deliveryDate: data?.deliveryDate,
+      orderedDate: data?.orderedDate,
+      price: data?.price,
+      advancedAmount: data?.advancedAmount,
+      status: "pending",
+      email: user?.email,
+    };
+    axiosPublic.post('/orderProduct', productDetails)
+      .then(res => {
+        if (res.data.message === 'success') {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Order added successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Product Code has already been taken",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Error adding product:", error);
       });
   };
-
   return (
     <div className="supershop-container">
       <SectionTitle
@@ -208,7 +219,7 @@ const OrderedProduct = () => {
               <span className="label-text">Image URL*</span>
             </label>
             <input
-              {...register("image")}
+              {...register("image", { required: false })}
               type="file"
               placeholder="Select Image"
               className="input input-bordered w-full focus:outline-noned"

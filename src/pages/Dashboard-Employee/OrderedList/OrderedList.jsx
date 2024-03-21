@@ -66,8 +66,10 @@ const OrderedList = () => {
   useEffect(() => {
     if (orderBySearch && orderBySearch.totalCount) {
       setProductLength(orderBySearch.totalCount);
+      refetch();
     } else {
       setProductLength(0);
+      refetch();
     }
   }, [orderBySearch]);
   // console.log(orderBySearch);

@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import useUser from '../../../hooks/useUser';
+// import useUser from '../../../hooks/useUser';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const AllMembers = () => {
-    const [users, refetch] = useUser();
-    
-    const [confirmedUser, setConfirmedUser] = useState();
-    const axiosPublic = useAxiosPublic();
+    // const [users, refetch] = useUser();
+    const [axiosSecure] = useAxiosSecure();
 
-    useEffect(() => {
-        const filteredUser = users?.filter(us => us.role === 'employee' || us.role === 'admin');
-        setConfirmedUser(filteredUser);
-    }, [])
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ["Users"],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/user')
+            return res.data;
+        }
+    })
+    
+    const [confirmedUser, setConfirmedUser] = useState(users);
+    const axiosPublic = useAxiosPublic();
     
     // make admin
     const handleMakeAdmin = (user) => {
         axiosPublic.patch(`/user/admin/${user?._id}`)
             .then(res => {
-                refetch();
                 if (res?.data?.message === 'success') {
                     Swal.fire({
                         position: "top-end",
@@ -28,6 +33,7 @@ const AllMembers = () => {
                         timer: 1500
                     });
                 }
+                refetch();
             })
     }
 
@@ -35,7 +41,6 @@ const AllMembers = () => {
     const handleMakeUser = (user) => {
         axiosPublic.patch(`/user/${user?._id}`)
             .then(res => {
-                refetch();
                 if (res?.data?.message === 'success') {
                     Swal.fire({
                         position: "top-end",
@@ -45,8 +50,17 @@ const AllMembers = () => {
                         timer: 1500
                     });
                 }
+                refetch();
             })
     }
+
+    useEffect(() => {
+        const filteredUser = users?.filter(us => us.role === 'employee' || us.role === 'admin');
+        setConfirmedUser(filteredUser);
+        refetch();
+    }, [users])
+
+
 
     return (
         <div className="overflow-x-auto">
