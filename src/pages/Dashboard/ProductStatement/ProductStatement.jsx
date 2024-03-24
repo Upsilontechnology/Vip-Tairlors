@@ -4,11 +4,13 @@ import useSellProduct from '../../../hooks/useSellProduct';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import Pagination from '../../../components/pagination/pagination';
+import useSoldItems from '../../../hooks/useSoldItems';
 
 const ProductStatement = () => {
-    const [sellProducts, refetch, currentPage, totalPages, setCurrentPage] = useSellProduct();
+    // const [sellProducts, refetch, currentPage, totalPages, setCurrentPage] = useSellProduct();
+    const [soldItems, refetch, currentPage, totalPages, setCurrentPage] = useSoldItems();
     const axiosPublic = useAxiosPublic();
-    console.log(sellProducts)
+    console.log(soldItems)
 
     const handleDelete = (product) => {
         Swal.fire({
@@ -62,7 +64,7 @@ const ProductStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            sellProducts?.items?.map((product, ind) => <tr key={product?._id}>
+                            soldItems?.items?.map((product, ind) => <tr key={product?._id}>
                                 <th>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>

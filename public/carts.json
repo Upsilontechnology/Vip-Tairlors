@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "productName": "Widget A",
+      "category": "Punjabi",
+      "quantity": 50,
+      "price": 19.99
+    },
+    {
+      "id": 2,
+      "productName": "Gizmo X",
+      "category": "Shelai",
+      "quantity": 100,
+      "price": 29.99
+    },
+    {
+      "id": 3,
+      "productName": "Thingamajig B",
+      "category": "Oil",
+      "quantity": 25,
+      "price": 39.99
+    },
+    {
+      "id": 4,
+      "productName": "Whatchamacallit C",
+      "category": "Ready-made",
+      "quantity": 75,
+      "price": 9.99
+    },
+    {
+      "id": 5,
+      "productName": "Doodad Y",
+      "category": "Cosmetics",
+      "quantity": 10,
+      "price": 49.99
+    }
+  ]
+  

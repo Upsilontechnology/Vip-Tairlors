@@ -55,7 +55,7 @@ const OrderedProductDetails = ({
           <thead>
             <tr className="text-black">
               <th>Product Code</th>
-              <th>Product Name</th>
+              <th>Name</th>
               <th>Price</th>
               <th>Quantity</th>
               {products?.items?.some((dd) => dd.status === "pending") && (
