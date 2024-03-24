@@ -78,7 +78,7 @@ const AddProduct = () => {
     return (
         <div className='supershop-container'>
             <SectionTitle
-                title="Featured Products"
+                title="Add Product"
                 descrition="Welcome to our showcase selections, where uniqueness meets quality."
             />
             <div className='md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10'>
