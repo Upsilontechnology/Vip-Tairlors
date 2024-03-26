@@ -95,11 +95,11 @@ const Registation = () => {
 
 
     return (
-        <div className=' font-Montserrat w-full h-[80vh] '>
-            <div className='bg-gradient-to-r from-[#232323] to-[#463636] w-full text-center py-14 text-white'>
-                <h1 className="text-4xl font-bold">Registation</h1>
+        <div className=' font-Montserrat w-full'>
+            <div className='bg-[#e5e4e4] w-full text-center py-12 text-[#403030] flex justify-center items-center'>
+                <h1 className="text-4xl font-bold mt-10">Register Now</h1>
             </div>
-            <div className="flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full">
+            <div className="flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full py-8 rounded-lg">
                 <div className='flex flex-col w-full md:w-[768px] '>
                     <div className='bg-[#F3F3F3]  py-[10%] px-[5%] md:px-[15%]'>
                         <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
@@ -144,7 +144,7 @@ const Registation = () => {
                             </div>
                         </form>
                         <div className=' mt-10 flex items-center justify-center '>
-                            <h4 className='flex gap-2  '>Already have an account? <Link to={"/"} className='text-[#6486FD] font-semibold cursor-pointer'>Log In</Link></h4>
+                            <h4 className='flex gap-2  '>Already have an account? <Link to={"/login"} className='text-[#6486FD] font-semibold cursor-pointer'>Log In</Link></h4>
                         </div>
                         {/* <div className=''>
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>

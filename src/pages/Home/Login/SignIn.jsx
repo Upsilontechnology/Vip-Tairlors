@@ -62,14 +62,14 @@ const SignIn = () => {
 
 
     return (
-        <div className='font-Montserrat w-full h-[80vh]'>
+        <div className='font-Montserrat w-full'>
             {/* <Helmet>
                 <title>JobsWorld | Login </title>
             </Helmet> */}
-            <div className='bg-gradient-to-r from-[#252424] to-[#463636] w-full text-center py-14 text-white'>
-                <h1 className="text-4xl font-bold">Login</h1>
+            <div className='bg-[#e5e4e4] w-full text-center py-12 text-[#403030] flex justify-center items-center'>
+                <h1 className="text-4xl font-bold mt-10">Log In</h1>
             </div>
-            <div className='flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full'>
+            <div className='flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full py-8 rounded-lg'>
                 <div className=' flex flex-col w-full md:w-[768px] '>
                     <div className='bg-[#F3F3F3]  py-[10%] px-[5%]  md:px-[15%]'>
                         <form onSubmit={handleLogin} className="">

@@ -11,7 +11,9 @@ import Notice from '../NoticeBoard/Notice';
 
 const Home = () => {
     const [loggedUser, setLoggedUser] = useState();
+    console.log(loggedUser?.role);
     const [users] = useUser();
+    console.log(users);
     const { user, setLoading, loading } = useAuth();
 
     useEffect(() => {
@@ -60,21 +62,24 @@ const Home = () => {
                             </>
                         )}
                     </div>
-                ) : <></>
+                ) : <>
+                    <Banner />
+                    <Featured />
+                    <Notice />
+                    <QuoteBanner />
+                </>
             ) : (
-                <SignIn />
+                <>
+                    <Banner />
+                    <Featured />
+                    <Notice />
+                    <QuoteBanner />
+                </>
             )}
         </div>
     );
 };
 
 export default Home;
-
-
-
-
-
-
-
 
 

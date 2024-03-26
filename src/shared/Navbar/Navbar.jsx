@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { logOut } = useAuth();
+    const { logOut, user } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Navbar = () => {
         <li className=''>
             <NavLink
                 to="/"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold  transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
             >
                 Home
             </NavLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
         <li>
             <NavLink
                 to="/contact"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold mr-10 transition navs`}
+                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold mr-10 transition navs`}
             >
                 Contact Us
             </NavLink>
@@ -83,7 +83,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0  ${isScrolled ? 'bg-white shadow-sm shadow-black' : 'bg-none'}`}>
+        <div className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0  ${isScrolled ? 'bg-[#403030] shadow-sm shadow-black' : 'bg-[#403030]'}`}>
             <div className='max-w-[1280px] w-full mx-auto'>
                 <div className="navbar flex flex-row justify-between">
                     <div className="">
@@ -95,13 +95,19 @@ const Navbar = () => {
                                 {navlinks}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost lg:text-2xl ml-16 md:ml-0">VIP Tailor</a>
+                        <a className="text-white lg:text-2xl ml-16 md:ml-0">VIP Tailor</a>
                     </div>
                     <div className="">
                         <ul className='hidden md:flex items-center gap-8'>
                             {navlinks}
                         </ul>
-                        <button onClick={handleLogout} className="py-1.5 px-5 bg-gray-200 font-semibold rounded-lg btn ">Logout</button>
+                        <div>
+                            {
+                                user ? <button onClick={handleLogout} className="bg-white text-black font-semibold px-2 py-1 rounded ">Logout</button>
+                                : <Link to='/login' className='bg-white text-black font-semibold px-2 py-1 rounded'>Log in</Link>
+                            }
+                        </div>
+                        <Link to='/register' className='bg-white text-black font-semibold px-2 py-1 rounded ml-3'>Create an account</Link>
                     </div>
                 </div>
             </div>
