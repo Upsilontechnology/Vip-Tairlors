@@ -20,7 +20,7 @@ const AdminHome = () => {
             return res.data;
         }
     });
-    const { data: allOrderProducts = []} = useQuery({
+    const { data: allOrderProducts = [] } = useQuery({
         queryKey: ['allOrderProduct'],
         queryFn: async () => {
             const res = await axiosPublic.get('/orderProduct')
@@ -30,7 +30,7 @@ const AdminHome = () => {
     });
 
     const totalSells = allSellProducts?.reduce((total, product) => total + parseFloat(product?.price), 0)
-  
+
     const completedOrders = allOrderProducts?.filter(product => product.status === 'completed');
     const completeOrderAmount = completedOrders?.reduce((total, product) => total + parseFloat(product?.price), 0)
     const totalAmount = totalSells + completeOrderAmount;
@@ -38,29 +38,13 @@ const AdminHome = () => {
 
     return (
         <div className='my-5'>
-            {/* title */}
-            <SectionTitle
-                title={"Welcome To Your World!"}
-                descrition="Let's Conquer The World in Easy Way!"
-            />
-            {/* admin info */}
-            <div className='bg-stone-100 lg:w-5/6 mx-1 lg:mx-auto flex justify-between gap-3 lg:gap-0 shadow-md rounded-lg'>
-                <div className='pl-3'>
-                    <img className='lg:w-96 w-72 bg-gray-200 rounded-bl-full rounded-tl-full rounded-br-full' src={AdminImg} alt="" />
+            <div className='bg-white p-6'>
+                <h1 className="text-2xl font-semibold mb-3">Total Summary</h1>
+                {/* category-wise tabs */}
+                <div className='flex'>
+                    <AdminTabs allOrderProducts={allOrderProducts} />
                 </div>
-                <div className='flex flex-col justify-center items-center mr-5 space-y-3'>
-                    <h1 className="md:text-3xl text-xl font-bold">Mojammel Hok Patoari</h1>
-                    <p className="text-gray-400">Founder of VIP Tailors</p>
-                    <h2 className="text-2xl font-semibold">Total Sales : {totalAmount}</h2>
-                    <p className="text-gray-400">(including sales and completed orders)</p>
-                </div>
-            </div>
-            <div className='mt-5'>
-                <h1 className="text-3xl font-bold text-center">All Stats</h1>
-            </div>
-            {/* category-wise tabs */}
-            <div>
-                <AdminTabs allOrderProducts={allOrderProducts} />
+
             </div>
         </div>
     );
