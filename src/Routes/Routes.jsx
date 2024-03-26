@@ -22,6 +22,7 @@ import NoticePage from "../pages/NoticePage/NoticePage.jsx";
 import AddNotice from "../pages/Dashboard/AddNotice/AddNotice.jsx";
 import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 import AddCategory from "../pages/Dashboard/AddCategory/AddCategory.jsx";
+import AddToCart from "../pages/Dashboard/AddToCart/AddToCart.jsx";
 
 const router = createBrowserRouter([
     {
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             {
                 path: 'productList',
                 element: <ProductDetails />
+            },
+            {
+                path: 'addToCart',
+                element: <AddToCart />
             },
             {
                 path: 'addProduct',

@@ -9,6 +9,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Pagination from "../pagination/pagination";
 import { useForm } from "react-hook-form";
 import useUser from "../../hooks/useUser";
+import useCarts from "../../hooks/useCarts";
 
 const ProductDetails = () => {
     const queryClient = useQueryClient();
@@ -25,10 +26,11 @@ const ProductDetails = () => {
     const itemsPerPage = 20;
     const { user } = useAuth();
     const email = user?.email;
-    const { register, handleSubmit, reset } = useForm();
+    // const { register, handleSubmit, reset } = useForm();
 
     const [loggedUser, setLoggedUser] = useState();
     const [users] = useUser();
+    const [carts, remaining] = useCarts();
 
     useEffect(() => {
         if (user && users) {
@@ -63,51 +65,85 @@ const ProductDetails = () => {
         event.preventDefault();
 
         const form = event.target;
-        console.log(form);
-        const quantity1 = parseInt(form.quantity.value, 10);
-        let currentStock = sell?.quantity || 0;
-
-        currentStock = Math.max(currentStock, 0);
-
-        if (quantity1 >= 0 && currentStock >= 0) {
-            const quantity = currentStock - quantity1;
-            const sellUpdate = { quantity };
-            if (quantity >= 0) {
-                fetch(`http://localhost:5000/sellProduct/${id}`, {
-                    method: "PUT",
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                    body: JSON.stringify(sellUpdate)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        queryClient.invalidateQueries("filterBySearch");
-                        setOpenModal(false);
+        // console.log(form);
+        const sellData = {
+            productName: form.name.value,
+            price: parseInt(form.price.value) * parseInt(form.quantity.value),
+            quantity: parseInt(form.quantity.value),
+            category: form.category.value,
+            productCode: parseInt(form.code.value),
+            sellingDate: new Date(),
+            title: 'cart'
+        }
+        const quantity1 = parseInt(form.quantity.value);
+        if (quantity1 > sell?.quantity) {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "add quantity more",
+                showConfirmButton: false,
+                timer: 1000
+            });
+        } else {
+            await axiosPublic.post('/carts', sellData)
+                .then(res => {
+                    console.log(res);
+                    if (res.data.message === 'success') {
+                        remaining();
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Sell Product",
+                            title: "Product added to the cart",
                             showConfirmButton: false,
                             timer: 1000
                         });
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-            else {
-                console.log("Invalid quantity or current stock not available.");
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "current stock not available",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-            }
+                    }
+                })
         }
+
+        // let currentStock =  || 0;
+
+        // currentStock = Math.max(currentStock, 0);
+
+        // if (quantity1 >= 0 && currentStock >= 0) {
+        //     const quantity = currentStock - quantity1;
+        //     const sellUpdate = { quantity };
+        //     if (quantity >= 0) {
+        //         fetch(`http://localhost:5000/sellProduct/${id}`, {
+        //             method: "PUT",
+        //             headers: {
+        //                 'content-type': 'application/json',
+        //             },
+        //             body: JSON.stringify(sellUpdate)
+        //         })
+        //             .then(res => res.json())
+        //             .then(data => {
+        //                 console.log(data);
+        //                 queryClient.invalidateQueries("filterBySearch");
+        //                 setOpenModal(false);
+        //                 Swal.fire({
+        //                     position: "top-end",
+        //                     icon: "success",
+        //                     title: "Sell Product",
+        //                     showConfirmButton: false,
+        //                     timer: 1000
+        //                 });
+        //             })
+        //             .catch(error => {
+        //                 console.error('Error:', error);
+        //             });
+        //     }
+        //     else {
+        //         console.log("Invalid quantity or current stock not available.");
+        //         Swal.fire({
+        //             position: "top-end",
+        //             icon: "error",
+        //             title: "current stock not available",
+        //             showConfirmButton: false,
+        //             timer: 1000
+        //         });
+        //     }
+        // }
     }
 
     const handleUpdate = async event => {
@@ -138,7 +174,7 @@ const ProductDetails = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Sell Product",
+                    title: "Update Product details",
                     showConfirmButton: false,
                     timer: 1000
                 });
@@ -155,7 +191,7 @@ const ProductDetails = () => {
     })
     const role = userInfo?.role;
 
-    const { data: filterBySearch = [], isLoading } = useQuery({
+    const { data: filterBySearch = [], isLoading, refetch } = useQuery({
         queryKey: ["filterBySearch", searchValue, itemsPerPage, currentPage],
         cacheTime: 0,
         staleTime: Infinity,
@@ -167,13 +203,20 @@ const ProductDetails = () => {
         },
     });
 
+
     useEffect(() => {
         if (filterBySearch && filterBySearch.totalCount) {
             setProductLength(filterBySearch.totalCount);
+            refetch();
         } else {
             setProductLength(0);
+            refetch();
         }
     }, [filterBySearch]);
+
+    // console.log(filterBySearch);
+
+    const totalStock = filterBySearch?.items?.reduce((total, product) => total + (product?.price * product?.quantity), 0)
 
     const handleDelete = (product) => {
         Swal.fire({
@@ -239,8 +282,20 @@ const ProductDetails = () => {
     return (
         <div>
             <div className='flex flex-col gap-4'>
-                <div className="form-control w-1/2 mx-auto mb-5">
-                    <input onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search by Product Code" className="input input-bordered focus:outline-none" />
+                <div className="flex justify-between items-center my-5">
+                    {
+                        role === 'admin' ? <div className="border-2 border-gray-400 bg-white p-2 rounded-lg">
+                            <h1 className="text-xl">Total Stock: TK. <span className="font-semibold">{totalStock}</span></h1>
+                        </div> : ' '
+                    }
+                    {/* search bar */}
+                    <div className="form-control w-1/2 mx-auto">
+                        <input onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search by Product Code" className="input input-bordered focus:outline-none" />
+                    </div>
+                    {/* nothing */}
+                    <div>
+
+                    </div>
                 </div>
                 <div key={loggedUser?._id}>
                     {loggedUser?.role === "employee" ? (
@@ -420,7 +475,7 @@ const ProductDetails = () => {
                                                 className="input input-bordered focus:outline-none w-full" />
                                         </div>
                                     </div>
-                                    <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">Sell Product</button>
+                                    <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">Edit Product</button>
                                 </form>
                                 {/* <button onClick={() => setOpenModal(false)} className="absolute top-0 right-0 p-2 mt-1 mr-1 btn btn-ghost btn-sm bg-gray-300">
                                 <MdClose className="text-xl" />
@@ -501,9 +556,9 @@ const ProductDetails = () => {
                                                 <span className="label-text">Category*</span>
                                             </label>
                                             <input
-                                                name="date"
+                                                name="category"
                                                 defaultValue={sell?.category}
-                                                placeholder="Date"
+                                                placeholder="Category"
                                                 className="input input-bordered focus:outline-none w-full"
                                                 disabled />
                                         </div>

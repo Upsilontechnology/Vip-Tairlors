@@ -66,8 +66,10 @@ const OrderedList = () => {
   useEffect(() => {
     if (orderBySearch && orderBySearch.totalCount) {
       setProductLength(orderBySearch.totalCount);
+      refetch();
     } else {
       setProductLength(0);
+      refetch();
     }
   }, [orderBySearch]);
   // console.log(orderBySearch);
@@ -77,8 +79,8 @@ const OrderedList = () => {
       {/* section */}
       <div className="text-center">
         <SectionTitle
-          title="Explore Our Product Catalogue"
-          descrition="Welcome to our product catalog, your gateway to a world of possibilities!"
+          title="Ordered Products List"
+          descrition="Welcome to your product catalog, your gateway to a world of possibilities!"
         />
       </div>
       {/* search bar */}

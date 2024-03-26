@@ -6,8 +6,10 @@ import { FaUserClock } from 'react-icons/fa';
 import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
 import { IoBagAddOutline } from 'react-icons/io5';
 import { MdProductionQuantityLimits } from 'react-icons/md';
+import useCarts from '../../../hooks/useCarts';
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
+    const [carts] = useCarts();
 
     const navlinks = <>
         <li className="relative px-2 py-1">
@@ -31,6 +33,17 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             >
                 <MdProductionQuantityLimits />
                 <span className="ml-4">Product List</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg" : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+                }
+                to="addToCart"
+            >
+                <MdProductionQuantityLimits />
+                <span className="ml-4">Add To Cart <span className='text-red-500'>({carts?.length})</span></span>
             </NavLink>
         </li>
         <li className="relative px-2 py-1 ">

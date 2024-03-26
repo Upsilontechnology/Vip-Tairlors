@@ -27,14 +27,14 @@ const AdminTabs = ({ allOrderProducts }) => {
         if (categories.length > 0) {
             handleCategory(categories[defaultTab].category, defaultTab);
         }
-    }, []);
+    }, [categories]);
 
     const handleCategory = async (category, index) => {
         setDefaultTab(index)
         setFilter(category);
         const categoryName = category.toLowerCase();
         // console.log(categoryName)
-        await axiosPublic.get(`/sellProduct/${categoryName}`)
+        await axiosPublic.get(`/soldItems/${categoryName}`)
             .then(res => {
                 setSelectedData(res.data);
             })
@@ -42,7 +42,7 @@ const AdminTabs = ({ allOrderProducts }) => {
 
     const handleFilter = async (category, filterName) => {
         const categoryName = category.toLowerCase();
-        const res = await axiosPublic.get(`/sellProduct/1/filter?categoryName=${categoryName}&filterName=${filterName}`)
+        const res = await axiosPublic.get(`/soldItems/1/filter?categoryName=${categoryName}&filterName=${filterName}`)
         setSelectedData(res.data);
     }
 
@@ -51,11 +51,23 @@ const AdminTabs = ({ allOrderProducts }) => {
         setOrderProducts(res.data);
         // console.log(res.data);
     }
+    useEffect(() => {
+        handleOrderFilter('all');
+    }, []);
+
+
+    // useEffect(() => {
+    //     if (defaultTab === 1) {
+    //         handleOrderFilter('all');
+    //     }
+    // }, [defaultTab]);
 
     const pendingOrders = orderProducts?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.filter(product => product.status === 'completed');
-    const completeOrderAmount = completedOrders?.reduce((total, product) => total + parseFloat(product?.price), 0)
+    const completeOrderAmount = completedOrders?.reduce((total, product) => total + (parseFloat(product?.price) * parseFloat(product?.quantity)), 0)
     const totalSells = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
+    const totalqunatity = selectedData?.reduce((total, product) => total + parseInt(product?.quantity), 0)
+
 
     return (
         <div className='overflow-hidden w-full h-full' >
@@ -89,6 +101,9 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                     <button onClick={() => handleFilter(filter, 'all')} className="">All</button>
                                                 </li>
                                                 <li>
+                                                    <button onClick={() => handleFilter(filter, 'daily')} className="">Daily</button>
+                                                </li>
+                                                <li>
                                                     <button onClick={() => handleFilter(filter, 'weekly')} className="">Weekly</button>
                                                 </li>
                                                 <li>
@@ -109,7 +124,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <div className=''>
                                                     {selectedData && (
                                                         <div>
-                                                            <ProductStats totalSells={totalSells} totalProduct={selectedData?.length} category={category?.category} />
+                                                            <ProductStats totalSells={totalSells} totalProduct={totalqunatity} category={category?.category} />
                                                         </div>
                                                     )}
                                                 </div>
@@ -136,10 +151,32 @@ const AdminTabs = ({ allOrderProducts }) => {
                             />
                         </div>
                         {/* card container */}
-                        <div ref={componentRef} className='flex justify-center mb-5'>
+                        <div ref={componentRef}>
+                            <div className='flex justify-end my-5'>
+                                <div className="dropdown dropdown-hover mr-5">
+                                    <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28 font-bold">
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('all')} className="">All</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('daily')} className="">Daily</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('weekly')} className="">Weekly</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('monthly')} className="">Monthly</button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => handleOrderFilter('yearly')} className="">Yearly</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center p-4 lg:px-16 lg:py-12 mt-5 bg-white '>
+                                <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
                                     <div className='flex justify-between items-center'>
                                         <h3 className="text-2xl font-semibold">Total Summary</h3>
                                     </div>
@@ -197,7 +234,6 @@ const AdminTabs = ({ allOrderProducts }) => {
                                 </div>
                             </div>
                         </div>
-
                     </TabPanel>
                 </div>
             </Tabs>

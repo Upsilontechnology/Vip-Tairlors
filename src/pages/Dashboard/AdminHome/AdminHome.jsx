@@ -11,6 +11,7 @@ import AdminTabs from '../AdminTabs/AdminTabs';
 
 const AdminHome = () => {
     const axiosPublic = useAxiosPublic();
+    const [isLoading, setIsLoading] = useState(true);
 
     const { data: allSellProducts, refetch } = useQuery({
         queryKey: ['allSellProduct'],
@@ -19,10 +20,11 @@ const AdminHome = () => {
             return res.data;
         }
     });
-    const { data: allOrderProducts = [] } = useQuery({
+    const { data: allOrderProducts = []} = useQuery({
         queryKey: ['allOrderProduct'],
         queryFn: async () => {
             const res = await axiosPublic.get('/orderProduct')
+            setIsLoading(false)
             return res.data;
         }
     });
@@ -48,7 +50,7 @@ const AdminHome = () => {
                 </div>
                 <div className='flex flex-col justify-center items-center mr-5 space-y-3'>
                     <h1 className="md:text-3xl text-xl font-bold">Mojammel Hok Patoari</h1>
-                    <p className="text-gray-400">Founder of VIP Tailors and BlahBlah</p>
+                    <p className="text-gray-400">Founder of VIP Tailors</p>
                     <h2 className="text-2xl font-semibold">Total Sales : {totalAmount}</h2>
                     <p className="text-gray-400">(including sales and completed orders)</p>
                 </div>
