@@ -90,9 +90,9 @@ const AddToCart = () => {
 
     return (
         <div>
-            <div className='flex justify-between  bg-gray-300 -ml-8 p-2 mb-5'>
-                <h2 className="text-3xl">Total Items: {carts?.length} </h2>
-                <h2 className="text-3xl">Total Price: TK. {totalAmount}  </h2>
+            <div className='flex justify-between items-center  bg-gray-300 -ml-8 p-2 mb-5'>
+                <h2 className="font-medium text-2xl">Total Items: <span>{carts?.length}</span> </h2>
+                <h2 className="font-medium text-2xl">Total Price: TK. {totalAmount}  </h2>
                 <button onClick={() => handlePay(carts)} className="btn ">Confirm Payment</button>
             </div>
             {/* cart item details */}

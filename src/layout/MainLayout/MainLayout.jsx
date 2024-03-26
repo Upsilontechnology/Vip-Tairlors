@@ -27,9 +27,9 @@ const MainLayout = () => {
     // }
 
     // Ensure loggedUser is resolved
-    if (!loggedUser) {
-        return <SignIn></SignIn>; // Add loading state or spinner if necessary
-    }
+    // if (!loggedUser) {
+    //     return <SignIn></SignIn>; // Add loading state or spinner if necessary
+    // }
 
     // if (!loggedUser) {
     //     return setLoading(false); // Add loading state or spinner if necessary
@@ -37,9 +37,9 @@ const MainLayout = () => {
 
     return (
         <div>
-            {loggedUser && loggedUser.role === "user" && <Navbar />}
+            <Navbar />
             <Outlet />
-            {loggedUser && loggedUser.role === "user" && <Footer />}
+            <Footer />
         </div>
     );
 };
