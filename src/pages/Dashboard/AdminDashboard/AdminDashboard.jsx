@@ -230,7 +230,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         </div>
       </aside>
       {/* components */}
-      <div className="flex flex-col flex-1 w-full overflow-y-auto bg-gray-200">
+      <div className="flex flex-col flex-1 w-full overflow-y-auto bg-[#f6f5f5]">
         <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 lg:hidden">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button

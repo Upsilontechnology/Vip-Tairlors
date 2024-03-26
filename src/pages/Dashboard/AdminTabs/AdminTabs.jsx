@@ -3,9 +3,10 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import ProductStats from '../../../components/ProductStats/ProductStats';
-import { IoBagOutline } from 'react-icons/io5';
-import { BsCart3 } from 'react-icons/bs';
+import { IoBagOutline, IoBarChartOutline, IoPrintOutline } from 'react-icons/io5';
+import { BsCart3, BsFilterLeft } from 'react-icons/bs';
 import { ReactToPrint } from 'react-to-print';
+import { FaSortAmountDown } from "react-icons/fa";
 
 const AdminTabs = ({ allOrderProducts }) => {
     const axiosPublic = useAxiosPublic();
@@ -14,6 +15,7 @@ const AdminTabs = ({ allOrderProducts }) => {
     const componentRef = useRef(null);
     const [filter, setFilter] = useState(null);
     const [orderProducts, setOrderProducts] = useState(allOrderProducts);
+    const [commentRef, setCommentRef] = useState();
 
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
@@ -29,11 +31,13 @@ const AdminTabs = ({ allOrderProducts }) => {
         }
     }, [categories]);
 
+
     const handleCategory = async (category, index) => {
         setDefaultTab(index)
         setFilter(category);
         const categoryName = category.toLowerCase();
-        // console.log(categoryName)
+        console.log(categoryName)
+
         await axiosPublic.get(`/soldItems/${categoryName}`)
             .then(res => {
                 setSelectedData(res.data);
@@ -70,38 +74,49 @@ const AdminTabs = ({ allOrderProducts }) => {
 
 
     return (
-        <div className='overflow-hidden w-full h-full' >
+        <div className='overflow-hidden w-full h-full'>
             <Tabs>
                 {/* tab lists */}
-                <TabList className="font-bold">
-                    <Tab>Sell Product</Tab>
-                    <Tab>Order Product</Tab>
-                </TabList>
+                <div className='flex flex-row w-full gap-5'>
+                    <div className='w-1/3 bg-gray-200 h-24 flex flex-col p-4 space-y-3 rounded-md'>
+                        <h4 className="text-sm font-semibold"><IoBarChartOutline className='inline mr-1' /> Total Sales</h4>
+                        <h1 className="text-2xl font-bold">{totalSells * totalqunatity} BDT</h1>
+                    </div>
+                    {/* tab lists */}
+                    <TabList className="font-bold w-2/3 bg-gray-200 flex flex-row justify-center items-center gap-10 rounded-md">
+                        <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Sell Product</Tab>
+                        <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Order Product</Tab>
+                    </TabList>
+                </div>
                 {/* tab panel */}
-                <div className='my-5 border border-blue-800 rounded-lg'>
+                <div className='my-5 bg-gray-200 rounded-lg'>
                     {/* sell product */}
                     <TabPanel>
                         <div className='flex flex-col p-3 gap-4'>
-                            <Tabs defaultIndex={defaultTab}>
+                            <div >
                                 {/* tab lists */}
-                                <TabList className="font-bold pb-3 flex flex-row  justify-between items-center">
+                                <div className="font-bold pb-3 flex flex-row  justify-between items-center">
                                     <div>
-                                        {
-                                            categories?.map((category, index) =>
-                                                <Tab
-                                                    onClick={() => handleCategory(category?.category, index)}
-                                                    key={category._id}>{category?.category}</Tab>)
-                                        }
+                                        <select className='bg-white p-2 rounded-sm' onChange={(e) => handleCategory(e.target.value)} value={filter}>
+                                            {categories?.map((category, index) => (
+                                                <option value={category?.category} key={category._id}>
+                                                    {category?.category}
+                                                </option>
+                                            ))}
+                                        </select>
+
                                     </div>
-                                    <div>
+                                    <div className='flex flex-row items-center'>
                                         <div className="dropdown dropdown-hover mr-5">
-                                            <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
+                                            <div tabIndex={0} role="button" className=" m-1">
+                                                <FaSortAmountDown className='text-2xl' />
+                                            </div>
                                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28">
                                                 <li>
                                                     <button onClick={() => handleFilter(filter, 'all')} className="">All</button>
                                                 </li>
                                                 <li>
-                                                    <button onClick={() => handleFilter(filter, 'daily')} className="">Daily</button>
+                                                    <button onClick={() => handleFilter(filter, 'daily')} className="">Today</button>
                                                 </li>
                                                 <li>
                                                     <button onClick={() => handleFilter(filter, 'weekly')} className="">Weekly</button>
@@ -114,53 +129,50 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 </li>
                                             </ul>
                                         </div>
+                                        {/* print */}
+                                        <div className="flex justify-end mr-4">
+                                            <ReactToPrint
+                                                trigger={() => (
+                                                    <button className="font-bold">
+                                                        <IoPrintOutline className='text-2xl' />
+                                                    </button>
+                                                )}
+                                                content={() => commentRef.current}
+                                                documentTitle='Product Summary'
+                                                pageStyle="print"
+                                            />
+                                        </div>
                                     </div>
-                                </TabList>
+                                </div>
                                 {/* sub tab panel */}
                                 <div className='my-5 h-auto '>
-                                    {
-                                        categories?.map(category => (
-                                            <TabPanel key={category?._id}>
-                                                <div className=''>
-                                                    {selectedData && (
-                                                        <div>
-                                                            <ProductStats totalSells={totalSells} totalProduct={totalqunatity} category={category?.category} />
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </TabPanel>
-                                        ))
-                                    }
+                                    <div className=''>
+                                        {selectedData && (
+                                            <div>
+                                                <ProductStats totalSells={totalSells} totalProduct={totalqunatity} setCommentRef={setCommentRef} />
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                            </Tabs>
+                            </div>
                         </div>
                     </TabPanel>
                     {/* order product */}
                     <TabPanel>
                         {/* Print button */}
-                        <div className="flex justify-end mb-3 mt-2 mr-4">
-                            <ReactToPrint
-                                trigger={() => (
-                                    <button className="bg-[#1D2A3B] hover:bg-[#131c29] text-white font-bold py-1.5 px-4 rounded">
-                                        Print
-                                    </button>
-                                )}
-                                content={() => componentRef.current}
-                                documentTitle='Product Summary'
-                                pageStyle="print"
-                            />
-                        </div>
-                        {/* card container */}
-                        <div ref={componentRef}>
+                        <div className="flex items-center justify-between mb-3 mt-2 px-5">
+                            <h1 className="text-xl font-semibold">Order Product</h1>
                             <div className='flex justify-end my-5'>
                                 <div className="dropdown dropdown-hover mr-5">
-                                    <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
+                                    <div tabIndex={0} role="button" className="m-1">
+                                        <FaSortAmountDown className='text-2xl' />
+                                    </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28 font-bold">
                                         <li>
                                             <button onClick={() => handleOrderFilter('all')} className="">All</button>
                                         </li>
                                         <li>
-                                            <button onClick={() => handleOrderFilter('daily')} className="">Daily</button>
+                                            <button onClick={() => handleOrderFilter('daily')} className="">Today</button>
                                         </li>
                                         <li>
                                             <button onClick={() => handleOrderFilter('weekly')} className="">Weekly</button>
@@ -173,63 +185,71 @@ const AdminTabs = ({ allOrderProducts }) => {
                                         </li>
                                     </ul>
                                 </div>
+                                <div>
+                                    <ReactToPrint
+                                        trigger={() => (
+                                            <button className="font-bold rounded">
+                                                <IoPrintOutline className='text-2xl' />
+                                            </button>
+                                        )}
+                                        content={() => componentRef.current}
+                                        documentTitle='Product Summary'
+                                        pageStyle="print"
+                                    />
+                                </div>
                             </div>
+                        </div>
+                        {/* card container */}
+                        <div ref={componentRef}>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center p-4 lg:p-12 mt-5 bg-white lg:w-5/6'>
-                                    <div className='flex justify-between items-center'>
-                                        <h3 className="text-2xl font-semibold">Total Summary</h3>
-                                    </div>
+                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 pb-8'>
                                     {/* cards */}
-                                    <div className='grid grid-cols-2 gap-4 lg:gap-10'>
-                                        <div className='max-w-[25rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-2 lg:p-4 '>
-                                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                    <div className='grid grid-cols-2 gap-4'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                            <div className='rounded-lg flex items-center gap-1'>
+                                                <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
+                                                <h3 className='text-base font-semibold '>Total Sales</h3>
                                             </div>
                                             <div>
-                                                <h3 className='text-sm font-medium '>Total Sales</h3>
-                                                <h2 className='text-xl font-semibold '>{completeOrderAmount} BDT</h2>
+                                                <h2 className='text-2xl font-bold '>{completeOrderAmount} BDT</h2>
                                             </div>
                                         </div>
-
-                                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                            <div className='rounded-lg flex items-center gap-1'>
+                                                <div className='rounded-lg text-black text-base '>
                                                     <BsCart3 className='font-semibold' />
                                                 </div>
+                                                <h3 className='text-base font-semibold '>Total Orders</h3>
                                             </div>
                                             <div>
-                                                <h3 className='text-sm font-medium '>Total Orders</h3>
-                                                <h2 className='text-[1.3rem] font-semibold '>{orderProducts?.length}</h2>
+                                                <h2 className='text-2xl font-bold '>{orderProducts?.length}</h2>
                                             </div>
                                         </div>
-
-                                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
-                                                    <BsCart3 className='font-semibold' />
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                            <div className='rounded-lg flex items-center gap-1'>
+                                                <div className='rounded-lg text-black text-base '>
+                                                    <IoBagOutline className='font-semibold' />
                                                 </div>
+                                                <h3 className='text-base font-semibold '>Total Delivered</h3>
                                             </div>
                                             <div>
-                                                <h3 className='text-sm font-medium '>Total Delivered</h3>
-                                                <h2 className='text-[1.3rem] font-semibold '>{completedOrders?.length}</h2>
+                                                <h2 className='text-2xl font-bold '>{completedOrders?.length}</h2>
                                             </div>
                                         </div>
-
-                                        <div className='max-w-[25rem] pr-[3rem] border border-gray-400 shadow-md rounded-md flex gap-5 items-center p-4 '>
-                                            <div className='p-3 bg-[#9da6c0] rounded-lg '>
-                                                <div className='bg-[#0a1d56] p-2 rounded-lg text-white text-xl '>
-                                                    <BsCart3 className='font-semibold' />
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                            <div className='rounded-lg flex items-center gap-1'>
+                                                <div className='rounded-lg text-black text-base '>
+                                                    <IoBagOutline className='font-semibold' />
                                                 </div>
+                                                <h3 className='text-base font-semibold '>Total Pending</h3>
                                             </div>
                                             <div>
-                                                <h3 className='text-sm font-medium '>Total Pending</h3>
-                                                <h2 className='text-[1.3rem] font-semibold '>{pendingOrders?.length}</h2>
+                                                <h2 className='text-2xl font-bold '>{pendingOrders?.length}</h2>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
