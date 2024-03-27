@@ -31,6 +31,14 @@ const AdminTabs = ({ allOrderProducts }) => {
         }
     }, [categories]);
 
+    const { data: soldItemsInfo = [] } = useQuery({
+        queryKey: ['soldItemsInfo'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/soldItems')
+            return res.data;
+        }
+    })
+
 
     const handleCategory = async (category, index) => {
         setDefaultTab(index)
@@ -58,7 +66,7 @@ const AdminTabs = ({ allOrderProducts }) => {
     useEffect(() => {
         handleOrderFilter('all');
     }, []);
-
+    console.log(selectedData);
 
     // useEffect(() => {
     //     if (defaultTab === 1) {
@@ -69,7 +77,9 @@ const AdminTabs = ({ allOrderProducts }) => {
     const pendingOrders = orderProducts?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.filter(product => product.status === 'completed');
     const completeOrderAmount = completedOrders?.reduce((total, product) => total + (parseFloat(product?.price) * parseFloat(product?.quantity)), 0)
-    const totalSells = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
+
+    const totalSells = soldItemsInfo?.reduce((total, product) => total + parseInt(product?.price), 0)
+    const totalSellsByCategory = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
     const totalqunatity = selectedData?.reduce((total, product) => total + parseInt(product?.quantity), 0)
 
 
@@ -78,18 +88,18 @@ const AdminTabs = ({ allOrderProducts }) => {
             <Tabs>
                 {/* tab lists */}
                 <div className='flex flex-row w-full gap-5'>
-                    <div className='w-1/3 bg-gray-200 h-24 flex flex-col p-4 space-y-3 rounded-md'>
+                    <div className='w-1/3 bg-gray-100 h-24 flex flex-col p-4 space-y-3 rounded-md'>
                         <h4 className="text-sm font-semibold"><IoBarChartOutline className='inline mr-1' /> Total Sales</h4>
-                        <h1 className="text-2xl font-bold">{totalSells * totalqunatity} BDT</h1>
+                        <h1 className="text-2xl font-bold">{totalSells} BDT</h1>
                     </div>
                     {/* tab lists */}
-                    <TabList className="font-bold w-2/3 bg-gray-200 flex flex-row justify-center items-center gap-10 rounded-md">
+                    <TabList className="font-bold w-2/3 bg-gray-100 flex flex-row justify-center items-center gap-10 rounded-md">
                         <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Sell Product</Tab>
                         <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Order Product</Tab>
                     </TabList>
                 </div>
                 {/* tab panel */}
-                <div className='my-5 bg-gray-200 rounded-lg'>
+                <div className='my-5 bg-gray-100 rounded-lg'>
                     {/* sell product */}
                     <TabPanel>
                         <div className='flex flex-col p-3 gap-4'>
@@ -149,7 +159,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                     <div className=''>
                                         {selectedData && (
                                             <div>
-                                                <ProductStats totalSells={totalSells} totalProduct={totalqunatity} setCommentRef={setCommentRef} />
+                                                <ProductStats totalSells={totalSellsByCategory} totalProduct={totalqunatity} setCommentRef={setCommentRef} />
                                             </div>
                                         )}
                                     </div>
@@ -159,7 +169,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                     </TabPanel>
                     {/* order product */}
                     <TabPanel>
-                        {/* Print button */}
+                        {/* Print and filter button */}
                         <div className="flex items-center justify-between mb-3 mt-2 px-5">
                             <h1 className="text-xl font-semibold">Order Product</h1>
                             <div className='flex justify-end my-5'>
