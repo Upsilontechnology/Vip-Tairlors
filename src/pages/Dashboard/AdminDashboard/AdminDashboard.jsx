@@ -12,7 +12,7 @@ import {
 import { FaUserClock } from "react-icons/fa";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { IoBagAddOutline, IoPeople, IoPersonOutline } from "react-icons/io5";
-import { MdProductionQuantityLimits } from "react-icons/md";
+import { MdAddTask, MdOutlineAddChart, MdOutlineAddCircleOutline, MdProductionQuantityLimits } from "react-icons/md";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { CiViewList } from "react-icons/ci";
@@ -73,7 +73,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           }
           to="addProduct"
         >
-          <AiOutlineHome />
+          <MdOutlineAddChart />
           <span className="ml-4">Add Product</span>
         </NavLink>
       </li>
@@ -87,7 +87,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           }
           to="addcategory"
         >
-          <AiOutlineHome />
+          <MdOutlineAddCircleOutline />
           <span className="ml-4">Add Category</span>
         </NavLink>
       </li>
@@ -152,21 +152,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           }
           to="addNotice"
         >
-          <AiOutlineSchedule />
+          <MdAddTask />
           <span className="ml-4">Add Notice</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
-          }
-          to="membersRequest"
-        >
-          <FaUserClock />
-          <span className="ml-4">Members Request</span>
         </NavLink>
       </li>
       <li className="relative px-2 py-1 ">
@@ -186,9 +173,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   );
   return (
     <div
-      className={`flex h-screen bg-white ${
-        isSideMenuOpen ? "overflow-hidden" : ""
-      }`}
+      className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""
+        }`}
     >
       {/* Dashboard */}
       <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
@@ -210,9 +196,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
       {/* responsive dashboard */}
       <aside
-        className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${
-          isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden`}
+        className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:hidden`}
       >
         <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
           {/* logo */}
