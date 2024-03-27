@@ -1,0 +1,6 @@
+/* .swal-button {
+    width: 400px; 
+  } */
+  .swal-button{
+    width: 500px !important;  /* Set the desired width here */
+  }
