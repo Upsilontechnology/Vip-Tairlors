@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAllOrder from "../../../hooks/useAllOrder";
 import Pagination from "../../../components/pagination/pagination";
+import DashBoardTitle from "../../../components/dashboardTitle/DashBoardTitle";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
 const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -14,22 +16,29 @@ const OrderedProduct = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const { register, handleSubmit } = useForm();
-
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categoryData"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/category");
+      return res.data;
+    },
+  });
   const onSubmit = (data) => {
     // Check if image is provided
     if (data.image && data.image.length > 0) {
       // If image is provided, upload it first
-      const imageFile = { image: data.image[0] }
-      axiosPublic.post(image_hosing_api, imageFile, {
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      })
-        .then(res => {
+      const imageFile = { image: data.image[0] };
+      axiosPublic
+        .post(image_hosing_api, imageFile, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
           const imageUrl = res?.data?.data?.display_url || "";
           sendDataToServer(data, imageUrl);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error uploading image:", error);
           sendDataToServer(data, "");
         });
@@ -37,7 +46,7 @@ const OrderedProduct = () => {
       // If no image provided, send data to server directly
       sendDataToServer(data, "");
     }
-  }
+  };
 
   const sendDataToServer = (data, imageUrl) => {
     const productDetails = {
@@ -53,15 +62,21 @@ const OrderedProduct = () => {
       status: "pending",
       email: user?.email,
     };
-    axiosPublic.post('/orderProduct', productDetails)
-      .then(res => {
-        if (res.data.message === 'success') {
+    axiosPublic
+      .post("/orderProduct", productDetails)
+      .then((res) => {
+        if (res.data.message === "success") {
           Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Order added successfully",
-            showConfirmButton: false,
-            timer: 1500
+            title: "Congratulations!",
+            text: "Oder Product Added Successfully.",
+            confirmButtonText: "Return",
+            showConfirmButton: true,
+            // confirmButtonClass: "my-custom-button",
+            confirmButtonColor: "#403030",
+            imageUrl: "https://i.ibb.co/G0DfFjk/Character.png",
+            imageWidth: 220,
+            imageHeight: 200,
+            imageAlt: "Custom image",
           });
         } else {
           Swal.fire({
@@ -69,112 +84,117 @@ const OrderedProduct = () => {
             icon: "error",
             title: "Product Code has already been taken",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error adding product:", error);
       });
   };
   return (
-    <div className="supershop-container">
-      <SectionTitle
-        title="Order Products"
-        descrition="Welcome to our showcase selections, where uniqueness meets quality."
-      />
-      <div className="md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10">
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-6">
-            {/* Product Name */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+    <>
+      <div className="max-w-[90%] mx-auto">
+        <div className="mb-2">
+          <DashBoardTitle
+            title={"Admin"}
+            subTitle={"Add, Edit your category section in one click. "}
+          />
+        </div>
+        <div className="supershop-container bg-white">
+          <SectionTitle
+            title="Add Products Info"
+            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+          />
+          <div className="md:w-5/6 mx-auto w-full p-10 ">
+            <form className="" onSubmit={handleSubmit(onSubmit)}>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* Product Name */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Product Name*</span>
-              </label>
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                placeholder="Product Name"
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Category*</span>
-              </label>
-              <select
-                defaultValue="default"
-                {...register("category", { required: true })}
-                className="select select-bordered w-full focus:outline-none"
-              >
-                <option disabled value="default">
-                  Select a category
-                </option>
-                <option value="Breakfast">Panjabi</option>
-                <option value="Lunch">T-Shirt</option>
-                <option value="Dinner">Pant</option>
-              </select>
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {/* category */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </label> */}
+                  <input
+                    {...register("name", { required: true })}
+                    type="text"
+                    placeholder="Product Name*"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+                <div className="form-control w-full my-1">
+                  <select
+                    className="select select-bordered w-full focus:outline-none bg-[#F0F2F5]"
+                    // onChange={(e) => handleCategory(e.target.value)}
+                    {...register("category", { required: true })}
+                    // value={filter}
+                  >
+                    {categories?.map((category, index) => (
+                      <option value={category?.category} key={category._id}>
+                        {category?.category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* category */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Quantity*</span>
-              </label>
-              <input
-                {...register("quantity", { required: true })}
-                type="number"
-                placeholder="Quantity"
-                min={1}
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-            {/* product Code */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </label> */}
+                  <input
+                    {...register("quantity", { required: true })}
+                    type="number"
+                    placeholder="Quantity*"
+                    min={1}
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+                {/* product Code */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Product Code*</span>
-              </label>
-              <input
-                {...register("code", { required: true })}
-                type="number"
-                placeholder="Product Code"
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {/* Product Name */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </label> */}
+                  <input
+                    {...register("code", { required: true })}
+                    type="number"
+                    placeholder="Product Code*"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* Product Name */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Price*</span>
-              </label>
-              <input
-                {...register("price", { required: true })}
-                type="number"
-                placeholder="Price"
-                min={1}
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </label> */}
+                  <input
+                    {...register("price", { required: true })}
+                    type="number"
+                    placeholder="Price*"
+                    min={1}
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Advanced Amount*</span>
-              </label>
-              <input
-                {...register("advancedAmount", { required: true })}
-                type="number"
-                placeholder="Advanced Amount"
-                min={1}
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {/* category */}
+              </label> */}
+                  <input
+                    {...register("advancedAmount", { required: true })}
+                    type="number"
+                    placeholder="Advanced Amount*"
+                    min={1}
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* category */}
 
-            {/* product Code */}
-            {/* <div className="form-control w-full my-1">
+                {/* product Code */}
+                {/* <div className="form-control w-full my-1">
               <label className="label">
                 <span className="label-text">Due Amount*</span>
               </label>
@@ -182,55 +202,76 @@ const OrderedProduct = () => {
                 {...register("dueAmount", { required: true })}
                 type="number"
                 placeholder="Due Amount"
-                className="input input-bordered w-full focus:outline-none"
+                className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
               />
             </div> */}
-          </div>
-          <div className="flex gap-6">
-            {/* price */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* price */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Ordered Date*(mm/dd/yyyy)</span>
-              </label>
-              <input
-                {...register("orderedDate", { required: true })}
-                type="date"
-                placeholder="Ordered Date"
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-            {/* Date */}
-            <div className="form-control w-full my-1">
-              <label className="label">
+              </label> */}
+                  <input
+                    {...register("orderedDate", { required: true })}
+                    type="date"
+                    placeholder="Ordered Date*"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+                {/* Date */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
                 <span className="label-text">Delivary Date*(mm/dd/yyyy)</span>
-              </label>
-              <input
-                {...register("deliveryDate", { required: true })}
-                type="date"
-                placeholder="Delivery Date"
-                className="input input-bordered w-full focus:outline-none"
-              />
-            </div>
-          </div>
+              </label> */}
+                  <input
+                    {...register("deliveryDate", { required: true })}
+                    type="date"
+                    placeholder="Delivery Date*"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
+                  />
+                </div>
+              </div>
 
-          {/* Image */}
-          <div className="form-control w-full my-1">
-            <label className="label">
-              <span className="label-text">Image URL*</span>
-            </label>
-            <input
-              {...register("image", { required: false })}
-              type="file"
-              placeholder="Select Image"
-              className="input input-bordered w-full focus:outline-noned"
-            />
+              {/* Image */}
+              <div className="form-control w-full my-1 relative border-2 border-dotted border-gray-600 rounded-lg">
+                <div className="input_field  text-center">
+                  <label className="label flex flex-col justify-center items-center ">
+                    <input
+                      {...register("image", { required: false })}
+                      type="file"
+                      // placeholder="Select Image"
+                      className="text-sm cursor-pointer w-20 hidden"
+                    />
+                    <div className=" cursor-pointer px-3">
+                      <svg
+                        className="text-[#403030] w-10 mx-auto mb-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                        />
+                      </svg>
+                    </div>
+                    <div className="title"> Drag or Upload File</div>
+                  </label>
+                </div>
+              </div>
+
+              <button className="focus:outline-none  bg-[#403030] hover:bg-[#332626] text-white font-semibold py-2.5 rounded-md w-full mt-5 ">
+                Add Product
+              </button>
+            </form>
           </div>
-          <button className="focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md w-full mt-5 ">
-            Add Product
-          </button>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

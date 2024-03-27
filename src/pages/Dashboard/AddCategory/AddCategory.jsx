@@ -211,7 +211,7 @@ const AddCategory = () => {
                                         </div>
                                       </div>
                                       {/* <h1>{cData._id}</h1> */}
-                                      <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">
+                                      <button className="focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">
                                         Save
                                       </button>
                                     </form>
