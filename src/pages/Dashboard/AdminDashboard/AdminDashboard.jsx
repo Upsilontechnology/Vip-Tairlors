@@ -243,7 +243,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             </div>
           </div>
         </header>
-        <main className="lg:ml-64 scroll-smooth">
+        <main className="lg:ml-60 scroll-smooth">
           <Navbar2></Navbar2>
           <div className="lg:ml-8">
             <Outlet></Outlet>
