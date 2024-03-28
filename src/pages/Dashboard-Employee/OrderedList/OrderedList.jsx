@@ -75,57 +75,56 @@ const OrderedList = () => {
   // console.log(orderBySearch);
 
   return (
-    <div className="supershop-container">
-      {/* section */}
-      <div className="text-center">
-        <SectionTitle
-          title="Ordered Products List"
-          descrition="Welcome to your product catalog, your gateway to a world of possibilities!"
-        />
-      </div>
-      {/* search bar */}
-      <div className="form-control w-1/2 mx-auto mb-5">
-        <input
-          onChange={(e) => setSearchValue(e.target.value)}
-          type="text"
-          placeholder="Search by Product Code"
-          className="input input-bordered focus:outline-none"
-        />
-      </div>
+    <div className="">
       {/* tabs */}
       <div className="overflow-hidden w-full h-full">
         <Tabs>
           {/* tab lists */}
-          <TabList className="font-bold">
-            <Tab onClick={() => handleStatus("pending")}>Pending</Tab>
-            <Tab onClick={() => handleStatus("completed")}>Completed</Tab>
+          <TabList className="font-bold flex justify-center gap-1 my-5">
+            <Tab
+              className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'
+              onClick={() => handleStatus("pending")}>Pending</Tab>
+            <Tab
+              className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'
+              onClick={() => handleStatus("completed")}>Completed</Tab>
           </TabList>
-          {/* tab panel */}
-          <div className="my-5 overflow-y-scroll h-[85vh] border-2 border-blue-800 rounded-lg">
-            <TabPanel>
-              <div className="flex flex-col p-3 gap-4">
-                <OrderedProductDetails
-                  products={orderBySearch}
-                  filteredUser={userInfo}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  totalPages={totalPages}
-                  refetch={refetch}
-                />
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="flex flex-col p-3 gap-4">
-                <OrderedProductDetails
-                  products={orderBySearch}
-                  filteredUser={userInfo}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  totalPages={totalPages}
-                  refetch={refetch}
-                />
-              </div>
-            </TabPanel>
+          <div className="bg-white py-5">
+            {/* search bar */}
+            <div className="form-control w-1/2 mx-auto mb-5">
+              <input
+                onChange={(e) => setSearchValue(e.target.value)}
+                type="text"
+                placeholder="Search by Product Code"
+                className="input bg-gray-100 focus:outline-none"
+              />
+            </div>
+            {/* tab panel */}
+            <div className="my-5 overflow-y-scroll h-[85vh] rounded-lg">
+              <TabPanel>
+                <div className="flex flex-col px-5 gap-4">
+                  <OrderedProductDetails
+                    products={orderBySearch}
+                    filteredUser={userInfo}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                    refetch={refetch}
+                  />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className="flex flex-col px-5 gap-4">
+                  <OrderedProductDetails
+                    products={orderBySearch}
+                    filteredUser={userInfo}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                    refetch={refetch}
+                  />
+                </div>
+              </TabPanel>
+            </div>
           </div>
         </Tabs>
       </div>
