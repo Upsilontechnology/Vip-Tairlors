@@ -4,6 +4,7 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import DashBoardTitle from "../../components/dashboardTitle/DashBoardTitle";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
 const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -71,119 +72,131 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="supershop-container">
-      <SectionTitle
-        title="Featured Products"
-        descrition="Welcome to our showcase selections, where uniqueness meets quality."
-      />
-      <div className="md:w-5/6 rounded-lg mx-auto w-full shadow-lg p-10">
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-6">
-            {/* Product Name */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Product Name*</span>
-              </label>
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                placeholder="Product Name"
-                className="input input-bordered w-full focus:outline-none"
-              />
-              {errors.name && (
-                <span className="text-red-500">Product Name is required</span>
-              )}
-            </div>
-            {/* Quantity */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Quantity*</span>
-              </label>
-              <input
-                {...register("quantity", { required: true })}
-                type="number"
-                placeholder="Quantity"
-                className="input input-bordered w-full focus:outline-none"
-              />
-              {errors.quantity && (
-                <span className="text-red-500">Quantity is required</span>
-              )}
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {/* price */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Price*</span>
-              </label>
-              <input
-                {...register("price", { required: true })}
-                type="number"
-                placeholder="Price"
-                className="input input-bordered focus:outline-none w-full"
-              />
-              {errors.price && (
-                <span className="text-red-500">Price is required</span>
-              )}
-            </div>
-            {/* Date */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Date(mm/dd/yyyy)*</span>
-              </label>
-              <input
-                {...register("date", { required: true })}
-                type="date"
-                placeholder="Date"
-                className="input input-bordered focus:outline-none w-full"
-              />
-              {errors.date && (
-                <span className="text-red-500">Date is required</span>
-              )}
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {/* category */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Category*</span>
-              </label>
-              <select
-                defaultValue="default"
-                {...register("category", { required: true })}
-                className="select select-bordered focus:outline-none w-full"
-              >
-                <option disabled value="default">
-                  Select a category
-                </option>
-                <option value="punjabi">Punjabi</option>
-                <option value="suit">Suit</option>
-                <option value="cosmetics">Cosmetics</option>
-                <option value="shelai">Shelai</option>
-                <option value="ready-Made">Ready-Made</option>
-              </select>
-              {errors.category && (
-                <span className="text-red-500">Category is required</span>
-              )}
-            </div>
-            {/* product Code */}
-            <div className="form-control w-full my-1">
-              <label className="label">
-                <span className="label-text">Product Code*</span>
-              </label>
-              <input
-                {...register("code", { required: true })}
-                type="number"
-                placeholder="Product Code"
-                className="input input-bordered focus:outline-none w-full"
-              />
-              {errors.code && (
-                <span className="text-red-500">Product Code is required</span>
-              )}
-            </div>
-          </div>
-          {/* Image */}
-          <div className="form-control w-full my-1">
+    <>
+      <div className="max-w-[90%] mx-auto">
+        <div className="mb-2">
+          <DashBoardTitle
+            title={"Admin"}
+            subTitle={"Add, Edit your category section in one click. "}
+          />
+        </div>
+        <div className="supershop-container  bg-white">
+          <SectionTitle
+            title="Featured Products"
+            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+          />
+          <div className="md:w-5/6 mx-auto w-full p-5 rounded-md ">
+            <form className="" onSubmit={handleSubmit(onSubmit)}>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* Product Name */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Product Name*</span>
+                  </label> */}
+                  <input
+                    {...register("name", { required: true })}
+                    type="text"
+                    placeholder="Product Name"
+                    className="input input-bordered w-full focus:outline-none"
+                  />
+                  {errors.name && (
+                    <span className="text-red-500">
+                      Product Name is required
+                    </span>
+                  )}
+                </div>
+                {/* Quantity */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Quantity*</span>
+                  </label> */}
+                  <input
+                    {...register("quantity", { required: true })}
+                    type="number"
+                    placeholder="Quantity"
+                    className="input input-bordered w-full focus:outline-none"
+                  />
+                  {errors.quantity && (
+                    <span className="text-red-500">Quantity is required</span>
+                  )}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* price */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Price*</span>
+                  </label> */}
+                  <input
+                    {...register("price", { required: true })}
+                    type="number"
+                    placeholder="Price"
+                    className="input input-bordered focus:outline-none w-full"
+                  />
+                  {errors.price && (
+                    <span className="text-red-500">Price is required</span>
+                  )}
+                </div>
+                {/* Date */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Date(mm/dd/yyyy)*</span>
+                  </label> */}
+                  <input
+                    {...register("date", { required: true })}
+                    type="date"
+                    placeholder="Date"
+                    className="input input-bordered focus:outline-none w-full"
+                  />
+                  {errors.date && (
+                    <span className="text-red-500">Date is required</span>
+                  )}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-2">
+                {/* category */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Category*</span>
+                  </label> */}
+                  <select
+                    defaultValue="default"
+                    {...register("category", { required: true })}
+                    className="select select-bordered focus:outline-none w-full"
+                  >
+                    <option disabled value="default">
+                      Select a category
+                    </option>
+                    <option value="punjabi">Punjabi</option>
+                    <option value="suit">Suit</option>
+                    <option value="cosmetics">Cosmetics</option>
+                    <option value="shelai">Shelai</option>
+                    <option value="ready-Made">Ready-Made</option>
+                  </select>
+                  {errors.category && (
+                    <span className="text-red-500">Category is required</span>
+                  )}
+                </div>
+                {/* product Code */}
+                <div className="form-control w-full my-1">
+                  {/* <label className="label">
+                    <span className="label-text">Product Code*</span>
+                  </label> */}
+                  <input
+                    {...register("code", { required: true })}
+                    type="number"
+                    placeholder="Product Code"
+                    className="input input-bordered focus:outline-none w-full"
+                  />
+                  {errors.code && (
+                    <span className="text-red-500">
+                      Product Code is required
+                    </span>
+                  )}
+                </div>
+              </div>
+              {/* Image */}
+              {/* <div className="form-control w-full my-1">
             <label className="label">
               <span className="label-text">Image URL*</span>
             </label>
@@ -196,13 +209,44 @@ const AddProduct = () => {
             {errors.image && (
               <span className="text-red-500">Image is required</span>
             )}
+          </div> */}
+              <div className="form-control w-full my-1 relative border-2 border-dotted border-gray-600 rounded-lg">
+                <div className="input_field  text-center">
+                  <label className="label flex flex-col justify-center items-center ">
+                    <input
+                      {...register("image", { required: false })}
+                      type="file"
+                      // placeholder="Select Image"
+                      className="text-sm cursor-pointer w-20 hidden"
+                    />
+                    <div className=" cursor-pointer px-3">
+                      <svg
+                        className="text-[#403030] w-10 mx-auto mb-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                        />
+                      </svg>
+                    </div>
+                    <div className="title"> Drag or Upload File</div>
+                  </label>
+                </div>
+              </div>
+              <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:border-transparent bg-[#403030] hover:bg-[#221919] text-white font-semibold py-2.5 rounded-md">
+                Add Product
+              </button>
+            </form>
           </div>
-          <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">
-            Add Product
-          </button>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
