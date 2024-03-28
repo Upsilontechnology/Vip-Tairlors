@@ -53,7 +53,7 @@ const OrderedProductDetails = ({
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-black">
+            <tr className="text-black border border-b-[1.2px]">
               <th>Product Code</th>
               <th>Name</th>
               <th>Price</th>

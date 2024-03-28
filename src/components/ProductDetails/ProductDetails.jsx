@@ -11,6 +11,10 @@ import { useForm } from "react-hook-form";
 import useUser from "../../hooks/useUser";
 import useCarts from "../../hooks/useCarts";
 import "./swal.css";
+import SectionTitle from "../SectionTitle/SectionTitle";
+import { GiCancel } from "react-icons/gi";
+import { FaSortAmountUpAlt } from "react-icons/fa";
+import { MdLocalMall } from "react-icons/md";
 // import rImg from "../../assets/Character.png";
 const ProductDetails = () => {
   const queryClient = useQueryClient();
@@ -24,7 +28,7 @@ const ProductDetails = () => {
 
   const [productLength, setProductLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 20;
+  const itemsPerPage = 6;
   const { user } = useAuth();
   const email = user?.email;
   // const { register, handleSubmit, reset } = useForm();
@@ -112,50 +116,6 @@ const ProductDetails = () => {
         }
       });
     }
-
-    // let currentStock =  || 0;
-
-    // currentStock = Math.max(currentStock, 0);
-
-    // if (quantity1 >= 0 && currentStock >= 0) {
-    //     const quantity = currentStock - quantity1;
-    //     const sellUpdate = { quantity };
-    //     if (quantity >= 0) {
-    //         fetch(`http://localhost:5000/sellProduct/${id}`, {
-    //             method: "PUT",
-    //             headers: {
-    //                 'content-type': 'application/json',
-    //             },
-    //             body: JSON.stringify(sellUpdate)
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 console.log(data);
-    //                 queryClient.invalidateQueries("filterBySearch");
-    //                 setOpenModal(false);
-    //                 Swal.fire({
-    //                     position: "top-end",
-    //                     icon: "success",
-    //                     title: "Sell Product",
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error:', error);
-    //             });
-    //     }
-    //     else {
-    //         console.log("Invalid quantity or current stock not available.");
-    //         Swal.fire({
-    //             position: "top-end",
-    //             icon: "error",
-    //             title: "current stock not available",
-    //             showConfirmButton: false,
-    //             timer: 1000
-    //         });
-    //     }
-    // }
   };
 
   const handleUpdate = async (event) => {
@@ -242,6 +202,10 @@ const ProductDetails = () => {
     (total, product) => total + product?.price * product?.quantity,
     0
   );
+  const totalQuantity = filterBySearch?.items?.reduce(
+    (total, product) => total + product?.quantity,
+    0
+  );
 
   const handleDelete = (product) => {
     Swal.fire({
@@ -303,145 +267,167 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div>
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between items-center my-5">
-          {role === "admin" ? (
-            <div className="border-2 border-gray-400 bg-white p-2 rounded-lg">
-              <h1 className="text-xl">
-                Total Stock: TK.{" "}
-                <span className="font-semibold">{totalStock}</span>
+    <>
+      <div className="max-w-[90%] mx-auto rounded-md">
+        {role === "admin" ? (
+          <div className="grid grid-cols-2 justify-between items-center my-2 rounded-md gap-2">
+            <div className="bg-white p-5 rounded-md flex flex-col gap-2">
+              <h1 className="text-sm font-semibold flex items-center justify-start">
+                <span>
+                  <FaSortAmountUpAlt />
+                </span>
+                Total Product Amount
               </h1>
+              <h1 className="font-semibold text-2xl">{totalStock} BDT</h1>
             </div>
-          ) : (
-            " "
-          )}
-          {/* search bar */}
-          <div className="form-control w-1/2 mx-auto">
+            <div className="bg-white p-5 rounded-md flex flex-col gap-2 ">
+              <h1 className="text-sm font-semibold flex items-center justify-start">
+                <span>
+                  <MdLocalMall />
+                </span>
+                Total Quantity
+              </h1>
+              <h1 className="font-semibold text-2xl">{totalQuantity}</h1>
+            </div>
+          </div>
+        ) : (
+          " "
+        )}
+        {/* <div className="flex justify-between items-center my-5 bg-white p-3"></div> */}
+        {/* search bar */}
+        <div className="bg-white p-2 pt-3">
+          <div className="form-control w-1/2 mx-auto  placeholder:bg-gray-300 rounded-md">
             <input
               onChange={(e) => setSearchValue(e.target.value)}
               type="text"
               placeholder="Search by Product Code"
-              className="input input-bordered focus:outline-none"
+              className="input  focus:outline-none bg-gray-100"
             />
           </div>
-          {/* nothing */}
-          <div></div>
-        </div>
-        <div key={loggedUser?._id}>
-          {loggedUser?.role === "employee" ? (
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr className=" text-black">
-                    <th>#</th>
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Date</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filterBySearch?.items?.map((product, ind) => (
-                    <tr key={product?._id}>
-                      <td>{ind + 1}</td>
-                      <td>{product?.productCode}</td>
-                      <td>{product?.name}</td>
-                      <td>BDT {product?.price}</td>
-                      <td>{product?.quantity}</td>
-                      <td>
-                        {new Date(product?.sellingDate).toLocaleDateString()}
-                      </td>
-                      <td>
-                        <img
-                          className="w-10 h-10"
-                          src={product?.image}
-                          alt=""
-                        />
-                      </td>
-                      <td className="flex gap-2">
-                        <button onClick={() => handleEdit(product?._id)}>
-                          <spam className="md:px-2 md:py-2 md:mr-4 rounded-lg bg-gray-300 hover:bg-gray-400 font-semibold">
-                            Add
-                          </spam>
-                        </button>
-                        {/* <button
+          <div className="flex flex-col gap-4">
+            <div key={loggedUser?._id}>
+              {loggedUser?.role === "employee" ? (
+                <div className="overflow-x-auto p-3">
+                  <table className="table">
+                    <thead>
+                      <tr className=" text-black  border-b-[1.2px] border-black">
+                        <th>#</th>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Date</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filterBySearch?.items?.map((product, ind) => (
+                        <tr
+                          key={product?._id}
+                          className=" border-b-[1.2px] border-black"
+                        >
+                          <td>{ind + 1}</td>
+                          <td>{product?.productCode}</td>
+                          <td>{product?.name}</td>
+                          <td>BDT {product?.price}</td>
+                          <td>{product?.quantity}</td>
+                          <td>
+                            {new Date(
+                              product?.sellingDate
+                            ).toLocaleDateString()}
+                          </td>
+                          <td>
+                            <img
+                              className="w-10 h-10"
+                              src={product?.image}
+                              alt=""
+                            />
+                          </td>
+                          <td className="flex gap-2 mt-2">
+                            <button onClick={() => handleEdit(product?._id)}>
+                              <spam className="lg:px-6 px-1 md:py-1 md:mr-4 rounded-md bg-gray-100 hover:bg-gray-200 font-semibold">
+                                Add
+                              </spam>
+                            </button>
+                            {/* <button
                           onClick={() => handleDelete(product)}
                           className="btn btn-ghost btn-sm bg-gray-300"
                         >
                           <MdOutlineDeleteOutline className="text-xl" />
                         </button> */}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : loggedUser?.role === "admin" ? (
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    <thead>
+                      <tr className=" text-black">
+                        <th>#</th>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Date</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filterBySearch?.items?.map((product, ind) => (
+                        <tr key={product?._id}>
+                          <td>{ind + 1}</td>
+                          <td>{product?.productCode}</td>
+                          <td>{product?.name}</td>
+                          <td>BDT {product?.price}</td>
+                          <td>{product?.quantity}</td>
+                          <td>
+                            {new Date(
+                              product?.sellingDate
+                            ).toLocaleDateString()}
+                          </td>
+                          <td>
+                            <img
+                              className="w-10 h-10"
+                              src={product?.image}
+                              alt=""
+                            />
+                          </td>
+                          <td className="flex gap-2">
+                            <button
+                              onClick={() => editSaller(product?._id)}
+                              className="btn btn-ghost btn-sm bg-gray-300"
+                            >
+                              <MdOutlineEdit className="text-xl" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(product)}
+                              className="btn btn-ghost btn-sm bg-gray-300"
+                            >
+                              <MdOutlineDeleteOutline className="text-xl" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
-          ) : loggedUser?.role === "admin" ? (
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr className=" text-black">
-                    <th>#</th>
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Date</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filterBySearch?.items?.map((product, ind) => (
-                    <tr key={product?._id}>
-                      <td>{ind + 1}</td>
-                      <td>{product?.productCode}</td>
-                      <td>{product?.name}</td>
-                      <td>BDT {product?.price}</td>
-                      <td>{product?.quantity}</td>
-                      <td>
-                        {new Date(product?.sellingDate).toLocaleDateString()}
-                      </td>
-                      <td>
-                        <img
-                          className="w-10 h-10"
-                          src={product?.image}
-                          alt=""
-                        />
-                      </td>
-                      <td className="flex gap-2">
-                        <button
-                          onClick={() => editSaller(product?._id)}
-                          className="btn btn-ghost btn-sm bg-gray-300"
-                        >
-                          <MdOutlineEdit className="text-xl" />
-                        </button>
-                        {/* <button
-                          onClick={() => handleDelete(product)}
-                          className="btn btn-ghost btn-sm bg-gray-300"
-                        >
-                          <MdOutlineDeleteOutline className="text-xl" />
-                        </button> */}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <></>
-          )}
+          </div>
         </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(productLength / itemsPerPage)}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(productLength / itemsPerPage)}
-        setCurrentPage={setCurrentPage}
-      />
 
       {openSell && (
         <div
@@ -451,15 +437,31 @@ const ProductDetails = () => {
           aria-modal="true"
         >
           {/* Modal content goes here */}
-          <div ref={modalRef} className="bg-white rounded-lg shadow-xl">
+          <div
+            ref={modalRef}
+            className="bg-white rounded-lg shadow-xl w-3/5 p-5"
+          >
+            <div className="flex justify-between p-2 items-center">
+              <div>
+                <SectionTitle title={"Edit Product Details"} />
+              </div>
+              <div>
+                <button
+                  onClick={() => setSellModal(false)}
+                  className="text-[#1D2A3B] text-xl"
+                >
+                  <GiCancel />
+                </button>
+              </div>
+            </div>
             <div className="p-6">
               <form className="" onSubmit={handleUpdate}>
                 <div className="flex gap-6">
                   {/* Product Name */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Product Name*</span>
-                    </label>
+                    </label> */}
                     <input
                       name="name"
                       defaultValue={sell?.name}
@@ -470,9 +472,9 @@ const ProductDetails = () => {
                   </div>
                   {/* Quantity */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Quantity*</span>
-                    </label>
+                    </label> */}
                     <input
                       name="quantity"
                       defaultValue={sell?.quantity}
@@ -485,9 +487,9 @@ const ProductDetails = () => {
                 <div className="flex gap-6">
                   {/* price */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Price*</span>
-                    </label>
+                    </label> */}
                     <input
                       name="price"
                       defaultValue={sell?.price}
@@ -498,9 +500,9 @@ const ProductDetails = () => {
                   </div>
                   {/* Date */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Date(mm/dd/yyyy)*</span>
-                    </label>
+                    </label> */}
                     <input
                       name="date"
                       defaultValue={sell?.sellingDate}
@@ -512,9 +514,9 @@ const ProductDetails = () => {
                 <div className="flex gap-6">
                   {/* category */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Category*</span>
-                    </label>
+                    </label> */}
                     {/* <select
                       name="category"
                       defaultValue={sell?.category}
@@ -530,7 +532,8 @@ const ProductDetails = () => {
                       <option value="ready-Made">Ready-Made</option>
                     </select> */}
                     <select
-                      className="bg-white p-2 rounded-sm"
+                      // className="bg-white p-2 rounded-sm"
+                      className="select select-bordered focus:outline-none w-full"
                       onChange={(e) => handleCategory(e.target.value)}
                       //   value={filter}
                     >
@@ -543,9 +546,9 @@ const ProductDetails = () => {
                   </div>
                   {/* product Code */}
                   <div className="form-control w-full my-1">
-                    <label className="label">
+                    {/* <label className="label">
                       <span className="label-text">Product Code*</span>
-                    </label>
+                    </label> */}
                     <input
                       name="code"
                       defaultValue={sell?.productCode}
@@ -555,7 +558,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#1D2A3B] hover:bg-[#131c29] text-white font-semibold py-2.5 rounded-md">
+                <button className="focus:outline-none focus:ring-2 w-full mt-5 focus:ring-blue-800 focus:border-transparent bg-[#403030] hover:bg-[#2e2222] text-white font-semibold py-2.5 rounded-md">
                   Edit Product
                 </button>
               </form>
@@ -575,8 +578,8 @@ const ProductDetails = () => {
           aria-modal="true"
         >
           {/* Modal content goes here */}
-          <div ref={modalRef} className="bg-white rounded-lg shadow-xl w-96">
-            <div className="p-6">
+          <div ref={modalRef} className="bg-white rounded-lg shadow-xl">
+            <div className="p-12">
               <form className="" onSubmit={handleSell}>
                 <div className="">
                   <div className="form-control w-full my-3">
@@ -618,8 +621,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                {/* <div className="flex gap-6"></div>
-                <div className="flex gap-6">
+                <div className=" gap-6 hidden">
                   <div className="form-control w-full my-1">
                     <label className="label">
                       <span className="label-text">Date(mm/dd/yyyy)*</span>
@@ -632,8 +634,8 @@ const ProductDetails = () => {
                       disabled
                     />
                   </div>
-                </div> */}
-                {/* <div className="flex gap-6">
+                </div>
+                <div className="hidden gap-6">
                   <div className="form-control w-full my-1">
                     <label className="label">
                       <span className="label-text">Category*</span>
@@ -659,7 +661,7 @@ const ProductDetails = () => {
                       disabled
                     />
                   </div>
-                </div> */}
+                </div>
                 <button className="bg-[#403030] hover:bg-[#332626] w-full mt-5  text-white font-semibold py-2.5 rounded-md">
                   Add to Sell List
                 </button>
@@ -671,7 +673,7 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
