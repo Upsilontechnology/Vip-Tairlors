@@ -105,28 +105,6 @@ const OrderedProductDetails = ({
                     </th>
                   ) : ''
                 }
-                {/* <th>
-
-                  {product?.status === "pending" ? (
-                    <h1 className="text-xs font-bold">Pending</h1>
-                  ) : (
-                    <h1 className="text-xs font-bold">Paid</h1>
-                  )}
-                  {product?.status === "pending" ? (
-                    filteredUser?.role === "employee" && (
-                      <button
-                        onClick={() => handleComplete(product)}
-                        className="btn btn-xs btn-accent"
-                      >
-                        Complete
-                      </button>
-                    )
-                  ) : (
-                    <button className="btn btn-xs hidden btn-accent">
-                      Complete
-                    </button>
-                  )}
-                </th> */}
               </tr>
             ))}
           </tbody>

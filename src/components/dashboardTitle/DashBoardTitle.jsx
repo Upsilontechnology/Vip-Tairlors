@@ -1,11 +1,11 @@
 import React from "react";
-import timg from "../../assets/titleImg.png";
+import timg from "../../assets/Group94.png";
 const DashBoardTitle = ({ title, subTitle }) => {
   return (
     <>
       <div>
         <div className="flex gap-2 bg-white rounded-md">
-          <img src={timg} className="w-40 pt-2 pl-7" alt="" />
+          <img src={timg} className="w-48 pt-2 pl-7" alt="" />
           <div className="flex justify-start items-center">
             <div>
               <h1 className="text-lg font-semibold">

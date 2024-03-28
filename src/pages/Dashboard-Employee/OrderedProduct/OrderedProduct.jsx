@@ -106,7 +106,7 @@ const OrderedProduct = () => {
             title="Add Products Info"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
-          <div className="md:w-5/6 mx-auto w-full p-10 ">
+          <div className="md:w-5/6 mx-auto w-full p-10 rounded-md">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-2 gap-4 mb-2">
                 {/* Product Name */}
