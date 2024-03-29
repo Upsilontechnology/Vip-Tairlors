@@ -80,17 +80,25 @@ const OrderedList = () => {
       <div className="overflow-hidden w-full h-full">
         <Tabs>
           {/* tab lists */}
-          <TabList className="font-bold flex justify-center gap-1 my-5">
+          <TabList className="font-bold flex justify-center lg:gap-3 gap-2 lg:my-5 my-2">
             <Tab
-              className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'
-              onClick={() => handleStatus("pending")}>Pending</Tab>
+              className="border-none bg-white lg:py-5 lg:px-14 py-3 px-10 rounded-md cursor-pointer"
+              selectedClassName="selected-tab bg-yellow-950 text-white lg:py-5 lg:px-14 py-3 px-10"
+              onClick={() => handleStatus("pending")}
+            >
+              Pending
+            </Tab>
             <Tab
-              className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'
-              onClick={() => handleStatus("completed")}>Completed</Tab>
+              className="border-none bg-white lg:py-5 lg:px-14 py-3 px-10 rounded-md cursor-pointer"
+              selectedClassName="selected-tab bg-yellow-950 text-white lg:py-5 lg:px-14 py-3 px-10"
+              onClick={() => handleStatus("completed")}
+            >
+              Completed
+            </Tab>
           </TabList>
-          <div className="bg-white py-5">
+          <div className="bg-white lg:py-5 py-2">
             {/* search bar */}
-            <div className="form-control w-1/2 mx-auto mb-5">
+            <div className="form-control lg:w-1/2 w-5/6 mx-auto lg:mb-5 mb-2">
               <input
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"
