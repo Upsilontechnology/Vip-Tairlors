@@ -9,6 +9,7 @@ const AddToCart = () => {
   const axiosPublic = useAxiosPublic();
   const [carts, refetch] = useCarts();
   const [items, setItems] = useState(null);
+  console.log(carts);
 
   const totalAmount = carts?.reduce(
     (total, product) => total + product?.price,
@@ -144,9 +145,9 @@ const AddToCart = () => {
               <button
                 onClick={() => handlePay(carts)}
                 className={`btn bg-[#403030] text-white hover:bg-[#362929] ${
-                  carts.length < 1 ? "disabled" : ""
+                  carts?.length < 1 ? "disabled" : ""
                 }`}
-                disabled={carts.length < 1}
+                disabled={carts?.length < 1}
               >
                 Confirm Payment
               </button>
