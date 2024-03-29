@@ -298,7 +298,7 @@ const ProductDetails = () => {
         {/* <div className="flex justify-between items-center my-5 bg-white p-3"></div> */}
         {/* search bar */}
         <div className="bg-white p-2 pt-3">
-          <div className="form-control md:w-1/2 mx-auto  placeholder:bg-gray-300 rounded-md">
+          <div className="form-control lg:w-1/2 w-5/6 lg:mb-5 mb-2 mx-auto  placeholder:bg-gray-300 rounded-md">
             <input
               onChange={(e) => setSearchValue(e.target.value)}
               type="text"
@@ -348,7 +348,7 @@ const ProductDetails = () => {
                           </td>
                           <td className="flex gap-2 mt-2">
                             <button onClick={() => handleEdit(product?._id)}>
-                              <spam className="lg:px-6 px-1 md:py-1 md:mr-4 rounded-md bg-gray-100 hover:bg-gray-200 font-semibold">
+                              <spam className="lg:px-6 px-3 lg:py-3 py-1 md:mr-4 rounded-md bg-gray-100 hover:bg-gray-200 font-semibold">
                                 Add
                               </spam>
                             </button>
@@ -433,7 +433,7 @@ const ProductDetails = () => {
 
       {openSell && (
         <div
-          className="fixed inset-0 z-10 flex items-center lg::ml-32 justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-10 flex items-center lg:ml-32 ml-1 justify-center bg-black bg-opacity-50"
           aria-labelledby="modal-title"
           role="dialog"
           aria-modal="true"
@@ -580,8 +580,11 @@ const ProductDetails = () => {
           aria-modal="true"
         >
           {/* Modal content goes here */}
-          <div ref={modalRef} className="bg-white rounded-lg shadow-xl">
-            <div className="p-8 md:p-12">
+          <div
+            ref={modalRef}
+            className="bg-white rounded-lg shadow-xl lg:w-2/5 w-4/5 lg:p-5 p-2"
+          >
+            <div className="lg:p-12 p-6">
               <form className="" onSubmit={handleSell}>
                 <div className="">
                   <div className="form-control w-full my-3">

@@ -8,6 +8,7 @@ import { BsCart3 } from 'react-icons/bs';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import AdminTabs from '../AdminTabs/AdminTabs';
+import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
 
 const AdminHome = () => {
     const axiosPublic = useAxiosPublic();

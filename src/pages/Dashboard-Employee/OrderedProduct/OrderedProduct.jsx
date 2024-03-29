@@ -94,7 +94,7 @@ const OrderedProduct = () => {
   };
   return (
     <>
-      <div className="max-w-[90%] mx-auto">
+      <div className="lg:max-w-[90%] max-w-[95%] mx-auto">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
@@ -106,9 +106,9 @@ const OrderedProduct = () => {
             title="Add Products Info"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
-          <div className="md:w-5/6 mx-auto w-full p-10 rounded-md">
+          <div className="lg:w-5/6 mx-auto w-full lg:p-10 p-2 rounded-md">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* Product Name */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
@@ -136,7 +136,7 @@ const OrderedProduct = () => {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* category */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
@@ -163,7 +163,7 @@ const OrderedProduct = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* Product Name */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
@@ -190,7 +190,7 @@ const OrderedProduct = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* category */}
 
                 {/* product Code */}
@@ -206,16 +206,18 @@ const OrderedProduct = () => {
               />
             </div> */}
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* price */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
                 <span className="label-text">Ordered Date*(mm/dd/yyyy)</span>
               </label> */}
+                  <span className="text-xs">Ordered Date*</span>
                   <input
                     {...register("orderedDate", { required: true })}
                     type="date"
-                    placeholder="Ordered Date*"
+                    // placeholder="Ordered Date*"
+                    placeholder="Ordered Date (YYYY-MM-DD)"
                     className="input input-bordered w-full focus:outline-none bg-[#F0F2F5] placeholder:text-black"
                   />
                 </div>
@@ -224,6 +226,7 @@ const OrderedProduct = () => {
                   {/* <label className="label">
                 <span className="label-text">Delivary Date*(mm/dd/yyyy)</span>
               </label> */}
+                  <span className="text-xs">Delivery Date*</span>
                   <input
                     {...register("deliveryDate", { required: true })}
                     type="date"

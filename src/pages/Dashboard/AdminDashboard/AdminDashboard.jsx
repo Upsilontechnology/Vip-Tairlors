@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar2 from "../../../shared/Navbar2/Navbar2";
 import {
@@ -12,7 +12,12 @@ import {
 import { FaUserClock } from "react-icons/fa";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { IoBagAddOutline, IoPeople, IoPersonOutline } from "react-icons/io5";
-import { MdAddTask, MdOutlineAddChart, MdOutlineAddCircleOutline, MdProductionQuantityLimits } from "react-icons/md";
+import {
+  MdAddTask,
+  MdOutlineAddChart,
+  MdOutlineAddCircleOutline,
+  MdProductionQuantityLimits,
+} from "react-icons/md";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { CiViewList } from "react-icons/ci";
@@ -21,6 +26,7 @@ import { ImStatsDots } from "react-icons/im";
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     Swal.fire({
@@ -54,8 +60,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 py-1 pr-2 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="adminHome"
         >
@@ -68,8 +74,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addProduct"
         >
@@ -82,8 +88,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addcategory"
         >
@@ -95,8 +101,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="productList"
         >
@@ -108,8 +114,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="orderedList"
         >
@@ -121,8 +127,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-42 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-bold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="productStatement"
         >
@@ -134,8 +140,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-42 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="orderStatement"
         >
@@ -147,8 +153,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addNotice"
         >
@@ -160,8 +166,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="allMembers"
         >
@@ -173,15 +179,16 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   );
   return (
     <div
-      className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""
-        }`}
+      className={`flex h-screen bg-white ${
+        isSideMenuOpen ? "overflow-hidden" : ""
+      }`}
     >
       {/* Dashboard */}
       <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
         <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
           {/* logo */}
           <div>
-            <h1 className="text-2xl">VIP Tailor</h1>
+            <p className="font-bold text-lg">Admin Dashboard</p>
           </div>
           {/* items and routes */}
           <div className=" flex flex-col justify-between">
@@ -196,8 +203,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
       {/* responsive dashboard */}
       <aside
-        className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden`}
+        className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${
+          isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:hidden`}
       >
         <div className="h-screen md:py-3 pl-3 flex flex-col justify-between shadow-xl">
           {/* logo */}
@@ -237,7 +245,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           </div>
         </header>
         <main className="lg:ml-60 scroll-smooth">
-          <Navbar2></Navbar2>
+          <div className="ml-4">
+            <Navbar2></Navbar2>
+          </div>
           <div className="lg:ml-8">
             <Outlet></Outlet>
           </div>

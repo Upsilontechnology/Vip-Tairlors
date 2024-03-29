@@ -135,11 +135,13 @@ const AddToCart = () => {
             </div>
             <div className="flex flex-col p-2 mb-5 gap-6">
               <div className="flex justify-end">
-                <div className="flex justify-between w-2/5 p-3 border border-[#403030]">
-                  <h2 className="font-bold text-xl">
+                <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
+                  <h2 className="font-bold lg:text-xl text-base">
                     Total <span>({carts?.length})</span>
                   </h2>
-                  <h2 className="font-bold text-xl">BDT {totalAmount} </h2>
+                  <h2 className="font-bold lg:text-xl text-base">
+                    BDT {totalAmount}{" "}
+                  </h2>
                 </div>
               </div>
               <button

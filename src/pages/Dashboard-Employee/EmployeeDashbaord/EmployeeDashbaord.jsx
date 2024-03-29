@@ -21,157 +21,147 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const [carts] = useCarts();
 
-  const navlinks = (
-    <>
-      <li className="relative px-2 py-1">
-        <NavLink
-          defaultChecked
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-base "
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-base"
-          }
-          to="employeeHome"
-        >
-          <MdDashboard className="text-lg" />
-          <span className="ml-2">Home</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-base "
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-base"
-          }
-          to="productList"
-        >
-          <RiFileList2Line className="text-lg" />
-          <span className="ml-2">Product List</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-base "
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-base"
-          }
-          to="addToCart"
-        >
-          <RiFileList3Line className="text-lg" />
-          <span className="ml-2">
-            Sell List
-            <span className="text-red-500">({carts?.length})</span>
-          </span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-base "
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-base"
-          }
-          to="ordered"
-        >
-          <IoMdAddCircleOutline className="text-lg" />
-          <span className="ml-2">Add Ordered Product</span>
-        </NavLink>
-      </li>
-      <li className="relative px-2 py-1 ">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-base "
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-base"
-          }
-          to="orderedList"
-        >
-          <IoBagAddOutline className="text-lg" />
-          <span className="ml-2">Ordered List</span>
-        </NavLink>
-      </li>
-    </>
-  );
-  return (
-    <div
-      className={`flex h-screen bg-white ${
-        isSideMenuOpen ? "overflow-hidden" : ""
-      }`}
-    >
-      {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
-        <div className="h-screen py-3 pl-3 flex flex-col shadow-xl">
-          {/* logo */}
-          <div>
-            <h1 className="text-3xl">VIP Tailor's</h1>
-          </div>
-          {/* items and routes */}
-          <div className=" flex flex-col justify-between py-10">
-            <ul className="leading-10">{navlinks}</ul>
-          </div>
-          {/* social icons */}
-          {/* <div className="flex gap-2 justify-center items-center">
-            <AiFillFacebook className="text-2xl rounded-full text-blue-500" />
-            <AiFillInstagram className="text-2xl rounded-full text-pink-600" />
-            <AiOutlineWhatsApp className="text-2xl rounded-full text-green-500" />
-            <AiOutlineTwitter className="text-2xl rounded-full" />
-          </div> */}
-        </div>
-      </aside>
-      <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
-      {/* responsive dashboard */}
-      <aside
-        className={`z-20 fixed w-64 duration-300 inset-y-0 ease-in-out overflow-y-auto bg-white ${
-          isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden`}
-      >
-        <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
-          {/* logo */}
-          <div>
-            <h1 className="text-3xl">VIP Tailor's</h1>
-          </div>
-          {/* items and routes */}
-          <div className=" flex flex-col justify-between">
-            <ul className="leading-10">{navlinks}</ul>
-          </div>
-          {/* social icons */}
-          <div className="flex gap-2 justify-center items-center">
-            <AiFillFacebook className="text-2xl rounded-full text-blue-500" />
-            <AiFillInstagram className="text-2xl rounded-full text-pink-600" />
-            <AiOutlineWhatsApp className="text-2xl rounded-full text-green-500" />
-            <AiOutlineTwitter className="text-2xl rounded-full" />
-          </div>
-        </div>
-      </aside>
-      {/* components */}
-      <div className="flex flex-col flex-1 w-full bg-[#f9f6f6] overflow-y-auto ">
-        <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 lg:hidden">
-          {/* toggle button */}
-          <div className="flex items-center justify-between h-8 px-6 mx-auto">
-            <button
-              className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple"
-              onClick={toggleSideMenu}
-              aria-label="Menu"
+    const navlinks = <>
+        <li className="relative px-2 py-1">
+            <NavLink
+                defaultChecked
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+                        : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+                }
+                to="employeeHome"
             >
-              {isSideMenuOpen ? (
-                <FaXmark className="w-6 h-6" />
-              ) : (
-                <FaBarsStaggered className="w-6 h-6" />
-              )}
-            </button>
-            <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
+                <AiOutlineHome />
+                <span className="ml-4">Overview</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+                        : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+                }
+                to="productList"
+            >
+                <MdProductionQuantityLimits />
+                <span className="ml-4">Product List</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+                        : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+                }
+                to="addToCart"
+            >
+                <MdProductionQuantityLimits />
+                <span className="ml-4">Add To Cart <span className='text-red-500'>({carts?.length})</span></span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+                        : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+                }
+                to="ordered"
+            >
+                <IoBagAddOutline />
+                <span className="ml-4">Ordered Product</span>
+            </NavLink>
+        </li>
+        <li className="relative px-2 py-1 ">
+            <NavLink
+                className={({ isActive }) =>
+                    isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+                        : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+                }
+                to="orderedList"
+            >
+                <MdProductionQuantityLimits />
+                <span className="ml-4">Ordered List</span>
+            </NavLink>
+        </li>
+    </>
+    return (
+        <div
+        className={`flex h-screen bg-white ${
+          isSideMenuOpen ? "overflow-hidden" : ""
+        }`}
+      >
+        {/* Dashboard */}
+        <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
+          <div className="h-screen py-3 pl-3 flex flex-col shadow-xl">
+            {/* logo */}
+            <div>
+              <p className="font-bold text-lg">Employee Dashboard</p>
+            </div>
+            {/* items and routes */}
+            <div className=" flex flex-col justify-between py-10">
+              <ul className="leading-10">{navlinks}</ul>
+            </div>
+            {/* social icons */}
+            {/* <div className="flex gap-2 justify-center items-center">
+              <AiFillFacebook className="text-2xl rounded-full text-blue-500" />
+              <AiFillInstagram className="text-2xl rounded-full text-pink-600" />
+              <AiOutlineWhatsApp className="text-2xl rounded-full text-green-500" />
+              <AiOutlineTwitter className="text-2xl rounded-full" />
+            </div> */}
           </div>
-        </header>
-        <main className="lg:ml-64 scroll-smooth">
-          <Navbar2></Navbar2>
-          <div className="lg:ml-8">
-            <Outlet></Outlet>
+        </aside>
+        <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
+        {/* responsive dashboard */}
+        <aside
+          className={`z-20 fixed w-64 duration-300 inset-y-0 ease-in-out overflow-y-auto bg-white ${
+            isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:hidden`}
+        >
+          <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
+            {/* logo */}
+            <div>
+              <p className="font-bold text-lg">Employee Dashboard</p>
+            </div>
+            {/* items and routes */}
+            <div className=" flex flex-col justify-between">
+              <ul className="leading-10">{navlinks}</ul>
+            </div>
+            {/* social icons */}
+            <div className="flex gap-2 justify-center items-center">
+              <AiFillFacebook className="text-2xl rounded-full text-blue-500" />
+              <AiFillInstagram className="text-2xl rounded-full text-pink-600" />
+              <AiOutlineWhatsApp className="text-2xl rounded-full text-green-500" />
+              <AiOutlineTwitter className="text-2xl rounded-full" />
+            </div>
           </div>
-        </main>
+        </aside>
+        {/* components */}
+        <div className="flex flex-col flex-1 w-full bg-[#f9f6f6] overflow-y-auto ">
+          <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 lg:hidden">
+            {/* toggle button */}
+            <div className="flex items-center justify-between h-8 px-6 mx-auto">
+              <button
+                className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple"
+                onClick={toggleSideMenu}
+                aria-label="Menu"
+              >
+                {isSideMenuOpen ? (
+                  <FaXmark className="w-6 h-6" />
+                ) : (
+                  <FaBarsStaggered className="w-6 h-6" />
+                )}
+              </button>
+              <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
+            </div>
+          </header>
+          <main className="lg:ml-64 scroll-smooth">
+            <Navbar2></Navbar2>
+            <div className="lg:ml-8">
+              <Outlet></Outlet>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
   );
 };
 
