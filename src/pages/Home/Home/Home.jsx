@@ -8,6 +8,7 @@ import useUser from '../../../hooks/useUser';
 import AdminDashboard from '../../Dashboard/AdminDashboard/AdminDashboard';
 import EmployeeDashboard from '../../Dashboard-Employee/EmployeeDashbaord/EmployeeDashbaord';
 import Notice from '../NoticeBoard/Notice';
+import Navbar2 from '../../../shared/Navbar2/Navbar2';
 
 const Home = () => {
     const [loggedUser, setLoggedUser] = useState();
@@ -42,17 +43,23 @@ const Home = () => {
                 loggedUser ? (
                     <div key={loggedUser._id}>
                         {loggedUser.role === "employee" ? (
-                            <EmployeeDashboard
-                                isSideMenuOpen={isSideMenuOpen}
-                                toggleSideMenu={toggleSideMenu}
-                                closeSideMenu={closeSideMenu}
-                            />
+                            <div>
+                                {/* <Navbar2 className="mb-2"/> */}
+                                <EmployeeDashboard
+                                    isSideMenuOpen={isSideMenuOpen}
+                                    toggleSideMenu={toggleSideMenu}
+                                    closeSideMenu={closeSideMenu}
+                                />
+                            </div>
                         ) : loggedUser.role === "admin" ? (
-                            <AdminDashboard
-                                isSideMenuOpen={isSideMenuOpen}
-                                toggleSideMenu={toggleSideMenu}
-                                closeSideMenu={closeSideMenu}
-                            />
+                            <div>
+                                {/* <Navbar2 /> */}
+                                <AdminDashboard
+                                    isSideMenuOpen={isSideMenuOpen}
+                                    toggleSideMenu={toggleSideMenu}
+                                    closeSideMenu={closeSideMenu}
+                                />
+                            </div>
                         ) : (
                             <>
                                 <Banner />

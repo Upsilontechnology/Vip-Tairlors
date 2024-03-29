@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar2 from "../../../shared/Navbar2/Navbar2";
 import {
@@ -21,6 +21,7 @@ import { ImStatsDots } from "react-icons/im";
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     Swal.fire({
@@ -54,8 +55,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 py-1 pr-2 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="adminHome"
         >
@@ -68,8 +69,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addProduct"
         >
@@ -82,8 +83,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           defaultChecked
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addcategory"
         >
@@ -95,8 +96,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="productList"
         >
@@ -108,8 +109,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="orderedList"
         >
@@ -121,8 +122,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-42 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-bold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="productStatement"
         >
@@ -134,8 +135,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-42 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="orderStatement"
         >
@@ -147,8 +148,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="addNotice"
         >
@@ -160,8 +161,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "inline-flex items-center font-bold text-[#3d48df] hover:text-blue-600 text-lg"
-              : "inline-flex items-center font-semibold hover:text-blue-600 text-lg"
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
           }
           to="allMembers"
         >
@@ -172,76 +173,78 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
     </>
   );
   return (
-    <div
-      className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""
-        }`}
-    >
-      {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
-        <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
-          {/* logo */}
-          <div>
-            <h1 className="text-2xl">VIP Tailor</h1>
-          </div>
-          {/* items and routes */}
-          <div className=" flex flex-col justify-between">
-            <ul className="leading-10">{navlinks}</ul>
-          </div>
-          {/* footer */}
-          <div className="flex gap-2 justify-center items-center">
-            <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
-          </div>
-        </div>
-      </aside>
-      <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
-      {/* responsive dashboard */}
-      <aside
-        className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden`}
+    <div>
+      <Navbar2 />
+      <div
+        className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""
+          }`}
       >
-        <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
-          {/* logo */}
-          <div>
-            <h1 className="text-2xl">VIP Tailor</h1>
-          </div>
-          {/* items and routes */}
-          <div className=" flex flex-col justify-between">
-            <ul className="leading-8">{navlinks}</ul>
-          </div>
-          {/* footer */}
-          <div className="flex justify-center items-center">
-            <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
-          </div>
-        </div>
-      </aside>
-      {/* components */}
-      <div className="flex flex-col flex-1 w-full overflow-y-auto bg-[#f6f5f5]">
-        <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 lg:hidden">
-          <div className="flex items-center justify-between h-8 px-6 mx-auto">
-            <button
-              className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple"
-              onClick={toggleSideMenu}
-              aria-label="Menu"
-            >
-              {isSideMenuOpen ? (
-                <FaXmark className="w-6 h-6" />
-              ) : (
-                <FaBarsStaggered className="w-6 h-6" />
-              )}
-            </button>
-            <div className="flex lg:hidden justify-end mr-4 w-full">
-              <button onClick={handleLogout} className="btn btn-sm">
-                <IoPersonOutline className="text-xl" /> Logout
-              </button>
+        {/* Dashboard */}
+        <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block">
+          <div className=" py-3 pl-3 flex flex-col justify-between shadow-xl">
+            {/* logo */}
+            <div>
+              <p className="font-bold text-lg">Admin Dashboard</p>
+            </div>
+            {/* items and routes */}
+            <div className=" flex flex-col justify-between">
+              <ul className="leading-10">{navlinks}</ul>
+            </div>
+            {/* footer */}
+            <div className="flex gap-2 justify-center items-center">
+              <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
             </div>
           </div>
-        </header>
-        <main className="lg:ml-60 scroll-smooth">
-          <Navbar2></Navbar2>
-          <div className="lg:ml-8">
-            <Outlet></Outlet>
+        </aside>
+        <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
+        {/* responsive dashboard */}
+        <aside
+          className={`z-20 fixed duration-300 w-64 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+            } lg:hidden`}
+        >
+          <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
+            {/* logo */}
+            <div>
+              <h1 className="text-2xl">VIP Tailor</h1>
+            </div>
+            {/* items and routes */}
+            <div className=" flex flex-col justify-between">
+              <ul className="leading-8">{navlinks}</ul>
+            </div>
+            {/* footer */}
+            <div className="flex justify-center items-center">
+              <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
+            </div>
           </div>
-        </main>
+        </aside>
+        {/* components */}
+        <div className="flex flex-col flex-1 w-full overflow-y-auto bg-[#f6f5f5]">
+          <header className="z-40 py-5 bg-slate-50 fixed w-full top-0 lg:hidden">
+            <div className="flex items-center justify-between h-8 px-6 mx-auto">
+              <button
+                className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple"
+                onClick={toggleSideMenu}
+                aria-label="Menu"
+              >
+                {isSideMenuOpen ? (
+                  <FaXmark className="w-6 h-6" />
+                ) : (
+                  <FaBarsStaggered className="w-6 h-6" />
+                )}
+              </button>
+              <div className="flex lg:hidden justify-end mr-4 w-full">
+                <button onClick={handleLogout} className="btn btn-sm">
+                  <IoPersonOutline className="text-xl" /> Logout
+                </button>
+              </div>
+            </div>
+          </header>
+          <main className="lg:ml-60 scroll-smooth">
+            <div className="lg:ml-8">
+              <Outlet></Outlet>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

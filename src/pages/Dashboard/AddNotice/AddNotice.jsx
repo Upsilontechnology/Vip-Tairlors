@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import "./AddNotice.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import DashBoardTitle from "../../../components/dashboardTitle/DashBoardTitle";
 
 const AddNotice = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -43,52 +44,43 @@ const AddNotice = () => {
             key="flex_046445"
             className="py-5 px-10"
         >
-            <SectionTitle
-                title="Notice Page"
-                descrition="The Notice Page tells you important things."
+            <DashBoardTitle
+                title={"Admin"}
+                subTitle={"Add, Edit your category section in one click. "}
             />
             <div>
-                <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 justify-between py-6 md:py-10">
-                    <div className="w-full md:w-[60%]">
+                <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 bg-white mt-4 rounded-lg shadow justify-between py-6 md:py-10">
+                    <div className="w-full">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="w-full mb-5">
-                                <label htmlFor="title" className="font-medium p-1">
-                                    Title
-                                </label>
+                            <div className="w-full mb-5 text-center">
                                 <input
-                                    className="w-full px-8 py-2 bg-secondary-color rounded-lg border-2 text-black border-gray-500 outline-none focus:border-[#0fcda1]"
+                                    className="w-4/5 md:w-1/2 px-8 py-2 bg-[#F8F8F8] rounded-lg text-black outline-none pl-4 pr-6"
                                     type="text"
                                     name="title"
                                     {...register("title", { required: true })}
                                     id=""
-                                    placeholder="Title"
+                                    placeholder="Put Your Title"
                                 />
                             </div>
-                            <div className="w-full mb-6">
-                                <label htmlFor="" className="font-medium p-1">
-                                    Save Nodebook info
-                                </label>
+                            <div className="mb-6 text-center">
                                 <textarea name="message"
-                                    className="w-full h-64 rounded-xl overflow-hidden border border-gray-500 outline-none focus:border-[#0fcda1] px-8 "
+                                    className="w-4/5 md:w-1/2 h-64 bg-[#F8F8F8] rounded-lg overflow-hidden border outline-none pl-4 pr-6 py-2 "
                                     type="text"
                                     {...register("message", { required: true })}
                                     id=""
-                                    placeholder="message"
-                                    style={{ width: "550px", height: "200px" }}
+                                    placeholder="Put your important notice"
+                                    // style={{ width: "550px", height: "200px" }}
                                 />
                             </div>
                             <div className="text-center">
                                 <button
                                     type="submit"
-                                    className="bg-[#a09c9c] rounded-lg font-semibold py-3 px-10"
+                                    className='bg-[#403030] px-20 md:px-48 py-2 rounded text-white'
                                 >
-                                    Save Notes
+                                    Publish Notice
                                 </button>
                             </div>
                         </form>
-                    </div>
-                    <div className="w-full md:w-[40%]">
-                        <img className="w-4/5 mx-auto md:ml-auto" src={handWithPen} alt="" />
                     </div>
                 </div>
             </div>
