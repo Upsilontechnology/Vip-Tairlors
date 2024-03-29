@@ -39,6 +39,10 @@ const AdminHome = () => {
 
     return (
         <div className='my-5'>
+            <DashBoardTitle
+                title={"Admin"}
+                subTitle={"Insights, management tools and add product-all in one place"}
+            />
             <div className='bg-white p-2 md:p-6'>
                 <h1 className="text-lg md:text-2xl font-semibold mb-3">Total Summary</h1>
                 {/* category-wise tabs */}
