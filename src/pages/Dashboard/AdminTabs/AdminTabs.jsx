@@ -7,6 +7,7 @@ import { IoBagOutline, IoBarChartOutline, IoPrintOutline } from 'react-icons/io5
 import { BsCart3, BsFilterLeft } from 'react-icons/bs';
 import { ReactToPrint } from 'react-to-print';
 import { FaSortAmountDown } from "react-icons/fa";
+import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
 
 const AdminTabs = ({ allOrderProducts }) => {
     const axiosPublic = useAxiosPublic();
