@@ -8,6 +8,7 @@ import { BsCart3 } from 'react-icons/bs';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import AdminTabs from '../AdminTabs/AdminTabs';
+import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
 
 const AdminHome = () => {
     const axiosPublic = useAxiosPublic();
@@ -37,8 +38,12 @@ const AdminHome = () => {
 
 
     return (
-        <div className='my-5'>
-            <div className='bg-white p-6'>
+        <div className='mb-5'>
+            <DashBoardTitle
+                title={"Admin"}
+                subTitle={"Add, Edit your category section in one click. "}
+            />
+            <div className='bg-white p-6 mt-4'>
                 <h1 className="text-2xl font-semibold mb-3">Total Summary</h1>
                 {/* category-wise tabs */}
                 <div className='flex'>

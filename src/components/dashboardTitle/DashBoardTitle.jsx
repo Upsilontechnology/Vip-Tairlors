@@ -4,7 +4,7 @@ const DashBoardTitle = ({ title, subTitle }) => {
   return (
     <>
       <div>
-        <div className="flex gap-2 bg-white rounded-md">
+        <div className="flex gap-2 bg-white rounded-md py-2">
           <img src={timg} className="w-40 pt-2 pl-7" alt="" />
           <div className="flex justify-start items-center">
             <div>
