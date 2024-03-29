@@ -30,22 +30,29 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
-        {/* <li>
-            <NavLink
-                to='/featured'
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold transition navs`}
+        <li className=''>
+            {/* <NavLink
+                to="#featured"
+                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
             >
                 Featured Products
-            </NavLink>
-        </li> */}
-        {/* <li>
-            <NavLink
-                to="/contact"
-                className={({ isActive }) => `${isActive ? "active text-[#0a1d56]" : null} duration-300 text-lg font-semibold  transition navs`}
+            </NavLink> */}
+            <a className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`} href="#featured">
+                Featured Products
+            </a>
+        </li>
+        <li className=''>
+            {/* <NavLink
+                to="notice"
+                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
             >
                 Notice Board
-            </NavLink>
-        </li> */}
+            </NavLink> */}
+            <a className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`} href="#notice">
+                Notice Board
+            </a>
+        </li>
+
         <li>
             <NavLink
                 to="/contact"
@@ -104,7 +111,7 @@ const Navbar = () => {
                         <div>
                             {
                                 user ? <button onClick={handleLogout} className="bg-white text-black font-semibold px-2 py-1 rounded ">Logout</button>
-                                : <Link to='/login' className='bg-white text-black font-semibold px-2 py-1 rounded'>Log in</Link>
+                                    : <Link to='/login' className='bg-white text-black font-semibold px-2 py-1 rounded'>Log in</Link>
                             }
                         </div>
                         <Link to='/register' className='bg-white text-black font-semibold px-2 py-1 rounded ml-3'>Create an account</Link>

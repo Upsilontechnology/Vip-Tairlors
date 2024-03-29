@@ -88,22 +88,22 @@ const AdminTabs = ({ allOrderProducts }) => {
         <div className='overflow-hidden w-full h-full'>
             <Tabs>
                 {/* tab lists */}
-                <div className='flex flex-row w-full gap-5'>
-                    <div className='w-1/3 bg-gray-100 h-24 flex flex-col p-4 space-y-3 rounded-md'>
+                <div className='flex lg:flex-row flex-col w-full gap-5'>
+                    <div className='md:w-1/3 bg-gray-100 h-24 flex flex-col p-4 space-y-3 rounded-md'>
                         <h4 className="text-sm font-semibold"><IoBarChartOutline className='inline mr-1' /> Total Sales</h4>
-                        <h1 className="text-2xl font-bold">{totalSells} BDT</h1>
+                        <h1 className="text-xl md:text-2xl font-bold">{totalSells} BDT</h1>
                     </div>
                     {/* tab lists */}
-                    <TabList className="font-bold w-2/3 bg-gray-100 flex flex-row justify-center items-center gap-10 rounded-md">
-                        <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Sell Product</Tab>
-                        <Tab className="border-none bg-white py-5 px-14 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white py-5 px-14'>Order Product</Tab>
+                    <TabList className="font-bold md:w-2/3 w-5/6 mx-auto py-4 bg-gray-100 flex flex-row justify-center items-center gap-2 md:gap-4 lg:gap-10 rounded-md">
+                        <Tab className="border-none bg-white md:py-5 py-2 md:px-14 px-4 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white md:py-5 py-2 md:px-14 px-4'>Sell Product</Tab>
+                        <Tab className="border-none bg-white md:py-5 py-2 md:px-14 px-4 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white md:py-5 py-2 md:px-14 px-4'>Order Product</Tab>
                     </TabList>
                 </div>
                 {/* tab panel */}
                 <div className='my-5 bg-gray-100 rounded-lg'>
                     {/* sell product */}
                     <TabPanel>
-                        <div className='flex flex-col p-3 gap-4'>
+                        <div className='flex flex-col p-1 md:p-3 gap-4'>
                             <div >
                                 {/* tab lists */}
                                 <div className="font-bold pb-3 flex flex-row  justify-between items-center">
@@ -171,11 +171,11 @@ const AdminTabs = ({ allOrderProducts }) => {
                     {/* order product */}
                     <TabPanel>
                         {/* Print and filter button */}
-                        <div className="flex items-center justify-between mb-3 mt-2 px-5">
+                        <div className="flex items-center justify-between mb-3 mt-2 md:px-5 px-2">
                             <h1 className="text-xl font-semibold">Order Product</h1>
                             <div className='flex justify-end my-5'>
-                                <div className="dropdown dropdown-hover mr-5">
-                                    <div tabIndex={0} role="button" className="m-1">
+                                <div className="dropdown dropdown-hover mr-2 md:mr-5">
+                                    <div tabIndex={0} role="button" className="">
                                         <FaSortAmountDown className='text-2xl' />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28 font-bold">
@@ -216,49 +216,49 @@ const AdminTabs = ({ allOrderProducts }) => {
                             <div className='flex justify-center mb-5'>
                                 <div className='flex flex-col gap-5 justify-center lg:w-4/6 pb-8'>
                                     {/* cards */}
-                                    <div className='grid grid-cols-2 gap-4'>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                    <div className='grid grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 md:p-5 px-2 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-base font-semibold '>Total Sales</h3>
+                                                <h3 className='text-sm md:text-base font-semibold '>Total Sales</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-2xl font-bold '>{completeOrderAmount} BDT</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount} BDT</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <BsCart3 className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-base font-semibold '>Total Orders</h3>
+                                                <h3 className='text-sm md:text-base font-semibold '>Total Orders</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-2xl font-bold '>{orderProducts?.length}</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{orderProducts?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-base font-semibold '>Total Delivered</h3>
+                                                <h3 className='text-sm md:text-base font-semibold '>Total Delivered</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-2xl font-bold '>{completedOrders?.length}</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{completedOrders?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-base font-semibold '>Total Pending</h3>
+                                                <h3 className='text-sm md:text-base font-semibold '>Total Pending</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-2xl font-bold '>{pendingOrders?.length}</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{pendingOrders?.length}</h2>
                                             </div>
                                         </div>
                                     </div>

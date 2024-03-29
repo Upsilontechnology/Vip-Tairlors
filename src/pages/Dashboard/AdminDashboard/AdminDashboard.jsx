@@ -207,18 +207,18 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
         } lg:hidden`}
       >
-        <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
+        <div className="h-screen md:py-3 pl-3 flex flex-col justify-between shadow-xl">
           {/* logo */}
           <div>
             <h1 className="text-2xl">VIP Tailor</h1>
           </div>
           {/* items and routes */}
-          <div className=" flex flex-col justify-between">
+          <div className=" flex flex-col pt-5 justify-between">
             <ul className="leading-8">{navlinks}</ul>
           </div>
           {/* footer */}
           <div className="flex justify-center items-center">
-            <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
+            <p className="text-xs lg:text-base">Copyright © 2024 - All right reserved by VIP Tailor's</p>
           </div>
         </div>
       </aside>

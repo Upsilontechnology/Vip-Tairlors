@@ -36,6 +36,7 @@ const ProductDetails = () => {
   const [loggedUser, setLoggedUser] = useState();
   const [users] = useUser();
   const [carts, remaining] = useCarts();
+
   const { data: categories = [] } = useQuery({
     queryKey: ["categoryData"],
     queryFn: async () => {
@@ -86,6 +87,7 @@ const ProductDetails = () => {
       productCode: parseInt(form.code.value),
       sellingDate: new Date(),
       title: "cart",
+      email
     };
     const quantity1 = parseInt(form.quantity.value);
     if (quantity1 > sell?.quantity) {
@@ -268,26 +270,26 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="max-w-[90%] mx-auto rounded-md">
+      <div className="max-w-[97%] md:max-w-[90%] mx-auto rounded-md">
         {role === "admin" ? (
           <div className="grid grid-cols-2 justify-between items-center my-2 rounded-md gap-2">
-            <div className="bg-white p-5 rounded-md flex flex-col gap-2">
-              <h1 className="text-sm font-semibold flex items-center justify-start">
+            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col gap-2">
+              <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start gap-1">
                 <span>
                   <FaSortAmountUpAlt />
                 </span>
                 Total Product Amount
               </h1>
-              <h1 className="font-semibold text-2xl">{totalStock} BDT</h1>
+              <h1 className="font-semibold text-xl md:text-2xl">{totalStock} BDT</h1>
             </div>
-            <div className="bg-white p-5 rounded-md flex flex-col gap-2 ">
-              <h1 className="text-sm font-semibold flex items-center justify-start">
+            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col gap-2 ">
+              <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start">
                 <span>
                   <MdLocalMall />
                 </span>
                 Total Quantity
               </h1>
-              <h1 className="font-semibold text-2xl">{totalQuantity}</h1>
+              <h1 className="font-semibold text-xl md:text-2xl">{totalQuantity}</h1>
             </div>
           </div>
         ) : (
@@ -366,8 +368,8 @@ const ProductDetails = () => {
                 <div className="overflow-x-auto">
                   <table className="table">
                     <thead>
-                      <tr className=" text-black">
-                        <th>#</th>
+                      <tr className=" text-black border-b-[1.2px] border-black">
+                        <th className="p-1">#</th>
                         <th>Product Code</th>
                         <th>Product Name</th>
                         <th>Price</th>
@@ -379,8 +381,8 @@ const ProductDetails = () => {
                     </thead>
                     <tbody>
                       {filterBySearch?.items?.map((product, ind) => (
-                        <tr key={product?._id}>
-                          <td>{ind + 1}</td>
+                        <tr className="border-b-[1.2px] border-black" key={product?._id}>
+                          <td className="p-1">{ind + 1}</td>
                           <td>{product?.productCode}</td>
                           <td>{product?.name}</td>
                           <td>BDT {product?.price}</td>
@@ -439,7 +441,7 @@ const ProductDetails = () => {
           {/* Modal content goes here */}
           <div
             ref={modalRef}
-            className="bg-white rounded-lg shadow-xl lg:w-4/5 w-1/2 p-5"
+            className="bg-white rounded-lg shadow-xl lg:w-3/5 w-[95%] lg:p-5"
           >
             <div className="flex justify-between p-2 items-center">
               <div>
@@ -454,9 +456,9 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
-            <div className="p-6">
+            <div className="p-2 lg:p-6">
               <form className="" onSubmit={handleUpdate}>
-                <div className="flex gap-6">
+                <div className="flex gap-2 md:gap-6">
                   {/* Product Name */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -484,7 +486,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="flex gap-2 md:gap-6">
                   {/* price */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -511,7 +513,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="flex gap-2 md:gap-">
                   {/* category */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -572,7 +574,7 @@ const ProductDetails = () => {
 
       {openModal && (
         <div
-          className="fixed inset-0 z-10 flex items-center lg:ml-32 ml-1 justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-10 flex items-center pt-32 pb-14 lg:pt-0 lg:pb-0 lg:ml-32 justify-center bg-black bg-opacity-50"
           aria-labelledby="modal-title"
           role="dialog"
           aria-modal="true"

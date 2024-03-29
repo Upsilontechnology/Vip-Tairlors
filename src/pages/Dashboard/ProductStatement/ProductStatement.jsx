@@ -43,7 +43,7 @@ const ProductStatement = () => {
     }
     return (
         <div>
-            <div className='w-6/12 mx-auto text-center my-7'>
+            <div className='px-3 lg:w-6/12 mx-auto text-center my-7'>
                 <SectionTitle
                     title="Statement Pieces"
                     descrition="Explore our collection and make a statement that reflects your individuality."
@@ -53,8 +53,8 @@ const ProductStatement = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th>#</th>
+                        <tr className='border-b-[1.2px] border-black'>
+                            <th className='p-auto md:p-0'>#</th>
                             <th>Code</th>
                             <th>Selling Date</th>
                             <th>Quantity</th>
@@ -64,8 +64,8 @@ const ProductStatement = () => {
                     </thead>
                     <tbody>
                         {
-                            soldItems?.items?.map((product, ind) => <tr key={product?._id}>
-                                <th>{ind + 1}</th>
+                            soldItems?.items?.map((product, ind) => <tr className='border-b-[1.2px] border-black' key={product?._id}>
+                                <th className='p-auto md:p-0'>{ind + 1}</th>
                                 <th>{product?.productCode}</th>
                                 <td>
                                     <div className="flex items-center gap-3">

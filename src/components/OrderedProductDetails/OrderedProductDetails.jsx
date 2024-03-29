@@ -1,21 +1,17 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Pagination from "../pagination/pagination";
+import { useState } from "react";
 
-const OrderedProductDetails = ({
-  products,
-  filteredUser,
-  currentPage,
-  setCurrentPage,
-  totalPages,
-  refetch,
-}) => {
+const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrentPage, totalPages, refetch }) => {
+
   const axiosPublic = useAxiosPublic();
   console.log(products)
 
   const handleComplete = async (product) => {
     await axiosPublic.patch(`/orderProduct/${product?._id}`)
       .then((res) => {
+        refetch();
         if (res.data.message === "success") {
           Swal.fire({
             position: "top-end",
@@ -25,7 +21,7 @@ const OrderedProductDetails = ({
             timer: 1500,
           });
         }
-        refetch();
+
       });
   };
   const {
