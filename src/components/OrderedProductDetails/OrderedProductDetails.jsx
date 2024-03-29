@@ -10,30 +10,23 @@ const OrderedProductDetails = ({
   totalPages,
   refetch,
 }) => {
-  console.log(refetch);
   const axiosPublic = useAxiosPublic();
+  console.log(products)
 
   const handleComplete = async (product) => {
-    await axiosPublic.patch(`/orderProduct/${product?._id}`).then((res) => {
-      if (res.data.message === "success") {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Order added successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Product Code has already been taken",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-      refetch();
-    });
+    await axiosPublic.patch(`/orderProduct/${product?._id}`)
+      .then((res) => {
+        if (res.data.message === "success") {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Order added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        refetch();
+      });
   };
   const {
     _id,
@@ -53,9 +46,9 @@ const OrderedProductDetails = ({
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-black">
-              <th>Product Code</th>
-              <th>Name</th>
+            <tr className="text-black border-b-[1.5px] border-black">
+              <th className="p-1">Product Code</th>
+              <th>Product Name</th>
               <th>Price</th>
               <th>Quantity</th>
               {products?.items?.some((dd) => dd.status === "pending") && (
@@ -67,13 +60,13 @@ const OrderedProductDetails = ({
 
               <th>Delivery Date</th>
               <th>Image</th>
-              <th>Status</th>
+              {filteredUser?.role === 'employee' && <th>Status</th>}
             </tr>
           </thead>
           <tbody>
             {products?.items?.map((product, ind) => (
-              <tr key={product?._id} className="">
-                <td>{product?.productCode}</td>
+              <tr key={product?._id} className="border-b-[1.5px] border-black">
+                <td className="p-1">{product?.productCode}</td>
                 <td>{product?.name}</td>
                 <td className="whitespace-nowrap">BDT {product?.price}</td>
                 <td>{product?.quantity}</td>
@@ -91,31 +84,27 @@ const OrderedProductDetails = ({
                 <td>
                   <img className="w-10 h-10" src={product?.image} alt="" />
                 </td>
-                <th>
-                  {product?.status === "pending" ? (
-                    <h1 className="text-xs font-bold">Pending</h1>
-                  ) : (
-                    <h1 className="text-xs font-bold">Paid</h1>
-                  )}
-                  {product?.status === "pending" ? (
-                    filteredUser?.role === "employee" ? (
-                      <button
-                        onClick={() => handleComplete(product)}
-                        className="btn btn-xs btn-accent"
-                      >
-                        Complete
-                      </button>
-                    ) : (
-                      <button disabled className="btn btn-xs btn-accent">
-                        Complete
-                      </button>
-                    )
-                  ) : (
-                    <button className="btn btn-xs hidden btn-accent">
-                      Complete
-                    </button>
-                  )}
-                </th>
+                {
+                  filteredUser?.role === 'employee' ? (
+                    <th>
+                      {
+                        product?.status === 'pending' ?
+                          (
+                            <div>
+                              <h1 className="text-xs font-bold">Pending</h1>
+                              <button
+                                onClick={() => handleComplete(product)}
+                                className="btn btn-xs btn-accent"
+                              >
+                                Complete
+                              </button>
+                            </div>
+                          ) :
+                          <h1 className="text-xs font-bold">Paid</h1>
+                      }
+                    </th>
+                  ) : ''
+                }
               </tr>
             ))}
           </tbody>

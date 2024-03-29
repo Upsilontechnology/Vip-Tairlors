@@ -5,10 +5,20 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FaRegTrashAlt } from "react-icons/fa";
+import Pagination from '../../../components/pagination/pagination';
+import useAuth from '../../../hooks/useAuth';
 
 const AllMembers = () => {
-    // const [users, refetch] = useUser();
     const [axiosSecure] = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+    // Pagination
+    const [productLength, setProductLength] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 10;
+    const totalPages = Math.ceil(productLength / itemsPerPage);
+    const { user } = useAuth();
+    const email = user?.email;
+
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["Users"],
@@ -18,7 +28,38 @@ const AllMembers = () => {
         }
     })
 
-    const axiosPublic = useAxiosPublic();
+    const { data: userInfo } = useQuery({
+        queryKey: ['userInfo', email],
+        staleTime: Infinity,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/user/${email}`)
+            return res.data;
+        }
+    })
+    const role = userInfo?.role;
+
+    const { data: userPagination, refetch: refetchByPagination } = useQuery({
+        queryKey: ['userPagination', role, itemsPerPage, currentPage],
+        queryFn: async () => {
+            const res = await axiosPublic.get(
+                `/user/1/state?role=${role}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}`
+            )
+            return res.data;
+        }
+    });
+
+    useEffect(() => {
+        if (userPagination && userPagination?.totalCount) {
+            setProductLength(userPagination?.totalCount);
+            refetchByPagination();
+        } else {
+            setProductLength(0);
+            refetchByPagination();
+        }
+    }, [userPagination]);
+    console.log(userPagination?.totalCount);
+
+
 
     // make admin
     const handleMakeAdmin = (user) => {
@@ -86,7 +127,7 @@ const AllMembers = () => {
                     .then(res => {
                         console.log(res)
                         if (res.status === 200) {
-                            refetch();
+                            refetchByPagination();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Product has been deleted..!",
@@ -102,42 +143,50 @@ const AllMembers = () => {
 
     return (
         <div className='bg-white h-auto flex justify-center items-center py-5'>
-            <div className='bg-gray-100 w-11/12 mx-auto p-6 rounded-md'>
-                <h3 className="text-base font-semibold">User List</h3>
-                {/* user container */}
-                {
-                    users?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center my-10'>
-                        {/* name and email */}
-                        <div>
-                            <h2 className="text-lg font-semibold">{user?.name || ''}</h2>
-                            <h4 className="text-sm text-gray-600">{user?.email}</h4>
-                        </div>
-                        <div className='flex flex-row gap-3'>
-                            {/* make admin */}
-                            {user?.role === 'admin' ?
-                                <h1 className='bg-yellow-950 text-white font-bold px-[61px] py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Admin</h1> :
-                                <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-10 py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
-                                    Make Admin
-                                </button>}
-                            {/* make employee */}
-                            {user?.role === 'employee' ?
-                                <h1 className='bg-yellow-950 text-white font-bold px-[61px] py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Employee</h1> :
-                                <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-10 py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
-                                    Make Employee
-                                </button>}
-                            {/* make user */}
-                            {user?.role === 'user' ?
-                                <h1 className='bg-yellow-950 text-white font-bold px-[61px] py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>User</h1> :
-                                <button onClick={() => handleMakeUser(user)} className='bg-white font-bold px-10 py-4 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
-                                    Make User
-                                </button>}
+            <div className='w-11/12'>
+                <div className='bg-gray-100 w-full mx-auto p-6 rounded-md'>
+                    <h3 className="text-base font-semibold">User List</h3>
+                    {/* user container */}
+                    {
+                        userPagination?.items?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center my-10'>
+                            {/* name and email */}
+                            <div>
+                                <h2 className="text-lg font-semibold">{user?.name || ''}</h2>
+                                <h4 className="text-sm text-gray-600">{user?.email}</h4>
+                            </div>
+                            <div className='flex flex-row gap-3'>
+                                {/* make admin */}
+                                {user?.role === 'admin' ?
+                                    <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Admin</h1> :
+                                    <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-6 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                        Make Admin
+                                    </button>}
+                                {/* make employee */}
+                                {user?.role === 'employee' ?
+                                    <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Employee</h1> :
+                                    <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-6 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                        Make Employee
+                                    </button>}
+                                {/* make user */}
+                                {user?.role === 'user' ?
+                                    <h1 className='bg-yellow-950 text-white font-bold px-[52px] py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>User</h1> :
+                                    <button onClick={() => handleMakeUser(user)} className='bg-white font-bold px-7 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                        Make User
+                                    </button>}
 
-                            <button onClick={() => handleDelete(user)} className=''>
-                                <FaRegTrashAlt className='text-xl' />
-                            </button>
-                        </div>
-                    </div>)
-                }
+                                <button onClick={() => handleDelete(user)} className=''>
+                                    <FaRegTrashAlt className='text-xl' />
+                                </button>
+                            </div>
+                        </div>)
+                    }
+                </div>
+                {/* pagination */}
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
         </div>
     );

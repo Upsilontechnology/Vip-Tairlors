@@ -1,15 +1,25 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import Navbar2 from '../../../shared/Navbar2/Navbar2';
-import { AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp } from "react-icons/ai";
-import { FaUserClock } from 'react-icons/fa';
-import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
-import { IoBagAddOutline } from 'react-icons/io5';
-import { MdProductionQuantityLimits } from 'react-icons/md';
-import useCarts from '../../../hooks/useCarts';
-
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import Navbar2 from "../../../shared/Navbar2/Navbar2";
+import {
+  AiFillFacebook,
+  AiFillInstagram,
+  AiOutlineHome,
+  AiOutlineSchedule,
+  AiOutlineTwitter,
+  AiOutlineWhatsApp,
+} from "react-icons/ai";
+import { FaUserClock } from "react-icons/fa";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { IoBagAddOutline } from "react-icons/io5";
+import { MdProductionQuantityLimits } from "react-icons/md";
+import useCarts from "../../../hooks/useCarts";
+import { MdDashboard } from "react-icons/md";
+import { RiFileList2Line } from "react-icons/ri";
+import { RiFileList3Line } from "react-icons/ri";
+import { IoMdAddCircleOutline } from "react-icons/io";
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
-    const [carts] = useCarts();
+  const [carts] = useCarts();
 
     const navlinks = <>
         <li className="relative px-2 py-1">
@@ -153,7 +163,8 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 </div>
             </div>
         </div>
-    );
+
+  );
 };
 
 export default EmployeeDashboard;
