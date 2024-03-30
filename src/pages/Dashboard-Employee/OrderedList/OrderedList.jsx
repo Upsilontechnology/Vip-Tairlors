@@ -77,7 +77,7 @@ const OrderedList = () => {
   return (
     <div className="">
       {/* tabs */}
-      <div className="overflow-hidden w-full h-full">
+      <div className="overflow-hidden  h-full">
         <Tabs>
           {/* tab lists */}
           <TabList className="font-bold flex justify-center lg:gap-3 gap-2 lg:my-5 my-2">
@@ -98,7 +98,7 @@ const OrderedList = () => {
           </TabList>
           <div className="bg-white lg:py-5 py-2">
             {/* search bar */}
-            <div className="form-control lg:w-1/2 w-5/6 mx-auto lg:mb-5 mb-2">
+            <div className="form-control lg:w-1/2 w-[95%] mx-auto lg:mb-5 mb-2">
               <input
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"

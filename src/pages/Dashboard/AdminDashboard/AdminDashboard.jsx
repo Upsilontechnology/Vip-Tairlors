@@ -27,7 +27,6 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",

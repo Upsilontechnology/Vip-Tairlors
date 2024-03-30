@@ -1,79 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
-import ProductStats from '../../../components/ProductStats/ProductStats';
-import { IoBagOutline, IoBarChartOutline, IoPrintOutline } from 'react-icons/io5';
-import { BsCart3, BsFilterLeft } from 'react-icons/bs';
-import { ReactToPrint } from 'react-to-print';
+import React, { useEffect, useRef, useState } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import ProductStats from "../../../components/ProductStats/ProductStats";
+import {
+  IoBagOutline,
+  IoBarChartOutline,
+  IoPrintOutline,
+} from "react-icons/io5";
+import { BsCart3, BsFilterLeft } from "react-icons/bs";
+import { ReactToPrint } from "react-to-print";
 import { FaSortAmountDown } from "react-icons/fa";
-import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
+import DashBoardTitle from "../../../components/dashboardTitle/DashBoardTitle";
 
 const AdminTabs = ({ allOrderProducts }) => {
-    const axiosPublic = useAxiosPublic();
-    const [selectedData, setSelectedData] = useState();
-    const [defaultTab, setDefaultTab] = useState(0);
-    const componentRef = useRef(null);
-    const [filter, setFilter] = useState(null);
-    const [orderProducts, setOrderProducts] = useState(allOrderProducts);
-    const [commentRef, setCommentRef] = useState();
+  const axiosPublic = useAxiosPublic();
+  const [selectedData, setSelectedData] = useState();
+  const [defaultTab, setDefaultTab] = useState(0);
+  const componentRef = useRef(null);
+  const [filter, setFilter] = useState(null);
+  const [orderProducts, setOrderProducts] = useState(allOrderProducts);
+  const [commentRef, setCommentRef] = useState();
 
-    const { data: categories = [] } = useQuery({
-        queryKey: ['category'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/category')
-            return res.data;
-        }
-    })
+  const { data: categories = [] } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/category");
+      return res.data;
+    },
+  });
 
-    useEffect(() => {
-        if (categories.length > 0) {
-            handleCategory(categories[defaultTab].category, defaultTab);
-        }
-    }, [categories]);
-
-    const { data: soldItemsInfo = [] } = useQuery({
-        queryKey: ['soldItemsInfo'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/soldItems')
-            return res.data;
-        }
-    })
-
-
-    const handleCategory = async (category, index) => {
-        setDefaultTab(index)
-        setFilter(category);
-        const categoryName = category.toLowerCase();
-        console.log(categoryName)
-
-        await axiosPublic.get(`/soldItems/${categoryName}`)
-            .then(res => {
-                setSelectedData(res.data);
-            })
+  useEffect(() => {
+    if (categories.length > 0) {
+      handleCategory(categories[defaultTab].category, defaultTab);
     }
+  }, [categories]);
 
-    const handleFilter = async (category, filterName) => {
-        const categoryName = category.toLowerCase();
-        const res = await axiosPublic.get(`/soldItems/1/filter?categoryName=${categoryName}&filterName=${filterName}`)
-        setSelectedData(res.data);
-    }
+  const { data: soldItemsInfo = [] } = useQuery({
+    queryKey: ["soldItemsInfo"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/soldItems");
+      return res.data;
+    },
+  });
 
-    const handleOrderFilter = async (filterName) => {
-        const res = await axiosPublic.get(`/orderProduct/1/filter?filterName=${filterName}`);
-        setOrderProducts(res.data);
-        // console.log(res.data);
-    }
-    useEffect(() => {
-        handleOrderFilter('all');
-    }, []);
-    console.log(selectedData);
+  const handleCategory = async (category, index) => {
+    setDefaultTab(index);
+    setFilter(category);
+    const categoryName = category.toLowerCase();
+    console.log(categoryName);
 
-    // useEffect(() => {
-    //     if (defaultTab === 1) {
-    //         handleOrderFilter('all');
-    //     }
-    // }, [defaultTab]);
+    await axiosPublic.get(`/soldItems/${categoryName}`).then((res) => {
+      setSelectedData(res.data);
+    });
+  };
 
     const pendingOrders = orderProducts?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.filter(product => product.status === 'completed');
@@ -270,6 +250,7 @@ const AdminTabs = ({ allOrderProducts }) => {
             </Tabs>
         </div>
     );
-};
+  };
 
+ 
 export default AdminTabs;
