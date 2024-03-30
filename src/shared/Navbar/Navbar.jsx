@@ -21,34 +21,33 @@ const Navbar = () => {
         }
     }, [])
 
+    const handleAnchorClick = (e, target) => {
+        e.preventDefault();
+        const element = document.getElementById(target);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
     const navlinks = <>
         <li className=''>
             <NavLink
                 to="/"
+
                 className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
             >
                 Home
             </NavLink>
+
         </li>
+
         <li className=''>
-            {/* <NavLink
-                to="#featured"
-                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
-            >
-                Featured Products
-            </NavLink> */}
-            <a className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`} href="#featured">
+            <a onClick={(e) => handleAnchorClick(e, 'featured')} className="text-[#fff] duration-300 text-lg font-semibold  transition navs cursor-pointer">
                 Featured Products
             </a>
         </li>
         <li className=''>
-            {/* <NavLink
-                to="notice"
-                className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`}
-            >
-                Notice Board
-            </NavLink> */}
-            <a className={({ isActive }) => `${isActive ? "active text-[#fff]" : "text-[#fff]"} duration-300 text-lg font-semibold  transition navs`} href="#notice">
+            <a onClick={(e) => handleAnchorClick(e, 'notice')} className="text-[#fff] duration-300 text-lg font-semibold  transition navs cursor-pointer">
                 Notice Board
             </a>
         </li>

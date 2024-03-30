@@ -214,15 +214,15 @@ const AdminTabs = ({ allOrderProducts }) => {
                         <div ref={componentRef}>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 pb-8'>
+                                <div className='flex flex-col gap-5 justify-center w-4/6 pb-8'>
                                     {/* cards */}
-                                    <div className='grid grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
                                         <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 md:p-5 px-2 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-sm md:text-base font-semibold '>Total Sales</h3>
+                                                <h3 className='text-base font-semibold '>Total Sales</h3>
                                             </div>
                                             <div>
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount} BDT</h2>

@@ -269,10 +269,10 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <>
+    <div className="overflow-scroll h-[86vh]">
       <div className="max-w-[97%] md:max-w-[90%] mx-auto rounded-md">
         {role === "admin" ? (
-          <div className="grid grid-cols-2 justify-between items-center my-2 rounded-md gap-2">
+          <div className="grid grid-cols-2 justify-between items-center mb-2 rounded-md gap-2">
             <div className="bg-white p-2 md:p-5 rounded-md flex flex-col gap-2">
               <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start gap-1">
                 <span>
@@ -678,7 +678,7 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

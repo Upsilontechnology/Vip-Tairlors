@@ -19,14 +19,15 @@ const AllMembers = () => {
     const { user } = useAuth();
     const email = user?.email;
 
-
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ["Users"],
+    const { data: users} = useQuery({
+        queryKey: ['userInfo', email],
+        staleTime: Infinity,
         queryFn: async () => {
             const res = await axiosSecure.get('/user')
             return res.data;
         }
     })
+
 
     const { data: userInfo } = useQuery({
         queryKey: ['userInfo', email],
@@ -74,7 +75,7 @@ const AllMembers = () => {
                         timer: 1500
                     });
                 }
-                refetch();
+                refetchByPagination();
             })
     }
 
@@ -82,7 +83,7 @@ const AllMembers = () => {
     const handleMakeEmployee = (user) => {
         axiosPublic.patch(`/user/employee/${user?._id}`)
             .then(res => {
-                refetch();
+                refetchByPagination();
                 if (res?.data?.message === 'success') {
                     Swal.fire({
                         position: "top-end",
@@ -108,10 +109,11 @@ const AllMembers = () => {
                         timer: 1500
                     });
                 }
-                refetch();
+                refetchByPagination();
             })
     }
 
+    // make delete
     const handleDelete = (user) => {
         Swal.fire({
             title: "Are you sure?",
@@ -143,34 +145,34 @@ const AllMembers = () => {
 
     return (
         <div className='bg-white h-auto flex justify-center items-center py-5'>
-            <div className='w-11/12'>
-                <div className='bg-gray-100 w-full mx-auto p-6 rounded-md'>
+            <div className='lg:w-11/12 w-full'>
+                <div className='bg-gray-100 w-full mx-auto p-3 md:p-6 rounded-md'>
                     <h3 className="text-base font-semibold">User List</h3>
                     {/* user container */}
                     {
-                        userPagination?.items?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center my-10'>
+                        userPagination?.items?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center gap-28 md:gap-0 my-10'>
                             {/* name and email */}
-                            <div>
-                                <h2 className="text-lg font-semibold">{user?.name || ''}</h2>
-                                <h4 className="text-sm text-gray-600">{user?.email}</h4>
+                            <div className='w-28 md:w-full'>
+                                <h2 className="text-base md:text-lg font-semibold">{user?.name || ''}</h2>
+                                <h4 className="text-xs md:text-sm text-gray-600">{user?.email}</h4>
                             </div>
                             <div className='flex flex-row gap-3'>
                                 {/* make admin */}
                                 {user?.role === 'admin' ?
                                     <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Admin</h1> :
-                                    <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-6 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                    <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
                                         Make Admin
                                     </button>}
                                 {/* make employee */}
                                 {user?.role === 'employee' ?
                                     <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Employee</h1> :
-                                    <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-6 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                    <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-6 md:py-2 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
                                         Make Employee
                                     </button>}
                                 {/* make user */}
                                 {user?.role === 'user' ?
                                     <h1 className='bg-yellow-950 text-white font-bold px-[52px] py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>User</h1> :
-                                    <button onClick={() => handleMakeUser(user)} className='bg-white font-bold px-7 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>
+                                    <button onClick={() => handleMakeUser(user)} className='bg-white font-bold md:px-7 px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
                                         Make User
                                     </button>}
 
