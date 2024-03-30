@@ -42,7 +42,7 @@ const Navbar = () => {
         </li>
 
         <li className=''>
-            <a onClick={(e) => handleAnchorClick(e, 'featured')} className="text-[#fff] duration-300 text-lg font-semibold  transition navs cursor-pointer">
+            <a onClick={(e) => handleAnchorClick(e, 'featured')} className="text-[#fff] duration-300 text-lg font-semibold transition navs cursor-pointer">
                 Featured Products
             </a>
         </li>

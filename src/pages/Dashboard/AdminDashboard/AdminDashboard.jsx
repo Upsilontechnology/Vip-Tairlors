@@ -184,7 +184,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       }`}
     >
       {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20">
+      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20 lg:ml-5 rounded-lg">
         <div className="h-screen py-3 pl-3 flex flex-col gap-9 shadow-xl">
           {/* logo */}
           <div>
@@ -248,7 +248,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           <div className="ml-4">
             <Navbar2></Navbar2>
           </div>
-          <div className="lg:ml-60 mt-4">
+          <div className="lg:ml-[268px] mt-4 mr-5">
             <Outlet></Outlet>
           </div>
         </main>
