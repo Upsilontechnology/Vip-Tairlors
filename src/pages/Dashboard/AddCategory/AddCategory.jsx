@@ -13,6 +13,7 @@ const AddCategory = () => {
   const [cid, setCId] = useState();
   const [cData, setCdata] = useState();
   const axiosPublic = useAxiosPublic();
+
   const { data: categories = [], refetch } = useQuery({
     queryKey: ["categoryData"],
     queryFn: async () => {
@@ -113,24 +114,24 @@ const AddCategory = () => {
   };
   return (
     <>
-      <div className="max-w-[90%] mx-auto">
+      <div className="max-w-[97%] md:max-w-[90%] mx-auto">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
             subTitle={"Add, Edit your category section in one click. "}
           />
         </div>
-        <div className="bg-white rounded-lg p-3">
+        <div className="bg-white rounded-lg px-1 py-3 md:p-3">
           <SectionTitle title="Add Category" />
-          <div className="flex flex-col justify-center items-center">
-            <div className="w-4/6 mx-auto my-5 ">
+          <div className="flex flex-col md:justify-center items-center">
+            <div className="md:w-4/6 w-full mx-auto my-5 ">
               <form
                 onSubmit={handleAddCategory}
                 className="flex justify-center items-center gap-2"
               >
                 <div className="w-full form-control">
                   <input
-                    className="w-full  h-[49px] pl-2 rounded-lg outline-none bg-[#F8F8F8]"
+                    className="w-full h-[49px] pl-2 rounded-lg outline-none bg-[#F8F8F8]"
                     type="text"
                     name="category"
                     placeholder="Put Category Name"
@@ -138,27 +139,27 @@ const AddCategory = () => {
                   />
                 </div>
                 <div className="mx-auto w-1/3">
-                  <button className="focus:outline-none focus:ring-2 w-full focus:border-transparent  hover:bg-[#403030] bg-[#403030] text-neutral-50 font-semibold rounded-md flex justify-center items-center gap-1 px-2  h-[49px] ">
+                  <button className="focus:outline-none focus:ring-2 w-full focus:border-transparent hover:bg-[#403030] bg-[#403030] text-neutral-50 font-semibold rounded-md flex justify-center items-center gap-1 px-2 h-[49px] text-xs whitespace-nowrap">
                     <IoMdAddCircleOutline className="text-lg" />
                     Add Category
                   </button>
                 </div>
               </form>
             </div>
-            <div className="w-4/6 mx-auto">
+            <div className="md:w-4/6 w-[95%] mx-auto">
               <div className="overflow-x-auto">
                 <table className="table">
                   <thead>
-                    <tr>
-                      <th>SL No</th>
+                    <tr className="border-b-[1.2px] border-black">
+                      <th className="p-1">SL No</th>
                       <th>Category Name</th>
                       <th className="float-end">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {categories.map((dd, index) => (
-                      <tr key={dd._id}>
-                        <th>0{index + 1}</th>
+                      <tr className="border-b-[1.2px] border-black" key={dd._id}>
+                        <th className="p-1">0{index + 1}</th>
                         <td>{dd.category}</td>
                         <td className="flex justify-end text-base gap-3">
                           <div>

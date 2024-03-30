@@ -73,21 +73,22 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="max-w-[90%] mx-auto">
+      <div className="md:max-w-[90%] mx-2 md:mx-auto">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
             subTitle={"Add, Edit your category section in one click. "}
           />
         </div>
-        <div className="supershop-container  bg-white">
+        {/* form container */}
+        <div className="my-10 p-2 bg-white">
           <SectionTitle
             title="Featured Products"
-            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+          // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
-          <div className="md:w-5/6 mx-auto w-full p-5 rounded-md ">
+          <div className="md:w-5/6 mx-auto w-full md:p-5 rounded-md ">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid grid-cols-2 gap-2 md:gap-4 mb-2">
                 {/* Product Name */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
@@ -121,7 +122,7 @@ const AddProduct = () => {
                   )}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid grid-cols-2 gap-2 md:gap-4 mb-2">
                 {/* price */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
@@ -153,7 +154,7 @@ const AddProduct = () => {
                   )}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mb-2">
+              <div className="grid grid-cols-2 gap-2 md:gap-4 mb-2">
                 {/* category */}
                 <div className="form-control w-full my-1">
                   {/* <label className="label">
