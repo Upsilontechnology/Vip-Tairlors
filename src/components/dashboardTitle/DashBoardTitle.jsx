@@ -4,9 +4,15 @@ const DashBoardTitle = ({ title, subTitle }) => {
   return (
     <>
       <div>
-        <div className="flex gap-2 bg-white rounded-md">
-          <img src={timg} className="w-48 h-auto pt-2 lg:pl-7 pl-3" alt="" />
-          <div className="flex justify-start items-center">
+        <div className="flex lg:flex-row flex-col lg:justify-start justify-center items-center gap-2 bg-white rounded-md">
+          <div>
+            <img
+              src={timg}
+              className="lg:w-48 w-32 h-auto pt-2 lg:pl-7 pl-3"
+              alt=""
+            />
+          </div>
+          <div className="flex lg:justify-start justify-center items-center">
             <div>
               <h1 className="lg:text-lg text-base font-semibold">
                 Welcome to {title} Dashboard
