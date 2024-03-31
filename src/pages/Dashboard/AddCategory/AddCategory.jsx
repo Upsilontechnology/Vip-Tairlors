@@ -127,7 +127,7 @@ const AddCategory = () => {
             <div className="md:w-4/6 w-full mx-auto mb-5 ">
               <form
                 onSubmit={handleAddCategory}
-                className="flex justify-center items-center gap-2"
+                className="md:flex md:justify-center md:items-center md:gap-2"
               >
                 <div className="w-full form-control">
                   <input
@@ -138,7 +138,7 @@ const AddCategory = () => {
                     id=""
                   />
                 </div>
-                <div className="mx-auto w-1/3">
+                <div className="mx-auto w-2/3 mt-3 md:mt-0 lg:w-1/3">
                   <button className="focus:outline-none focus:ring-2 w-full focus:border-transparent hover:bg-[#403030] bg-[#403030] text-neutral-50 font-semibold rounded-md flex justify-center items-center gap-1 px-2 h-[49px] text-xs whitespace-nowrap">
                     <IoMdAddCircleOutline className="text-lg" />
                     Add Category
