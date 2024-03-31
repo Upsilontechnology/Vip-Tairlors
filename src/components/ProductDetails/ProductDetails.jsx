@@ -269,8 +269,8 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="overflow-scroll h-[86vh]">
-      <div className="max-w-[97%] md:max-w-[90%] mx-auto rounded-md">
+    <div className="overflow-scroll h-[86vh] mx-3 lg:mx-0">
+      <div className="lg:ml-10 rounded-md">
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
             <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2">
@@ -301,7 +301,7 @@ const ProductDetails = () => {
         )}
         {/* <div className="flex justify-between items-center my-5 bg-white p-3"></div> */}
         {/* search bar */}
-        <div className="bg-white lg:p-2 pt-3">
+        <div className="bg-white lg:p-2 pt-3 rounded-md">
           <div className="form-control lg:w-1/2 w-[96%] lg:mb-5 mb-2 mx-auto  placeholder:bg-gray-300 rounded-md">
             <input
               onChange={(e) => setSearchValue(e.target.value)}

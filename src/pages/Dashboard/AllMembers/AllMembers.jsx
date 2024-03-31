@@ -7,6 +7,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Pagination from '../../../components/pagination/pagination';
 import useAuth from '../../../hooks/useAuth';
+import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
 
 const AllMembers = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -19,7 +20,7 @@ const AllMembers = () => {
     const { user } = useAuth();
     const email = user?.email;
 
-    const { data: users} = useQuery({
+    const { data: users } = useQuery({
         queryKey: ['userInfo', email],
         staleTime: Infinity,
         queryFn: async () => {
@@ -144,51 +145,61 @@ const AllMembers = () => {
 
 
     return (
-        <div className='bg-white h-auto flex justify-center items-center py-5'>
-            <div className='lg:w-11/12 w-full'>
-                <div className='bg-gray-100 w-full mx-auto p-3 md:p-6 rounded-md'>
-                    <h3 className="text-base font-semibold">User List</h3>
-                    {/* user container */}
-                    {
-                        userPagination?.items?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center gap-28 md:gap-0 my-10'>
-                            {/* name and email */}
-                            <div className='w-28 md:w-full'>
-                                <h2 className="text-base md:text-lg font-semibold">{user?.name || ''}</h2>
-                                <h4 className="text-xs md:text-sm text-gray-600">{user?.email}</h4>
-                            </div>
-                            <div className='flex flex-row gap-3'>
-                                {/* make admin */}
-                                {user?.role === 'admin' ?
-                                    <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Admin</h1> :
-                                    <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
-                                        Make Admin
-                                    </button>}
-                                {/* make employee */}
-                                {user?.role === 'employee' ?
-                                    <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Employee</h1> :
-                                    <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-6 md:py-2 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
-                                        Make Employee
-                                    </button>}
-                                {/* make user */}
-                                {user?.role === 'user' ?
-                                    <h1 className='bg-yellow-950 text-white font-bold px-[52px] py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>User</h1> :
-                                    <button onClick={() => handleMakeUser(user)} className='bg-white font-bold md:px-7 px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
-                                        Make User
-                                    </button>}
-
-                                <button onClick={() => handleDelete(user)} className=''>
-                                    <FaRegTrashAlt className='text-xl' />
-                                </button>
-                            </div>
-                        </div>)
-                    }
-                </div>
-                {/* pagination */}
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    setCurrentPage={setCurrentPage}
+        <div className='lg:ml-10 overflow-scroll h-[86vh] mx-3 lg:mx-0'>
+            <div className="mb-2">
+                <DashBoardTitle
+                    title={"Admin"}
+                    subTitle={"Add, Edit your category section in one click. "}
                 />
+            </div>
+            <div className=' bg-white flex justify-center items-center rounded-md'>
+                <div className="lg:w-11/12  w-full  h-auto  py-5">
+                    <div className=''>
+                        <div className='bg-gray-100 w-full mx-auto p-3 md:p-6 rounded-md'>
+                            <h3 className="text-base font-semibold">User List</h3>
+                            {/* user container */}
+                            {
+                                userPagination?.items?.map(user => <div key={user?._id} className='flex flex-row justify-between items-center gap-28 md:gap-0 my-10'>
+                                    {/* name and email */}
+                                    <div className='w-28 md:w-full'>
+                                        <h2 className="text-base md:text-lg font-semibold">{user?.name || ''}</h2>
+                                        <h4 className="text-xs md:text-sm text-gray-600">{user?.email}</h4>
+                                    </div>
+                                    <div className='flex flex-row gap-3'>
+                                        {/* make admin */}
+                                        {user?.role === 'admin' ?
+                                            <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Admin</h1> :
+                                            <button onClick={() => handleMakeAdmin(user)} className='bg-white font-bold px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
+                                                Make Admin
+                                            </button>}
+                                        {/* make employee */}
+                                        {user?.role === 'employee' ?
+                                            <h1 className='bg-yellow-950 text-white font-bold px-12 py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>Employee</h1> :
+                                            <button onClick={() => handleMakeEmployee(user)} className='bg-white font-bold px-6 md:py-2 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
+                                                Make Employee
+                                            </button>}
+                                        {/* make user */}
+                                        {user?.role === 'user' ?
+                                            <h1 className='bg-yellow-950 text-white font-bold px-[52px] py-3 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300'>User</h1> :
+                                            <button onClick={() => handleMakeUser(user)} className='bg-white font-bold md:px-7 px-6 md:py-3 py-1 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap'>
+                                                Make User
+                                            </button>}
+
+                                        <button onClick={() => handleDelete(user)} className=''>
+                                            <FaRegTrashAlt className='text-xl' />
+                                        </button>
+                                    </div>
+                                </div>)
+                            }
+                        </div>
+                        {/* pagination */}
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            setCurrentPage={setCurrentPage}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );

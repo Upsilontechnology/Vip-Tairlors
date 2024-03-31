@@ -46,13 +46,13 @@ const AdminHome = () => {
 
 
   return (
-    <div className='ml-10 overflow-scroll h-[86vh]'>
+    <div className='lg:ml-10 mx-3 overflow-scroll h-[86vh]'>
       <DashBoardTitle
         title={"Admin"}
         subTitle={"Insights, management tools and add product-all in one place"}
       />
-      <div className='bg-white mt-2 p-2 md:p-6'>
-        <h1 className="text-lg md:text-2xl font-semibold mb-3">Total Summary</h1>
+      <div className='bg-white mt-2 p-2 md:p-6 rounded-md'>
+        <h1 className="text-lg md:text-2xl font-semibold mb-3 text-center md:text-start">Total Summary</h1>
         {/* category-wise tabs */}
         <div className='flex'>
           <AdminTabs allOrderProducts={allOrderProducts} />

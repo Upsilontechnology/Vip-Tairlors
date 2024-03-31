@@ -92,10 +92,10 @@ const AddToCart = () => {
 
   return (
     <>
-      <div className="bg-white max-w-[90%] mx-auto rounded-md h-screen">
+      <div className="bg-white overflow-scroll h-[86vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
         <div className="p-2">
           <SectionTitle
-            title="Add Products Info"
+            title="Sold Products Info"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
           <div>

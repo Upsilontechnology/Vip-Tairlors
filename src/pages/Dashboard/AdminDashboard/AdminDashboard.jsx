@@ -247,7 +247,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           <div className="ml-4">
             <Navbar2></Navbar2>
           </div>
-          <div className="lg:ml-[268px] mt-4 mr-5">
+          <div className="lg:ml-[268px] ml-4 mt-4 lg:mr-5">
             <Outlet></Outlet>
           </div>
         </main>

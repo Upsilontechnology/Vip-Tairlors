@@ -85,7 +85,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         }`}
     >
       {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20">
+      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20 lg:ml-5 rounded-md">
         <div className="h-screen py-3 pl-3 flex flex-col shadow-xl">
           {/* logo */}
           <div>
@@ -147,9 +147,11 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
           </div>
         </header>
-        <main className="ml-0 scroll-smooth">
-          <Navbar2></Navbar2>
-          <div className="lg:ml-56 lg:mt-4">
+        <main className="-ml-4 scroll-smooth">
+          <div className="ml-4">
+            <Navbar2></Navbar2>
+          </div>
+          <div className="lg:ml-[268px] ml-4 mt-4 lg:mr-5">
             <Outlet></Outlet>
           </div>
         </main>

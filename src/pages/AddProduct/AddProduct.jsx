@@ -73,7 +73,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="md:max-w-[90%] mx-2 md:mx-auto">
+      <div className="lg:ml-10 overflow-scroll h-[86vh] mx-3 lg:mx-0">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
@@ -81,9 +81,9 @@ const AddProduct = () => {
           />
         </div>
         {/* form container */}
-        <div className="my-10 p-2 bg-white">
+        <div className="mb-10 mt-2 p-2 bg-white rounded-md">
           <SectionTitle
-            title="Featured Products"
+            title="Add Products"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
           <div className="md:w-5/6 mx-auto w-full md:p-5 rounded-md ">

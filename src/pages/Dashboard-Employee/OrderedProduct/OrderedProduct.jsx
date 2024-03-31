@@ -94,19 +94,19 @@ const OrderedProduct = () => {
   };
   return (
     <>
-      <div className="lg:max-w-[90%] max-w-[95%] mx-auto">
+      <div className="overflow-scroll h-[86vh] lg:ml-10 mx-3 lg:mx-0">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
             subTitle={"Add, Edit your category section in one click. "}
           />
         </div>
-        <div className="supershop-container bg-white">
+        <div className=" bg-white rounded-md py-5">
           <SectionTitle
             title="Add Products Info"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
-          <div className="lg:w-5/6 mx-auto w-full lg:p-10 p-2 rounded-md">
+          <div className="lg:w-5/6 mx-auto w-full p-2 rounded-md">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-4 gap-1 lg:mb-2 mb-1">
                 {/* Product Name */}
