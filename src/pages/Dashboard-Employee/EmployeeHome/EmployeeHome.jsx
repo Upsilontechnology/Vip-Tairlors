@@ -3,8 +3,8 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import timg from "../../../assets/Group94.png";
 const EmployeeHome = () => {
   return (
-    <div className="mt-4 h-screen bg-white max-w-[90%] mx-auto rounded-md">
-      <div>
+    <div className="mt-4 lg:h-screen h-auto bg-white mx-4 lg:mx-0 lg:ml-10 rounded-md">
+      <div className="flex flex-col-reverse lg:flex-col">
         <div className="flex justify-center items-center p-10">
           <SectionTitle
             title="Welcome to professional dashboard"

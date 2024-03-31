@@ -5,6 +5,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import Pagination from '../../../components/pagination/pagination';
 import useSoldItems from '../../../hooks/useSoldItems';
+import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
 
 const ProductStatement = () => {
     // const [sellProducts, refetch, currentPage, totalPages, setCurrentPage] = useSellProduct();
@@ -42,53 +43,60 @@ const ProductStatement = () => {
 
     }
     return (
-        <div>
-            <div className='px-3 lg:w-6/12 mx-auto text-center my-7'>
-                <SectionTitle
-                    title="Statement Pieces"
-                    descrition="Explore our collection and make a statement that reflects your individuality."
+        <div className='overflow-scroll h-[86vh] lg:ml-10 mx-3 lg:mx-0'>
+            <div className="mb-2">
+                <DashBoardTitle
+                    title={"Admin"}
+                    subTitle={"Add, Edit your category section in one click. "}
                 />
             </div>
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr className='border-b-[1.2px] border-black'>
-                            <th className='p-auto md:p-0'>#</th>
-                            <th>Code</th>
-                            <th>Selling Date</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            soldItems?.items?.map((product, ind) => <tr className='border-b-[1.2px] border-black' key={product?._id}>
-                                <th className='p-auto md:p-0'>{ind + 1}</th>
-                                <th>{product?.productCode}</th>
-                                <td>
-                                    <div className="flex items-center gap-3">
-                                        <div>
-                                            <div className="font-bold">{new Date(product?.sellingDate).toLocaleDateString()}</div>
+            <div className='px-2 bg-white pt-2 rounded-md'>
+                <div className='px-3 lg:w-6/12 mx-auto text-center mb-7'>
+                    <SectionTitle
+                        title="Statement Pieces"
+                    />
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr className='border-b-[1.5px] border-black text-black'>
+                                <th className='p-auto md:p-0'>#</th>
+                                <th>Code</th>
+                                <th>Selling Date</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                soldItems?.items?.map((product, ind) => <tr className='border-b-[1.2px] border-black' key={product?._id}>
+                                    <td className='p-auto md:p-0'>{ind + 1}</td>
+                                    <td>{product?.productCode}</td>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div>
+                                                <div className="">{new Date(product?.sellingDate).toLocaleDateString()}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    {product?.quantity}
-                                </td>
-                                <td>
-                                    {product?.price}
-                                </td>
-                                <td>
-                                    <button onClick={() => handleDelete(product)} className="btn btn-sm">
-                                        <MdOutlineDeleteOutline />
-                                    </button>
-                                </td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td>
+                                        {product?.quantity}
+                                    </td>
+                                    <td>
+                                        {product?.price}
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handleDelete(product)} className="btn btn-sm">
+                                            <MdOutlineDeleteOutline />
+                                        </button>
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
             {/* pagination */}
             <Pagination

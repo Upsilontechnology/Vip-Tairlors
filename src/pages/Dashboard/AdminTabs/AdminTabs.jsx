@@ -1,79 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
-import ProductStats from '../../../components/ProductStats/ProductStats';
-import { IoBagOutline, IoBarChartOutline, IoPrintOutline } from 'react-icons/io5';
-import { BsCart3, BsFilterLeft } from 'react-icons/bs';
-import { ReactToPrint } from 'react-to-print';
+import React, { useEffect, useRef, useState } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import ProductStats from "../../../components/ProductStats/ProductStats";
+import {
+  IoBagOutline,
+  IoBarChartOutline,
+  IoPrintOutline,
+} from "react-icons/io5";
+import { BsCart3, BsFilterLeft } from "react-icons/bs";
+import { ReactToPrint } from "react-to-print";
 import { FaSortAmountDown } from "react-icons/fa";
-import DashBoardTitle from '../../../components/dashboardTitle/DashBoardTitle';
+import DashBoardTitle from "../../../components/dashboardTitle/DashBoardTitle";
 
 const AdminTabs = ({ allOrderProducts }) => {
-    const axiosPublic = useAxiosPublic();
-    const [selectedData, setSelectedData] = useState();
-    const [defaultTab, setDefaultTab] = useState(0);
-    const componentRef = useRef(null);
-    const [filter, setFilter] = useState(null);
-    const [orderProducts, setOrderProducts] = useState(allOrderProducts);
-    const [commentRef, setCommentRef] = useState();
+  const axiosPublic = useAxiosPublic();
+  const [selectedData, setSelectedData] = useState();
+  const [defaultTab, setDefaultTab] = useState(0);
+  const componentRef = useRef(null);
+  const [filter, setFilter] = useState(null);
+  const [orderProducts, setOrderProducts] = useState(allOrderProducts);
+  const [commentRef, setCommentRef] = useState();
 
-    const { data: categories = [] } = useQuery({
-        queryKey: ['category'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/category')
-            return res.data;
-        }
-    })
+  const { data: categories = [] } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/category");
+      return res.data;
+    },
+  });
 
-    useEffect(() => {
-        if (categories.length > 0) {
-            handleCategory(categories[defaultTab].category, defaultTab);
-        }
-    }, [categories]);
-
-    const { data: soldItemsInfo = [] } = useQuery({
-        queryKey: ['soldItemsInfo'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/soldItems')
-            return res.data;
-        }
-    })
-
-
-    const handleCategory = async (category, index) => {
-        setDefaultTab(index)
-        setFilter(category);
-        const categoryName = category.toLowerCase();
-        console.log(categoryName)
-
-        await axiosPublic.get(`/soldItems/${categoryName}`)
-            .then(res => {
-                setSelectedData(res.data);
-            })
+  useEffect(() => {
+    if (categories.length > 0) {
+      handleCategory(categories[defaultTab].category, defaultTab);
     }
+  }, [categories]);
 
-    const handleFilter = async (category, filterName) => {
-        const categoryName = category.toLowerCase();
-        const res = await axiosPublic.get(`/soldItems/1/filter?categoryName=${categoryName}&filterName=${filterName}`)
-        setSelectedData(res.data);
-    }
+  const { data: soldItemsInfo = [] } = useQuery({
+    queryKey: ["soldItemsInfo"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/soldItems");
+      return res.data;
+    },
+  });
 
-    const handleOrderFilter = async (filterName) => {
-        const res = await axiosPublic.get(`/orderProduct/1/filter?filterName=${filterName}`);
-        setOrderProducts(res.data);
-        // console.log(res.data);
-    }
-    useEffect(() => {
-        handleOrderFilter('all');
-    }, []);
-    console.log(selectedData);
+  const handleCategory = async (category, index) => {
+    setDefaultTab(index);
+    setFilter(category);
+    const categoryName = category.toLowerCase();
+    console.log(categoryName);
 
-    // useEffect(() => {
-    //     if (defaultTab === 1) {
-    //         handleOrderFilter('all');
-    //     }
-    // }, [defaultTab]);
+    await axiosPublic.get(`/soldItems/${categoryName}`).then((res) => {
+      setSelectedData(res.data);
+    });
+  };
 
     const pendingOrders = orderProducts?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.filter(product => product.status === 'completed');
@@ -89,7 +69,7 @@ const AdminTabs = ({ allOrderProducts }) => {
             <Tabs>
                 {/* tab lists */}
                 <div className='flex lg:flex-row flex-col w-full gap-5'>
-                    <div className='md:w-1/3 bg-gray-100 h-24 flex flex-col p-4 space-y-3 rounded-md'>
+                    <div className='md:w-1/3 bg-gray-100 h-24 flex flex-col px-16 py-4 lg:px-4 lg:py-4 space-y-3 rounded-md mx-auto md:mx-0'>
                         <h4 className="text-sm font-semibold"><IoBarChartOutline className='inline mr-1' /> Total Sales</h4>
                         <h1 className="text-xl md:text-2xl font-bold">{totalSells} BDT</h1>
                     </div>
@@ -214,21 +194,21 @@ const AdminTabs = ({ allOrderProducts }) => {
                         <div ref={componentRef}>
                             {/* card container */}
                             <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 pb-8'>
+                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 w-5/6 pb-8'>
                                     {/* cards */}
-                                    <div className='grid grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 md:p-5 px-2 py-5 bg-white'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
                                                 </div>
-                                                <h3 className='text-sm md:text-base font-semibold '>Total Sales</h3>
+                                                <h3 className='text-base font-semibold '>Total Sales</h3>
                                             </div>
                                             <div>
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount} BDT</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <BsCart3 className='font-semibold' />
@@ -239,7 +219,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h2 className='text-xl md:text-2xl font-bold '>{orderProducts?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
@@ -250,7 +230,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completedOrders?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-2 py-5 bg-white'>
+                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
@@ -270,6 +250,7 @@ const AdminTabs = ({ allOrderProducts }) => {
             </Tabs>
         </div>
     );
-};
+  };
 
+ 
 export default AdminTabs;

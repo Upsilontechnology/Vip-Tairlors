@@ -87,7 +87,7 @@ const ProductDetails = () => {
       productCode: parseInt(form.code.value),
       sellingDate: new Date(),
       title: "cart",
-      email
+      email,
     };
     const quantity1 = parseInt(form.quantity.value);
     if (quantity1 > sell?.quantity) {
@@ -269,27 +269,31 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <>
-      <div className="max-w-[97%] md:max-w-[90%] mx-auto rounded-md">
+    <div className="overflow-scroll h-[86vh] mx-3 lg:mx-0">
+      <div className="lg:ml-10 rounded-md">
         {role === "admin" ? (
-          <div className="grid grid-cols-2 justify-between items-center my-2 rounded-md gap-2">
-            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col gap-2">
+          <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
+            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2">
               <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start gap-1">
                 <span>
                   <FaSortAmountUpAlt />
                 </span>
                 Total Product Amount
               </h1>
-              <h1 className="font-semibold text-xl md:text-2xl">{totalStock} BDT</h1>
+              <h1 className="font-semibold text-xl md:text-2xl">
+                {totalStock} BDT
+              </h1>
             </div>
-            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col gap-2 ">
+            <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2 ">
               <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start">
                 <span>
                   <MdLocalMall />
                 </span>
                 Total Quantity
               </h1>
-              <h1 className="font-semibold text-xl md:text-2xl">{totalQuantity}</h1>
+              <h1 className="font-semibold text-xl md:text-2xl">
+                {totalQuantity}
+              </h1>
             </div>
           </div>
         ) : (
@@ -297,8 +301,8 @@ const ProductDetails = () => {
         )}
         {/* <div className="flex justify-between items-center my-5 bg-white p-3"></div> */}
         {/* search bar */}
-        <div className="bg-white p-2 pt-3">
-          <div className="form-control lg:w-1/2 w-5/6 lg:mb-5 mb-2 mx-auto  placeholder:bg-gray-300 rounded-md">
+        <div className="bg-white lg:p-2 pt-3 rounded-md">
+          <div className="form-control lg:w-1/2 w-[96%] lg:mb-5 mb-2 mx-auto  placeholder:bg-gray-300 rounded-md">
             <input
               onChange={(e) => setSearchValue(e.target.value)}
               type="text"
@@ -381,7 +385,10 @@ const ProductDetails = () => {
                     </thead>
                     <tbody>
                       {filterBySearch?.items?.map((product, ind) => (
-                        <tr className="border-b-[1.2px] border-black" key={product?._id}>
+                        <tr
+                          className="border-b-[1.2px] border-black"
+                          key={product?._id}
+                        >
                           <td className="p-1">{ind + 1}</td>
                           <td>{product?.productCode}</td>
                           <td>{product?.name}</td>
@@ -678,7 +685,7 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

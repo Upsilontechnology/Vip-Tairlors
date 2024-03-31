@@ -75,12 +75,12 @@ const OrderedList = () => {
   // console.log(orderBySearch);
 
   return (
-    <div className="">
+    <div className="overflow-scroll h-[86vh] mx-3 lg:mx-0">
       {/* tabs */}
-      <div className="overflow-hidden w-full h-full">
+      <div className="lg:ml-12 h-full">
         <Tabs>
           {/* tab lists */}
-          <TabList className="font-bold flex justify-center lg:gap-3 gap-2 lg:my-5 my-2">
+          <TabList className="font-bold flex justify-center lg:gap-3 gap-2 mt-2 mb-4">
             <Tab
               className="border-none bg-white lg:py-5 lg:px-14 py-3 px-10 rounded-md cursor-pointer"
               selectedClassName="selected-tab bg-yellow-950 text-white lg:py-5 lg:px-14 py-3 px-10"
@@ -96,9 +96,9 @@ const OrderedList = () => {
               Completed
             </Tab>
           </TabList>
-          <div className="bg-white lg:py-5 py-2">
+          <div className="bg-white lg:py-5 py-2 rounded-md">
             {/* search bar */}
-            <div className="form-control lg:w-1/2 w-5/6 mx-auto lg:mb-5 mb-2">
+            <div className="form-control lg:w-1/2 w-[95%] mx-auto lg:mb-5 mb-2">
               <input
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"
@@ -107,7 +107,7 @@ const OrderedList = () => {
               />
             </div>
             {/* tab panel */}
-            <div className="my-5 overflow-y-scroll h-[85vh] rounded-lg">
+            <div className="my-5 rounded-lg">
               <TabPanel>
                 <div className="flex flex-col px-5 gap-4">
                   <OrderedProductDetails

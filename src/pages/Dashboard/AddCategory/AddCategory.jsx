@@ -114,7 +114,7 @@ const AddCategory = () => {
   };
   return (
     <>
-      <div className="max-w-[97%] md:max-w-[90%] mx-auto">
+      <div className="lg:ml-10 overflow-scroll h-[86vh] mx-3 lg:mx-0">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
@@ -124,7 +124,7 @@ const AddCategory = () => {
         <div className="bg-white rounded-lg px-1 py-3 md:p-3">
           <SectionTitle title="Add Category" />
           <div className="flex flex-col md:justify-center items-center">
-            <div className="md:w-4/6 w-full mx-auto my-5 ">
+            <div className="md:w-4/6 w-full mx-auto mb-5 ">
               <form
                 onSubmit={handleAddCategory}
                 className="flex justify-center items-center gap-2"
