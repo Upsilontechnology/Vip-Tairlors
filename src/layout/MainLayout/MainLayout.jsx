@@ -7,9 +7,9 @@ import useUser from "../../hooks/useUser";
 import SignIn from "../../pages/Home/Login/SignIn";
 
 const MainLayout = () => {
-  const [loggedUser, setLoggedUser] = useState(null); // Initialize with null or an empty object
-  const [users] = useUser();
-  const { user, loading, setLoading } = useAuth();
+    const [loggedUser, setLoggedUser] = useState(null); // Initialize with null or an empty object
+    const [users] = useUser();
+    const { user, loading, setLoading } = useAuth();
 
   useEffect(() => {
     if (user && users) {
@@ -20,11 +20,11 @@ const MainLayout = () => {
     }
   }, [users, user]);
 
-  // if (loading) {
-  //     return <div className='flex justify-center items-center h-screen'>
-  //         <div className="w-10 h-10 animate-[spin_2s_linear_infinite] rounded-full border-8 border-dotted border-sky-600"></div>
-  //     </div>
-  // }
+    // if (loading) {
+    //     return <div className='flex justify-center items-center h-screen'>
+    //         <div className="w-10 h-10 animate-[spin_2s_linear_infinite] rounded-full border-8 border-dotted border-sky-600"></div>
+    //     </div>
+    // }
 
   // Ensure loggedUser is resolved
   // if (!loggedUser) {
