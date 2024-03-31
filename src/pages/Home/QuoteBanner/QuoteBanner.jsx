@@ -6,7 +6,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const QuoteBanner = () => {
   return (
-    <div className='my-10'>
+    <div className='my-3 md:my-10'>
       <SectionTitle title="Admin Insight" descrition="Explore the quote and insight from our administration." />
       <div className='bg-[#F2F1F1] py-10 '>
 
@@ -20,8 +20,8 @@ const QuoteBanner = () => {
               <h4 className='text-base'>Founder of VIP Tailors</h4>
             </div>
           </div>
-          <div className='flex flex-col text-3xl gap-4 relative font-semibold '>
-            <FaQuoteLeft className='text-5xl text-[#4F4F4F]  absolute top-[-4rem] left-0 lg:left-[-48px] ' />
+          <div className='flex flex-col md:text-3xl md:gap-4 relative font-semibold '>
+            <FaQuoteLeft className='md:text-5xl text-[#4F4F4F]  absolute top-[-2rem] md:top-[-4rem] left-0 lg:left-[-48px] ' />
             <h3 className='text-[#4F4F4F] '>Success is not the result of spontaneous <br /> combustion. You must  set yourself on fire.</h3>
           </div>
         </div>

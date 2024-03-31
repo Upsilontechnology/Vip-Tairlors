@@ -21,7 +21,7 @@ const Notice = () => {
     }, [axiosPublic]);
 
     return (
-        <div id='notice' className='supershop-container'>
+        <div id='notice' className='max-w-[1280px] w-full mx-auto py-5 md:py-12 lg:py-14 px-3'>
             <SectionTitle title="Notice" descrition="Important Communication Regarding Employment Updates and Expectations" />
 
             <Swiper

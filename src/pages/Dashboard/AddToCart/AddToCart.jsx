@@ -15,6 +15,11 @@ const AddToCart = () => {
     (total, product) => total + product?.price,
     0
   );
+
+  const totalQuantity = carts?.reduce(
+    (total, product) => total + product?.quantity,
+    0
+  );
   //   console.log(carts);
 
   const handlePay = async (product) => {
@@ -137,7 +142,7 @@ const AddToCart = () => {
               <div className="flex justify-end">
                 <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
                   <h2 className="font-bold lg:text-xl text-base">
-                    Total <span>({carts?.length})</span>
+                    Total <span>({totalQuantity})</span>
                   </h2>
                   <h2 className="font-bold lg:text-xl text-base">
                     BDT {totalAmount}{" "}

@@ -45,11 +45,11 @@ const NoticePage = () => {
 
   return (
     <div className=' supershop-container h-[100vh] top-0'>
-      <h1 className='text-center text-5xl font-bold mt-[70px] text-[#227897]  pb-5 border-b mb-1 '>NOTICE</h1>
+      <h1 className='text-center text-2xl md:text-5xl font-bold mt-[70px] text-[#227897]  pb-5 border-b mb-1 '>NOTICE</h1>
 
       <div className='flex md:flex-row flex-col md:gap-0 gap-5  mt-10 justify-between max-w-4xl mx-auto'>
         <div className=' md:w-[60%] mr-7 '>
-          <h3 className=' text-3xl font-semibold border-l-8 border-[#41756f] pl-1'>{title}</h3>
+          <h3 className=' text-2xl md:text-3xl font-semibold border-l-8 border-[#41756f] pl-1'>{title}</h3>
           <p className=' text-base px-3 mt-2 '>{message}</p>
         </div>
       </div>
