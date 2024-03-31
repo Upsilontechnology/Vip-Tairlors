@@ -48,7 +48,7 @@ const Featured = () => {
 
 
     return (
-        <div id='featured' className='supershop-container mx-auto my-10'>
+        <div id='featured' className='supershop-container mx-auto md:my-5'>
             <SectionTitle
                 title="Featured Products"
                 descrition="Welcome to Our Showcase Selections, Where Uniqueness Meets Quality."

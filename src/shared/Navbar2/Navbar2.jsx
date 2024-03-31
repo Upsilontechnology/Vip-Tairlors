@@ -62,7 +62,7 @@ const Navbar2 = () => {
                     <h2 className='text-white font-semibold text-lg'>VIP TAIRLORS</h2>
                 </div>
                 <div className="navbar-end">
-                    <button onClick={handleLogout} className="btn"><IoPersonOutline className='text-xl' /> Logout</button>
+                    <button onClick={handleLogout} className="lg:bg-white whitespace-nowrap mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded flex items-center justify-center gap-1"><IoPersonOutline className='text-xl' /> Logout</button>
                 </div>
             </div>
         </div>
