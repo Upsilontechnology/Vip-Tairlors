@@ -32,7 +32,7 @@ const AdminTabs = ({ allOrderProducts }) => {
 
   useEffect(() => {
     if (categories.length > 0) {
-      handleCategory(categories[defaultTab].category, defaultTab);
+      handleCategory(categories[defaultTab]?.category, defaultTab);
     }
   }, [categories]);
 
@@ -63,6 +63,7 @@ const AdminTabs = ({ allOrderProducts }) => {
     const totalSellsByCategory = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
     const totalqunatity = selectedData?.reduce((total, product) => total + parseInt(product?.quantity), 0)
 
+    console.log(totalSellsByCategory)
 
     return (
         <div className='overflow-hidden w-full h-full'>
