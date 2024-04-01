@@ -94,11 +94,21 @@ const ProductDetails = () => {
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: "add quantity more",
+        title: "Quantity is less",
         showConfirmButton: false,
         timer: 1000,
       });
-    } else {
+    }
+    else if (quantity1 < 0) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Quantity cannot be a negative value",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+    else {
       await axiosPublic.post("/carts", sellData).then((res) => {
         // console.log(res);
         if (res.data.message === "success") {
@@ -544,7 +554,7 @@ const ProductDetails = () => {
                       // className="bg-white p-2 rounded-sm"
                       className="select select-bordered focus:outline-none w-full"
                       onChange={(e) => handleCategory(e.target.value)}
-                      //   value={filter}
+                    //   value={filter}
                     >
                       {categories?.map((category, index) => (
                         <option value={category?.category} key={category._id}>
@@ -629,7 +639,7 @@ const ProductDetails = () => {
                       type="number"
                       placeholder="Price"
                       className="input input-bordered focus:outline-none w-full"
-                      //   disabled
+                    //   disabled
                     />
                   </div>
                 </div>
