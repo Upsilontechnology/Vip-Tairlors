@@ -8,7 +8,7 @@ const QuoteBanner = () => {
   return (
     <div className='my-3 md:my-10'>
       <SectionTitle title="Admin Insight" descrition="Explore the quote and insight from our administration." />
-      <div className='bg-[#F2F1F1] py-10 '>
+      <div className='bg-[#F2F1F1] mt-6 py-10 '>
 
         <div className='max-w-[1280px] mx-auto lg:flex-row flex-col gap-[5rem] lg:gap-16 px-5 flex items-center justify-center lg:justify-between '>
           <div className=' flex flex-col justify-center items-center '>

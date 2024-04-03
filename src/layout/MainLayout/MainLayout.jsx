@@ -49,7 +49,9 @@ const MainLayout = () => {
   return (
     <div>
       {navbarComponent}
-      <Outlet />
+      <div className="">
+        <Outlet />
+      </div>
       {footerComponent}
     </div>
   );

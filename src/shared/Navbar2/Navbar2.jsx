@@ -56,12 +56,12 @@ const Navbar2 = () => {
     }, []);
 
     return (
-        <div className='w-full mx-auto bg-[#403030] border-b-2 border-gray-400 navbar-container'>
-            <div className="navbar">
+        <div className='w-full bg-[#403030] border-b-2 border-gray-400'>
+            <div className="flex flex-row justify-between py-3 3xl:w-[76%] 2xl:w-[74%] 2xl:mx-auto mx-3">
                 <div className="w-44 md:w-[600px] lg:w-[700px]">
-                    <h2 className='text-white font-semibold text-lg'>VIP TAIRLORS</h2>
+                    <h2 className='text-white font-bold text-lg'>VIP TAILORS</h2>
                 </div>
-                <div className="navbar-end">
+                <div className="">
                     <button onClick={handleLogout} className="lg:bg-white whitespace-nowrap mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded flex items-center justify-center gap-1"><IoPersonOutline className='text-xl' /> Logout</button>
                 </div>
             </div>
