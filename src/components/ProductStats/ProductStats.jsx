@@ -27,10 +27,10 @@ const ProductStats = ({ totalSells, totalProduct, setCommentRef }) => {
 
             {/* Card container */}
             <div ref={componentRef} className='flex justify-center mb-5'>
-                <div className='flex flex-col gap-5 justify-center mt-5 lg:w-5/6'>
+                <div className='flex flex-col gap-5 justify-center items-center mt-5 xl:w-4/6 lg:w-5/6'>
                     {/* Cards */}
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        <div className='max-w-[25rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
+                        <div className='w-full shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
                             <div className='rounded-lg flex items-center gap-1'>
                                 <div className='rounded-lg text-black text-base '>
                                     <IoBagOutline className='font-semibold' />
@@ -41,7 +41,7 @@ const ProductStats = ({ totalSells, totalProduct, setCommentRef }) => {
                                 <h2 className='text-2xl font-bold '>{totalSells} BDT</h2>
                             </div>
                         </div>
-                        <div className='max-w-[25rem] shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
+                        <div className='w-full shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
                             <div className='rounded-lg flex items-center gap-1'>
                                 <div className='rounded-lg text-black text-base '>
                                     <BsCart3 className='font-semibold' />

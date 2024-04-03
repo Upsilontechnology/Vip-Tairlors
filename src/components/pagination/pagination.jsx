@@ -6,7 +6,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
   // console.log(currentPage, totalPages);
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-8">
+    <div className="flex items-center justify-center gap-2 mt-8 pb-3">
       <button
         onClick={() => {
           currentPage - 1 < totalPages && setCurrentPage(currentPage - 1);

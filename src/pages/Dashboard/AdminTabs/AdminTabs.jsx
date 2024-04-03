@@ -63,7 +63,6 @@ const AdminTabs = ({ allOrderProducts }) => {
     const totalSellsByCategory = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
     const totalqunatity = selectedData?.reduce((total, product) => total + parseInt(product?.quantity), 0)
 
-    console.log(totalSellsByCategory)
 
     return (
         <div className='overflow-hidden w-full h-full'>
@@ -81,15 +80,15 @@ const AdminTabs = ({ allOrderProducts }) => {
                     </TabList>
                 </div>
                 {/* tab panel */}
-                <div className='my-5 bg-gray-100 rounded-lg'>
+                <div className='mt-3 bg-gray-100 rounded-lg 2xl:h-[44vh] xl:h-[55vh] lg:h-96'>
                     {/* sell product */}
                     <TabPanel>
                         <div className='flex flex-col p-1 md:p-3 gap-4'>
-                            <div >
+                            <div className="h-full">
                                 {/* tab lists */}
                                 <div className="font-bold pb-3 flex flex-row  justify-between items-center">
                                     <div>
-                                        <select className='bg-white p-2 rounded-sm' onChange={(e) => handleCategory(e.target.value)} value={filter}>
+                                        <select className='bg-white px-4 py-2 rounded-md' onChange={(e) => handleCategory(e.target.value)} value={filter}>
                                             {categories?.map((category, index) => (
                                                 <option value={category?.category} key={category._id}>
                                                     {category?.category}
@@ -137,8 +136,8 @@ const AdminTabs = ({ allOrderProducts }) => {
                                     </div>
                                 </div>
                                 {/* sub tab panel */}
-                                <div className='my-5 h-auto '>
-                                    <div className=''>
+                                <div className=''>
+                                    <div className='my-5 flex flex-col justify-center 4xl:h-72 3xl:h-56 xl:h-56'>
                                         {selectedData && (
                                             <div>
                                                 <ProductStats totalSells={totalSellsByCategory} totalProduct={totalqunatity} setCommentRef={setCommentRef} />
@@ -152,7 +151,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                     {/* order product */}
                     <TabPanel>
                         {/* Print and filter button */}
-                        <div className="flex items-center justify-between mb-3 mt-2 md:px-5 px-2">
+                        <div className="flex items-center justify-between md:px-5 px-2">
                             <h1 className="text-xl font-semibold">Order Product</h1>
                             <div className='flex justify-end my-5'>
                                 <div className="dropdown dropdown-hover mr-2 md:mr-5">
@@ -194,11 +193,11 @@ const AdminTabs = ({ allOrderProducts }) => {
                         {/* card container */}
                         <div ref={componentRef}>
                             {/* card container */}
-                            <div className='flex justify-center mb-5'>
-                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 w-5/6 pb-8'>
+                            <div className='flex justify-center'>
+                                <div className='flex flex-col gap-5 justify-center lg:w-4/6 w-5/6 4xl:my-10 3xl:my-5'>
                                     {/* cards */}
-                                    <div className='grid grid-cols-1 md:grid-cols-2 px-1 md:px-0 gap-2 md:gap-4'>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2 md:p-5 px-4 py-5 bg-white'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 px-1 md:px-0 gap-2 md:gap-5 w-full'>
+                                        <div className='w-full shadow-md rounded-md flex flex-col gap-2 md:px-4 md:py-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
@@ -209,7 +208,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount} BDT</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
+                                        <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <BsCart3 className='font-semibold' />
@@ -220,7 +219,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h2 className='text-xl md:text-2xl font-bold '>{orderProducts?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
+                                        <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
@@ -231,7 +230,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completedOrders?.length}</h2>
                                             </div>
                                         </div>
-                                        <div className='max-w-[20rem] shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
+                                        <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
                                                 <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />

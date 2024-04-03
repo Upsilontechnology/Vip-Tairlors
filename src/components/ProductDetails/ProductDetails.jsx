@@ -208,7 +208,7 @@ const ProductDetails = () => {
     }
   }, [filterBySearch]);
 
-  // console.log(filterBySearch);
+  console.log(filterBySearch?.items);
 
   const totalStock = filterBySearch?.items?.reduce(
     (total, product) => total + product?.price * product?.quantity,
@@ -279,7 +279,7 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="overflow-scroll h-[86vh] mx-3 lg:mx-0">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84vh] mx-3 lg:mx-0">
       <div className="lg:ml-10 rounded-md">
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">

@@ -18,62 +18,156 @@ const AddProduct = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
+  // const onSubmit = (data) => {
+  //   // sending image to the imageBB
+  //   const imageFile = { image: data.image[0] };
+  //   axiosPublic
+  //     .post(image_hosing_api, imageFile, {
+  //       headers: {
+  //         "content-type": "multipart/form-data",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+
+  //       // product data send to database
+  //       const productDetails = {
+  //         name: data?.name,
+  //         quantity: data?.quantity,
+  //         category: data?.category,
+  //         productCode: data?.code,
+  //         image: res?.data?.data?.display_url,
+  //         sellingDate: data?.date,
+  //         price: data?.price,
+  //         status: "pending",
+  //         email: user?.email,
+  //       };
+
+  //       // product added to the server
+  //       axiosPublic.post("/sellProduct", productDetails).then((res) => {
+  //         console.log(res);
+  //         if (res.data.message === "success") {
+  //           Swal.fire({
+  //             position: "top-end",
+  //             icon: "success",
+  //             title: "Product added successfully",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //             imageUrl: "https://unsplash.it/400/200",
+  //             imageWidth: 400,
+  //             imageHeight: 200,
+  //             imageAlt: "Custom image",
+  //           });
+  //         } else {
+  //           Swal.fire({
+  //             position: "top-end",
+  //             icon: "error",
+  //             title: "Product Code has alredy been taken",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //           });
+  //         }
+  //       });
+  //     });
+  // };
+
   const onSubmit = (data) => {
-    // sending image to the imageBB
-    const imageFile = { image: data.image[0] };
-    axiosPublic
-      .post(image_hosing_api, imageFile, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
+    // sending image to the imageBB if provided
+    if (data.image && data.image.length > 0) {
+      const imageFile = { image: data.image[0] };
+      axiosPublic
+        .post(image_hosing_api, imageFile, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
 
-        // product data send to database
-        const productDetails = {
-          name: data?.name,
-          quantity: data?.quantity,
-          category: data?.category,
-          productCode: data?.code,
-          image: res?.data?.data?.display_url,
-          sellingDate: data?.date,
-          price: data?.price,
-          status: "pending",
-          email: user?.email,
-        };
+          // product data send to database
+          const productDetails = {
+            name: data?.name,
+            quantity: data?.quantity,
+            category: data?.category,
+            productCode: data?.code,
+            image: res?.data?.data?.display_url,
+            sellingDate: data?.date,
+            price: data?.price,
+            status: "pending",
+            email: user?.email,
+          };
 
-        // product added to the server
-        axiosPublic.post("/sellProduct", productDetails).then((res) => {
-          console.log(res);
-          if (res.data.message === "success") {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Order added successfully",
-              showConfirmButton: false,
-              timer: 1500,
-              imageUrl: "https://unsplash.it/400/200",
-              imageWidth: 400,
-              imageHeight: 200,
-              imageAlt: "Custom image",
-            });
-          } else {
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Product Code has alredy been taken",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
+          // product added to the server
+          axiosPublic.post("/sellProduct", productDetails).then((res) => {
+            console.log(res);
+            if (res.data.message === "success") {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+                imageUrl: "https://unsplash.it/400/200",
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: "Custom image",
+              });
+            } else {
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Product Code has already been taken",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
         });
+    } else {
+      // If no image provided, proceed to submit the product details without image
+      const productDetails = {
+        name: data?.name,
+        quantity: data?.quantity,
+        category: data?.category,
+        productCode: data?.code,
+        image: "https://i.ibb.co/ZBbb1JH/blank-profile-picture.png",
+        sellingDate: data?.date,
+        price: data?.price,
+        status: "pending",
+        email: user?.email,
+      };
+
+      // product added to the server
+      axiosPublic.post("/sellProduct", productDetails).then((res) => {
+        console.log(res);
+        if (res.data.message === "success") {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+            imageUrl: "https://unsplash.it/400/200",
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: "Custom image",
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Product Code has already been taken",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       });
+    }
   };
 
   return (
     <>
-      <div className="lg:ml-10 overflow-scroll h-[86vh] mx-3 lg:mx-0">
+      <div className="lg:ml-10 overflow-scroll 2xl:h-[80vh] xl:h-[84vh] mx-3 lg:mx-0 rounded-lg">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
@@ -81,12 +175,12 @@ const AddProduct = () => {
           />
         </div>
         {/* form container */}
-        <div className="mb-10 mt-2 p-2 bg-white rounded-md">
+        <div className="mt-2 p-2 bg-white rounded-md 2xl:h-[66vh]">
           <SectionTitle
             title="Add Products"
-            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+          // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
-          <div className="md:w-5/6 mx-auto w-full md:p-5 rounded-md ">
+          <div className="md:w-5/6 mx-auto w-full md:p-5 ">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-2 md:gap-4 mb-2">
                 {/* Product Name */}

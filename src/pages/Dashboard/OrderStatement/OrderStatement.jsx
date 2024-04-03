@@ -42,7 +42,7 @@ const OrderStatement = () => {
 
     }
     return (
-        <div className='overflow-scroll h-[86vh] lg:ml-10 mx-3 lg:mx-0'>
+        <div className='overflow-scroll 2xl:h-[80vh] lg:h-[84vh] lg:ml-10 mx-3 lg:mx-0'>
             <div className="mb-2">
                 <DashBoardTitle
                     title={"Admin"}
@@ -96,13 +96,13 @@ const OrderStatement = () => {
                         </tbody>
                     </table>
                 </div>
+                {/* pagination */}
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
-            {/* pagination */}
-            <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-            />
         </div>
     );
 };

@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
       },
+      screens: {
+        '4xl': '1900px',
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [require("daisyui")],
