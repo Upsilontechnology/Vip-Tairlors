@@ -12,9 +12,9 @@ import Navbar2 from '../../../shared/Navbar2/Navbar2';
 
 const Home = () => {
     const [loggedUser, setLoggedUser] = useState();
-    console.log(loggedUser?.role);
+    // console.log(loggedUser?.role);
     const [users] = useUser();
-    console.log(users);
+    // console.log(users);
     const { user, setLoading, loading } = useAuth();
 
     useEffect(() => {

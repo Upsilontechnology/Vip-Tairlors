@@ -47,7 +47,7 @@ const AddNotice = () => {
         subTitle={"Add, Edit your category section in one click. "}
       />
       <div>
-        <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 bg-white mt-2 rounded-lg shadow justify-between py-6 md:py-10">
+        <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-20 bg-white 4xl:h-[65.5vh] 2xl:h-[63.5vh] mt-2 rounded-lg shadow justify-between py-6 md:py-10">
           <div className="w-full">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="w-full mb-5 text-center">

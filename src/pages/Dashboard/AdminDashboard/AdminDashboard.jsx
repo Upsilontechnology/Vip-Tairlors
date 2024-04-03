@@ -14,6 +14,7 @@ import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { IoBagAddOutline, IoPeople, IoPersonOutline } from "react-icons/io5";
 import {
   MdAddTask,
+  MdDashboard,
   MdOutlineAddChart,
   MdOutlineAddCircleOutline,
   MdProductionQuantityLimits,
@@ -64,7 +65,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           }
           to="adminHome"
         >
-          <AiOutlineHome />
+           <MdDashboard />
           <span className="ml-4">Home</span>
         </NavLink>
       </li>
@@ -183,8 +184,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       }`}
     >
       {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20 lg:ml-5 rounded-lg">
-        <div className="h-screen py-3 pl-3 flex flex-col gap-9 shadow-xl">
+      <aside className="z-20 flex-shrink-0 fixed hidden w-[285px] overflow-y-auto bg-white lg:block lg:mt-20 4xl:ml-[12%] 3xl:ml-[11%] 2xl:ml-[13%] xl:ml-5 rounded-lg ">
+        <div className="2xl:h-[80vh] lg:h-[84.5vh] py-3 pl-3 flex flex-col 2xl:justify-between gap-9 shadow-xl">
           {/* logo */}
           <div>
             <p className="font-bold text-lg">Admin Dashboard</p>
@@ -194,7 +195,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             <ul className="leading-10">{navlinks}</ul>
           </div>
           {/* footer */}
-          <div className="flex gap-2 justify-center items-center">
+          <div className="flex -mt-3 justify-center items-center">
             <p>Copyright © 2024 - All right reserved by VIP Tailor's</p>
           </div>
         </div>
@@ -243,11 +244,11 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             </div>
           </div>
         </header>
-        <main className="-ml-4 scroll-smooth">
-          <div className="ml-4">
+        <main className="scroll-smooth">
+          <div className="">
             <Navbar2></Navbar2>
           </div>
-          <div className="lg:ml-[268px] ml-4 mt-4 lg:mr-5">
+          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-0 lg:ml-[285px] ml-4 mt-4">
             <Outlet></Outlet>
           </div>
         </main>
