@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Notice = () => {
     const [notes, setNotes] = useState([]);
     const axiosPublic = useAxiosPublic();
+    console.log(notes);
 
     useEffect(() => {
         axiosPublic.get(`/notebooks`)
@@ -21,8 +22,8 @@ const Notice = () => {
     }, [axiosPublic]);
 
     return (
-        <div id='notice' className='max-w-[1280px] w-full mx-auto py-5 md:py-12 lg:py-14 px-3'>
-            <SectionTitle title="Notice" descrition="Important Communication Regarding Employment Updates and Expectations" />
+        <div id='notice' className='max-w-[1280px] w-full mx-auto py-5 md:py-12 lg:py-4 px-3'>
+            <SectionTitle title="VIP Tailors Regular Notice" descrition="Important Communication Regarding Employment Updates and Expectations" />
 
             <Swiper
                 slidesPerView={1}
@@ -46,16 +47,14 @@ const Notice = () => {
             >
                 {notes?.map(note => (
                     <SwiperSlide key={note?._id}>
-                        <div className='flex items-center gap-6 bg-[#F2F1F1] justify-center py-[8rem] my-3 shadow-md px-2 '>
-                            <div className='text-5xl'>
-                                <FaFlag className=' bg-[#FFFBE7] px-2 ' />
-                            </div>
-                            <div className='flex flex-col gap-2 items-start'>
+                        <div className=' relative group bg-[#F0EEEE] pt-[3rem] mt-[1.5rem] pb-[5rem] '>
+                            
+                            <div className='flex flex-col overflow-hidden px-3 '>
                                 <h2 className="text-2xl font-bold">{note?.title}</h2>
-                                <h3 className='text-xs font-bold'>{note?.date}</h3>
-                                <Link to={`/notice/${note?._id}`}><h1 className='text-md font-normal hover:text-[#6979b1] cursor-pointer hover:underline transition duration-300'>{
-                                    note?.message.slice(0, 20)
-                                }..........</h1></Link>
+                                <p className=' text-sm py-[1.5rem] '>{
+                                    note?.message.slice(0, 250)
+                                }..........</p>
+                                <Link className='noticeBtn left-0 group-hover:bottom-0 bottom-[-50%]  transition-all duration-300 ease-in-out absolute bg-[#403030] text-[#fff] font-semibold w-full py-[.8rem] ' to={`/notice/${note?._id}`}>Explore More</Link>
                             </div>
                         </div>
                     </SwiperSlide>
