@@ -6,6 +6,9 @@ import Card from './Card';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import FeaturedImg1 from "../../../assets/featuredImg1.png"
+import FeaturedImg2 from "../../../assets/featuredImg2.png"
+import FeaturedImg3 from "../../../assets/featuredImg3.png"
 
 const Featured = () => {
 
@@ -48,16 +51,16 @@ const Featured = () => {
 
 
     return (
-        <div id='featured' className='supershop-container mx-auto md:my-5'>
+        <div id='featured' className='supershop-container mx-auto '>
             <SectionTitle
                 title="Featured Products"
                 descrition="Welcome to Our Showcase Selections, Where Uniqueness Meets Quality."
             />
             <Slider {...settings} className=''>
                 {/* <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 md:gap-8'> */}
-                <Card />
-                <Card />
-                <Card />
+                <Card img={FeaturedImg1} />
+                <Card img={FeaturedImg2} />
+                <Card img={FeaturedImg3} />
                 {/* </div> */}
             </Slider>
         </div>
