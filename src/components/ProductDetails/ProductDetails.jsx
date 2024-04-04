@@ -460,7 +460,7 @@ const ProductDetails = () => {
             ref={modalRef}
             className="bg-white rounded-lg shadow-xl lg:w-3/5 w-[95%] lg:p-5"
           >
-            <div className="flex justify-between p-2 items-center">
+            <div className="flex justify-between p-2 items-center mt-20 md:mt-0">
               <div>
                 <SectionTitle title={"Edit Product Details"} />
               </div>
@@ -475,7 +475,7 @@ const ProductDetails = () => {
             </div>
             <div className="p-2 lg:p-6">
               <form className="" onSubmit={handleUpdate}>
-                <div className="flex gap-2 md:gap-6">
+                <div className="md:flex md:gap-6">
                   {/* Product Name */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -503,7 +503,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-2 md:gap-6">
+                <div className="md:flex md:gap-6">
                   {/* price */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -530,7 +530,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-2 md:gap-">
+                <div className="md:flex md:gap-6">
                   {/* category */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
