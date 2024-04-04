@@ -115,8 +115,8 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
         }`}
     >
       {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-64 overflow-y-auto bg-white lg:block lg:mt-20 lg:ml-5 rounded-md">
-        <div className="h-screen py-3 pl-3 flex flex-col shadow-xl">
+      <aside className="z-20 flex-shrink-0 fixed hidden w-[285px] overflow-y-auto bg-white lg:block lg:mt-20 4xl:ml-[12%] 3xl:ml-[11%] 2xl:ml-[13%] xl:ml-5 lg:ml-5 rounded-lg">
+        <div className="2xl:h-[80vh] lg:h-[84.5vh] py-3 pl-3 flex flex-col gap-9 shadow-xl">
           {/* logo */}
           <div>
             <p className="font-bold text-lg">Employee Dashboard</p>
@@ -182,11 +182,11 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             </div>
           </div>
         </header>
-        <main className="-ml-4 scroll-smooth">
-          <div className="ml-4">
+        <main className="scroll-smooth">
+          <div className="">
             <Navbar2></Navbar2>
           </div>
-          <div className="lg:ml-[268px] ml-4 mt-4 lg:mr-5">
+          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-5 lg:ml-[280px] lg:mr-5 mt-4">
             <Outlet></Outlet>
           </div>
         </main>

@@ -28,7 +28,7 @@ const ProductDetails = () => {
 
   const [productLength, setProductLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = 20;
   const { user } = useAuth();
   const email = user?.email;
   // const { register, handleSubmit, reset } = useForm();
@@ -279,7 +279,7 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84vh] mx-3 lg:mx-0">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh] mx-3 lg:mx-0">
       <div className="lg:ml-10 rounded-md">
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
@@ -440,12 +440,12 @@ const ProductDetails = () => {
               )}
             </div>
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(productLength / itemsPerPage)}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(productLength / itemsPerPage)}
-          setCurrentPage={setCurrentPage}
-        />
       </div>
 
       {openSell && (

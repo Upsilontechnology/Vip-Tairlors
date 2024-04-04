@@ -94,14 +94,14 @@ const OrderedProduct = () => {
   };
   return (
     <>
-      <div className="overflow-scroll h-[86vh] lg:ml-10 mx-3 lg:mx-0">
+      <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh]  lg:ml-10 mx-3 lg:mx-0">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}
             subTitle={"Add, Edit your category section in one click. "}
           />
         </div>
-        <div className=" bg-white rounded-md py-5">
+        <div className=" bg-white xl:h-full h-auto rounded-md py-5">
           <SectionTitle
             title="Add Products Info"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
