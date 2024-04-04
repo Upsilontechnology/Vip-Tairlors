@@ -65,7 +65,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           }
           to="adminHome"
         >
-           <MdDashboard />
+          <MdDashboard />
           <span className="ml-4">Home</span>
         </NavLink>
       </li>
@@ -218,7 +218,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           </div>
           {/* footer */}
           <div className="flex justify-center items-center">
-            <p className="text-xs lg:text-base">Copyright © 2024 - All right reserved by VIP Tailor's</p>
+            <p className="text-xs lg:text-base">
+              Copyright © 2024 - All right reserved by VIP Tailor's
+            </p>
           </div>
         </div>
       </aside>
@@ -248,7 +250,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
           <div className="">
             <Navbar2></Navbar2>
           </div>
-          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-0 lg:ml-[285px] ml-4 mt-4">
+          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-0 lg:ml-[285px] md:ml-4 md:mt-4 ml-0">
             <Outlet></Outlet>
           </div>
         </main>
