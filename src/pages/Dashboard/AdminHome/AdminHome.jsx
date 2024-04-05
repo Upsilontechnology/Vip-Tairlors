@@ -44,7 +44,6 @@ const AdminHome = () => {
   );
   const totalAmount = totalSells + completeOrderAmount;
 
-
   return (
     <div className='lg:overflow-scroll 2xl:h-[80vh] xl:h-[84vh] lg:h-[84.5vh] xl:ml-9 mx-3'>
       <DashBoardTitle
@@ -54,7 +53,7 @@ const AdminHome = () => {
       <div className='bg-white mt-2 p-2 md:p-6 rounded-md 4xl:h-[66vh] lg:h-[87vh] md:h-[110vh] h-auto'>
         <h1 className="text-lg md:text-2xl font-semibold mb-3 text-center md:text-start">Total Summary</h1>
         {/* category-wise tabs */}
-        <div className='flex'>
+        <div className="flex">
           <AdminTabs allOrderProducts={allOrderProducts} />
         </div>
       </div>
