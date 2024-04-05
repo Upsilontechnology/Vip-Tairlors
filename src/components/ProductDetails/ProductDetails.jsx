@@ -15,9 +15,11 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import { GiCancel } from "react-icons/gi";
 import { FaSortAmountUpAlt } from "react-icons/fa";
 import { MdLocalMall } from "react-icons/md";
+import useAllProduct from "../../hooks/useAllProduct";
 // import rImg from "../../assets/Character.png";
 const ProductDetails = () => {
   const queryClient = useQueryClient();
+  const [allSellProducts] = useAllProduct();
   const [searchValue, setSearchValue] = useState("");
   const [axiosSecure] = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
@@ -210,11 +212,11 @@ const ProductDetails = () => {
 
   console.log(filterBySearch?.items);
 
-  const totalStock = filterBySearch?.items?.reduce(
+  const totalStock = allSellProducts?.reduce(
     (total, product) => total + product?.price * product?.quantity,
     0
   );
-  const totalQuantity = filterBySearch?.items?.reduce(
+  const totalQuantity = allSellProducts?.reduce(
     (total, product) => total + product?.quantity,
     0
   );
@@ -279,8 +281,8 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh] mx-3 lg:mx-0">
-      <div className="lg:ml-10 rounded-md">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84.5vh] mx-3 lg:mx-0">
+      <div className="lg:ml-3 xl:ml-9 rounded-md">
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
             <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2">

@@ -145,7 +145,7 @@ const AllMembers = () => {
 
 
     return (
-        <div className='lg:ml-10 overflow-scroll h-[86vh] mx-3 lg:mx-0'>
+        <div className='lg:ml-3 xl:ml-9 overflow-scroll xl:h-[86vh] lg:h-[84.5vh] mx-3 lg:mx-0'>
             <div className="mb-2">
                 <DashBoardTitle
                     title={"Admin"}

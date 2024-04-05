@@ -167,7 +167,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="lg:ml-10 overflow-scroll 2xl:h-[80vh] xl:h-[84vh] mx-3 lg:mx-0 rounded-lg">
+      <div className="lg:ml-3 xl:ml-9 overflow-scroll 2xl:h-[80vh] xl:h-[84vh] mx-3 lg:mx-0 rounded-lg">
         <div className="mb-2">
           <DashBoardTitle
             title={"Admin"}

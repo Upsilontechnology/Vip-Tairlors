@@ -75,9 +75,9 @@ const OrderedList = () => {
   // console.log(orderBySearch);
 
   return (
-    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh] mx-3 lg:mx-0">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84.5vh] mx-3 lg:mx-0">
       {/* tabs */}
-      <div className="lg:ml-12 h-full">
+      <div className="lg:ml-3 xl:ml-9 h-full">
         <Tabs>
           {/* tab lists */}
           <TabList className="font-bold flex justify-center lg:gap-3 gap-2 mt-2 mb-4">
