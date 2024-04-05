@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar2 from "../../../shared/Navbar2/Navbar2";
 import {
   AiFillFacebook,
@@ -12,13 +12,43 @@ import {
 import { BiBarChart } from "react-icons/bi";
 import { RiFileList3Line } from "react-icons/ri";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-import { IoBagAddOutline } from "react-icons/io5";
+import { IoBagAddOutline, IoPersonOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import useCarts from "../../../hooks/useCarts";
 import { CiViewList } from "react-icons/ci";
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const [carts] = useCarts();
+
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logged Out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut().then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successfully logged out",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        });
+      }
+    });
+  };
 
   const navlinks = (
     <>
@@ -99,8 +129,8 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       }`}
     >
       {/* Dashboard */}
-      <aside className="z-20 flex-shrink-0 fixed hidden w-[285px] overflow-y-auto bg-white lg:block lg:mt-20 4xl:ml-[12%] 3xl:ml-[11%] 2xl:ml-[13%] xl:ml-5 rounded-lg ">
-        <div className="2xl:h-[80vh] lg:h-[84.5vh] py-3 pl-3 flex flex-col 2xl:justify-between gap-9 shadow-xl">
+      <aside className="z-20 flex-shrink-0 fixed hidden w-[285px] overflow-y-auto bg-white lg:block lg:mt-20 4xl:ml-[12%] 3xl:ml-[11%] 2xl:ml-[13%] xl:ml-5 lg:ml-5 rounded-lg">
+        <div className="2xl:h-[80vh] lg:h-[84.5vh] py-3 pl-3 flex flex-col gap-9 shadow-xl">
           {/* logo */}
           <div>
             <p className="font-bold text-lg">Employee Dashboard</p>
@@ -159,14 +189,19 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
                 <FaBarsStaggered className="w-6 h-6" />
               )}
             </button>
-            <div className="flex md:hidden justify-center mr-4 w-[80%]"></div>
+            {/* <div className="flex md:hidden justify-center mr-4 w-[80%]"></div> */}
+            <div className="flex lg:hidden justify-end mr-4 w-full">
+              <button onClick={handleLogout} className="btn btn-sm">
+                <IoPersonOutline className="text-xl" /> Logout
+              </button>
+            </div>
           </div>
         </header>
-        <main className="-ml-4 scroll-smooth">
-          <div className="ml-4">
+        <main className="scroll-smooth">
+          <div className="">
             <Navbar2></Navbar2>
           </div>
-          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-0 lg:ml-[285px] md:ml-4 md:mt-4 ml-0">
+          <div className="4xl:ml-[25.5%] 4xl:mr-[200px] 3xl:ml-[26%] 3xl:mr-[10%] lg:h-[83vh] 2xl:ml-[29%] 2xl:mr-[12%] xl:ml-[22%] xl:mr-5 lg:ml-[280px] lg:mr-5 mt-4">
             <Outlet></Outlet>
           </div>
         </main>

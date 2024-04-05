@@ -97,7 +97,7 @@ const AddToCart = () => {
 
   return (
     <>
-      <div className="bg-white overflow-scroll h-[86vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
+      <div className="bg-white overflow-scroll 2xl:h-[80vh] lg:h-[85vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
         <div className="p-2">
           <SectionTitle
             title="Sold Products Info"

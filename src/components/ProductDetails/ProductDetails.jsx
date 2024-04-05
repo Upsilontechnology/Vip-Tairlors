@@ -28,7 +28,7 @@ const ProductDetails = () => {
 
   const [productLength, setProductLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = 20;
   const { user } = useAuth();
   const email = user?.email;
   // const { register, handleSubmit, reset } = useForm();
@@ -279,7 +279,7 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84vh] mx-3 lg:mx-0">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh] mx-3 lg:mx-0">
       <div className="lg:ml-10 rounded-md">
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
@@ -440,12 +440,12 @@ const ProductDetails = () => {
               )}
             </div>
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(productLength / itemsPerPage)}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(productLength / itemsPerPage)}
-          setCurrentPage={setCurrentPage}
-        />
       </div>
 
       {openSell && (
@@ -460,7 +460,7 @@ const ProductDetails = () => {
             ref={modalRef}
             className="bg-white rounded-lg shadow-xl lg:w-3/5 w-[95%] lg:p-5"
           >
-            <div className="flex justify-between p-2 items-center">
+            <div className="flex justify-between p-2 items-center mt-20 md:mt-0">
               <div>
                 <SectionTitle title={"Edit Product Details"} />
               </div>
@@ -475,7 +475,7 @@ const ProductDetails = () => {
             </div>
             <div className="p-2 lg:p-6">
               <form className="" onSubmit={handleUpdate}>
-                <div className="flex gap-2 md:gap-6">
+                <div className="md:flex md:gap-6">
                   {/* Product Name */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -503,7 +503,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-2 md:gap-6">
+                <div className="md:flex md:gap-6">
                   {/* price */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
@@ -530,7 +530,7 @@ const ProductDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-2 md:gap-">
+                <div className="md:flex md:gap-6">
                   {/* category */}
                   <div className="form-control w-full my-1">
                     {/* <label className="label">
