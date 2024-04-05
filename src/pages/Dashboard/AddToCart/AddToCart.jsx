@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import useCarts from "../../../hooks/useCarts";
 import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import rectnglor from "../../../assets/Rectangle.jpg";
+import { Link } from "react-router-dom";
 
 const AddToCart = () => {
   const axiosPublic = useAxiosPublic();
@@ -99,67 +101,67 @@ const AddToCart = () => {
     <>
       <div className="bg-white overflow-scroll 2xl:h-[80vh] lg:h-[85vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
         <div className="p-2">
-          <SectionTitle
-            title="Sold Products Info"
-            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
-          />
           <div>
-            <div className="overflow-x-auto">
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Category</th>
-                    <th>Quantity</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {carts?.map((product, ind) => (
-                    <tr key={product?._id}>
-                      <th>{ind + 1}</th>
-                      <th>{product?.productName}</th>
-                      <td>{product?.category}</td>
-                      <td>{product?.quantity}</td>
-                      <td>{product?.price}</td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(product)}
-                          className="btn btn-sm"
-                        >
-                          <MdOutlineDeleteOutline />
-                        </button>
-                      </td>
+            {carts?.length > 0 ? <div>
+              <SectionTitle
+                title="Sold Products Info"
+              // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+              />
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Quantity</th>
+                      <th>Amount</th>
+                      <th>Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex flex-col p-2 mb-5 gap-6">
-              <div className="flex justify-end">
-                <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
-                  <h2 className="font-bold lg:text-xl text-base">
-                    Total <span>({totalQuantity})</span>
-                  </h2>
-                  <h2 className="font-bold lg:text-xl text-base">
-                    BDT {totalAmount}{" "}
-                  </h2>
-                </div>
+                  </thead>
+                  <tbody>
+                    {carts?.map((product, ind) => (
+                      <tr key={product?._id}>
+                        <th>{ind + 1}</th>
+                        <th>{product?.productName}</th>
+                        <td>{product?.category}</td>
+                        <td>{product?.quantity}</td>
+                        <td>{product?.price}</td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(product)}
+                            className="btn btn-sm"
+                          >
+                            <MdOutlineDeleteOutline />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <button
-                onClick={() => handlePay(carts)}
-                className={`btn bg-[#403030] text-white hover:bg-[#362929] ${
-                  carts?.length < 1 ? "disabled" : ""
-                }`}
-                disabled={carts?.length < 1}
-              >
-                Confirm Payment
-              </button>
+              <div className="flex flex-col p-2 mb-5 gap-6">
+                <div className="flex justify-end">
+                  <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
+                    <h2 className="font-bold lg:text-xl text-base">
+                      Total <span>({totalQuantity})</span>
+                    </h2>
+                    <h2 className="font-bold lg:text-xl text-base">
+                      BDT {totalAmount}{" "}
+                    </h2>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handlePay(carts)}
+                  className={`btn bg-[#403030] text-white hover:bg-[#362929] ${carts?.length < 1 ? "disabled" : ""
+                    }`}
+                  disabled={carts?.length < 1}
+                >
+                  Confirm Payment
+                </button>
 
-              {/* {carts.length && (
+                {/* {carts.length && (
             <button
               onClick={() => handlePay(carts)}
               className="btn bg-[#403030] text-white hover:bg-[#362929]"
@@ -167,7 +169,23 @@ const AddToCart = () => {
               Confirm Payment
             </button>
           )} */}
+              </div>
+            </div> : <div>
+              <div className="bg-white md:h-full overflow-scroll 2xl:h-[80vh] lg:h-[85vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
+                <div className="flex justify-center items-center mt-4">
+                  <img className="w-[25%]" src={rectnglor} alt="" />
+                </div>
+                <div className="text-center mt-6">
+                  <p className="font-semibold">No Product Available to Show Here</p>
+                  <Link to="/productList">
+                    <button className="focus:outline-none focus:ring-2 w-[50%] mt-5 focus:border-transparent bg-[#403030] hover:bg-[#221919] text-white font-semibold py-2.5 rounded-md">
+                      Add Product
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
+            }
           </div>
         </div>
       </div>

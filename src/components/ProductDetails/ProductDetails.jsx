@@ -551,6 +551,7 @@ const ProductDetails = () => {
                       <option value="ready-Made">Ready-Made</option>
                     </select> */}
                     <select
+                      name="category"
                       // className="bg-white p-2 rounded-sm"
                       className="select select-bordered focus:outline-none w-full"
                       onChange={(e) => handleCategory(e.target.value)}
