@@ -22,7 +22,7 @@ const OrderedList = () => {
   const [productLength, setProductLength] = useState(0);
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 20;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(productLength / itemsPerPage);
   const { user } = useAuth();
   const email = user?.email;
@@ -53,7 +53,7 @@ const OrderedList = () => {
       status,
     ],
     cacheTime: 0,
-    staleTime: Infinity,
+    staleTime: 60000,
     queryFn: async () => {
       const res = await axiosPublic.get(
         `/orderProduct/1/search?email=${email}&role=${role}&searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}&status=${status}`
@@ -63,15 +63,19 @@ const OrderedList = () => {
   });
 
   // console.log(orderBySearch);
+  // useEffect(() => {
+  //   if (orderBySearch && orderBySearch.totalCount) {
+  //     setProductLength(orderBySearch.totalCount);
+  //     refetch();
+  //   } else {
+  //     setProductLength(0);
+  //     refetch();
+  //   }
+  // }, [orderBySearch]);
   useEffect(() => {
-    if (orderBySearch && orderBySearch.totalCount) {
-      setProductLength(orderBySearch.totalCount);
-      refetch();
-    } else {
-      setProductLength(0);
-      refetch();
-    }
-  }, [orderBySearch]);
+    refetch();
+  }, [orderBySearch, currentPage, searchValue, status]);
+
   // console.log(orderBySearch);
 
   return (
