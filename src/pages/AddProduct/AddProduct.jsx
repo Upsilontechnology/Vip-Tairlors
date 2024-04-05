@@ -5,6 +5,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import DashBoardTitle from "../../components/dashboardTitle/DashBoardTitle";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSITNG_KEY;
 const image_hosing_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -17,7 +18,13 @@ const AddProduct = () => {
   } = useForm();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-
+  const { data: categories = [], refetch } = useQuery({
+    queryKey: ["categoryData"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/category");
+      return res.data;
+    },
+  });
   // const onSubmit = (data) => {
   //   // sending image to the imageBB
   //   const imageFile = { image: data.image[0] };
@@ -178,7 +185,7 @@ const AddProduct = () => {
         <div className="mt-2 p-2 bg-white rounded-md 2xl:h-[66vh]">
           <SectionTitle
             title="Add Products"
-          // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+            // descrition="Welcome to our showcase selections, where uniqueness meets quality."
           />
           <div className="md:w-5/6 mx-auto w-full md:p-5 ">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
@@ -192,7 +199,7 @@ const AddProduct = () => {
                     {...register("name", { required: true })}
                     type="text"
                     placeholder="Product Name"
-                    className="input input-bordered w-full focus:outline-none"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5]"
                   />
                   {errors.name && (
                     <span className="text-red-500">
@@ -209,7 +216,7 @@ const AddProduct = () => {
                     {...register("quantity", { required: true })}
                     type="number"
                     placeholder="Quantity"
-                    className="input input-bordered w-full focus:outline-none"
+                    className="input input-bordered w-full focus:outline-none bg-[#F0F2F5]"
                   />
                   {errors.quantity && (
                     <span className="text-red-500">Quantity is required</span>
@@ -226,7 +233,7 @@ const AddProduct = () => {
                     {...register("price", { required: true })}
                     type="number"
                     placeholder="Price"
-                    className="input input-bordered focus:outline-none w-full"
+                    className="input input-bordered focus:outline-none w-full bg-[#F0F2F5]"
                   />
                   {errors.price && (
                     <span className="text-red-500">Price is required</span>
@@ -241,7 +248,7 @@ const AddProduct = () => {
                     {...register("date", { required: true })}
                     type="date"
                     placeholder="Date"
-                    className="input input-bordered focus:outline-none w-full"
+                    className="input input-bordered focus:outline-none w-full bg-[#F0F2F5]"
                   />
                   {errors.date && (
                     <span className="text-red-500">Date is required</span>
@@ -254,7 +261,7 @@ const AddProduct = () => {
                   {/* <label className="label">
                     <span className="label-text">Category*</span>
                   </label> */}
-                  <select
+                  {/* <select
                     defaultValue="default"
                     {...register("category", { required: true })}
                     className="select select-bordered focus:outline-none w-full"
@@ -270,7 +277,19 @@ const AddProduct = () => {
                   </select>
                   {errors.category && (
                     <span className="text-red-500">Category is required</span>
-                  )}
+                  )} */}
+                  <select
+                    className="select select-bordered w-full focus:outline-none bg-[#F0F2F5]"
+                    // onChange={(e) => handleCategory(e.target.value)}
+                    {...register("category", { required: true })}
+                    // value={filter}
+                  >
+                    {categories?.map((category, index) => (
+                      <option value={category?.category} key={category._id}>
+                        {category?.category}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 {/* product Code */}
                 <div className="form-control w-full my-1">
@@ -281,7 +300,7 @@ const AddProduct = () => {
                     {...register("code", { required: true })}
                     type="number"
                     placeholder="Product Code"
-                    className="input input-bordered focus:outline-none w-full"
+                    className="input input-bordered focus:outline-none w-full bg-[#F0F2F5]"
                   />
                   {errors.code && (
                     <span className="text-red-500">
@@ -312,7 +331,7 @@ const AddProduct = () => {
                       {...register("image", { required: false })}
                       type="file"
                       // placeholder="Select Image"
-                      className="text-sm cursor-pointer w-20 hidden"
+                      className="text-sm cursor-pointer w-52 hidden"
                     />
                     <div className=" cursor-pointer px-3">
                       <svg

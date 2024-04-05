@@ -158,7 +158,10 @@ const AddCategory = () => {
                   </thead>
                   <tbody>
                     {categories.map((dd, index) => (
-                      <tr className="border-b-[1.2px] border-black" key={dd._id}>
+                      <tr
+                        className="border-b-[1.2px] border-black"
+                        key={dd._id}
+                      >
                         <th className="p-1">0{index + 1}</th>
                         <td>{dd.category}</td>
                         <td className="flex justify-end text-base gap-3">
@@ -187,14 +190,17 @@ const AddCategory = () => {
                                       : "scale-0 opacity-0 duration-150"
                                   }`}
                                 >
-                                  <div>
+                                  <div className="rounded-lg">
                                     <button
                                       onClick={() => setOpenModal(false)}
                                       className="text-[#1D2A3B] float-end text-lg"
                                     >
                                       <GiCancel />
                                     </button>
-                                    <form className="" onSubmit={handleUpdate}>
+                                    <form
+                                      className="flex flex-col gap-2 rounded-lg"
+                                      onSubmit={handleUpdate}
+                                    >
                                       <div className="flex gap-6">
                                         <div className="form-control w-full my-1">
                                           <label className="label">

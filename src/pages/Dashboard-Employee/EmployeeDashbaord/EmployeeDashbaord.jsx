@@ -2,7 +2,12 @@ import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar2 from "../../../shared/Navbar2/Navbar2";
 import {
-  AiFillFacebook, AiFillInstagram, AiOutlineHome, AiOutlineSchedule, AiOutlineTwitter, AiOutlineWhatsApp,
+  AiFillFacebook,
+  AiFillInstagram,
+  AiOutlineHome,
+  AiOutlineSchedule,
+  AiOutlineTwitter,
+  AiOutlineWhatsApp,
 } from "react-icons/ai";
 import { BiBarChart } from "react-icons/bi";
 import { RiFileList3Line } from "react-icons/ri";
@@ -13,7 +18,6 @@ import useCarts from "../../../hooks/useCarts";
 import { CiViewList } from "react-icons/ci";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
-
 
 const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
   const [carts] = useCarts();
@@ -46,73 +50,83 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
     });
   };
 
-  const navlinks = <>
-    <li className="relative px-2 py-1">
-      <NavLink
-        defaultChecked
-        className={({ isActive }) =>
-          isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
-            : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
-        }
-        to="employeeHome"
-      >
-        <MdDashboard />
-        <span className="ml-4">Overview</span>
-      </NavLink>
-    </li>
-    <li className="relative px-2 py-1 ">
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
-            : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
-        }
-        to="productList"
-      >
-        <CiViewList />
-        <span className="ml-4">Product List</span>
-      </NavLink>
-    </li>
-    <li className="relative px-2 py-1 ">
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
-            : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
-        }
-        to="addToCart"
-      >
-        <RiFileList3Line />
-        <span className="ml-4">Sell List <span className='text-red-500'>({carts?.length})</span></span>
-      </NavLink>
-    </li>
-    <li className="relative px-2 py-1 ">
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
-            : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
-        }
-        to="ordered"
-      >
-        <IoBagAddOutline />
-        <span className="ml-4">Ordered Product</span>
-      </NavLink>
-    </li>
-    <li className="relative px-2 py-1 ">
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
-            : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
-        }
-        to="orderedList"
-      >
-        <BiBarChart />
-        <span className="ml-4">Ordered List</span>
-      </NavLink>
-    </li>
-  </>
+  const navlinks = (
+    <>
+      <li className="relative px-2 py-1">
+        <NavLink
+          defaultChecked
+          className={({ isActive }) =>
+            isActive
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+          }
+          to="employeeHome"
+        >
+          <MdDashboard />
+          <span className="ml-4">Overview</span>
+        </NavLink>
+      </li>
+      <li className="relative px-2 py-1 ">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+          }
+          to="productList"
+        >
+          <CiViewList />
+          <span className="ml-4">Product List</span>
+        </NavLink>
+      </li>
+      <li className="relative px-2 py-1 ">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+          }
+          to="addToCart"
+        >
+          <RiFileList3Line />
+          <span className="ml-4">
+            Sell List <span className="text-red-500">({carts?.length})</span>
+          </span>
+        </NavLink>
+      </li>
+      <li className="relative px-2 py-1 ">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+          }
+          to="ordered"
+        >
+          <IoBagAddOutline />
+          <span className="ml-4">Ordered Product</span>
+        </NavLink>
+      </li>
+      <li className="relative px-2 py-1 ">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "inline-flex items-center bg-[#DFF8FC] w-48 pl-2 pr-2 py-1 rounded font-bold text-[#3d48df] hover:text-blue-600 text-base"
+              : "inline-flex items-center font-semibold pl-2 py-1 hover:text-blue-600 text-base"
+          }
+          to="orderedList"
+        >
+          <BiBarChart />
+          <span className="ml-4">Ordered List</span>
+        </NavLink>
+      </li>
+    </>
+  );
   return (
     <div
-      className={`flex h-screen bg-white ${isSideMenuOpen ? "overflow-hidden" : ""
-        }`}
+      className={`flex h-screen bg-white ${
+        isSideMenuOpen ? "overflow-hidden" : ""
+      }`}
     >
       {/* Dashboard */}
       <aside className="z-20 flex-shrink-0 fixed hidden w-[285px] overflow-y-auto bg-white lg:block lg:mt-20 4xl:ml-[12%] 3xl:ml-[11%] 2xl:ml-[13%] xl:ml-5 lg:ml-5 rounded-lg">
@@ -122,7 +136,7 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             <p className="font-bold text-lg">Employee Dashboard</p>
           </div>
           {/* items and routes */}
-          <div className=" flex flex-col justify-between py-10">
+          <div className="flex flex-col justify-start">
             <ul className="leading-10">{navlinks}</ul>
           </div>
           {/* social icons */}
@@ -137,8 +151,9 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
       <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
       {/* responsive dashboard */}
       <aside
-        className={`z-20 fixed w-64 duration-300 inset-y-0 ease-in-out overflow-y-auto bg-white ${isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden`}
+        className={`z-20 fixed w-64 duration-300 inset-y-0 ease-in-out overflow-y-auto bg-white ${
+          isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:hidden`}
       >
         <div className="h-screen py-3 pl-3 flex flex-col justify-between shadow-xl">
           {/* logo */}

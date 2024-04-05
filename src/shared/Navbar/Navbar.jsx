@@ -27,7 +27,7 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   const handleLogout = () => {
     Swal.fire({
@@ -54,68 +54,81 @@ const Navbar = () => {
     });
   };
 
-  const navlinks = <>
-    <li className=''>
-      <NavLink
-        to="/"
-
-        className={({ isActive }) => `${isActive ? "active text-[#fff]" : "lg:text-[#fff] text-black"} duration-300 text-base lg:text-lg font-semibold  transition navs`}
-      >
-        Home
-      </NavLink>
-
-    </li>
-
-    <li className=''>
-      <a onClick={(e) => handleAnchorClick(e, 'featured')} className="lg:text-[#fff] text-black duration-300 text-base lg:text-lg font-semibold transition navs cursor-pointer">
-        Featured Products
-      </a>
-    </li>
-    <li className=''>
-      <a onClick={(e) => handleAnchorClick(e, 'notice')} className="lg:text-[#fff] text-black duration-300 text-base lg:text-lg font-semibold  transition navs cursor-pointer">
-        Notice Board
-      </a>
-    </li>
-
-    <li>
-      <NavLink
-        to="/contact"
-        className={({ isActive }) =>
-          `${isActive ? "active text-[#fff]" : "lg:text-[#fff] text-black"
-          } duration-300 text-base lg:text-lg font-semibold mr-10 transition navs mb-2 lg:mb-2`
-        }
-      >
-        Contact Us
-      </NavLink>
-    </li>
-    <li>
-      {user ? (
-        <button
-          onClick={handleLogout}
-          className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+  const navlinks = (
+    <>
+      <li className="">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${
+              isActive ? "active text-[#fff]" : "lg:text-[#fff] text-black"
+            } duration-300 text-base lg:text-lg font-semibold  transition navs`
+          }
         >
-          Logout
-        </button>
-      ) : (
-        <Link
-          to="/login"
-          className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded"
+          Home
+        </NavLink>
+      </li>
+
+      <li className="">
+        <a
+          onClick={(e) => handleAnchorClick(e, "featured")}
+          className="lg:text-[#fff] text-black duration-300 text-base lg:text-lg font-semibold transition navs cursor-pointer"
         >
-          Log in
-        </Link>
-      )}
-    </li>
-    <li>
-      {
-        !user ? <Link
-          to="/register"
-          className="lg:bg-white bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+          Featured Products
+        </a>
+      </li>
+      <li className="">
+        <a
+          onClick={(e) => handleAnchorClick(e, "notice")}
+          className="lg:text-[#fff] text-black duration-300 text-base lg:text-lg font-semibold  transition navs cursor-pointer"
         >
-          Registration
-        </Link> : ""
-      }
-    </li>
-  </>
+          Notice Board
+        </a>
+      </li>
+
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `${
+              isActive ? "active text-[#fff]" : "lg:text-[#fff] text-black"
+            } duration-300 text-base lg:text-lg font-semibold mr-10 transition navs mb-2 lg:mb-2`
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
+      <li>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded"
+          >
+            Log in
+          </Link>
+        )}
+      </li>
+      <li>
+        {!user ? (
+          <Link
+            to="/register"
+            className="lg:bg-white bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+          >
+            Registration
+          </Link>
+        ) : (
+          ""
+        )}
+      </li>
+    </>
+  );
   // const handleLogout = () => {
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -143,8 +156,9 @@ const Navbar = () => {
 
   return (
     <div
-      className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0  ${isScrolled ? "bg-[#403030] shadow-sm shadow-black" : "bg-[#403030]"
-        }`}
+      className={`max-w-screen z-10 fixed top-0 mx-auto left-0 right-0  ${
+        isScrolled ? "bg-[#403030] shadow-sm shadow-black" : "bg-[#403030]"
+      }`}
     >
       <div className="max-w-[1280px] w-full mx-auto">
         <div className="navbar flex flex-row justify-between">
