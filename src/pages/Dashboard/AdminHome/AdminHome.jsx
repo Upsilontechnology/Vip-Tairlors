@@ -45,7 +45,7 @@ const AdminHome = () => {
   const totalAmount = totalSells + completeOrderAmount;
 
   return (
-    <div className="xl:overflow-scroll 2xl:h-[80vh] xl:h-[84vh] lg:ml-5 mx-3">
+    <div className="xl:overflow-scroll 2xl:h-[80vh] xl:h-[84vh] lg:ml-10 ml-0 mx-3">
       <DashBoardTitle
         title={"Admin"}
         subTitle={"Insights, management tools and add product-all in one place"}
