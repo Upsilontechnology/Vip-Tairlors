@@ -191,7 +191,9 @@ const Navbar = () => {
                 {navlinks}
               </ul>
             </div>
-            <a className="text-white lg:text-[1.3rem] ml-16 font-semibold md:ml-0">VIP TAIRLORS</a>
+            <a className="text-white lg:text-[1.3rem] ml-16 font-semibold md:ml-0">
+              VIP TAIRLORS
+            </a>
           </div>
           <div className="">
             <ul className="hidden md:flex items-center gap-8">{navlinks}</ul>

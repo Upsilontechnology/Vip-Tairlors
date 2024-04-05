@@ -4,6 +4,7 @@ import Footer from "../../shared/Footer/Footer";
 import Navbar from "../../shared/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
+import NewNab from "../../shared/Navbar/NewNab";
 
 const MainLayout = () => {
   const [loggedUser, setLoggedUser] = useState(null);
@@ -22,7 +23,7 @@ const MainLayout = () => {
 
   if (loading) {
     return (
-      <div className='flex justify-center items-center h-screen'>
+      <div className="flex justify-center items-center h-screen">
         <div className="w-10 h-10 animate-[spin_2s_linear_infinite] rounded-full border-8 border-dotted border-sky-600"></div>
       </div>
     );
@@ -39,10 +40,10 @@ const MainLayout = () => {
     navbarComponent = <></>;
     footerComponent = <></>;
   } else if (loggedUser && loggedUser.role === "user") {
-    navbarComponent = <Navbar />;
+    navbarComponent = <NewNab />;
     footerComponent = <Footer />;
   } else {
-    navbarComponent = <Navbar />;
+    navbarComponent = <NewNab />;
     footerComponent = <Footer />;
   }
 
@@ -58,5 +59,3 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
-
-

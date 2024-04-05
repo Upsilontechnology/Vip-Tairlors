@@ -22,7 +22,7 @@ const OrderedList = () => {
   const [productLength, setProductLength] = useState(0);
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 20;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(productLength / itemsPerPage);
   const { user } = useAuth();
   const email = user?.email;
@@ -53,7 +53,7 @@ const OrderedList = () => {
       status,
     ],
     cacheTime: 0,
-    staleTime: Infinity,
+    staleTime: 60000,
     queryFn: async () => {
       const res = await axiosPublic.get(
         `/orderProduct/1/search?email=${email}&role=${role}&searchValue=${searchValue}&itemsPerPage=${itemsPerPage}&currentPage=${currentPage}&status=${status}`
@@ -63,21 +63,25 @@ const OrderedList = () => {
   });
 
   // console.log(orderBySearch);
+  // useEffect(() => {
+  //   if (orderBySearch && orderBySearch.totalCount) {
+  //     setProductLength(orderBySearch.totalCount);
+  //     refetch();
+  //   } else {
+  //     setProductLength(0);
+  //     refetch();
+  //   }
+  // }, [orderBySearch]);
   useEffect(() => {
-    if (orderBySearch && orderBySearch.totalCount) {
-      setProductLength(orderBySearch.totalCount);
-      refetch();
-    } else {
-      setProductLength(0);
-      refetch();
-    }
-  }, [orderBySearch]);
+    refetch();
+  }, [orderBySearch, currentPage, searchValue, status]);
+
   // console.log(orderBySearch);
 
   return (
-    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[85vh] mx-3 lg:mx-0">
+    <div className="overflow-scroll 2xl:h-[80vh] lg:h-[84.5vh] mx-3 lg:mx-0">
       {/* tabs */}
-      <div className="lg:ml-12 h-full">
+      <div className="lg:ml-3 xl:ml-9 h-full">
         <Tabs>
           {/* tab lists */}
           <TabList className="font-bold flex justify-center lg:gap-3 gap-2 mt-2 mb-4">

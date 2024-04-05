@@ -3,26 +3,30 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Pagination from "../pagination/pagination";
 import { useState } from "react";
 
-const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrentPage, totalPages, refetch }) => {
-
+const OrderedProductDetails = ({
+  products,
+  filteredUser,
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  refetch,
+}) => {
   const axiosPublic = useAxiosPublic();
-  console.log(products)
+  // console.log(products);
 
   const handleComplete = async (product) => {
-    await axiosPublic.patch(`/orderProduct/${product?._id}`)
-      .then((res) => {
-        refetch();
-        if (res.data.message === "success") {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Order added successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-
-      });
+    await axiosPublic.patch(`/orderProduct/${product?._id}`).then((res) => {
+      refetch();
+      if (res.data.message === "success") {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Order added successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
   const {
     _id,
@@ -56,7 +60,7 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
 
               <th>Delivery Date</th>
               <th>Image</th>
-              {filteredUser?.role === 'employee' && <th>Status</th>}
+              {filteredUser?.role === "employee" && <th>Status</th>}
             </tr>
           </thead>
           <tbody>
@@ -80,27 +84,27 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
                 <td>
                   <img className="w-10 h-10" src={product?.image} alt="" />
                 </td>
-                {
-                  filteredUser?.role === 'employee' ? (
-                    <th>
-                      {
-                        product?.status === 'pending' ?
-                          (
-                            <div>
-                              <h1 className="text-xs font-bold">Pending</h1>
-                              <button
-                                onClick={() => handleComplete(product)}
-                                className="btn btn-xs btn-accent"
-                              >
-                                Complete
-                              </button>
-                            </div>
-                          ) :
-                          <h1 className="text-xs font-bold">Paid</h1>
-                      }
-                    </th>
-                  ) : ''
-                }
+                {filteredUser?.role === "employee" ? (
+                  <th>
+                    {product.length > -1 ? (
+                      "Not available"
+                    ) : product?.status === "pending" ? (
+                      <div>
+                        <h1 className="text-xs font-bold">Pending</h1>
+                        <button
+                          onClick={() => handleComplete(product)}
+                          className="btn btn-xs btn-accent"
+                        >
+                          Complete
+                        </button>
+                      </div>
+                    ) : (
+                      <h1 className="text-xs font-bold">Paid</h1>
+                    )}
+                  </th>
+                ) : (
+                  ""
+                )}
               </tr>
             ))}
           </tbody>

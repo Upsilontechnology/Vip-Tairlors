@@ -67,7 +67,7 @@ const AllMembers = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${user?.name} is now an Admin`,
+          title:` ${user?.name} is now an Admin`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -136,7 +136,7 @@ const AllMembers = () => {
   };
 
   return (
-    <div className="md:ml-10 overflow-scroll lg:h-[80vh] h-screen mx-3 md:mx-0">
+    <div className="md:ml-3 lg:ml-10 overflow-scroll xl:h-[85vh] lg:h-[84.5vh] h-screen mx-3 md:mx-0">
       <div className="mb-2">
         <DashBoardTitle
           title={"Admin"}
@@ -144,8 +144,8 @@ const AllMembers = () => {
         />
       </div>
       <div className=" bg-white rounded-md">
-        <div className="md:ml-[10%] md:mr-[5%] md:w-[85%] h-auto md:py-5">
-          <div className="md:bg-gray-100 w-[100%] p-3 md:p-4 rounded-md">
+        <div className="md:mx-3 h-auto md:py-5">
+          <div className="md:bg-gray-100 w-[100%] p-3 rounded-md">
             <h3 className="text-base font-semibold">User List</h3>
             {/* user container */}
             {userPagination?.items?.map((user) => (
@@ -171,118 +171,42 @@ const AllMembers = () => {
                 </div>
                 <div className="w-full md:w-2/3">
                   <div className="flex gap-2 w-full">
-                    {/* <div className="flex flex-row justify-between gap-1 w-full md:w-11/12">
-                      {user?.role === "admin" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
-                          Admin
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeAdmin(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make Admin
-                        </button>
-                      )}
-                      {user?.role === "employee" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg ">
-                          Employee
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeEmployee(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make Employee
-                        </button>
-                      )}
-                      {user?.role === "user" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 md:py-3 py-2 px-4 rounded-lg">
-                          User
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeUser(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-7 px-4 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make User
-                        </button>
-                      )}
-                    </div> */}
-                    {/* <div className="flex flex-row justify-between gap-0.5 w-full md:w-11/12">
-                      {user?.role === "admin" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
-                          Admin
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeAdmin(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make Admin
-                        </button>
-                      )}
-                      {user?.role === "employee" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
-                          Employee
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeEmployee(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make Employee
-                        </button>
-                      )}
-                      {user?.role === "user" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
-                          User
-                        </h1>
-                      ) : (
-                        <button
-                          onClick={() => handleMakeUser(user)}
-                          className="bg-white font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
-                        >
-                          Make User
-                        </button>
-                      )}
-                    </div> */}
                     <div className="grid grid-cols-3 gap-4 w-full md:w-11/12 text-center">
                       {/* make admin */}
                       {user?.role === "admin" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
+                        <h1 className="bg-yellow-950 md:text-sm text-xs text-white font-bold md:px-2 px-2 lg:px-6 lg:py-4 py-2 rounded-lg">
                           Admin
                         </h1>
                       ) : (
                         <button
                           onClick={() => handleMakeAdmin(user)}
-                          className="md:bg-white bg-gray-100 font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap "
+                          className="md:bg-white bg-gray-100 font-bold md:text-sm text-xs md:px-2 px-2 lg:px-6 lg:py-4 md:py-2 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap "
                         >
                           Make Admin
                         </button>
                       )}
                       {/* make employee */}
                       {user?.role === "employee" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
+                        <h1 className="bg-yellow-950 md:text-sm text-xs text-white font-bold md:px-2 px-2 lg:px-6 lg:py-4 md:py-2 py-2 rounded-lg">
                           Employee
                         </h1>
                       ) : (
                         <button
                           onClick={() => handleMakeEmployee(user)}
-                          className="md:bg-white bg-gray-100  font-bold md:text-base text-[10px] md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
+                          className="md:bg-white bg-gray-100  font-bold md:text-sm text-[10px] md:px-1 px-2 lg:px-6 lg:py-4 md:py-2 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
                         >
                           Make Employee
                         </button>
                       )}
                       {/* make user */}
                       {user?.role === "user" ? (
-                        <h1 className="bg-yellow-950 md:text-base text-xs text-white font-bold md:px-6 px-2 md:py-3 py-2 rounded-lg">
+                        <h1 className="bg-yellow-950 md:text-sm text-xs text-white font-bold md:px-2 px-2 lg:px-6 lg:py-4 md:py-3 py-2 rounded-lg">
                           User
                         </h1>
                       ) : (
                         <button
                           onClick={() => handleMakeUser(user)}
-                          className="md:bg-white bg-gray-100  font-bold md:text-base text-xs md:px-6 px-2 md:py-3 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
+                          className="md:bg-white bg-gray-100 font-bold md:text-sm text-xs md:px-2 lg:px-6 lg:py-4 px-2 md:py-2 py-2 rounded-lg hover:shadow-md hover:scale-105 duration-300 hover:duration-300 whitespace-nowrap"
                         >
                           Make User
                         </button>
