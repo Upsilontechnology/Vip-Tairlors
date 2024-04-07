@@ -24,7 +24,7 @@ const AddNotice = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Order added successfully",
+          title: "Notice Publish Successfully",
           showConfirmButton: false,
           timer: 1000,
         });

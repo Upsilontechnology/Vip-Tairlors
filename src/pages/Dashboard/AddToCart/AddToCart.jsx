@@ -2,16 +2,19 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import useCarts from "../../../hooks/useCarts";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import rectnglor from "../../../assets/Rectangle.jpg";
 import { Link } from "react-router-dom";
+import { ReactToPrint } from "react-to-print";
+import { IoPrintOutline } from "react-icons/io5";
 
 const AddToCart = () => {
   const axiosPublic = useAxiosPublic();
   const [carts, refetch] = useCarts();
   const [items, setItems] = useState(null);
   console.log(carts);
+  const componentRef = useRef(null);
 
   const totalAmount = carts?.reduce(
     (total, product) => total + product?.price,
@@ -103,65 +106,80 @@ const AddToCart = () => {
         <div className="p-2">
           <div>
             {carts?.length > 0 ? <div>
-              <SectionTitle
-                title="Sold Products Info"
-              // descrition="Welcome to our showcase selections, where uniqueness meets quality."
-              />
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Product Name</th>
-                      <th>Category</th>
-                      <th>Quantity</th>
-                      <th>Amount</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {carts?.map((product, ind) => (
-                      <tr key={product?._id}>
-                        <th>{ind + 1}</th>
-                        <th>{product?.productName}</th>
-                        <td>{product?.category}</td>
-                        <td>{product?.quantity}</td>
-                        <td>{product?.price}</td>
-                        <td>
-                          <button
-                            onClick={() => handleDelete(product)}
-                            className="btn btn-sm"
-                          >
-                            <MdOutlineDeleteOutline />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="flex flex-col p-2 mb-5 gap-6">
-                <div className="flex justify-end">
-                  <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
-                    <h2 className="font-bold lg:text-xl text-base">
-                      Total <span>({totalQuantity})</span>
-                    </h2>
-                    <h2 className="font-bold lg:text-xl text-base">
-                      BDT {totalAmount}{" "}
-                    </h2>
-                  </div>
+              <div className="flex justify-between">
+                <SectionTitle
+                  title="Sold Products Info"
+                // descrition="Welcome to our showcase selections, where uniqueness meets quality."
+                />
+                <div>
+                  <ReactToPrint
+                    trigger={() => (
+                      <button className="font-bold rounded">
+                        <IoPrintOutline className='text-2xl' />
+                      </button>
+                    )}
+                    content={() => componentRef.current}
+                    documentTitle='Product Summary'
+                    pageStyle="print"
+                  />
                 </div>
-                <button
-                  onClick={() => handlePay(carts)}
-                  className={`btn bg-[#403030] text-white hover:bg-[#362929] ${carts?.length < 1 ? "disabled" : ""
-                    }`}
-                  disabled={carts?.length < 1}
-                >
-                  Confirm Payment
-                </button>
+              </div>
+              <div ref={componentRef}>
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {carts?.map((product, ind) => (
+                        <tr key={product?._id}>
+                          <th>{ind + 1}</th>
+                          <th>{product?.productName}</th>
+                          <td>{product?.category}</td>
+                          <td>{product?.quantity}</td>
+                          <td>{product?.price}</td>
+                          <td>
+                            <button
+                              onClick={() => handleDelete(product)}
+                              className="btn btn-sm"
+                            >
+                              <MdOutlineDeleteOutline />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="flex flex-col p-2 mb-5 gap-6">
+                  <div className="flex justify-end">
+                    <div className="flex justify-between lg:w-2/5 w-full p-3 border border-[#403030]">
+                      <h2 className="font-bold lg:text-xl text-base">
+                        Total <span>({totalQuantity})</span>
+                      </h2>
+                      <h2 className="font-bold lg:text-xl text-base">
+                        BDT {totalAmount}{" "}
+                      </h2>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handlePay(carts)}
+                    className={`btn bg-[#403030] text-white hover:bg-[#362929] ${carts?.length < 1 ? "disabled" : ""
+                      }`}
+                    disabled={carts?.length < 1}
+                  >
+                    Confirm Payment
+                  </button>
 
-                {/* {carts.length && (
+                  {/* {carts.length && (
             <button
               onClick={() => handlePay(carts)}
               className="btn bg-[#403030] text-white hover:bg-[#362929]"
@@ -169,6 +187,7 @@ const AddToCart = () => {
               Confirm Payment
             </button>
           )} */}
+                </div>
               </div>
             </div> : <div>
               <div className="bg-white md:h-auto overflow-scroll 2xl:h-[80vh] lg:h-[85vh] h-[77vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
