@@ -38,20 +38,8 @@ const OrderedList = () => {
   });
   const role = userInfo?.role;
 
-  const {
-    data: orderBySearch = [],
-    refetch,
-    isLoading,
-  } = useQuery({
-    queryKey: [
-      "orderBySearch",
-      email,
-      role,
-      searchValue,
-      itemsPerPage,
-      currentPage,
-      status,
-    ],
+  const { data: orderBySearch = [], refetch, isLoading, } = useQuery({
+    queryKey: ["orderBySearch", email, role, searchValue, itemsPerPage, currentPage, status],
     cacheTime: 0,
     staleTime: 60000,
     queryFn: async () => {
@@ -63,15 +51,16 @@ const OrderedList = () => {
   });
 
   // console.log(orderBySearch);
-  // useEffect(() => {
-  //   if (orderBySearch && orderBySearch.totalCount) {
-  //     setProductLength(orderBySearch.totalCount);
-  //     refetch();
-  //   } else {
-  //     setProductLength(0);
-  //     refetch();
-  //   }
-  // }, [orderBySearch]);
+  useEffect(() => {
+    if (orderBySearch && orderBySearch.totalCount) {
+      setProductLength(orderBySearch.totalCount);
+      refetch();
+    } else {
+      setProductLength(0);
+      refetch();
+    }
+  }, [orderBySearch]);
+
   useEffect(() => {
     refetch();
   }, [orderBySearch, currentPage, searchValue, status]);

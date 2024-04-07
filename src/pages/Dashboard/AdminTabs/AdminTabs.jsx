@@ -67,15 +67,20 @@ const AdminTabs = ({ allOrderProducts }) => {
         setOrderProducts(res.data);
     }
 
+    useEffect(() => {
+        setOrderProducts(allOrderProducts);
+    }, [allOrderProducts]);
 
 
     const pendingOrders = orderProducts?.filter(product => product.status === 'pending');
     const completedOrders = orderProducts?.filter(product => product.status === 'completed');
     const completeOrderAmount = completedOrders?.reduce((total, product) => total + (parseFloat(product?.price) * parseFloat(product?.quantity)), 0)
 
-    const totalSells = soldItemsInfo?.reduce((total, product) => total + parseInt(product?.price), 0)
+    const totalSoldItemsAmount = soldItemsInfo?.reduce((total, product) => total + parseInt(product?.price), 0)
     const totalSellsByCategory = selectedData?.reduce((total, product) => total + parseInt(product?.price), 0)
     const totalqunatity = selectedData?.reduce((total, product) => total + parseInt(product?.quantity), 0)
+
+    const totalSells = completeOrderAmount + totalSoldItemsAmount;
 
 
     return (
@@ -153,11 +158,13 @@ const AdminTabs = ({ allOrderProducts }) => {
                                 {/* sub tab panel */}
                                 <div className=''>
                                     <div className='my-5 flex flex-col justify-center 4xl:h-72 3xl:h-56 xl:h-56'>
-                                        {selectedData && (
+                                        {selectedData ? (
                                             <div>
-                                                <ProductStats totalSells={totalSellsByCategory} totalProduct={totalqunatity} setCommentRef={setCommentRef} />
+                                                <ProductStats totalSells={totalSellsByCategory} totalProduct={totalqunatity} setCommentRef={setCommentRef} categories={categories} />
                                             </div>
-                                        )}
+                                        ) : <div>
+                                            <ProductStats totalSells={totalSellsByCategory} totalProduct={totalqunatity} setCommentRef={setCommentRef} categories={categories} />
+                                        </div>}
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +227,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                                                 <h3 className='text-base font-semibold '>Total Sales</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount} BDT</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount === 0 ? 0 : completeOrderAmount} BDT</h2>
                                             </div>
                                         </div>
                                         <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
