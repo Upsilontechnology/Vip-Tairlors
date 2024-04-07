@@ -81,11 +81,12 @@ const ProductDetails = () => {
 
     const form = event.target;
     // console.log(form);
+    const categoryName = form.category.value;
     const sellData = {
       productName: form.name.value,
       price: parseInt(form.price.value) * parseInt(form.quantity.value),
       quantity: parseInt(form.quantity.value),
-      category: form.category.value,
+      category: categoryName.toLowerCase(),
       productCode: parseInt(form.code.value),
       sellingDate: new Date(),
       title: "cart",
