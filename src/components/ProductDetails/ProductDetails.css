@@ -1,0 +1,10 @@
+@media (max-width: 420px) {
+    .porduct {
+        width: 100px;
+        height: 200px;
+    }
+    .product1{
+        align-items: center;
+        width: fit-content;
+    }
+}
