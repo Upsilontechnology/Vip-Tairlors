@@ -62,23 +62,23 @@ const SignIn = () => {
 
 
     return (
-        <div className='font-Montserrat w-full'>
+        <div className='font-Montserrat w-full  '>
             {/* <Helmet>
                 <title>JobsWorld | Login </title>
             </Helmet> */}
-            <div className='bg-[#e5e4e4] w-full text-center py-12 text-[#403030] flex justify-center items-center'>
-                <h1 className="text-4xl font-bold mt-10">Log In</h1>
+            <div className='bg-[#e5e4e4] w-full text-center h-[25vh] pt-10 text-[#403030] flex justify-center items-center'>
+                <h1 className="text-4xl font-bold">Sign In</h1>
             </div>
-            <div className='flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full py-8 rounded-lg'>
+            <div className='flex md:bg-white bg-[#F3F3F3] items-center justify-center h-[calc(100vh-25vh)] rounded-lg'>
                 <div className=' flex flex-col w-full md:w-[768px] '>
-                    <div className='bg-[#F3F3F3]  py-[10%] px-[5%]  md:px-[15%]'>
+                    <div className='bg-[#F3F3F3]  py-[15%] px-[5%]  md:px-[15%]'>
                         <form onSubmit={handleLogin} className="">
                             <div className="form-control mb-4 flex justify-center">
                                 <div className='absolute pl-2'></div>
                                 <input
                                     type="email"
                                     name="email"
-                                    placeholder="Email" className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2"
+                                    placeholder="Email" className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-5 pr-2"
                                     required />
                             </div>
                             <div className="form-control  relative flex justify-center">
@@ -87,8 +87,8 @@ const SignIn = () => {
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     placeholder="Password"
-                                    className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2 " required />
-                                <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
+                                    className="w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-5 pr-10 " required />
+                                <span className='absolute right-2 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
                                     }

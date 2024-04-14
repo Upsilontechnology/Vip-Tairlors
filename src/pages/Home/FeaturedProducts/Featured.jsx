@@ -58,9 +58,9 @@ const Featured = () => {
             />
             <Slider {...settings} className=''>
                 {/* <div className='grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 md:gap-8'> */}
-                <Card img={FeaturedImg1} />
-                <Card img={FeaturedImg2} />
-                <Card img={FeaturedImg3} />
+                <Card img={FeaturedImg1} name="Stylish Ash Suit" price="5000" />
+                <Card img={FeaturedImg2} name="Stylish Green Suit" price="10,000" />
+                <Card img={FeaturedImg3} name="Stylish Black Suit" price="15,000" />
                 {/* </div> */}
             </Slider>
         </div>

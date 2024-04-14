@@ -50,10 +50,12 @@ const Notice = () => {
                         <div className=' relative group bg-[#F0EEEE] pt-[3rem] mt-[1.5rem] pb-[5rem] '>
                             
                             <div className='flex flex-col overflow-hidden px-3 '>
-                                <h2 className="text-2xl font-bold">{note?.title}</h2>
+                                <h2 className="text-2xl font-bold">{
+                                    note?.title.slice(0, 25)
+                                }...</h2>
                                 <p className=' text-sm py-[1.5rem] '>{
-                                    note?.message.slice(0, 250)
-                                }..........</p>
+                                    note?.message.slice(0, 25)
+                                }...</p>
                                 <Link className='noticeBtn left-0 group-hover:bottom-0 bottom-[-50%]  transition-all duration-300 ease-in-out absolute bg-[#403030] text-[#fff] font-semibold w-full py-[.8rem] ' to={`/notice/${note?._id}`}>Explore More</Link>
                             </div>
                         </div>

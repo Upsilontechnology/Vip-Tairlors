@@ -89,14 +89,16 @@ const AdminTabs = ({ allOrderProducts }) => {
                 {/* tab lists */}
                 <div className='flex flex-col md:flex-row lg:flex-row w-full gap-5'>
                     <div className='w-full md:w-[40%] lg:w-1/3 bg-gray-100 h-24 flex flex-col px-16 text-center md:text-start py-4 md:px-7 md:py-4 lg:px-4 lg:py-4 space-y-3 rounded-md mx-auto md:mx-0'>
-                        <h4 className="text-sm font-semibold"><IoBarChartOutline className='inline mr-1' /> Total Sales</h4>
-                        <h1 className="text-xl md:text-2xl font-bold">{totalSells} BDT</h1>
+                        <h4 className="text-sm font-semibold text-[#4d4d4d] ">
+                            {/* <IoBarChartOutline className='inline mr-1' /> */}
+                             Total Sales (BDT)</h4>
+                        <h1 className="text-xl md:text-2xl font-bold">{totalSells}</h1>
                     </div>
                     {/* tab lists */}
                     <TabList className="font-bold w-full md:w-3/4 lg:w-5/6 mx-auto py-4 bg-gray-100 flex flex-row justify-center items-center gap-2 md:gap-4 lg:gap-10 rounded-md">
-                        <Tab className="border-none bg-white lg:py-5 md:py-5 py-2 lg:px-14 md:px-10 px-4 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white lg:py-5 md:py-5 py-2 lg:px-14 md:px-10 px-4'>Sell Product</Tab>
+                        <Tab className="border-none bg-white lg:py-5 md:py-5 py-3 lg:px-14 md:px-10 px-7 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white lg:py-5 md:py-5 py-3 lg:px-14 md:px-10 px-7'>Sell Product</Tab>
 
-                        <Tab className="border-none bg-white lg:py-5 md:py-5 py-2 lg:px-14 md:px-10 px-4 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white lg:py-5 md:py-5 py-2 lg:px-14 md:px-10 px-4'>Order Product</Tab>
+                        <Tab className="border-none bg-white lg:py-5 md:py-5 py-3 lg:px-14 md:px-10 px-7 rounded-md cursor-pointer" selectedClassName='selected-tab bg-yellow-950 text-white lg:py-5 md:py-5 py-3 lg:px-14 md:px-10 px-7'>Order Product</Tab>
                     </TabList>
                 </div>
                 {/* tab panel */}
@@ -107,10 +109,10 @@ const AdminTabs = ({ allOrderProducts }) => {
                             <div className="h-full">
                                 {/* tab lists */}
                                 <div className="font-bold pb-3 flex flex-row  justify-between items-center">
-                                    <div>
-                                        <select className='bg-white px-4 py-2 rounded-md' onChange={(e) => handleCategory(e.target.value)} value={filter}>
+                                    <div className=" px-5 bg-white rounded-md ">
+                                        <select className=' py-2 pr-3 cursor-pointer outline-none ' onChange={(e) => handleCategory(e.target.value)} value={filter}>
                                             {categories?.map((category, index) => (
-                                                <option value={category?.category} key={category._id}>
+                                                <option value={category?.category} key={category._id} className=" rounded-sm" >
                                                     {category?.category}
                                                 </option>
                                             ))}
@@ -174,7 +176,7 @@ const AdminTabs = ({ allOrderProducts }) => {
                     <TabPanel>
                         {/* Print and filter button */}
                         <div className="flex items-center justify-between md:px-5 px-2">
-                            <h1 className="text-xl font-semibold">Order Product</h1>
+                            <h1 className="text-xl font-bold ">Order Product</h1>
                             <div className='flex justify-end my-5'>
                                 <div className="dropdown dropdown-hover mr-2 md:mr-5">
                                     <div tabIndex={0} role="button" className="">
@@ -221,21 +223,21 @@ const AdminTabs = ({ allOrderProducts }) => {
                                     <div className='grid grid-cols-1 md:grid-cols-2 px-1 md:px-0 gap-2 md:gap-5 w-full'>
                                         <div className='w-full shadow-md rounded-md flex flex-col gap-2 md:px-4 md:py-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
-                                                <div className='rounded-lg text-black text-base '>
+                                                {/* <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
-                                                </div>
-                                                <h3 className='text-base font-semibold '>Total Sales</h3>
+                                                </div> */}
+                                                <h3 className='text-base font-semibold text-[#4d4d4d]'>Total Sales (BDT)</h3>
                                             </div>
                                             <div>
-                                                <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount === 0 ? 0 : completeOrderAmount} BDT</h2>
+                                                <h2 className='text-xl md:text-2xl font-bold '>{completeOrderAmount === 0 ? 0 : completeOrderAmount}</h2>
                                             </div>
                                         </div>
                                         <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
-                                                <div className='rounded-lg text-black text-base '>
+                                                {/* <div className='rounded-lg text-black text-base '>
                                                     <BsCart3 className='font-semibold' />
-                                                </div>
-                                                <h3 className='text-sm md:text-base font-semibold '>Total Orders</h3>
+                                                </div> */}
+                                                <h3 className='text-sm md:text-base font-semibold text-[#4d4d4d] '>Total Orders</h3>
                                             </div>
                                             <div>
                                                 <h2 className='text-xl md:text-2xl font-bold '>{orderProducts?.length}</h2>
@@ -243,10 +245,10 @@ const AdminTabs = ({ allOrderProducts }) => {
                                         </div>
                                         <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
-                                                <div className='rounded-lg text-black text-base '>
+                                                {/* <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
-                                                </div>
-                                                <h3 className='text-sm md:text-base font-semibold '>Total Delivered</h3>
+                                                </div> */}
+                                                <h3 className='text-sm md:text-base font-semibold text-[#4d4d4d]'>Total Delivered</h3>
                                             </div>
                                             <div>
                                                 <h2 className='text-xl md:text-2xl font-bold '>{completedOrders?.length}</h2>
@@ -254,10 +256,10 @@ const AdminTabs = ({ allOrderProducts }) => {
                                         </div>
                                         <div className='w-full shadow-md rounded-md flex flex-col gap-2  md:p-5 px-4 py-5 bg-white'>
                                             <div className='rounded-lg flex items-center gap-1'>
-                                                <div className='rounded-lg text-black text-base '>
+                                                {/* <div className='rounded-lg text-black text-base '>
                                                     <IoBagOutline className='font-semibold' />
-                                                </div>
-                                                <h3 className='text-sm md:text-base font-semibold '>Total Pending</h3>
+                                                </div> */}
+                                                <h3 className='text-sm md:text-base font-semibold text-[#4d4d4d]'>Total Pending</h3>
                                             </div>
                                             <div>
                                                 <h2 className='text-xl md:text-2xl font-bold '>{pendingOrders?.length}</h2>

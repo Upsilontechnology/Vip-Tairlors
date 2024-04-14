@@ -74,7 +74,7 @@ const AddNotice = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="bg-[#403030] px-20 md:px-48 py-2 rounded text-white"
+                  className="bg-[#403030] whitespace-nowrap w-[95%] md:w-1/2 py-2 rounded text-white"
                 >
                   Publish Notice
                 </button>

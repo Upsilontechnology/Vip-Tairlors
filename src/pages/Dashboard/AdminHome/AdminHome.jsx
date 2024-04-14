@@ -51,7 +51,7 @@ const AdminHome = () => {
         subTitle={"Insights, management tools and add product-all in one place"}
       />
       <div className='bg-white mt-2 p-2 md:p-6 rounded-md 4xl:h-[66vh] lg:h-[87vh] md:h-[110vh] h-auto'>
-        <h1 className="text-lg md:text-2xl font-semibold mb-3 text-center md:text-start">Total Summary</h1>
+        <h1 className="text-lg md:text-2xl font-bold mb-3 text-center md:text-start">Total Summary</h1>
         {/* category-wise tabs */}
         <div className="flex">
           <AdminTabs allOrderProducts={allOrderProducts} />

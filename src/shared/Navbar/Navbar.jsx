@@ -104,14 +104,14 @@ const Navbar = () => {
             onClick={handleLogout}
             className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
           >
-            Logout
+            Log Out
           </button>
         ) : (
           <Link
             to="/login"
-            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded"
+            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-5 py-1 rounded"
           >
-            Log in
+            Sign In
           </Link>
         )}
       </li>
@@ -119,9 +119,9 @@ const Navbar = () => {
         {!user ? (
           <Link
             to="/register"
-            className="lg:bg-white bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+            className="lg:bg-white bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-5 py-1 rounded "
           >
-            Registration
+            Sign Up
           </Link>
         ) : (
           ""
@@ -192,7 +192,7 @@ const Navbar = () => {
               </ul>
             </div>
             <a className="text-white lg:text-[1.3rem] ml-16 font-semibold md:ml-0">
-              VIP TAIRLORS
+              VIP TAILORS
             </a>
           </div>
           <div className="">

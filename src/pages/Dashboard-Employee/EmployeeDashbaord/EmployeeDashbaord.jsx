@@ -191,8 +191,8 @@ const EmployeeDashboard = ({ isSideMenuOpen, toggleSideMenu }) => {
             </button>
             {/* <div className="flex md:hidden justify-center mr-4 w-[80%]"></div> */}
             <div className="flex lg:hidden justify-end mr-4 w-full">
-              <button onClick={handleLogout} className="btn btn-sm">
-                <IoPersonOutline className="text-xl" /> Logout
+              <button onClick={handleLogout} className="btn px-8 btn-sm">
+                 Log Out
               </button>
             </div>
           </div>

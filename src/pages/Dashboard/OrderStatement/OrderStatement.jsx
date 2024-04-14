@@ -46,17 +46,17 @@ const OrderStatement = () => {
             <div className="mb-2">
                 <DashBoardTitle
                     title={"Admin"}
-                    subTitle={"Add, Edit your category section in one click. "}
+                    // subTitle={"Add, Edit your category section in one click. "}
                 />
             </div>
             <div className='bg-white px-2 pt-2 rounded-md'>
                 <div className='px-3 lg:w-6/12 mx-auto text-center mb-7'>
                     <SectionTitle
-                        title="Statement Pieces"
+                        title="Statement"
                     />
                 </div>
-                <div className="overflow-x-auto">
-                    <table className="table">
+                <div className="overflow-x-auto h-[52vh] ">
+                    <table className="table ml-[3%]  ">
                         {/* head */}
                         <thead>
                             <tr className='border-b-[1.2px] border-black text-black'>

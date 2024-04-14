@@ -98,30 +98,30 @@ const Registation = () => {
 
     return (
         <div className=' font-Montserrat w-full'>
-            <div className='bg-[#e5e4e4] w-full text-center py-12 text-[#403030] flex justify-center items-center'>
-                <h1 className="text-4xl font-bold mt-10">Register Now</h1>
+            <div className='bg-[#e5e4e4] h-[25vh] pt-10 w-full text-center text-[#403030] flex justify-center items-center'>
+                <h1 className="text-4xl font-bold">Sign Up</h1>
             </div>
-            <div className="flex md:bg-white bg-[#F3F3F3] items-center justify-center h-full py-8 rounded-lg">
+            <div className="flex md:bg-white bg-[#F3F3F3] h-[75vh] items-center justify-center rounded-lg">
                 <div className='flex flex-col w-full md:w-[768px] '>
                     <div className='bg-[#F3F3F3]  py-[10%] px-[5%] md:px-[15%]'>
                         <form onSubmit={hanldeRegister} className='flex flex-col gap-4 mt-2'>
                             <div className='flex justify-center  flex-row gap-4 items-center relative'>
                                 <input type="text" placeholder='Full Name'
                                     name='name'
-                                    className='w-full py-4 bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none pl-8 pr-2'
+                                    className='w-full py-4 bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none pl-5 pr-2'
                                 />
                             </div>
                             <div className='flex justify-center flex-col items-center relative'>
                                 <input type="text" placeholder='Email' name='email'
-                                    className='w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-8 pr-2'
+                                    className='w-full bg-[#E7E6E6] placeholder-[#444444] py-4 rounded-lg border outline-none pl-5 pr-2'
                                 />
                             </div>
                             <div className='flex flex-col items-center justify-center relative'>
                                 <input
                                     type={showPassword ? "text" : "password"} placeholder='Password' name='password'
-                                    className='w-full py-4 bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none pl-8 pr-2'
+                                    className='w-full py-4  bg-[#E7E6E6] placeholder-[#444444] rounded-lg border outline-none  pl-5  pr-10'
                                 />
-                                <span className='absolute right-0 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
+                                <span className='absolute right-2 cursor-pointer mr-2' onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>
                                     }
@@ -152,7 +152,7 @@ const Registation = () => {
                             </div>
                         </form>
                         <div className=' mt-10 flex items-center justify-center '>
-                            <h4 className='flex gap-2  '>Already have an account? <Link to={"/login"} className='text-[#6486FD] font-semibold cursor-pointer'>Log In</Link></h4>
+                            <h4 className='flex gap-2  '>Already have an account? <Link to={"/login"} className='text-[#6486FD] font-semibold cursor-pointer'>Sign In</Link></h4>
                         </div>
                         {/* <div className=''>
                         <h3 className='text-center mt-8 orContinueWith'>Or Continue With</h3>

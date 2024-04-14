@@ -76,7 +76,7 @@ const OrderedProductDetails = ({ products, filteredUser, currentPage, setCurrent
 
                 <td>{new Date(product?.deliveryDate).toLocaleDateString()}</td>
                 <td>
-                  <img className="w-10 h-10" src={product?.image} alt="" />
+                  <img className="w-10 h-10 object-cover" src={product?.image} alt="" />
                 </td>
                 {filteredUser?.role === "employee" ? (
                   <th>

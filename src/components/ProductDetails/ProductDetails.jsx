@@ -287,24 +287,24 @@ const ProductDetails = () => {
         {role === "admin" ? (
           <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center my-2 rounded-md gap-2">
             <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2">
-              <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start gap-1">
-                <span>
+              <h1 className="text-xs md:text-sm text-[#4d4d4d] font-semibold flex items-center justify-start gap-1">
+                {/* <span>
                   <FaSortAmountUpAlt />
-                </span>
-                Total Product Amount
+                </span> */}
+                Total Product Amount (BDT)
               </h1>
-              <h1 className="font-semibold text-xl md:text-2xl">
-                {totalStock} BDT
+              <h1 className="font-bold text-xl md:text-2xl">
+                {totalStock}
               </h1>
             </div>
             <div className="bg-white p-2 md:p-5 rounded-md flex flex-col lg:justify-start lg:items-start  items-center justify-center gap-2 ">
-              <h1 className="text-xs md:text-sm font-semibold flex items-center justify-start">
-                <span>
+              <h1 className="text-xs test-[#4d4d4d] md:text-sm font-semibold flex items-center justify-start">
+                {/* <span>
                   <MdLocalMall />
-                </span>
+                </span> */}
                 Total Quantity
               </h1>
-              <h1 className="font-semibold text-xl md:text-2xl">
+              <h1 className="font-bold text-xl md:text-2xl">
                 {totalQuantity}
               </h1>
             </div>
@@ -314,7 +314,7 @@ const ProductDetails = () => {
         )}
         {/* <div className="flex justify-between items-center my-5 bg-white p-3"></div> */}
         {/* search bar */}
-        <div className="bg-white lg:p-2 pt-3 rounded-md">
+        <div className="bg-white lg:p-2  pt-3 rounded-md">
           <div className="form-control lg:w-1/2 w-[96%] lg:mb-5 mb-2 mx-auto  placeholder:bg-gray-300 rounded-md">
             <input
               onChange={(e) => setSearchValue(e.target.value)}
@@ -323,11 +323,11 @@ const ProductDetails = () => {
               className="input  focus:outline-none bg-gray-100"
             />
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col pl-[1rem] gap-4">
             <div key={loggedUser?._id}>
               {loggedUser?.role === "employee" ? (
-                <div className="overflow-x-auto p-3">
-                  <table className="table">
+                <div className="overflow-x-auto h-[66vh]  p-3">
+                  <table className="table ">
                     <thead>
                       <tr className=" text-black  border-b-[1.2px] border-black">
                         <th>#</th>
@@ -358,7 +358,7 @@ const ProductDetails = () => {
                           </td>
                           <td>
                             <img
-                              className="w-10 h-10"
+                              className="w-10 h-10 object-cover "
                               src={product?.image}
                               alt=""
                             />
@@ -382,8 +382,8 @@ const ProductDetails = () => {
                   </table>
                 </div>
               ) : loggedUser?.role === "admin" ? (
-                <div className="overflow-x-auto">
-                  <table className="table">
+                <div className="overflow-x-auto h-[52vh]">
+                  <table className="table  ">
                     <thead>
                       <tr className=" text-black border-b-[1.2px] border-black">
                         <th className="p-1">#</th>
@@ -422,13 +422,13 @@ const ProductDetails = () => {
                           <td className="flex gap-2">
                             <button
                               onClick={() => editSaller(product?._id)}
-                              className="btn btn-ghost btn-sm bg-gray-300"
+                              className=" p-2 rounded-md bg-gray-300"
                             >
                               <MdOutlineEdit className="text-xl" />
                             </button>
                             <button
                               onClick={() => handleDelete(product)}
-                              className="btn btn-ghost btn-sm bg-gray-300"
+                              className="p-2 rounded-md bg-gray-300"
                             >
                               <MdOutlineDeleteOutline className="text-xl" />
                             </button>
@@ -628,6 +628,7 @@ const ProductDetails = () => {
                     <input
                       name="quantity"
                       type="number"
+                      required
                       placeholder={sell?.quantity}
                       //   placeholder="Put Quantity"
                       className="input input-bordered border-2 border-slate-500 w-full focus:outline-none"

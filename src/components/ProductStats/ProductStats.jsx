@@ -32,21 +32,21 @@ const ProductStats = ({ totalSells, totalProduct, setCommentRef, categories }) =
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
                         <div className='w-full shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
                             <div className='rounded-lg flex items-center gap-1'>
-                                <div className='rounded-lg text-black text-base '>
+                                {/* <div className='rounded-lg text-black text-base '>
                                     <IoBagOutline className='font-semibold' />
-                                </div>
-                                <h3 className='text-base font-semibold '>Total Sales Amount</h3>
+                                </div> */}
+                                <h3 className='text-base  font-semibold text-[#4d4d4d] '>Total Sales Amount (BDT)</h3>
                             </div>
                             <div>
-                                {categories?.length === 0 ? <h2 className='text-2xl font-bold '>0 BDT</h2> : <h2 className='text-2xl font-bold '>{totalSells} BDT</h2>}
+                                {categories?.length === 0 ? <h2 className='text-2xl font-bold '>0</h2> : <h2 className='text-2xl font-bold '>{totalSells}</h2>}
                             </div>
                         </div>
                         <div className='w-full shadow-md rounded-md flex flex-col gap-2 p-5 bg-white'>
                             <div className='rounded-lg flex items-center gap-1'>
-                                <div className='rounded-lg text-black text-base '>
+                                {/* <div className='rounded-lg text-black text-base '>
                                     <BsCart3 className='font-semibold' />
-                                </div>
-                                <h3 className='text-base font-semibold '>Total Product Sold</h3>
+                                </div> */}
+                                <h3 className='text-base  font-semibold text-[#4d4d4d] '>Total Product Sold</h3>
                             </div>
                             <div>
                                 {categories?.length === 0 ?  <h2 className='text-2xl font-bold '>0</h2> : <h2 className='text-2xl font-bold '>{totalProduct}</h2>}

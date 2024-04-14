@@ -13,9 +13,9 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Banner = () => {
   return (
-    <div id="banner" className="flex gap-5 md:mt-[63px] mt-[48px] lg:h-[90vh]">
+    <div id="banner" className="flex w-full gap-5 md:mt-[63px] mt-[48px] lg:h-[90vh]">
       <Swiper
-        spaceBetween={30}
+        // spaceBetween={30}
         centeredSlides={true}
         autoplay={{
           delay: 2500,
@@ -29,17 +29,17 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div className="">
-            <img src="https://i.ibb.co/2SGp8L2/Image-1.jpg" alt="" />
+            <img src="https://i.ibb.co/2SGp8L2/Image-1.jpg" alt="" className="w-full h-full object-cover" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="">
-            <img src="https://i.ibb.co/ZJCh9Gv/Image-2.jpg" alt="" />
+            <img src="https://i.ibb.co/ZJCh9Gv/Image-2.jpg" alt="" className="w-full h-full object-cover" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="">
-            <img src="https://i.ibb.co/WP4qBc6/Image-3.jpg" alt="" />
+            <img src="https://i.ibb.co/WP4qBc6/Image-3.jpg" alt="" className="w-full h-full object-cover" />
           </div>
         </SwiperSlide>
       </Swiper>

@@ -160,7 +160,7 @@ const NewNav = () => {
           className={({ isActive }) =>
             `${
               isActive ? "active text-[#fff]" : "text-[#fff]"
-            }  transition navs duration-300 text-base lg:text-lg font-semibold `
+            }  transition navs duration-300 text-base font-semibold `
           }
         >
           Home
@@ -170,7 +170,7 @@ const NewNav = () => {
       <li className="">
         <a
           onClick={(e) => handleAnchorClick(e, "featured")}
-          className="text-[#fff] duration-300 text-base lg:text-lg font-semibold transition navs cursor-pointer"
+          className="text-[#fff] duration-300 text-base font-semibold transition navs cursor-pointer"
         >
           Featured Products
         </a>
@@ -178,7 +178,7 @@ const NewNav = () => {
       <li className="">
         <a
           onClick={(e) => handleAnchorClick(e, "notice")}
-          className="text-[#fff] duration-300 text-base lg:text-lg font-semibold  transition navs cursor-pointer"
+          className="text-[#fff] duration-300 text-base font-semibold  transition navs cursor-pointer"
         >
           Notice Board
         </a>
@@ -190,7 +190,7 @@ const NewNav = () => {
           className={({ isActive }) =>
             `${
               isActive ? "active text-[#fff]" : "text-[#fff]"
-            } duration-300 text-base lg:text-lg font-semibold lg:mr-10 mr-0 transition navs mb-2 lg:mb-2`
+            } duration-300 text-base font-semibold lg:mr-10 mr-0 transition navs mb-2 lg:mb-2`
           }
         >
           Contact Us
@@ -200,16 +200,16 @@ const NewNav = () => {
         {user ? (
           <button
             onClick={handleLogout}
-            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base font-semibold px-10 lg:px-5 py-2 lg:py-1 rounded "
           >
-            Logout
+            Log Out
           </button>
         ) : (
           <Link
             to="/login"
-            className="lg:bg-white mb-2 lg:mb-0 bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded"
+            className="lg:bg-white mb-2 lg:mb-0 bg-[#272727] lg:text-black text-white text-base font-semibold px-10 lg:px-5 py-2 lg:py-1 rounded"
           >
-            Log in
+           Sign In
           </Link>
         )}
       </li>
@@ -217,9 +217,9 @@ const NewNav = () => {
         {!user ? (
           <Link
             to="/register"
-            className="lg:bg-white bg-yellow-950 lg:text-black text-white text-base lg:text-lg font-semibold px-2 py-1 rounded "
+            className="lg:bg-white bg-[#272727] lg:text-black text-white text-base font-semibold px-10 lg:px-5 py-2 lg:py-1 rounded "
           >
-            Registration
+            Sign Up
           </Link>
         ) : (
           ""
@@ -229,13 +229,13 @@ const NewNav = () => {
   );
   return (
     <div
-      className={`max-w-screen z-10 fixed top-0 left-0 md:py-4 py-0 right-0 ${
+      className={`right-0 z-10 fixed top-0 left-0 md:py-4 py-0 ${
         isScrolled ? "bg-[#403030] shadow-sm" : "bg-[#403030]"
       }`}
     >
-      <div className="max-w-[1280px] w-full mx-auto">
-        <div className="flex flex-row justify-between w-full">
-          <div className="flex items-center justify-center lg:hidden">
+      <div className="max-w-[1280px] px-3 mx-auto">
+        <div className="flex py-1 flex-row items-center justify-between w-full">
+          <div className="flex items-center justify-between w-full lg:hidden">
             <div className="lg:hidden relative">
               <div
                 tabIndex={0}
@@ -269,12 +269,12 @@ const NewNav = () => {
               </ul>
             </div>
             <a className="text-white lg:text-[1.3rem] font-semibold md:ml-0 mr-4">
-              VIP TAIRLORS
+              VIP TAILORS
             </a>
           </div>
           <div className="my-auto">
-            <a className="text-white lg:text-[1.3rem] font-semibold hidden lg:block text-center">
-              VIP TAIRLORS
+            <a className="text-white text-xl font-semibold hidden lg:block text-center">
+              VIP TAILORS
             </a>
           </div>
           <div className="hidden lg:block">

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import useCarts from "../../../hooks/useCarts";
 import { useRef, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import rectnglor from "../../../assets/Rectangle.jpg";
+import rectnglor from "../../../assets/Rectangle.gif";
 import { Link } from "react-router-dom";
 import { ReactToPrint } from "react-to-print";
 import { IoPrintOutline } from "react-icons/io5";
@@ -193,12 +193,12 @@ const AddToCart = () => {
               <div className="bg-white md:h-auto overflow-scroll 2xl:h-[80vh] lg:h-[85vh] h-[77vh] lg:ml-10 rounded-md mx-3 lg:mx-0">
                 <div className="flex flex-col justify-center h-full items-center">
                   <div className="flex justify-center items-center mt-4">
-                    <img className="w-[50%]" src={rectnglor} alt="" />
+                    <img className=" h-[20rem] sm:h-[25rem]" src={rectnglor} alt="" />
                   </div>
                   <div className="text-center mt-6">
                     <p className="font-semibold">No Product Available to Show Here</p>
                     <Link to="/productList">
-                      <button className="focus:outline-none focus:ring-2 w-[50%] mt-5 focus:border-transparent bg-[#403030] hover:bg-[#221919] text-white font-semibold py-2.5 rounded-md">
+                      <button className="focus:outline-none focus:ring-2 w-[100%] mt-5 focus:border-transparent bg-[#403030] hover:bg-[#221919] text-white font-semibold py-2.5 rounded-md">
                         Add Product
                       </button>
                     </Link>

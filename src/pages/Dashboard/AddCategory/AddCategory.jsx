@@ -123,7 +123,7 @@ const AddCategory = () => {
         </div>
         <div className="bg-white 2xl:h-[65vh] lg:h-[70vh] rounded-lg px-1 py-3 md:p-3">
           <SectionTitle title="Add Category" />
-          <div className="flex flex-col md:justify-center items-center">
+          <div className="flex flex-col md:justify-center mt-[2rem] items-center">
             <div className="md:w-4/6 w-full mx-auto mb-5">
               <form
                 onSubmit={handleAddCategory}

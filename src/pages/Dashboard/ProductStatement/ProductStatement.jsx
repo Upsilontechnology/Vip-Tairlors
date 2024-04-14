@@ -47,17 +47,17 @@ const ProductStatement = () => {
             <div className="mb-2">
                 <DashBoardTitle
                     title={"Admin"}
-                    subTitle={"Add, Edit your category section in one click. "}
+                    // subTitle={"Add, Edit your category section in one click. "}
                 />
             </div>
             <div className='px-2 bg-white pt-2 rounded-md'>
                 <div className='px-3 lg:w-6/12 mx-auto text-center mb-7'>
                     <SectionTitle
-                        title="Statement Pieces"
+                        title="Statement"
                     />
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="table">
+                    <table className="table ml-[3%] ">
                         {/* head */}
                         <thead>
                             <tr className='border-b-[1.5px] border-black text-black'>

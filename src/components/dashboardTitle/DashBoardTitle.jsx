@@ -12,7 +12,7 @@ const DashBoardTitle = ({ title, subTitle }) => {
               alt=""
             />
           </div>
-          <div className="flex lg:justify-start justify-center items-center text-center lg:text-start">
+          <div className="flex lg:justify-start justify-center lg:pb-0 pb-7 items-center text-center lg:text-start">
             <div>
               <h1 className="lg:text-xl text-base font-bold">
                 Welcome to {title} Dashboard

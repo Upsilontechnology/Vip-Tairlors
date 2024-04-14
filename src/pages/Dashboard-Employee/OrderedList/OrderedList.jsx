@@ -89,7 +89,7 @@ const OrderedList = () => {
               Completed
             </Tab>
           </TabList>
-          <div className="bg-white lg:py-5 py-2 rounded-md">
+          <div className="bg-white h-[100vh] lg:py-5 py-2 rounded-md">
             {/* search bar */}
             <div className="form-control lg:w-1/2 w-[95%] mx-auto lg:mb-5 mb-2">
               <input

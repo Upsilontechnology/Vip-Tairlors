@@ -126,7 +126,7 @@ const AddProduct = () => {
           />
         </div>
         {/* form container */}
-        <div className="mt-2 p-2 bg-white rounded-md 2xl:h-[66vh]">
+        <div className="mt-2 p-2 pt-10 bg-white rounded-md 2xl:h-[66vh]">
           <SectionTitle
             title="Add Products"
             // descrition="Welcome to our showcase selections, where uniqueness meets quality."
