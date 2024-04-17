@@ -5,7 +5,7 @@ import { FaDollarSign } from "react-icons/fa6";
 
 const Card = ({img, name, price}) => {
     return (
-        <div className='mb-5 mt-4 mx-2.5 '>
+        <div className='mb-5 mt-4 mx-0'>
             <div className="">
                 <div className='lg:h-[450px] md:h-[380px] h-[300px] '>
                     <img alt="Product Image" className="w-full h-full object-cover " src={img} />
