@@ -369,12 +369,6 @@ const ProductDetails = () => {
                                 Add
                               </spam>
                             </button>
-                            {/* <button
-                          onClick={() => handleDelete(product)}
-                          className="btn btn-ghost btn-sm bg-gray-300"
-                        >
-                          <MdOutlineDeleteOutline className="text-xl" />
-                        </button> */}
                           </td>
                         </tr>
                       ))}
