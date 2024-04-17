@@ -24,7 +24,7 @@ const ProductStatement = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/sellProduct/${product?._id}`)
+                axiosPublic.delete(`/soldItems/${product?._id}`)
                     .then(res => {
                         console.log(res)
                         refetch();
