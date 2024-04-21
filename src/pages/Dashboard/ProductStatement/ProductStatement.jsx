@@ -56,8 +56,8 @@ const ProductStatement = () => {
                         title="Statement"
                     />
                 </div>
-                <div className="overflow-x-auto">
-                    <table className="table ml-[3%] h-[54vh]">
+                <div className="overflow-x-auto h-[54vh]">
+                    <table className="table ml-[3%]">
                         {/* head */}
                         <thead>
                             <tr className='border-b-[1.5px] border-black text-black'>

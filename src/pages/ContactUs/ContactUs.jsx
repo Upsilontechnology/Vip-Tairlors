@@ -17,10 +17,10 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs.sendForm(
-      'service_ktexr9w',
-      'template_33npnkp',
+      'service_dxn2onr',
+      'template_e98njye',
       form.current,
-      'B8T8yiI5aCfiQrANA')
+      'z1bY8W4MVJUDUn_eK')
       .then((result) => {
         console.log(result.text);
         Swal.fire({
@@ -36,12 +36,12 @@ const Contact = () => {
 
     <div className="">
       <section className=" mb-6 mx-auto" id="contact ">
-      <div className="py-16">
-            <div className="mb-6 w-full text-center sm:text-center md:mx-auto md:mb-12 bg-[#e5e4e4] py-5 text-[#403030]">
-              <h1 className="text-2xl md:text-3xl text-center  font-bold">Get In Touch</h1>
-              <p className="w-full text-center mx-auto mt-2 ">We're here to help and look forward to connecting with you!</p>
-            </div>
+        <div className="py-16">
+          <div className="mb-6 w-full text-center sm:text-center md:mx-auto md:mb-12 bg-[#e5e4e4] py-5 text-[#403030]">
+            <h1 className="text-2xl md:text-3xl text-center  font-bold">Get In Touch</h1>
+            <p className="w-full text-center mx-auto mt-2 ">We're here to help and look forward to connecting with you!</p>
           </div>
+        </div>
         <div className="mx-auto max-w-[1280px]">
           <div className="flex items-center justify-center max-w-6xl mx-auto px-8">
             <div className="grid md:grid-cols-2">

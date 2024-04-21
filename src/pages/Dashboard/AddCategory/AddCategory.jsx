@@ -91,7 +91,7 @@ const AddCategory = () => {
       category,
     };
 
-    fetch(`http://localhost:5000/category/${cData._id}`, {
+    fetch(`https://super-shop-server-mu.vercel.app/category/${cData._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -153,7 +153,7 @@ const ProductDetails = () => {
       productCode,
     };
 
-    fetch(`http://localhost:5000/sellProduct/${id}`, {
+    fetch(`https://super-shop-server-mu.vercel.app/sellProduct/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
