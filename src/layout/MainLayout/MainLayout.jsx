@@ -21,14 +21,6 @@ const MainLayout = () => {
     }
   }, [users, user]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="w-10 h-10 animate-[spin_2s_linear_infinite] rounded-full border-8 border-dotted border-sky-600"></div>
-      </div>
-    );
-  }
-
   let navbarComponent;
   let footerComponent;
 
