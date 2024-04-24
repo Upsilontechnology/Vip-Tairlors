@@ -11,7 +11,7 @@ import EmployeeHome from "../pages/Dashboard-Employee/EmployeeHome/EmployeeHome.
 import OrderedList from "../pages/Dashboard-Employee/OrderedList/OrderedList.jsx";
 import MembersRequest from "../pages/Dashboard/MembersRequest/MembersRequest.jsx";
 import AllMembers from "../pages/Dashboard/AllMembers/AllMembers.jsx";
-import Errorpage from "../pages/Errorpage/Errorpage.jsx"
+import Errorpage from "../pages/Errorpage/Errorpage.jsx";
 import EmployeeRoute from "./EmployeeRoute.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import ProductStatement from "../pages/Dashboard/ProductStatement/ProductStatement.jsx";
@@ -22,6 +22,7 @@ import ProductDetails from "../components/ProductDetails/ProductDetails.jsx";
 import AddCategory from "../pages/Dashboard/AddCategory/AddCategory.jsx";
 import AddToCart from "../pages/Dashboard/AddToCart/AddToCart.jsx";
 import WaitingMessage from "../components/WaitingMessage/WaitingMessage.jsx";
+import ForgetPass from "../pages/Home/Login/ForgetPass";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/forgetpassword",
+        element: <ForgetPass />,
       },
       {
         path: "/register",
