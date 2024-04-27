@@ -259,7 +259,7 @@ const NewNav = () => {
                 </svg>
               </div>
               <ul
-                className={`text-white absolute md:-top-4 top-0 left-0 right-0 w-[100vw]  transition-all duration-500 flex flex-col items-center text-center gap-5 hero-overlay ${
+                className={`text-white absolute md:-top-5 -top-1 -left-3  w-[100vw]  transition-all duration-500 flex flex-col items-center text-center gap-5 hero-overlay ${
                   isMenuOpen
                     ? "opacity-100 visible h-screen"
                     : "opacity-0 invisible h-0"

@@ -94,11 +94,11 @@ const Registation = () => {
 
   return (
     <div className=" font-Montserrat w-full">
-      <div className="bg-[#e5e4e4] h-[25vh] pt-10 w-full text-center text-[#403030] flex justify-center items-center">
-        <h1 className="text-4xl font-bold">Sign Up</h1>
+      <div className="bg-[#e5e4e4] mt-14 md:mt-20 lg:mt-16 py-3 md:py-8 w-full text-center text-[#403030] flex justify-center items-center">
+        <h1 className="text-3xl md:text-4xl font-bold">Sign Up</h1>
       </div>
-      <div className="flex md:bg-white bg-[#F3F3F3] h-[75vh] items-center justify-center rounded-lg">
-        <div className="flex flex-col w-full md:w-[768px] ">
+      <div className="flex md:bg-white bg-[#F3F3F3] mt-10 mb-16 mx-6 items-center justify-center rounded-lg">
+        <div className="flex flex-col w-full md:w-3/4 lg:w-[768px]  ">
           <div className="bg-[#F3F3F3]  py-[10%] px-[5%] md:px-[15%]">
             <form
               onSubmit={hanldeRegister}
@@ -153,7 +153,7 @@ const Registation = () => {
                 {error ? <p className="text-red-600">{error}</p> : ""}
               </div>
               <div className="flex justify-center text-xl font-semibold text-white font-Montserrat">
-                <button className="w-full py-4 bg-[#444444] text-white hover:bg-[#303030] rounded-lg">
+                <button className="w-full py-3 md:py-4 bg-[#444444] text-white hover:bg-[#303030] rounded-lg">
                   Sign Up
                 </button>
               </div>
